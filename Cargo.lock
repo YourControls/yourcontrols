@@ -643,18 +643,6 @@ dependencies = [
 
 [[package]]
 name = "dns-lookup"
-version = "1.0.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "53ecafc952c4528d9b51a458d1a8904b81783feff9fde08ab6ed2545ff396872"
-dependencies = [
- "cfg-if",
- "libc",
- "socket2 0.4.10",
- "winapi",
-]
-
-[[package]]
-name = "dns-lookup"
 version = "2.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf5597a4b7fe5275fc9dcf88ce26326bc8e4cb87d0130f33752d4c5f717793cf"
@@ -3243,7 +3231,7 @@ dependencies = [
  "clap",
  "crossbeam-channel",
  "derive_more",
- "dns-lookup 2.1.1",
+ "dns-lookup",
  "dotenv_codegen",
  "indexmap 2.13.0",
  "laminar",
@@ -3285,7 +3273,7 @@ name = "yourcontrols-net"
 version = "0.1.0"
 dependencies = [
  "crossbeam-channel",
- "dns-lookup 1.0.8",
+ "dns-lookup",
  "dotenv",
  "dotenv_codegen",
  "igd",
