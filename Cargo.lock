@@ -168,12 +168,6 @@ checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 
 [[package]]
 name = "base64"
-version = "0.20.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0ea22880d78093b0cbe17c89f64a7d457941e65759157ec6cb31a31d652b05e5"
-
-[[package]]
-name = "base64"
 version = "0.22.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
@@ -3237,7 +3231,7 @@ name = "yourcontrols"
 version = "2.8.12"
 dependencies = [
  "attohttpc 0.28.5",
- "base64 0.22.1",
+ "base64",
  "bimap",
  "byteorder",
  "clap",
@@ -3323,7 +3317,7 @@ dependencies = [
 name = "yourcontrols-types"
 version = "0.1.0"
 dependencies = [
- "base64 0.20.0",
+ "base64",
  "crossbeam-channel",
  "igd",
  "laminar",
