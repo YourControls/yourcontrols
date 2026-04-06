@@ -1,0 +1,17 @@
+.vscode
+.vscodeold
+.env
+*.dat
+*.txt
+
+target/
+
+scripts/*
+!scripts/*.py
+!scripts/hevents.txt
+!scripts/build-include
+!scripts/build-include/*
+
+libclang.dll
+node_modules
+config.json
