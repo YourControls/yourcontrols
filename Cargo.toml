@@ -1,0 +1,10 @@
+[workspace]
+members = [
+    "src/yourcontrols",
+    "src/yourcontrols-net",
+    "src/yourcontrols-types",
+    "src/yourcontrols-hoster",
+    "src/yourcontrols-server",
+]
+
+default-members = ["src/yourcontrols"]
