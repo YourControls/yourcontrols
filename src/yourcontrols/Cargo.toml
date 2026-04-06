@@ -10,7 +10,7 @@ name = "YourControls"
 path = "src/main.rs"
 
 [dependencies]
-attohttpc = { version = "0.28", features = ["json"] }
+attohttpc = { version = "0.30", features = ["json"] }
 base64 = "0.22"
 bimap = { version = "0.6", features = ["serde"] }
 byteorder = "1.3"

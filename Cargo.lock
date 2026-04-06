@@ -147,10 +147,11 @@ dependencies = [
 
 [[package]]
 name = "attohttpc"
-version = "0.28.5"
+version = "0.30.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "07a9b245ba0739fc90935094c29adbaee3f977218b5fb95e822e261cda7f56a3"
+checksum = "16e2cdb6d5ed835199484bb92bb8b3edd526effe995c61732580439c1a67e2e9"
 dependencies = [
+ "base64 0.22.1",
  "flate2",
  "http 1.4.0",
  "log",
@@ -3236,7 +3237,7 @@ dependencies = [
 name = "yourcontrols"
 version = "2.8.12"
 dependencies = [
- "attohttpc 0.28.5",
+ "attohttpc 0.30.1",
  "base64 0.22.1",
  "bimap",
  "byteorder",
