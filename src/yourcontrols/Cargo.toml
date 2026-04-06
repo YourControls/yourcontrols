@@ -36,7 +36,7 @@ spin_sleep = "1.1"
 tungstenite = "0.23"
 util = "0.1"
 web-view = "0.7.3"
-zip = "2.1"
+zip = "8.5"
 
 yourcontrols-net = { path = "../yourcontrols-net" }
 yourcontrols-types = { path = "../yourcontrols-types" }
