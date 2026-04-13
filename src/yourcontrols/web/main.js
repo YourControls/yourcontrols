@@ -368,7 +368,7 @@ function MessageReceived(data) {
             break;
         case "version":
             $("#updateModal").modal();
-            version_alert_text.innerHTML = "New version is available" + data["data"];
+            version_alert_text.innerHTML = "New version is available: " + data["data"];
             break;
         case "update_failed":
             updateFailed();

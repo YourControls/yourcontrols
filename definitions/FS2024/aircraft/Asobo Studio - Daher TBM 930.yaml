@@ -1,0 +1,524 @@
+# Version 6.26.1 / 2.0.0 Enhanced
+
+include:
+  - definitions/FS2024/modules/Instruments/AS_G3000.yaml
+  - definitions/FS2024/modules/controls.yaml
+  - definitions/FS2024/modules/general.yaml
+  - definitions/FS2024/modules/navigation.yaml
+  - definitions/FS2024/modules/payload.yaml
+  - definitions/FS2024/modules/radios.yaml
+  - definitions/FS2024/modules/safety.yaml
+  - definitions/FS2024/modules/trim.yaml
+
+shared:
+  - # Deice
+    type: NumSet
+    var_name: A:PITOT HEAT SWITCH:1
+    var_units: Enum
+    var_type: i32
+    event_name: PITOT_HEAT_SET
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:PITOT HEAT SWITCH:2
+    var_units: Enum
+    var_type: i32
+    event_name: PITOT_HEAT_SET
+    event_param: 2
+  -
+    type: ToggleSwitch
+    var_name: A:STRUCTURAL DEICE SWITCH
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_STRUCTURAL_DEICE
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:73
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 73
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:74
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 74
+    use_calculator: true
+  -
+    type: CustomCalculator
+    get: (B:DEICE_Propeller_1_Toggle)
+    set: (>B:DEICE_Propeller_1_Toggle)
+
+  - # Compartment Door
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:3
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 4
+    use_calculator: true
+
+  - # Elec buttons
+    type: CustomCalculator
+    get: (B:ELECTRICAL_MAIN_BUTTON_PUSH)
+    set: (>B:ELECTRICAL_MAIN_BUTTON_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ELECTRICAL_STANDBY_BUTTON_PUSH)
+    set: (>B:ELECTRICAL_STANDBY_BUTTON_PUSH)
+
+  - # Engine
+    type: NumSet
+    var_name: A:GENERAL ENG PROPELLER LEVER POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: PROP_PITCH1_SET
+    use_calculator: true
+    unreliable: true
+
+  - # Ignition
+    type: CustomCalculator
+    get: (B:ENGINE_Ignition_1) 0 ==
+    set: 0 (>B:ENGINE_Ignition_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ENGINE_Ignition_1) 1 ==
+    set: 1 (>B:ENGINE_Ignition_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ENGINE_Ignition_1) 2 ==
+    set: 2 (>B:ENGINE_Ignition_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+
+  - # Starter
+    type: CustomCalculator
+    get: (L:XMLVAR_Starter) 0 ==
+    set: 0 (>B:ENGINE_Starter_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Starter) 1 ==
+    set: 1 (>B:ENGINE_Starter_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Starter) 2 ==
+    set: 2 (>B:ENGINE_Starter_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+
+  - # Fuel
+    type: NumSet
+    var_name: A:FUEL TANK SELECTOR:1
+    var_units: Enum
+    var_type: i32
+    event_name: FUEL_SELECTOR_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG FUEL PUMP SWITCH EX1:1
+    var_units: Enum
+    var_type: i32
+    event_name: ELECT_FUEL_PUMP1_SET
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:GENERAL ENG FUEL VALVE:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_FUEL_VALVE_ENG1
+    use_calculator: true
+
+  - # Handling
+    type: NumSet
+    var_name: A:BRAKE PARKING POSITION
+    var_units: Bool
+    var_type: i32
+    event_name: PARKING_BRAKE_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FLAPS HANDLE PERCENT
+    var_units: Position 16k
+    var_type: f64
+    event_name: FLAPS_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GEAR HANDLE POSITION
+    var_units: Bool
+    var_type: i32
+    event_name: GEAR_SET
+    use_calculator: true
+
+  - # Interior
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:71
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 71
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:14
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 14
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:14
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 14
+    index_reversed: true
+    unreliable: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:29
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 29
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:30
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 30
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:18
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 18
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:CIRCUIT POWER SETTING:18
+    var_units: Percent
+    var_type: f64
+    event_name: ELECTRICAL_CIRCUIT_POWER_SETTING_SET
+    event_param: 18
+    index_reversed: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:50
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 50
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:51
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 51
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:52
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 52
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:53
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 53
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:67
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 67
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:68
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 68
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:69
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 69
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:70
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 70
+    use_calculator: true
+  -
+    type: CustomCalculator
+    get: (B:LIGHTING_DIMMER_LIGHT_TOGGLE)
+    set: (>B:LIGHTING_DIMMER_LIGHT_TOGGLE)
+
+  - # Lights
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:9
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 9
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:13
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 13
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT WING:1
+    var_units: Bool
+    var_type: i32
+    event_name: WING_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+
+  - # Pressurization
+    type: ToggleSwitch
+    var_name: A:PRESSURIZATION DUMP SWITCH
+    var_units: Bool
+    var_type: bool
+    event_name: PRESSURIZATION_PRESSURE_DUMP_SWITCH
+    use_calculator: true
+  -
+    type: CustomCalculator
+    get: (B:PRESSURIZATION_DUMP_COVER_TOGGLE)
+    set: (>B:PRESSURIZATION_DUMP_COVER_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:PRESSURIZATION_MICRO_MASK_COVER_TOGGLE)
+    set: (>B:PRESSURIZATION_MICRO_MASK_COVER_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:PRESSURIZATION_MICRO_MASK_TOGGLE)
+    set: (>B:PRESSURIZATION_MICRO_MASK_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:PRESSURIZATION_OXYGEN_TOGGLE)
+    set: (>B:PRESSURIZATION_OXYGEN_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:PRESSURIZATION_PASSENGER_OXYGEN_TOGGLE)
+    set: (>B:PRESSURIZATION_PASSENGER_OXYGEN_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:PRESSURIZATION_RAM_AIR_TOGGLE)
+    set: (>B:PRESSURIZATION_RAM_AIR_TOGGLE)
+
+  - # TOGA (enforce)
+    type: CustomCalculator
+    get: (B:ENGINE_TOGA_1_TOGGLE)
+    set: (>B:ENGINE_TOGA_1_TOGGLE)
+
+  - # Scoped
+    type: var
+    var_name: L:1:TBM930_Wing_Fuel_Cap_Left_Open
+  -
+    type: var
+    var_name: L:1:TBM930_Engine_Cowl_Left_Open
+  -
+    type: var
+    var_name: L:1:TBM930_GPU_Door_Open
+  -
+    type: var
+    var_name: L:1:TBM930_EXT_GPU_Door_Position_Commanded
+  -
+    type: var
+    var_name: L:1:TBM930_Engine_Cowl_Right_Open
+  -
+    type: var
+    var_name: L:1:TBM930_Wing_Fuel_Cap_Right_Open
+  -
+    type: var
+    var_name: L:1:TBM930_Oxygen_Service_Door_Open
+  -
+    type: var
+    var_name: L:1:TBM_Windshield_Cover_State
+  -
+    type: var
+    var_name: L:1:TBM_Taxi_Light_State
+  -
+    type: var
+    var_name: L:1:TBM_Landing_Light_State
+  -
+    type: var
+    var_name: L:1:TBM_Pulse_Light_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_Cabin_Light_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_Access_Light_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_Elec_CrashBar_State
+  -
+    type: var
+    var_name: L:1:TBM_Elec_Source_Switch_State
+  -
+    type: var
+    var_name: L:1:TBM_Elec_Generator_Switch_State
+  -
+    type: var
+    var_name: L:1:TBM_Fuel_Selection_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_AP_Trim_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_ELT_Remote_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_Sun_Visor_Left_Rotate_Position
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:TBM_Sun_Visor_Left_Deploy_Position
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:TBM_Sun_Visor_Right_Rotate_Position
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:TBM_Sun_Visor_Right_Deploy_Position
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:TBM_AirCon_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_Vcs_Fan_Knob_Forward_Position
+  -
+    type: var
+    var_name: L:1:TBM_Temp_Knob_Forward_Position
+  -
+    type: var
+    var_name: L:1:TBM_Windshield_Deice_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_Inert_Sep_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_Bleed_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_Hot_Air_Distribution_Knob_Position
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:TBM_Ess_Bus_Tie_Cover_Position
+  -
+    type: var
+    var_name: L:1:TBM_Ess_Bus_Tie_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_Cockpit_Door_Unlocked
+  -
+    type: var
+    var_name: L:1:TBM_Cockpit_Door_Commanded_Position
+  -
+    type: var
+    var_name: L:1:Cockpit_Door_Interior_Handle_Position
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:Cockpit_Door_Exterior_Handle_Position
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:TBM_Vcs_Fan_Knob_Aft_Position
+  -
+    type: var
+    var_name: L:1:TBM_Temp_Knob_Aft_Position
+  -
+    type: var
+    var_name: L:1:TBM_Cabin_Door_Motor_Switch_Position
+  -
+    type: var
+    var_name: L:1:TBM_Cabin_Door_Unlocked
+  -
+    type: var
+    var_name: L:1:TBM_Cabin_Door_Commanded_Position
+  -
+    type: var
+    var_name: L:1:Cabin_Door_Interior_Handle_Position
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:Cabin_Door_Exterior_Handle_Position
+    unreliable: true
+
+# - # Global
+#   type: var
+#   var_name: L:XMLVAR_Ignition
+# -
+#   type: var
+#   var_name: L:XMLVAR_BoostFuelPump
+  -
+    type: var
+    var_name: L:XMLVAR_FuelSelectorAuto
+  -
+    type: var
+    var_name: L:XMLVAR_Baro3_ForcedToSTD
+  -
+    type: var
+    var_name: L:XMLVAR_Baro3_SavedPressure
+    interpolate: Default
+
+master:
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG THROTTLE LEVER POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: THROTTLE1_SET
+    use_calculator: true
+    unreliable: true

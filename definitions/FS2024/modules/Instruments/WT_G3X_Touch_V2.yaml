@@ -16,6 +16,7 @@ shared:
         var_type: bool
       equals:
         Bool: false
+    cancel_h_events: true
     unreliable: true
   -
     type: NumSet
@@ -32,6 +33,7 @@ shared:
         var_type: bool
       equals:
         Bool: true
+    cancel_h_events: true
     unreliable: true
   -
     type: NumSet
@@ -40,12 +42,14 @@ shared:
     var_type: i32
     event_name: AP_ALT_VAR_SET_ENGLISH
     event_param: 1
+    cancel_h_events: true
   -
     type: ToggleSwitch
     var_name: A:AUTOPILOT BACKCOURSE HOLD
     var_units: Bool
     var_type: bool
     event_name: AP_BC_HOLD
+    cancel_h_events: true
     use_calculator: true
   -
     type: NumSet
@@ -53,6 +57,7 @@ shared:
     var_units: Bool
     var_type: i32
     event_name: AUTOPILOT_DISENGAGE_SET
+    cancel_h_events: true
     use_calculator: true
   -
     type: NumSet
@@ -60,6 +65,7 @@ shared:
     var_units: Bool
     var_type: i32
     event_name: TOGGLE_FLIGHT_DIRECTOR
+    cancel_h_events: true
     use_calculator: true
   -
     type: ToggleSwitch
@@ -67,6 +73,7 @@ shared:
     var_units: Bool
     var_type: bool
     event_name: FLIGHT_LEVEL_CHANGE
+    cancel_h_events: true
     use_calculator: true
   -
     type: ToggleSwitch
@@ -74,6 +81,7 @@ shared:
     var_units: Bool
     var_type: bool
     event_name: AP_HDG_HOLD
+    cancel_h_events: true
     use_calculator: true
   -
     type: NumSet
@@ -82,12 +90,14 @@ shared:
     var_type: f64
     event_name: HEADING_BUG_SET
     event_param: 1
+    cancel_h_events: true
   -
     type: ToggleSwitch
     var_name: A:AUTOPILOT MANAGED SPEED IN MACH
     var_units: Bool
     var_type: bool
     event_name: AP_MANAGED_SPEED_IN_MACH_TOGGLE
+    cancel_h_events: true
     use_calculator: true
   -
     type: ToggleSwitch
@@ -95,6 +105,7 @@ shared:
     var_units: Bool
     var_type: bool
     event_name: AP_MASTER
+    cancel_h_events: true
     use_calculator: true
   -
     type: NumSet
@@ -102,6 +113,7 @@ shared:
     var_units: Number
     var_type: i32
     event_name: AP_MAX_BANK_SET
+    cancel_h_events: true
     use_calculator: true
   -
     type: ToggleSwitch
@@ -109,7 +121,7 @@ shared:
     var_units: Bool
     var_type: bool
     event_name: AP_NAV1_HOLD
-    is_user_event: true
+    cancel_h_events: true
     use_calculator: true
   -
     type: NumSet
@@ -117,6 +129,7 @@ shared:
     var_units: Bool
     var_type: i32
     event_name: AP_VS_SET
+    cancel_h_events: true
     use_calculator: true
   -
     type: NumSet
@@ -125,12 +138,14 @@ shared:
     var_type: i32
     event_name: AP_VS_VAR_SET_ENGLISH
     event_param: 1
+    cancel_h_events: true
   -
     type: NumSet
     var_name: A:AUTOPILOT YAW DAMPER
     var_units: Bool
     var_type: i32
     event_name: YAW_DAMPER_SET
+    cancel_h_events: true
     use_calculator: true
 
   - # Events no simvar
@@ -228,3 +243,11 @@ ignore:
   - AP_KNOB
   - AP_KNOB_Up
   - AP_KNOB_Down
+
+# ALT button
+  - G3XTouch_1#3759591370
+  - G3XTouch_2#3759591370
+  - G3XTouch_3#3759591370
+  - G3XTouch_1#2256760415
+  - G3XTouch_2#2256760415
+  - G3XTouch_3#2256760415

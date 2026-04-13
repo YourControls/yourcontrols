@@ -1,4 +1,4 @@
-# Version 2.2.4 (based on Asobo A320)
+# Version 2.2.7 (based on Asobo A320)
 
 include:
   - definitions/FS2020/aircraft/Asobo Studio - Airbus A320neo.yaml
@@ -22,6 +22,21 @@ shared:
 # -
 #   type: var
 #   var_name: L:LVFR_FLIGHT_PHASE
+  -
+    type: var
+    var_name: L:LVFR_IRS_1_SWITCH_STATE
+  -
+    type: var
+    var_name: L:LVFR_IRS_2_SWITCH_STATE
+  -
+    type: var
+    var_name: L:LVFR_IRS_3_SWITCH_STATE
+  -
+    type: var
+    var_name: L:LVFR_Source_Nav1
+  -
+    type: var
+    var_name: L:LVFR_Source_Nav2
   -
     type: var
     var_name: L:EFB_ON
@@ -61,24 +76,18 @@ shared:
   -
     type: var
     var_name: L:FLIGHT_DECK_DOOR
-  -
-    type: var
-    var_name: L:LVFR_Source_Nav1
-  -
-    type: var
-    var_name: L:LVFR_Source_Nav2
-  -
-    type: var
-    var_name: L:LVFR_IRS_1_SWITCH_STATE
-  -
-    type: var
-    var_name: L:LVFR_IRS_2_SWITCH_STATE
-  -
-    type: var
-    var_name: L:LVFR_IRS_3_SWITCH_STATE
 # -
 #   type: var
 #   var_name: L:LVFR_RMI
+# -
+#   type: var
+#   var_name: L:LVFR_ADIRS1_STATE
+# -
+#   type: var
+#   var_name: L:LVFR_ADIRS2_STATE
+# -
+#   type: var
+#   var_name: L:LVFR_ADIRS3_STATE
   -
     type: var
     var_name: L:LVFR_GPWS_LIGHT
@@ -97,15 +106,6 @@ shared:
   -
     type: var
     var_name: L:LVFR_OVHD_GPWS_BTN_FLAP_3_MODE
-# -
-#   type: var
-#   var_name: L:LVFR_ADIRS1_STATE
-# -
-#   type: var
-#   var_name: L:LVFR_ADIRS2_STATE
-# -
-#   type: var
-#   var_name: L:LVFR_ADIRS3_STATE
 # -
 #   type: var
 #   var_name: L:LVFR_SECTOR_TEMP_CKPT

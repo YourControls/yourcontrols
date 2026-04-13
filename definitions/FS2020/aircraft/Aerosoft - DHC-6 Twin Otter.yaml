@@ -439,15 +439,15 @@ shared:
 # -
 #   type: var
 #   var_name: L:AS530_ManualBrightness_Value
-# -
-#   type: var
-#   var_name: L:AS530_ManualBrightness_Enabled
+  -
+    type: var
+    var_name: L:AS530_ManualBrightness_Enabled
 # -
 #   type: var
 #   var_name: L:AS430_ManualBrightness_Value
-# -
-#   type: var
-#   var_name: L:AS430_ManualBrightness_Enabled
+  -
+    type: var
+    var_name: L:AS430_ManualBrightness_Enabled
 # -
 #   type: var
 #   var_name: L:XMLVAR_LTS_Test

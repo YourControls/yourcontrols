@@ -1,15 +1,51 @@
-# Actively supported FS2024 modules (as of 2.8.12)
+# Current supported FS2024 modules (as of 2.8.16)
 
 ## Developer name & Verified version
 
+- Asobo Studio - Beechcraft Baron G58  # v0.0.17
+- Asobo Studio - Beechcraft Bonanza G36  # v6.26.1
+- Asobo Studio - Boeing 737-8 MAX  # v6.31.0
 - Asobo Studio - Cessna 152  # v6.12.0
 - Asobo Studio - Cessna 172SP Skyhawk (G1000)  # v6.33.0
 - Asobo Studio - Cessna 172SP Skyhawk  # v6.12.0
 - Asobo Studio - Cessna Citation CJ4  # v6.12.0
-- Asobo Studio - Cessna Citation Longitude  # v6.12.0
+- Asobo Studio - Daher TBM 930  # v6.26.1 / 2.0.0 Enhanced
+- Black Square - Beechcraft Baron B58 (Professional)  # v0.1.1
+- Black Square - Beechcraft Bonanza A36 (Professional)  # v0.1.0
+- Black Square - Beechcraft Duke B60  # v0.1.2
+- Black Square - Cessna 208B Grand Caravan (Professional)  # v0.1.1
+- Black Square - Daher TBM 850  # v0.1.4
+- BRsimDesigns - Embraer EMB-121A1 Xingu II  # v1.7.0
+- Carenado - Piper PA-28-236 Dakota  # v6.26.0
+- Cowan Simulation - Airbus H125 (AS350B3e)  # v3.3.0
+- Cowan Simulation - Bell 206B-3 JetRanger III  # v3.3.0
+- Cowan Simulation - Bell 206L-3 LongRanger III  # v3.3.0
+- Cowan Simulation - Bell 222B  # v3.2.0
+- Cowan Simulation - MD Helicopters 500E  # v3.4.0
+- Cowan Simulation - Robinson R66  # v3.5.0
 - COWS - Diamond DA40 Diamond Star  # v1.1.3
 - COWS - Diamond DA42 Twin Star  # v1.2.5
+- Fenix Simulations - Airbus A319ceo  # v2.4.0.3311
 - Fenix Simulations - Airbus A320ceo  # v2.4.0.3311
-- FlightFX - Cirrus SF50 Vision Jet G2  # v6.22.0
+- Fenix Simulations - Airbus A321ceo  # v2.4.0.3311
+- FlightSim Studio - Embraer E-Jet Series  # v0.9.34
 - FlyByWire Simulations - Airbus A380-842  # v0.14.0
+- Flysimware - Cessna 414AW Chancellor  # v4.7.5
+- iniBuilds - Airbus A340-300  # v1.0.10
+- Just Flight - Piper PA-28-161 Warrior II  # v0.4.3
+- Just Flight - Piper PA-28R-201 Arrow III  # v0.11.3
+- Just Flight - Piper PA-28R-201T Turbo Arrow III & IV  # v0.6.3
+- Microsoft & FlightFX - Cirrus SF50 Vision Jet G2  # v6.22.0
 - Microsoft & iniBuilds - Airbus A320neo  # v6.31.0
+- Microsoft & iniBuilds - Curtiss JN-4D Jenny  # v6.9.0
+- Microsoft & iniBuilds - Grumman G-21A Goose  # v6.26.1
+- Microsoft & Mike Johnson - Grumman G-111 Albatross  # v2.2.7
+- Microsoft & Mike Johnson - Grumman HU-16 Albatross  # v2.2.7
+- Microsoft & Nemeth Designs - Bell 407  # v6.29.1
+- Microsoft & Working Title - Boeing 747-4 Dreamlifter  # v2.1.4
+- Microsoft & Working Title - Boeing 747-4 Supertanker  # v2.1.4
+- Microsoft & Working Title - Boeing 747-8 Pax & Freight  # v2.1.4
+- Microsoft & Working Title - Boeing 787-10 Dreamliner  # v2.1.4
+- Microsoft & Working Title - Cessna Citation Longitude  # v0.5.1 / 2.0.1 Enhanced
+- Microsoft & Working Title - Cirrus SR22T G6 GTS  # v2.1.6
+- Shrike Simulations - MD Helicopters 530F  # v1.2.1

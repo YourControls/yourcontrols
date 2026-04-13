@@ -1,0 +1,1498 @@
+# Version 1.7.0
+
+include:
+  - definitions/FS2024/modules/Instruments/AS_GNS530.yaml
+  - definitions/FS2024/modules/Instruments/PMS50_GTN.yaml
+  - definitions/FS2024/modules/controls.yaml
+  - definitions/FS2024/modules/engines.yaml
+  - definitions/FS2024/modules/general.yaml
+  - definitions/FS2024/modules/handling.yaml
+  - definitions/FS2024/modules/navigation.yaml
+  - definitions/FS2024/modules/payload.yaml
+  - definitions/FS2024/modules/radios.yaml
+  - definitions/FS2024/modules/safety.yaml
+  - definitions/FS2024/modules/trim.yaml
+
+shared:
+  - # Autopilot
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT MASTER
+    var_units: Bool
+    var_type: bool
+    event_name: AP_MASTER
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT HEADING LOCK
+    var_units: Bool
+    var_type: bool
+    event_name: AP_HDG_HOLD
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT HEADING LOCK DIR:1
+    var_units: Degrees
+    var_type: f64
+    event_name: HEADING_BUG_SET
+    event_param: 1
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT ALTITUDE LOCK
+    var_units: Bool
+    var_type: bool
+    event_name: AP_ALT_HOLD
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT ALTITUDE LOCK VAR:1
+    var_units: Feet
+    var_type: i32
+    event_name: AP_ALT_VAR_SET_ENGLISH
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT VERTICAL HOLD
+    var_units: Bool
+    var_type: i32
+    event_name: AP_VS_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT VERTICAL HOLD VAR:1
+    var_units: Feet per minute
+    var_type: i32
+    event_name: AP_VS_VAR_SET_ENGLISH
+    event_param: 1
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT NAV1 LOCK
+    var_units: Bool
+    var_type: bool
+    event_name: AP_NAV1_HOLD
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT APPROACH HOLD
+    var_units: Bool
+    var_type: bool
+    event_name: AP_APR_HOLD
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT BACKCOURSE HOLD
+    var_units: Bool
+    var_type: bool
+    event_name: AP_BC_HOLD
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:GPS DRIVES NAV1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_GPS_DRIVES_NAV1
+    cancel_h_events: true
+    use_calculator: true
+
+  - # Avionics bus
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:20
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 20
+    use_calculator: true
+
+  - # Crossfeed
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:36
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 36
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:37
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 37
+    use_calculator: true
+
+  - # Deice
+    type: NumSet
+    var_name: A:PITOT HEAT SWITCH:1
+    var_units: Bool
+    var_type: i32
+    event_name: PITOT_HEAT_SET
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:PITOT HEAT SWITCH:2
+    var_units: Bool
+    var_type: i32
+    event_name: PITOT_HEAT_SET
+    event_param: 2
+  -
+    type: ToggleSwitch
+    var_name: A:ENG ANTI ICE:1
+    var_units: Bool
+    var_type: bool
+    event_name: ANTI_ICE_TOGGLE_ENG1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:ENG ANTI ICE:2
+    var_units: Bool
+    var_type: bool
+    event_name: ANTI_ICE_TOGGLE_ENG2
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:PROP DEICE SWITCH:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_PROPELLER_DEICE
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:STRUCTURAL DEICE SWITCH
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_STRUCTURAL_DEICE
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:WINDSHIELD DEICE SWITCH
+    var_units: Bool
+    var_type: bool
+    event_name: WINDSHIELD_DEICE_TOGGLE
+    use_calculator: true
+
+  - # Doors
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:0
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 1
+    cancel_h_events: true
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 2
+    cancel_h_events: true
+    use_calculator: true
+
+  - # Electrical
+    type: NumSet
+    var_name: A:GENERAL ENG MASTER ALTERNATOR:1
+    var_units: Bool
+    var_type: i32
+    event_name: ALTERNATOR_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG MASTER ALTERNATOR:2
+    var_units: Bool
+    var_type: i32
+    event_name: ALTERNATOR_SET
+    event_param: 2
+    use_calculator: true
+
+  - # Engines
+    type: var
+    var_name: A:TURB ENG CONDITION LEVER POSITION:1
+    var_units: Enum
+    var_type: i32
+  -
+    type: var
+    var_name: A:TURB ENG CONDITION LEVER POSITION:2
+    var_units: Enum
+    var_type: i32
+
+  - # Interior
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:8
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 8
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:3
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 3
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:6
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 6
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:5
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 5
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:4
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 4
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:7
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 7
+    index_reversed: true
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT CABIN:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_CABIN_LIGHTS
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT CABIN:2
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_CABIN_LIGHTS
+    event_param: 2
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT CABIN:3
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_CABIN_LIGHTS
+    event_param: 3
+    use_calculator: true
+
+  - # Lights
+    type: NumSet
+    var_name: A:LIGHT LANDING:1
+    var_units: Bool
+    var_type: i32
+    event_name: LANDING_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT LANDING:2
+    var_units: Bool
+    var_type: i32
+    event_name: LANDING_LIGHTS_SET
+    event_param: 2
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT NAV:1
+    var_units: Bool
+    var_type: i32
+    event_name: NAV_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT TAXI:1
+    var_units: Bool
+    var_type: i32
+    event_name: TAXI_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT BEACON:1
+    var_units: Bool
+    var_type: i32
+    event_name: BEACON_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT STROBE:1
+    var_units: Bool
+    var_type: i32
+    event_name: STROBES_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT WING:1
+    var_units: Bool
+    var_type: i32
+    event_name: WING_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+
+  - # Passenger
+    type: ToggleSwitch
+    var_name: A:CABIN SEATBELTS ALERT SWITCH
+    var_units: Bool
+    var_type: bool
+    event_name: CABIN_SEATBELTS_ALERT_SWITCH_TOGGLE
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CABIN NO SMOKING ALERT SWITCH
+    var_units: Bool
+    var_type: bool
+    event_name: CABIN_NO_SMOKING_ALERT_SWITCH_TOGGLE
+    use_calculator: true
+
+  - # Payload
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:11
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+
+  - # Radio Panel
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:24
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 24
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:26
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 26
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:22
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 22
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:23
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 23
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:25
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 25
+    use_calculator: true
+
+  - # Transponder
+    type: NumSet
+    var_name: A:TRANSPONDER IDENT:1
+    var_units: Bool
+    var_type: i32
+    event_name: XPNDR_IDENT_SET
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:TRANSPONDER CODE:1
+    var_units: Bco16
+    var_type: i32
+    event_name: XPNDR_SET
+    event_param: 1
+
+# - # LVAR's (trimmed)
+#   type: var
+#   var_name: L:EMB121_ROT_BEACON
+  -
+    type: var
+    var_name: L:EMB121_LONG_ANTENNA
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:EMB121_BAGGAGE_WEIGHT_OBJ
+  -
+    type: var
+    var_name: L:EMB121_GPU_CONNECTED
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_CHOCKS
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_CHRONO_START
+  -
+    type: var
+    var_name: L:EMB121_CHRONO_RESET
+  -
+    type: var
+    var_name: L:EMB121_CHRONO_OAT_VOLTS
+  -
+    type: var
+    var_name: L:EMB121_WR_RANGE
+  -
+    type: var
+    var_name: L:EMB121_WR_BRT
+    unreliable: true
+  -
+    type: var
+    var_name: L:EMB121_TABLET_ON
+  -
+    type: var
+    var_name: L:EMB121_AP_LIGHTS_TEST
+  -
+    type: var
+    var_name: L:EMB121_DME_DIM_SET
+    unreliable: true
+  -
+    type: var
+    var_name: L:EMB121_DME2_DIM_SET
+    unreliable: true
+  -
+    type: var
+    var_name: L:EMB121_DME_NAV_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_DME2_NAV_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_DME_SPEED_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_DME2_SPEED_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_AC_MODE
+  -
+    type: var
+    var_name: L:EMB121_AC_MAN_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_CABIN_TEMP_KNOB
+  -
+    type: var
+    var_name: L:EMB121_AC_L_CUT
+  -
+    type: var
+    var_name: L:EMB121_AC_R_CUT
+  -
+    type: var
+    var_name: L:EMB121_AC_VALVE
+  -
+    type: var
+    var_name: L:EMB121_AC_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_AC_VENT_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_PS_C_ALTITUDE_GOAL
+    interpolate: Default
+  -
+    type: var
+    var_name: L:EMB121_PS_MODE_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_PRESS_MANUAL_RATE
+  -
+    type: var
+    var_name: L:EMB121_PS_MANUAL_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_MAIN_BAT
+  -
+    type: var
+    var_name: L:EMB121_BAT_V_TEST
+  -
+    type: var
+    var_name: L:EMB121_MAIN_BAR_TEST
+# -
+#   type: var
+#   var_name: L:EMB121_COM1_HZ_KNOB
+# -
+#   type: var
+#   var_name: L:EMB121_COM1_KHZ_KNOB
+# -
+#   type: var
+#   var_name: L:EMB121_COM2_HZ_KNOB
+# -
+#   type: var
+#   var_name: L:EMB121_COM2_KHZ_KNOB
+# -
+#   type: var
+#   var_name: L:EMB121_NAV1_HZ_KNOB
+# -
+#   type: var
+#   var_name: L:EMB121_NAV1_KHZ_KNOB
+# -
+#   type: var
+#   var_name: L:EMB121_NAV2_HZ_KNOB
+# -
+#   type: var
+#   var_name: L:EMB121_NAV2_KHZ_KNOB
+# -
+#   type: var
+#   var_name: L:TDSGTNXI750U1_LKnobInc
+# -
+#   type: var
+#   var_name: L:TDSGTNXI750U1_LKnobDec
+# -
+#   type: var
+#   var_name: L:TDSGTNXI750U1_LKnobCRSR
+# -
+#   type: var
+#   var_name: L:TDSGTNXI750U1_RKnobInnerInc
+# -
+#   type: var
+#   var_name: L:TDSGTNXI750U1_RKnobInnerDec
+# -
+#   type: var
+#   var_name: L:TDSGTNXI750U1_RKnobCRSR
+# -
+#   type: var
+#   var_name: L:TDSGTNXI750U1_RKnobOuterInc
+# -
+#   type: var
+#   var_name: L:TDSGTNXI750U1_RKnobOuterDec
+# -
+#   type: var
+#   var_name: L:TDSGTNXI750U1_HomeKey
+# -
+#   type: var
+#   var_name: L:TDSGTNXI750U1_DTOKey
+  -
+    type: var
+    var_name: L:EMB121_GPS_OPTION
+  -
+    type: var
+    var_name: L:EMB121_RADIO_CHANNEL_SET
+  -
+    type: var
+    var_name: L:EMB121_ADF_1_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_ADF_2_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_ADF_1_KNOB
+  -
+    type: var
+    var_name: L:EMB121_ADF_2_KNOB
+  -
+    type: var
+    var_name: L:EMB121_TRANSP_STATE
+  -
+    type: var
+    var_name: L:EMB121_TRANSP_TEST
+  -
+    type: var
+    var_name: L:EMB121_TRANSP_ALT
+  -
+    type: var
+    var_name: L:EMB121_CAA_SWITCH_COVER
+  -
+    type: var
+    var_name: L:EMB121_CAA_LEFT_TEST_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_CAA_RIGHT_TEST_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_CAA_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_LEFT_WIPER_ON
+  -
+    type: var
+    var_name: L:EMB121_RIGHT_WIPER_ON
+  -
+    type: var
+    var_name: L:EMB121_LEFT_WIPER_SPEED
+  -
+    type: var
+    var_name: L:EMB121_RIGHT_WIPER_SPEED
+  -
+    type: var
+    var_name: L:EMB121_ARMREST_1
+  -
+    type: var
+    var_name: L:EMB121_ARMREST_2
+  -
+    type: var
+    var_name: L:EMB121_LEFT_VISOR
+  -
+    type: var
+    var_name: L:EMB121_RIGHT_VISOR
+  -
+    type: var
+    var_name: L:EMB121_P_ARMREST_L1
+  -
+    type: var
+    var_name: L:EMB121_P_ARMREST_L2
+  -
+    type: var
+    var_name: L:EMB121_P_ARMREST_L3
+  -
+    type: var
+    var_name: L:EMB121_P_ARMREST_R1
+  -
+    type: var
+    var_name: L:EMB121_P_ARMREST_R2
+  -
+    type: var
+    var_name: L:EMB121_P_ARMREST_R3
+  -
+    type: var
+    var_name: L:EMB121_P_ARMREST_R4
+  -
+    type: var
+    var_name: L:EMB121_P_WINDOW_L1
+  -
+    type: var
+    var_name: L:EMB121_P_WINDOW_L2
+  -
+    type: var
+    var_name: L:EMB121_P_WINDOW_L3
+  -
+    type: var
+    var_name: L:EMB121_P_WINDOW_R1
+  -
+    type: var
+    var_name: L:EMB121_P_WINDOW_R2
+  -
+    type: var
+    var_name: L:EMB121_P_WINDOW_R3
+  -
+    type: var
+    var_name: L:EMB121_P_WINDOW_R4
+  -
+    type: var
+    var_name: L:EMB121_MASTER_WARNING_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_W_LIGHTS_TEST
+  -
+    type: var
+    var_name: L:EMB121_W_LIGHTS_BRIGHTNESS
+  -
+    type: var
+    var_name: L:EMB121_FIRE_TEST
+# -
+#   type: var
+#   var_name: L:EMB121_MASTER_WARNING_TIMER
+  -
+    type: var
+    var_name: L:EMB121_FIRE_TEST_LEFT
+  -
+    type: var
+    var_name: L:EMB121_FIRE_TEST_RIGHT
+  -
+    type: var
+    var_name: L:EMB121_CONVERTER_L_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_CONVERTER_R_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_BAT_TEMP_TEST
+  -
+    type: var
+    var_name: L:EMB121_L_START_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_L_IGNITION_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_R_IGNITION_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_R_START_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_ATI_HEAT
+# -
+#   type: var
+#   var_name: L:XMLVAR_IsDeiceAirFrame
+  -
+    type: var
+    var_name: L:EMB121_PX_HEAT
+  -
+    type: var
+    var_name: L:EMB121_BACKUP_ATT_CAGE
+# -
+#   type: var
+#   var_name: L:KOHLSMAN_KNOB_1
+# -
+#   type: var
+#   var_name: L:KOHLSMAN_KNOB_2
+  -
+    type: var
+    var_name: L:EMB121_DH_HEIGHT
+    interpolate: Default
+  -
+    type: var
+    var_name: L:EMB121_AUTO_FEATHER
+  -
+    type: var
+    var_name: L:EMB121_L_OVER_TEST
+  -
+    type: var
+    var_name: L:EMB121_R_OVER_TEST
+  -
+    type: var
+    var_name: L:EMB121_RESET_FUEL
+  -
+    type: var
+    var_name: L:EMB121_LEFT_FUEL_PUMP_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_RIGHT_FUEL_PUMP_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_LEFT_AUX_PUMP
+  -
+    type: var
+    var_name: L:EMB121_RIGHT_AUX_PUMP
+# -
+#   type: var
+#   var_name: L:HANDLING_ElevatorTrim
+# -
+#   type: var
+#   var_name: L:XMLVAR_AileronTrim_Switch_Yoke
+# -
+#   type: var
+#   var_name: L:XMLVAR_AileronTrim_Yoke_SwitchStateTimer
+  -
+    type: var
+    var_name: L:EMB121_L_COND_LEVER
+  -
+    type: var
+    var_name: L:EMB121_R_COND_LEVER
+  -
+    type: var
+    var_name: L:EMB121_GEAR_HORN_CANCEL
+  -
+    type: var
+    var_name: L:EMB121_GEAR_INDICATOR_BRIGHT
+  -
+    type: var
+    var_name: L:EMB121_EMERG_GEAR_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_T_FRICTION_LOCK
+  -
+    type: var
+    var_name: L:EMB121_M_FRICTION_LOCK
+  -
+    type: var
+    var_name: L:EMB121_LPR
+  -
+    type: var
+    var_name: L:EMB121_RPR
+  -
+    type: var
+    var_name: L:EMB121_OXYGEN_LEFT
+  -
+    type: var
+    var_name: L:EMB121_OXYGEN_RIGHT
+# -
+#   type: var
+#   var_name: L:AS530_Default_MapZoomRange
+# -
+#   type: var
+#   var_name: L:AS530_SelectedSource
+# -
+#   type: var
+#   var_name: L:XMLVAR_AudioPanel_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_LANDING_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_LANDING_2
+# -
+#   type: var
+#   var_name: L:LIGHTING_NAV_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_TAXI_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_BEACON_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_STROBE_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_WING_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_8
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_3
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_6
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_5
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_4
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_7
+# -
+#   type: var
+#   var_name: L:DEICE_Pitot_1
+# -
+#   type: var
+#   var_name: L:DEICE_Pitot_2
+# -
+#   type: var
+#   var_name: L:DEICE_Propeller_1
+# -
+#   type: var
+#   var_name: L:DEICE_Airframe_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_Hours_Delta
+# -
+#   type: var
+#   var_name: L:XMLVAR_Minutes_Delta
+# -
+#   type: var
+#   var_name: L:INSTRUMENT_Altimeter_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_IE_Throttle_VR_Handled
+# -
+#   type: var
+#   var_name: L:XMLVAR_IE_Throttle_VR_Value
+# -
+#   type: var
+#   var_name: L:HANDLING_RudderTrim
+# -
+#   type: var
+#   var_name: L:HANDLING_AileronsTrim
+# -
+#   type: var
+#   var_name: L:XMLVAR_YokeHidden1
+# -
+#   type: var
+#   var_name: L:XMLVAR_YokeHidden2
+# -
+#   type: var
+#   var_name: L:LANDING_GEAR_Gear
+# -
+#   type: var
+#   var_name: L:Condition_Lever_CutOff_1
+# -
+#   type: var
+#   var_name: L:Condition_Lever_CutOff_2
+# -
+#   type: var
+#   var_name: L:XMLVAR_ELT_TEST_TIME
+# -
+#   type: var
+#   var_name: L:XMLVAR_ELT_STATE
+# -
+#   type: var
+#   var_name: L:XMLVAR_ELT_ACTIVATION_TIME
+  -
+    type: var
+    var_name: L:EMB121_LB1
+  -
+    type: var
+    var_name: L:EMB121_LB2
+  -
+    type: var
+    var_name: L:EMB121_LB3
+  -
+    type: var
+    var_name: L:EMB121_LB4
+  -
+    type: var
+    var_name: L:EMB121_LB6
+  -
+    type: var
+    var_name: L:EMB121_AC_NG
+# -
+#   type: var
+#   var_name: L:EMB121_MASTER_WARNING
+  -
+    type: var
+    var_name: L:EMB121_BACKUP_ATT_CAGED
+  -
+    type: var
+    var_name: L:EMB121_CAA_ACTUATOR
+# -
+#   type: var
+#   var_name: L:EMB121_CAA_LEFT_DEG_TEST
+# -
+#   type: var
+#   var_name: L:EMB121_CAA_RIGHT_DEG_TEST
+  -
+    type: var
+    var_name: L:EMB121_ADF_1_GYRO_SWITCH
+# -
+#   type: var
+#   var_name: L:EMB121_AP_BANK_ANGLE
+# -
+#   type: var
+#   var_name: L:EMB121_PROP_HEAT_TIMER
+# -
+#   type: var
+#   var_name: L:EMB121_PROP_HEAT_INDICATOR
+# -
+#   type: var
+#   var_name: L:EMB121_CLOCK_SECONDS
+  -
+    type: var
+    var_name: L:EMB121_PB_HANDLE
+  -
+    type: var
+    var_name: L:EMB121_PRESS_MODE_SWITCH
+# -
+#   type: var
+#   var_name: L:EMB121_BACKUP_ATT_B_AUX
+# -
+#   type: var
+#   var_name: L:EMB121_BACKUP_ATT_P_AUX
+# -
+#   type: var
+#   var_name: L:EMB121_CHRONO_ABS_TIME
+# -
+#   type: var
+#   var_name: L:EMB121_TIME_SECONDS
+# -
+#   type: var
+#   var_name: L:EMB121_TIME_HOURS
+# -
+#   type: var
+#   var_name: L:EMB121_TIME_MINUTES
+# -
+#   type: var
+#   var_name: L:EMB121_TIME_MONTH
+# -
+#   type: var
+#   var_name: L:EMB121_TIME_DAY
+# -
+#   type: var
+#   var_name: L:EMB121_TIME_YEAR
+# -
+#   type: var
+#   var_name: L:EMB121_ENG_COMBUSTION
+# -
+#   type: var
+#   var_name: L:EMB121_ACF_VELOCITY_Z
+# -
+#   type: var
+#   var_name: L:EMB121_PS_SOG
+# -
+#   type: var
+#   var_name: L:EMB121_TOTAL_WEIGHT
+  -
+    type: var
+    var_name: L:EMB121_PILOT
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_COPILOT
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_PAX_2
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_PAX_3
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_PAX_4
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_PAX_5
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_PAX_6
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_PAX_7
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_PAX_8
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_APPLY_WEIGHT
+  -
+    type: var
+    var_name: L:EMB121_APPLY_WEIGHT_BAGGAGE
+  -
+    type: var
+    var_name: L:EMB121_APPLY_WEIGHT_FUEL
+# -
+#   type: var
+#   var_name: L:EMB121_SET_VENT_STATE
+# -
+#   type: var
+#   var_name: L:EMB121_SET_PRESS_STATE
+  -
+    type: var
+    var_name: L:EMB121_SET_CND_STATE
+  -
+    type: var
+    var_name: L:EMB121_TAXI_LIGHT_SWITCH
+  -
+    type: var
+    var_name: L:EMB121_SET_RFT_STATE
+# -
+#   type: var
+#   var_name: L:EMB121_GENERAL_POWER
+# -
+#   type: var
+#   var_name: L:EMB121_AP_DISC_CP
+# -
+#   type: var
+#   var_name: L:EMB121_AP_DISC
+# -
+#   type: var
+#   var_name: L:EMB121_AP_ALT_DIFF
+# -
+#   type: var
+#   var_name: L:EMB121_AP_1000
+# -
+#   type: var
+#   var_name: L:EMB121_AP_FD_BANK
+# -
+#   type: var
+#   var_name: L:EMB121_AP_FD_PITCH
+# -
+#   type: var
+#   var_name: L:EMB121_CONVERTER_POWER
+# -
+#   type: var
+#   var_name: L:EMB121_DME1_NM
+# -
+#   type: var
+#   var_name: L:EMB121_DME1_KT
+# -
+#   type: var
+#   var_name: L:EMB121_DME1_DIST
+# -
+#   type: var
+#   var_name: L:EMB121_DME2_NM
+# -
+#   type: var
+#   var_name: L:EMB121_DME2_KT
+# -
+#   type: var
+#   var_name: L:EMB121_DME2_DIST
+# -
+#   type: var
+#   var_name: L:EMB121_DME_SELECTED_NM
+# -
+#   type: var
+#   var_name: L:EMB121_DME_SELECTED_KT
+# -
+#   type: var
+#   var_name: L:EMB121_DME_SELECTED_DIST
+# -
+#   type: var
+#   var_name: L:EMB121_DME_SECOND_NUMBER
+# -
+#   type: var
+#   var_name: L:EMB121_DME2_SELECTED_NM
+# -
+#   type: var
+#   var_name: L:EMB121_DME2_SELECTED_KT
+# -
+#   type: var
+#   var_name: L:EMB121_DME2_SELECTED_DIST
+# -
+#   type: var
+#   var_name: L:EMB121_DME2_SECOND_NUMBER
+# -
+#   type: var
+#   var_name: L:EMB121_PS_ALTITUDE
+# -
+#   type: var
+#   var_name: L:EMB121_PS_OUT_PRESS
+# -
+#   type: var
+#   var_name: L:EMB121_PS_ACF_VS
+# -
+#   type: var
+#   var_name: L:EMB121_PS_EXIT_OPEN
+# -
+#   type: var
+#   var_name: L:EMB121_AC_AMB_TEMP
+# -
+#   type: var
+#   var_name: L:EMB121_ENG_L_COMB
+# -
+#   type: var
+#   var_name: L:EMB121_ENG_R_COMB
+# -
+#   type: var
+#   var_name: L:EMB121_ENG_L_N1
+# -
+#   type: var
+#   var_name: L:EMB121_ENG_R_N1
+# -
+#   type: var
+#   var_name: L:EMB121_EXIT_0_OPEN
+# -
+#   type: var
+#   var_name: L:EMB121_EXIT_1_OPEN
+# -
+#   type: var
+#   var_name: L:EMB121_AVIONICS_ON
+# -
+#   type: var
+#   var_name: L:EMB121_LEFT_AMPS
+# -
+#   type: var
+#   var_name: L:EMB121_LEFT_VOLTS
+# -
+#   type: var
+#   var_name: L:EMB121_RIGHT_AMPS
+# -
+#   type: var
+#   var_name: L:EMB121_RIGHT_VOLTS
+# -
+#   type: var
+#   var_name: L:TDSGTNXI_InactiveVar
+# -
+#   type: var
+#   var_name: L:XMLVAR_GPS_DISABLED_GTN750
+# -
+#   type: var
+#   var_name: L:XMLVAR_GPS_DISABLED_AS530_1
+# -
+#   type: var
+#   var_name: L:PMS50_GTN750_INSTALLED
+# -
+#   type: var
+#   var_name: L:TDSGTNXI_INSTALLED
+# -
+#   type: var
+#   var_name: L:EMB121_TRANSP_TEST_LIGHT
+# -
+#   type: var
+#   var_name: L:EMB121_CAA_LEFT_AOA
+# -
+#   type: var
+#   var_name: L:EMB121_CAA_RIGHT_AOA
+# -
+#   type: var
+#   var_name: L:EMB121_CAA_LEFT_ACTUATOR
+# -
+#   type: var
+#   var_name: L:EMB121_CAA_RIGHT_ACTUATOR
+# -
+#   type: var
+#   var_name: L:EMB121_CAA_LEFT_STICK_SHAKER
+# -
+#   type: var
+#   var_name: L:EMB121_CAA_RIGHT_STICK_SHAKER
+# -
+#   type: var
+#   var_name: L:EMB121_STICK_PUSHER
+# -
+#   type: var
+#   var_name: L:EMB121_LEFT_WIPER_SPEED_INC
+# -
+#   type: var
+#   var_name: L:EMB121_RIGHT_WIPER_SPEED_INC
+# -
+#   type: var
+#   var_name: L:EMB121_LEFT_WIPER_ANIM
+# -
+#   type: var
+#   var_name: L:EMB121_RIGHT_WIPER_ANIM
+# -
+#   type: var
+#   var_name: L:EMB121_W_OTHER
+  -
+    type: var
+    var_name: L:EMB121_CABIN_PRESS_LIGHT
+# -
+#   type: var
+#   var_name: L:EMB121_FIRE_TEST_WARNING
+# -
+#   type: var
+#   var_name: L:EMB121_W_FUEL_PRESS_L
+# -
+#   type: var
+#   var_name: L:EMB121_W_FUEL_PRESS_R
+# -
+#   type: var
+#   var_name: L:EMB121_W_OIL_PRESS_L
+# -
+#   type: var
+#   var_name: L:EMB121_W_OIL_PRESS_R
+# -
+#   type: var
+#   var_name: L:EMB121_W_GEN_L
+# -
+#   type: var
+#   var_name: L:EMB121_W_GEN_R
+# -
+#   type: var
+#   var_name: L:EMB121_W_CONV_L
+# -
+#   type: var
+#   var_name: L:EMB121_W_CONV_R
+# -
+#   type: var
+#   var_name: L:EMB121_W_BAT_TEST
+# -
+#   type: var
+#   var_name: L:EMB121_W_HYD_PRESS
+# -
+#   type: var
+#   var_name: L:EMB121_W_GEAR
+# -
+#   type: var
+#   var_name: L:EMB121_W_AC
+# -
+#   type: var
+#   var_name: L:EMB121_AOA_LIGHT
+# -
+#   type: var
+#   var_name: L:EMB121_ALT_WARNING_LIGHT
+# -
+#   type: var
+#   var_name: L:EMB121_DOOR_WARNING
+# -
+#   type: var
+#   var_name: L:EMB121_WARNING_VALUE
+# -
+#   type: var
+#   var_name: L:EMB121_PS_C_ALTITUDE
+# -
+#   type: var
+#   var_name: L:EMB121_BAT_TEMP_LIGHT
+# -
+#   type: var
+#   var_name: L:EMB121_AP_OFF_LIGHT
+# -
+#   type: var
+#   var_name: L:EMB121_PRESS_ON
+# -
+#   type: var
+#   var_name: L:EMB121_VENT_ON
+# -
+#   type: var
+#   var_name: L:EMB121_W_BETA_L
+# -
+#   type: var
+#   var_name: L:EMB121_W_BETA_R
+# -
+#   type: var
+#   var_name: L:EMB121_W_LIGHTS_BRIGHTNESS_VALUE
+# -
+#   type: var
+#   var_name: L:EMB121_START_FIRE_TEST
+# -
+#   type: var
+#   var_name: L:EMB121_START_FIRE_TEST_LEFT
+# -
+#   type: var
+#   var_name: L:EMB121_START_FIRE_TEST_RIGHT
+# -
+#   type: var
+#   var_name: L:EMB121_BAT_TEMP
+# -
+#   type: var
+#   var_name: L:EMB121_ENG_IGNITION
+# -
+#   type: var
+#   var_name: L:EMB121_LEFT_ENG_STARTING
+# -
+#   type: var
+#   var_name: L:EMB121_RIGHT_ENG_STARTING
+# -
+#   type: var
+#   var_name: L:EMB121_LES_LIGHT
+# -
+#   type: var
+#   var_name: L:EMB121_RES_LIGHT
+# -
+#   type: var
+#   var_name: L:EMB121_DH_CAPTURED
+# -
+#   type: var
+#   var_name: L:EMB121_ALT_1000_FLAG
+# -
+#   type: var
+#   var_name: L:EMB121_FLAP_CONSTRAINT
+# -
+#   type: var
+#   var_name: L:EMB121_BACKUP_ATT_B_DEG
+# -
+#   type: var
+#   var_name: L:EMB121_BACKUP_ATT_P_DEG
+# -
+#   type: var
+#   var_name: L:EMB121_L_AUTO_FEATHER_ARMED
+# -
+#   type: var
+#   var_name: L:EMB121_R_AUTO_FEATHER_ARMED
+# -
+#   type: var
+#   var_name: L:EMB121_L_AUTO_FEATHER_ACTIVE
+# -
+#   type: var
+#   var_name: L:EMB121_R_AUTO_FEATHER_ACTIVE
+# -
+#   type: var
+#   var_name: L:EMB121_FUEL_USED
+  -
+    type: var
+    var_name: L:EMB121_FUEL_TO_RESET
+# -
+#   type: var
+#   var_name: L:EMB121_LEFT_AUX_PUMP_ON
+# -
+#   type: var
+#   var_name: L:EMB121_RIGHT_AUX_PUMP_ON
+# -
+#   type: var
+#   var_name: L:EMB121_FUEL_PUMP_ON
+# -
+#   type: var
+#   var_name: L:EMB121_GEAR_INDICATOR_BRIGHT_VALUE
+# -
+#   type: var
+#   var_name: L:EMB121_NOSE_GEAR
+# -
+#   type: var
+#   var_name: L:EMB121_LEFT_GEAR
+# -
+#   type: var
+#   var_name: L:EMB121_RIGHT_GEAR
+# -
+#   type: var
+#   var_name: L:EMB121_GEAR_TRANS_CENTER
+# -
+#   type: var
+#   var_name: L:EMB121_GEAR_TRANS_LEFT
+# -
+#   type: var
+#   var_name: L:EMB121_GEAR_TRANS_RIGHT
+# -
+#   type: var
+#   var_name: L:EMB121_GEAR_TRANS_ALL
+# -
+#   type: var
+#   var_name: L:EMB121_PS_PRESS_DIFF
+# -
+#   type: var
+#   var_name: L:EMB121_PS_C_VS
+# -
+#   type: var
+#   var_name: L:EMB121_CABIN_TEMP
+# -
+#   type: var
+#   var_name: L:EMB121_AC_GROUND_STATE
+# -
+#   type: var
+#   var_name: L:AS530_ManualBrightness_Value_1
+# -
+#   type: var
+#   var_name: L:AS530_ManualBrightness_Enabled_1
+# -
+#   type: var
+#   var_name: L:EMB121_AP_GO_AROUND_EMISS
+  -
+    type: var
+    var_name: L:EMB121_FUEL_PANEL_OPTION
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_PANEL_OPTION
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_PANEL_COLOR
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_L_WIND_SHADE
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:EMB121_R_WIND_SHADE
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:EMB121_MAIN_DOOR
+# -
+#   type: var
+#   var_name: L:EMB121_CARGO_DOOR
+# -
+#   type: var
+#   var_name: L:EMB121_WR_WARMUP_TIME
+# -
+#   type: var
+#   var_name: L:EMB121_AC_FAN_ON
+# -
+#   type: var
+#   var_name: L:EMB121_TEMP_TARGET
+# -
+#   type: var
+#   var_name: L:EMB121_PS_C_PRESS
+
+ignore:
+  - KAP140_Push_AP
+  - KAP140_Push_HDG
+  - KAP140_Push_NAV
+  - KAP140_Push_APR
+  - KAP140_Push_REV
+  - KAP140_Push_ALT
+  - KAP140_Push_UP
+  - KAP140_Push_DN
+  - KAP140_Knob_Inner_INC
+  - KAP140_Knob_Inner_DEC
+  - KAP140_Knob_Outer_INC
+  - KAP140_Knob_Outer_DEC

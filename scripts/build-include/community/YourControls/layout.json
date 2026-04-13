@@ -3,32 +3,32 @@
     {
       "path": "html_ui/Pages/VCockpit/Core/VCockpit.js",
       "size": 24003,
-      "date": 134180679902613207
+      "date": 134198475947830912
     },
     {
       "path": "html_ui/YourControls/HTMLEvents.js",
       "size": 3855,
-      "date": 134180680002720724
+      "date": 134199853151380592
     },
     {
       "path": "html_ui/YourControls/HTMLTrigger.js",
       "size": 951,
-      "date": 134180680094093920
+      "date": 134199853309081602
     },
     {
       "path": "html_ui/YourControls/Main.js",
       "size": 2799,
-      "date": 134180680151899104
+      "date": 134199853402674613
     },
     {
       "path": "html_ui/YourControls/Network.js",
       "size": 2459,
-      "date": 134180680203163426
+      "date": 134199853497439615
     },
     {
-      "path": "modules/YourControlGauge.wasm",
-      "size": 2059107,
-      "date": 134180676428876673
+      "path": "modules/YourControlsGauge.wasm",
+      "size": 2509415,
+      "date": 134204625534678256
     }
   ]
 }

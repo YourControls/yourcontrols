@@ -1,7 +1,6 @@
 # Version 2.1.2
 
 include:
-  - definitions/FS2020/modules/Instruments/AS_G3000.yaml
   - definitions/FS2020/modules/controls.yaml
   - definitions/FS2020/modules/general.yaml
   - definitions/FS2020/modules/handling.yaml
@@ -13,6 +12,164 @@ include:
   - definitions/FS2020/modules/trim.yaml
 
 shared:
+  - # Autopilot
+    type: NumSet
+    var_name: A:AUTOPILOT AIRSPEED HOLD VAR:1
+    var_units: Knots
+    var_type: f64
+    event_name: AP_SPD_VAR_SET
+    event_param: 1
+    condition:
+      var:
+        var_name: A:AUTOPILOT MANAGED SPEED IN MACH
+        var_units: Bool
+        var_type: bool
+      equals:
+        Bool: false
+    unreliable: true
+  - # Fights with NAV - Needed for FFX
+    type: NumSet
+    var_name: A:AUTOPILOT APPROACH HOLD
+    var_units: Bool
+    var_type: i32
+    event_name: AP_APR_HOLD
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT ALTITUDE LOCK VAR:1
+    var_units: Feet
+    var_type: i32
+    event_name: AP_ALT_VAR_SET_ENGLISH
+    event_param: 1
+  -
+    type: event
+    event_name: AP_ALT_HOLD
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT BACKCOURSE HOLD
+    var_units: Bool
+    var_type: bool
+    event_name: AP_BC_HOLD
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT DISENGAGED
+    var_units: Bool
+    var_type: i32
+    event_name: AUTOPILOT_DISENGAGE_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT FLIGHT DIRECTOR ACTIVE
+    var_units: Bool
+    var_type: i32
+    event_name: TOGGLE_FLIGHT_DIRECTOR
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT FLIGHT LEVEL CHANGE
+    var_units: Bool
+    var_type: bool
+    event_name: FLIGHT_LEVEL_CHANGE
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT HEADING LOCK
+    var_units: Bool
+    var_type: bool
+    event_name: AP_HDG_HOLD
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT HEADING LOCK DIR:1
+    var_units: Degrees
+    var_type: f64
+    event_name: HEADING_BUG_SET
+    event_param: 1
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT MANAGED SPEED IN MACH
+    var_units: Bool
+    var_type: bool
+    event_name: AP_MANAGED_SPEED_IN_MACH_TOGGLE
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT MASTER
+    var_units: Bool
+    var_type: bool
+    event_name: AP_MASTER
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT MACH HOLD VAR:1
+    var_units: Mach
+    var_type: f64
+    multiply_by: 100
+    event_name: AP_MACH_VAR_SET
+    event_param: 1
+    condition:
+      var:
+        var_name: A:AUTOPILOT MANAGED SPEED IN MACH
+        var_units: Bool
+        var_type: bool
+      equals:
+        Bool: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT MAX BANK ID
+    var_units: Number
+    var_type: i32
+    event_name: AP_MAX_BANK_SET
+    use_calculator: true
+  - # Fights with APR
+    type: event
+    event_name: AP_NAV1_HOLD
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT VERTICAL HOLD
+    var_units: Bool
+    var_type: i32
+    event_name: AP_VS_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT VERTICAL HOLD VAR:1
+    var_units: Feet per minute
+    var_type: i32
+    event_name: AP_VS_VAR_SET_ENGLISH
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT YAW DAMPER
+    var_units: Bool
+    var_type: i32
+    event_name: YAW_DAMPER_SET
+    use_calculator: true
+  -
+    type: event
+    event_name: AUTO_THROTTLE_TO_GA
+  -
+    type: var
+    var_name: L:WTG3000_Control_Panel_MapShowCursor:1
+  -
+    type: var
+    var_name: L:WTG3000_Control_Panel_MapShowCursor:2
+  -
+    type: var
+    var_name: L:WTGarmin_Nav_ActiveNavSource:1
+    cancel_h_events: true
+  -
+    type: ToggleSwitch
+    var_name: L:WT_TOGA_ACTIVE
+    var_units: Bool
+    var_type: bool
+    event_name: AUTO_THROTTLE_TO_GA
+    off_event_name: AUTO_THROTTLE_DISCONNECT
+    is_user_event: true
+    use_calculator: true
+
   - # Engines
     type: ToggleSwitch
     var_name: A:GENERAL ENG STARTER:1
@@ -26,6 +183,21 @@ shared:
     var_units: Bool
     var_type: bool
     event_name: TOGGLE_STARTER2
+    use_calculator: true
+
+  - # Fire
+    type: ToggleSwitch
+    var_name: A:GENERAL ENG FUEL VALVE:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_FUEL_VALVE_ENG1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:GENERAL ENG FUEL VALVE:2
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_FUEL_VALVE_ENG2
     use_calculator: true
 
   - # Interior
@@ -68,6 +240,29 @@ shared:
     event_name: LIGHT_POTENTIOMETER_16_SET
     index_reversed: true
     use_calculator: true
+
+  - # Transponder
+    type: var
+    var_name: A:TRANSPONDER STATE:1
+    var_units: Enum
+    var_type: i32
+    cancel_h_events: true
+  -
+    type: NumSet
+    var_name: A:TRANSPONDER IDENT:1
+    var_units: Bool
+    var_type: i32
+    event_name: XPNDR_IDENT_SET
+    event_param: 1
+    cancel_h_events: true
+  -
+    type: NumSet
+    var_name: A:TRANSPONDER CODE:1
+    var_units: Bco16
+    var_type: i32
+    event_name: XPNDR_SET
+    event_param: 1
+    cancel_h_events: true
 
   - # LVAR's
     type: var
@@ -1111,10 +1306,9 @@ shared:
 # -
 #   type: var
 #   var_name: L:WTFltTimer_Value:2
-  -
+  - # Needed for display
     type: var
     var_name: L:HJET_AP_ALT_VAR
-    interpolate: Default
   -
     type: var
     var_name: L:HJET_LFE
@@ -1124,15 +1318,19 @@ shared:
   -
     type: var
     var_name: L:hjet_allTestPushed
+    cancel_h_events: true
   -
     type: var
     var_name: L:hjet_fireProtTestPushed
+    cancel_h_events: true
   -
     type: var
     var_name: L:hjet_stallProtTestPushed
+    cancel_h_events: true
   -
     type: var
     var_name: L:hjet_switchIllumTestPushed
+    cancel_h_events: true
   -
     type: var
     var_name: L:hjet_reset_init
@@ -1366,9 +1564,9 @@ shared:
   -
     type: var
     var_name: L:CSC_targetSpeed
-# -
-#   type: var
-#   var_name: L:CSC_MODE_BOOL
+  -
+    type: var
+    var_name: L:CSC_MODE_BOOL
   -
     type: var
     var_name: L:HJET_cockpitTargetValue
@@ -1540,8 +1738,35 @@ master:
   - # Upper L
     type: var
     var_name: L:THROTTLE1_SET
-    interpolate: Default
+    condition:
+      var:
+        var_name: L:CSC_MODE_BOOL
+        var_units: Number
+        var_type: f64
+      equals:
+        F64: 0.0
+    unreliable: true
   - # Upper R
     type: var
     var_name: L:THROTTLE2_SET
-    interpolate: Default
+    condition:
+      var:
+        var_name: L:CSC_MODE_BOOL
+        var_units: Number
+        var_type: f64
+      equals:
+        F64: 0.0
+    unreliable: true
+
+ignore:
+  - AP_UP
+  - AP_DN
+  - AP_BARO_Up
+  - AP_BARO_Down
+  - AP_KNOB_Up
+  - AP_KNOB_Down
+
+  - AS3000_PFD_1_BARO_INC
+  - AS3000_PFD_1_BARO_DEC
+  - AS3000_PFD_2_BARO_INC
+  - AS3000_PFD_2_BARO_DEC

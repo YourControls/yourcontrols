@@ -1,4 +1,4 @@
-# Version 3.2.0
+# Version 3.3.0
 
 include:
   - definitions/FS2020/modules/Instruments/WT_G3X_Touch.yaml
@@ -639,13 +639,13 @@ shared:
     var_name: L:CS_206B_exitRearL
   -
     type: var
+    var_name: L:CS_206B_exitRearR
+  -
+    type: var
     var_name: L:CS_206B_exitFrontR
   -
     type: var
     var_name: L:CS_206B_exitFrontL
-  -
-    type: var
-    var_name: L:CS_206B_exitRearR
   -
     type: var
     var_name: L:CS206_DoorFronthide
@@ -672,12 +672,6 @@ shared:
 #   var_name: L:COWANSIM_Cyclic_Y_Position
   -
     type: var
-    var_name: L:trimRelease
-  -
-    type: var
-    var_name: L:trimRelease2
-  -
-    type: var
     var_name: L:IgniterRelight
   -
     type: var
@@ -701,6 +695,9 @@ shared:
     type: var
     var_name: L:CS_206B_Decision_Height
     interpolate: Default
+# -
+#   type: var
+#   var_name: L:CS_HeliSAS_Driven_By_G3X
 # -
 #   type: var
 #   var_name: L:TDSGTNXI750U1_LKnobInc

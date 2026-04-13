@@ -1,0 +1,21 @@
+# Version 2.4.0.3311
+
+include:
+  - definitions/FS2020/aircraft/Fenix Simulations - Airbus A320ceo.yaml
+
+shared:
+  -
+    type: var
+    var_name: L:N_CONFIG_WINDOW_PLUGS_LF
+  -
+    type: var
+    var_name: L:N_CONFIG_WINDOW_PLUGS_RF
+  -
+    type: var
+    var_name: L:N_CONFIG_WINDOW_PLUGS_LR
+  -
+    type: var
+    var_name: L:N_CONFIG_WINDOW_PLUGS_RR
+  -
+    type: var
+    var_name: L:CB_P29_ACT_XFR_VLV_AUTO_CTL

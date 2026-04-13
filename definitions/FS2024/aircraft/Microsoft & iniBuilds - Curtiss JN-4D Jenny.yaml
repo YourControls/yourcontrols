@@ -1,0 +1,127 @@
+# Version 6.9.0
+
+include:
+  - definitions/FS2024/modules/controls.yaml
+  - definitions/FS2024/modules/electrical.yaml
+  - definitions/FS2024/modules/engines.yaml
+  - definitions/FS2024/modules/general.yaml
+  - definitions/FS2024/modules/handling.yaml
+  - definitions/FS2024/modules/payload.yaml
+  - definitions/FS2024/modules/radios.yaml
+  - definitions/FS2024/modules/transponder.yaml
+  - definitions/FS2024/modules/trim.yaml
+
+shared:
+  - # Fuel
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:1
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:FUELSYSTEM VALVE SWITCH:2
+    var_units: Bool
+    var_type: bool
+    event_name: FUELSYSTEM_VALVE_TOGGLE
+    event_param: 2
+    use_calculator: true
+
+  - # Interior
+    type: NumSet
+    var_name: A:LIGHT PANEL:1
+    var_units: Bool
+    var_type: i32
+    event_name: PANEL_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+
+  - # Global
+    type: var
+    var_name: L:Cover_installed_engine
+  -
+    type: var
+    var_name: L:Cover_installed_prop
+  -
+    type: var
+    var_name: L:Cover_installed_pitot
+  -
+    type: var
+    var_name: L:Cover_installed_canopy
+  -
+    type: var
+    var_name: L:cowling
+  -
+    type: var
+    var_name: L:EFB_ShowHide
+  -
+    type: var
+    var_name: L:JN4_ENG_MAGNETO_L_CB
+  -
+    type: var
+    var_name: L:JN4_ENG_MAGNETO_R_CB
+  -
+    type: var
+    var_name: L:JN4_ENG_MAGNETO_Lever
+  -
+    type: var
+    var_name: L:Altimeter_Face
+    interpolate: Default
+  -
+    type: var
+    var_name: L:Altimeter_Clamp
+  -
+    type: var
+    var_name: L:TrayTable
+# -
+#   type: var
+#   var_name: L:XMLVAR_LeverThrottleHidden1
+# -
+#   type: var
+#   var_name: L:XMLVAR_LeverMixtureHidden1
+# -
+#   type: var
+#   var_name: L:XMLVAR_YokeHidden1
+# -
+#   type: var
+#   var_name: L:JN4_ENG_MAGNETO_L
+# -
+#   type: var
+#   var_name: L:JN4_ENG_MAGNETO_R
+# -
+#   type: var
+#   var_name: L:Altimeter_Face_ANIM
+# -
+#   type: var
+#   var_name: L:LIGHTING_PANEL_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_IE_Throttle_VR_Handled
+# -
+#   type: var
+#   var_name: L:XMLVAR_IE_Throttle_VR_Value
+  -
+    type: var
+    var_name: L:THROW_PROP1
+  -
+    type: var
+    var_name: L:throwprop
+
+ignore:
+  - jn4-ini-efb#radioMajInc
+  - jn4-ini-efb#radioMajDec
+  - jn4-ini-efb#radioMinInc
+  - jn4-ini-efb#radioMinDec
+
+  - jn4-ini-efb#2334485737 # 0
+  - jn4-ini-efb#2365485738 # 1
+  - jn4-ini-efb#2396485739 # 2
+  - jn4-ini-efb#2427485740 # 3
+  - jn4-ini-efb#2458485741 # 4
+  - jn4-ini-efb#2489485742 # 5
+  - jn4-ini-efb#2520485743 # 6
+  - jn4-ini-efb#2551485744 # 7
+  - jn4-ini-efb#gtr335-direct-del
+  - jn4-ini-efb#gtr335-vfr

@@ -1,0 +1,610 @@
+# Version 1.3
+
+include:
+  - definitions/FS2020/modules/Instruments/AS_Aera.yaml
+  - definitions/FS2020/modules/Instruments/AS_GNS530.yaml
+  - definitions/FS2020/modules/Instruments/AS_KAP140.yaml
+  - definitions/FS2020/modules/Instruments/AS_KT76C.yaml
+  - definitions/FS2020/modules/Instruments/PMS50_GTN.yaml
+  - definitions/FS2020/modules/Instruments/TDS_GTNXi.yaml
+  - definitions/FS2020/modules/controls.yaml
+  - definitions/FS2020/modules/engines.yaml
+  - definitions/FS2020/modules/general.yaml
+  - definitions/FS2020/modules/handling.yaml
+  - definitions/FS2020/modules/magnetos.yaml
+  - definitions/FS2020/modules/navigation.yaml
+  - definitions/FS2020/modules/payload.yaml
+  - definitions/FS2020/modules/radios.yaml
+  - definitions/FS2020/modules/safety.yaml
+  - definitions/FS2020/modules/trim.yaml
+
+shared:
+  - # Breakers (most)
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:2
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 2
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:3
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 3
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:28
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 28
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:26
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 26
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:4
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 4
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:6
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 6
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:5
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 5
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:15
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 15
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:16
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 16
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:11
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 11
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:12
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 12
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:9
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 9
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:10
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 10
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:8
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 8
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:7
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 7
+  -
+    type: NumSet
+    var_name: A:CIRCUIT BREAKER PULLED:14
+    var_units: Bool
+    var_type: i32
+    event_name: ELECTRICAL_CIRCUIT_BREAKER_TOGGLE
+    event_param: 14
+
+  - # Deice
+    type: NumSet
+    var_name: A:PITOT HEAT SWITCH:1
+    var_units: Bool
+    var_type: i32
+    event_name: PITOT_HEAT_SET
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG ANTI ICE POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: ANTI_ICE_GRADUAL_SET_ENG1
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG ANTI ICE POSITION:2
+    var_units: Position 16k
+    var_type: f64
+    event_name: ANTI_ICE_GRADUAL_SET_ENG2
+    use_calculator: true
+    unreliable: true
+  -
+    type: ToggleSwitch
+    var_name: A:STRUCTURAL DEICE SWITCH
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_STRUCTURAL_DEICE
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:WINDSHIELD DEICE SWITCH
+    var_units: Bool
+    var_type: bool
+    event_name: WINDSHIELD_DEICE_TOGGLE
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:PROP DEICE SWITCH:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_PROPELLER_DEICE
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:ENG ANTI ICE:1
+    var_units: Bool
+    var_type: bool
+    event_name: ANTI_ICE_TOGGLE_ENG1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:ENG ANTI ICE:2
+    var_units: Bool
+    var_type: bool
+    event_name: ANTI_ICE_TOGGLE_ENG2
+    use_calculator: true
+
+  - # Doors
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:0
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 2
+    use_calculator: true
+
+  - # Electrical
+    type: ToggleSwitch
+    var_name: A:ELECTRICAL MASTER BATTERY:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_MASTER_BATTERY
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG MASTER ALTERNATOR:1
+    var_units: Bool
+    var_type: i32
+    event_name: ALTERNATOR_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AVIONICS MASTER SWITCH:1
+    var_units: Bool
+    var_type: i32
+    event_name: AVIONICS_MASTER_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG STARTER:1
+    var_units: Bool
+    var_type: i32
+    event_name: SET_STARTER1_HELD
+    use_calculator: true
+
+  - # Fuel
+    type: NumSet
+    var_name: A:FUEL TANK SELECTOR:1
+    var_units: Enum
+    var_type: i32
+    event_name: FUEL_SELECTOR_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG FUEL PUMP SWITCH EX1:1
+    var_units: Enum
+    var_type: i32
+    event_name: ELECT_FUEL_PUMP1_SET
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:FUEL TRANSFER PUMP ON:1
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_TRANSFER_CUSTOM_INDEX_TOGGLE
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:FUEL TRANSFER PUMP ON:2
+    var_units: Bool
+    var_type: bool
+    event_name: FUEL_TRANSFER_CUSTOM_INDEX_TOGGLE
+    event_param: 2
+    use_calculator: true
+
+  - # Interior
+    type: NumSet
+    var_name: A:LIGHT CABIN:1
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN:2
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 2
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT PANEL:1
+    var_units: Bool
+    var_type: i32
+    event_name: PANEL_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:11
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 11
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT GLARESHIELD:1
+    var_units: Bool
+    var_type: i32
+    event_name: GLARESHIELD_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:12
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 12
+    index_reversed: true
+    use_calculator: true
+
+  - # Lights
+    type: NumSet
+    var_name: A:LIGHT NAV:1
+    var_units: Bool
+    var_type: i32
+    event_name: NAV_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT TAXI:1
+    var_units: Bool
+    var_type: i32
+    event_name: TAXI_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT LANDING:1
+    var_units: Bool
+    var_type: i32
+    event_name: LANDING_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT BEACON:1
+    var_units: Bool
+    var_type: i32
+    event_name: BEACON_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT STROBE:1
+    var_units: Bool
+    var_type: i32
+    event_name: STROBES_SET
+    event_param: 1
+    use_calculator: true
+
+# - # LVAR's (trimmed)
+#   type: var
+#   var_name: L:B35_beacon_rot
+  -
+    type: var
+    var_name: L:B35_baggage_door
+  -
+    type: var
+    var_name: L:B35_windshield_cover
+  -
+    type: var
+    var_name: L:B35_static_elements
+  -
+    type: var
+    var_name: L:B35_winglets
+# -
+#   type: var
+#   var_name: L:LOCAL_milliBar_to_inHg
+# -
+#   type: var
+#   var_name: L:XMLVAR_VNAVButtonValue
+  -
+    type: var
+    var_name: L:EGT_NEEDLE
+    unreliable: true
+  -
+    type: var
+    var_name: L:B35_tablet_on
+  -
+    type: var
+    var_name: L:B35_compartment
+  -
+    type: var
+    var_name: L:B35_left_shade
+  -
+    type: var
+    var_name: L:B35_right_shade
+  -
+    type: var
+    var_name: L:B35_right_pax_seat
+# -
+#   type: var
+#   var_name: L:DEICE_Airframe_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_IsDeiceAirFrame
+  -
+    type: var
+    var_name: L:XMLVAR_DEICE_Aircraft_IsHeld
+# -
+#   type: var
+#   var_name: L:XMLVAR_Magneto_Starter_IsHeld
+# -
+#   type: var
+#   var_name: L:HANDLING_ElevatorTrim
+# -
+#   type: var
+#   var_name: L:XMLVAR_ElevatorTrim_Switch_Yoke
+# -
+#   type: var
+#   var_name: L:XMLVAR_ElevatorTrim_Yoke_SwitchStateTimer
+  -
+    type: var
+    var_name: L:B35_gear_extension_cap
+  -
+    type: var
+    var_name: L:B35_egl_anim
+  -
+    type: var
+    var_name: L:B35_ap_light_test
+  -
+    type: var
+    var_name: L:B35_flaps_light_test_up
+  -
+    type: var
+    var_name: L:B35_flaps_light_test_down
+  -
+    type: var
+    var_name: L:B35_stall_test
+  -
+    type: var
+    var_name: L:B35_gear_light_warning_up
+  -
+    type: var
+    var_name: L:B35_gear_light_warning_down
+  -
+    type: var
+    var_name: L:B35_firewall
+  -
+    type: var
+    var_name: L:B35_bat_test
+# -
+#   type: var
+#   var_name: L:AS1000_PFD_SelectedNavIndex
+# -
+#   type: var
+#   var_name: L:AS1000_PFD_SelectedComIndex
+# -
+#   type: var
+#   var_name: L:PFD_CDI_Source
+# -
+#   type: var
+#   var_name: L:PFD_InnerMap_MapZoomRange
+# -
+#   type: var
+#   var_name: L:PFD_InnerMap_MapShowCursor
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_2
+# -
+#   type: var
+#   var_name: L:LIGHTING_PANEL_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_GLARESHIELD_1
+# -
+#   type: var
+#   var_name: L:AS530_Default_MapZoomRange
+# -
+#   type: var
+#   var_name: L:AS530_SelectedSource
+# -
+#   type: var
+#   var_name: L:XMLVAR_ADF_Frequency_10_Khz
+# -
+#   type: var
+#   var_name: L:XMLVAR_AudioPanel_1
+# -
+#   type: var
+#   var_name: L:INSTRUMENT_Altimeter_1
+# -
+#   type: var
+#   var_name: L:INSTRUMENT_ADF
+# -
+#   type: var
+#   var_name: L:INSTRUMENT_Course_1
+# -
+#   type: var
+#   var_name: L:DEICE_Pitot_1
+# -
+#   type: var
+#   var_name: L:DEICE_Propeller_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_IE_Throttle_VR_Handled
+# -
+#   type: var
+#   var_name: L:XMLVAR_IE_Throttle_VR_Value
+# -
+#   type: var
+#   var_name: L:HANDLING_RudderTrim
+# -
+#   type: var
+#   var_name: L:XMLVAR_YokeHidden1
+# -
+#   type: var
+#   var_name: L:LANDING_GEAR_Gear
+# -
+#   type: var
+#   var_name: L:ParkingBrake_Position
+# -
+#   type: var
+#   var_name: L:XMLVAR_ELT_TEST_TIME
+# -
+#   type: var
+#   var_name: L:XMLVAR_ELT_STATE
+# -
+#   type: var
+#   var_name: L:XMLVAR_ELT_ACTIVATION_TIME
+# -
+#   type: var
+#   var_name: L:LIGHTING_NAV_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_TAXI_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_LANDING_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_BEACON_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_STROBE_1
+  -
+    type: var
+    var_name: L:XMLVAR_Autopilot_1_Status
+# -
+#   type: var
+#   var_name: L:PMS50_GTN750_INSTALLED
+# -
+#   type: var
+#   var_name: L:GTN750_INT_HIDDEN
+# -
+#   type: var
+#   var_name: L:AS530_HIDDEN
+  -
+    type: var
+    var_name: L:B35_eng_vibrations
+# -
+#   type: var
+#   var_name: L:AS1000_PFD_Brightness
+# -
+#   type: var
+#   var_name: L:AS1000_PFD_Brightness_IsAuto
+# -
+#   type: var
+#   var_name: L:AS530_ManualBrightness_Value_1
+# -
+#   type: var
+#   var_name: L:AS530_ManualBrightness_Enabled_1
+  -
+    type: var
+    var_name: L:B35_panel_color_option
+  -
+    type: var
+    var_name: L:B35_show_aera_gps
+  -
+    type: var
+    var_name: L:B35_attitude_indicator
+# -
+#   type: var
+#   var_name: L:XMLVAR_LeverThrottleHidden1
+# -
+#   type: var
+#   var_name: L:XMLVAR_LeverPropellerHidden1
+# -
+#   type: var
+#   var_name: L:XMLVAR_LeverMixtureHidden1
+# -
+#   type: var
+#   var_name: L:XMLVAR_LeverMixtureHidden2
+# -
+#   type: var
+#   var_name: L:AP_KAP140_INSTALLED
+# -
+#   type: var
+#   var_name: L:YourControlsPanelId
+  -
+    type: var
+    var_name: L:B35_copilot_controls

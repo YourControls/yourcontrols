@@ -1,5 +1,77 @@
 # YourControls Changelog
 
+## Version 2.8.15/16
+
+Placeholder update. Main repo moved.
+ - Auto-update will trigger twice.
+
+(2024) Ground jitter semi-fixed. Better but still present, WIP.
+
+### Profiles (2020)
+
+- Added: Pilatus PC-12 by SimWorks Studios (v1.6.11)
+
+
+## Version 2.8.14
+
+- Fixed: FS2020 install/update with old installer.
+- Fixed: FFX HondaJet APR switch (2020).
+- Fixed: FFX HondaJet engine fire bottle release (2020).
+- Fixed: Asobo CJ4 Run/Stop switches (2024).
+- Fixed: Asobo CJ4 guard cover animations (2024).
+
+
+## Version 2.8.13
+
+### Profiles (2020)
+
+- Added: Airbus A350 by iniBuilds (v1.2.0)
+- Added: British Aerospace 146 by Just Flight (v0.2.1)
+- Added: Beechcraft Baron B58 (Professional) by Black Square (v0.1.1)
+- Added: Beechcraft Bonanza A36 (Professional) by Black Square (v0.1.0)
+- Added: Beechcraft Bonanza H35 by BRsimDesigns (v1.3)
+- Added: Beechcraft Debonair 35-B33 by BRsimDesigns (v1.8)
+- Added: Beechcraft Duke B60 by Black Square (v0.1.2)
+- Added: Cessna 208B Grand Caravan (Professional) by Black Square (v0.1.1)
+- Added: Embraer EMB-121A1 Xingu II by BRsimDesigns (v1.7.0)
+- Added: Grumman G-111 Albatross by Microsoft & Mike Johnson (v1.3.1)
+- Added: Grumman HU-16 Albatross by Microsoft & Mike Johnson (v1.3.1)
+- Added: Piper PA-28-236 Dakota by Carenado (v1.0.3)
+- Readded: Embraer E-Jet Series (17X/19X/F) by FlightSim Studio (v0.9.34)
+
+### Profiles (2024)
+
+- Added: Airbus A340-300 by iniBuilds (v1.0.10)
+- Added: Airbus H125 (AS350B3e) by Cowan Simulation (v3.3.0)
+- Added: Beechcraft Baron G58 by Asobo Studio/iniBuilds (v0.0.17)
+- Added: Beechcraft Bonanza G36 by Asobo Studio (v6.26.1)
+- Added: Beechcraft Baron B58 (Professional) by Black Square (v0.1.1)
+- Added: Beechcraft Bonanza A36 (Professional) by Black Square (v0.1.0)
+- Added: Beechcraft Duke B60 by Black Square (v0.1.2)
+- Added: Bell 206B-3 JetRanger III by Cowan Simulation (v3.3.0)
+- Added: Bell 206L-3 LongRanger III by Cowan Simulation (v3.3.0)
+- Added: Bell 222B by Cowan Simulation (v3.2.0)
+- Added: Bell 407 by Microsoft & Nemeth Designs (v6.29.1)
+- Added: Boeing 737-8 MAX by Asobo Studio (v6.31.0)
+- Added: Boeing 747-4 Dreamlifter by Microsoft & Working Title (v2.1.4)
+- Added: Boeing 747-4 Supertanker by Microsoft & Working Title (v2.1.4)
+- Added: Boeing 747-8 Pax & Freight by Microsoft & Working Title (v2.1.4)
+- Added: Boeing 787-10 Dreamliner by Microsoft & Working Title (v2.1.4)
+- Added: Cessna 208B Grand Caravan (Professional) by Black Square (v0.1.1)
+- Added: Cirrus SR22T G6 GTS by Microsoft & Working Title (v2.1.6)
+- Added: Curtiss JN-4D Jenny by Microsoft & iniBuilds (v6.9.0)
+- Added: Daher TBM 850 by Black Square (v0.1.4)
+- Added: Daher TBM 930 by Asobo Studio (v6.26.1)
+- Added: Embraer E-Jet Series (17X/19X/F) by FlightSim Studio (v0.9.34)
+- Added: Embraer EMB-121A1 Xingu II by BRsimDesigns (v1.7.0)
+- Added: Grumman G-21A Goose by Microsoft & iniBuilds (v6.26.1)
+- Added: Grumman G-111 Albatross by Microsoft & Mike Johnson (v2.2.7)
+- Added: Grumman HU-16 Albatross by Microsoft & Mike Johnson (v2.2.7)
+- Added: MD Helicopters 500E by Cowan Simulation (v3.4.0)
+- Added: Piper PA-28-236 Dakota by Carenado (v6.26.0)
+- Added: Robinson R66 by Cowan Simulation (v3.5.0)
+
+
 ## Version 2.8.12
 
 - Added separate dropdown box for FS2024 specific aircraft.
@@ -9,7 +81,7 @@ NOTICE: Definitions directory has changed. All external profiles need updating.
 
 ### Profiles (2020)
 
-- Added: Daher TBM 850 by Black Square (v0.1.4).
+- Added: Daher TBM 850 by Black Square (v0.1.4)
 
 
 ## Version 2.8.11
@@ -29,10 +101,10 @@ NOTICE: Definitions directory has changed. All external profiles need updating.
 
 ### Profiles (2020)
 
-- Added: Diamond DA40 Diamond Star by COWS (v1.1.3).
-- Added: Diamond DA42 Twin Star by COWS (v1.2.5).
-- Readded: Boeing Model 247D by Wing42. (v1.0.3).
-- Updated: Kodiak 100 by SimWorks Studios (v1.6.0).
+- Added: Diamond DA40 Diamond Star by COWS (v1.1.3)
+- Added: Diamond DA42 Twin Star by COWS (v1.2.5)
+- Readded: Boeing Model 247D by Wing42. (v1.0.3)
+- Updated: Kodiak 100 by SimWorks Studios (v1.6.0)
 
 ### Aircraft Fixes (2020)
 

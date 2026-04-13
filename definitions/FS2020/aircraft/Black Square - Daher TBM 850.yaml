@@ -1077,9 +1077,9 @@ shared:
   -
     type: var
     var_name: L:var_BleedAirOvertemp
-  -
-    type: var
-    var_name: L:var_oxygenIsolationValve
+# -
+#   type: var
+#   var_name: L:var_oxygenIsolationValve
   -
     type: var
     var_name: L:var_airframeDeiceFailure
@@ -1320,9 +1320,9 @@ shared:
 # -
 #   type: var
 #   var_name: L:BKSQ_TBM_ITT
-  -
-    type: var
-    var_name: L:var_fodType
+# -
+#   type: var
+#   var_name: L:var_fodType
 # -
 #   type: var
 #   var_name: L:var_GeneratorOnline
@@ -2211,15 +2211,15 @@ shared:
 # -
 #   type: var
 #   var_name: L:var_AS340_led_mic1and2_1_readonly
-  -
-    type: var
-    var_name: L:AS530_1_ManualBrightness_Value_1
+# -
+#   type: var
+#   var_name: L:AS530_1_ManualBrightness_Value_1
   -
     type: var
     var_name: L:AS530_1_ManualBrightness_Enabled_1
-  -
-    type: var
-    var_name: L:AS530_2_ManualBrightness_Value_2
+# -
+#   type: var
+#   var_name: L:AS530_2_ManualBrightness_Value_2
   -
     type: var
     var_name: L:AS530_2_ManualBrightness_Enabled_2
@@ -2532,9 +2532,9 @@ shared:
 # -
 #   type: var
 #   var_name: L:AS1000_Warnings_Master_Set
-  -
-    type: var
-    var_name: L:bksq_wradar1_IsPositionOverride
+# -
+#   type: var
+#   var_name: L:bksq_wradar1_IsPositionOverride
 # -
 #   type: var
 #   var_name: L:KAS297B_1_ScreenLuminosity

@@ -104,14 +104,6 @@ shared:
     event_name: AP_MAX_BANK_SET
     use_calculator: true
   -
-    type: ToggleSwitch
-    var_name: A:AUTOPILOT NAV1 LOCK
-    var_units: Bool
-    var_type: bool
-    event_name: AP_NAV1_HOLD
-    is_user_event: true
-    use_calculator: true
-  -
     type: NumSet
     var_name: A:AUTOPILOT VERTICAL HOLD
     var_units: Bool
@@ -136,9 +128,12 @@ shared:
   - # Events no simvar
     type: event
     event_name: AP_ALT_HOLD
-  -
+  - # Fights with NAV
     type: event
     event_name: AP_APR_HOLD
+  - # Fights with APR
+    type: event
+    event_name: AP_NAV1_HOLD
   -
     type: event
     event_name: AP_PITCH_LEVELER

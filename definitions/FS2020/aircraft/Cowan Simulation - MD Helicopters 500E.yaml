@@ -1,4 +1,4 @@
-# Version 3.3.0
+# Version 3.4.0
 
 include:
   - definitions/FS2020/modules/Instruments/WT_G3X_Touch.yaml
@@ -362,10 +362,10 @@ shared:
 #   var_name: L:ROTOR:2
   -
     type: var
-    var_name: L:CS_500E_exitRearL
+    var_name: L:CS_500E_exitRearR
   -
     type: var
-    var_name: L:CS_500E_exitRearR
+    var_name: L:CS_500E_exitRearL
   -
     type: var
     var_name: L:CS_500E_exitFrontR
@@ -405,6 +405,9 @@ shared:
 # -
 #   type: var
 #   var_name: L:windowVentSound
+# -
+#   type: var
+#   var_name: L:CS_HeliSAS_Driven_By_G3X
   -
     type: var
     var_name: L:testRadioAlt
@@ -569,6 +572,9 @@ shared:
 #   var_name: L:WTG3X_Screen_Backlight:1
 # -
 #   type: var
+#   var_name: L:WTG3X_Nav_Active_Nav_Source
+# -
+#   type: var
 #   var_name: L:PMS50_GTN650_RUNNING
 # -
 #   type: var
@@ -603,6 +609,9 @@ shared:
   -
     type: var
     var_name: L:annAirFilter
+  -
+    type: var
+    var_name: L:222SwitchGpsNav1Nav2
 
 master:
   -

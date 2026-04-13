@@ -319,6 +319,7 @@ shared:
   -
     type: var
     var_name: L:needleHsiMarker
+    unreliable: true
 # -
 #   type: var
 #   var_name: L:kohlsmanKnob

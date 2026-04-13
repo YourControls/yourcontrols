@@ -1,1 +1,0 @@
-## This page requires a rewrite as of the latest refactor.

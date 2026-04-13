@@ -1,4 +1,4 @@
-# Version 6.12.0
+# Version 0.5.1 / 2.0.1 Enhanced
 
 include:
   - definitions/FS2024/modules/Instruments/AS_G3000.yaml
@@ -103,6 +103,27 @@ shared:
     event_name: TOGGLE_MASTER_BATTERY
     event_param: 3
     use_calculator: true
+
+  - # Console
+    type: CustomCalculator
+    get: (B:HANDLING_SECONDARY_ELEVATORTRIM_AVAILABLE_TOGGLE)
+    set: (>B:HANDLING_SECONDARY_ELEVATORTRIM_AVAILABLE_TOGGLE)
+# -
+#   type: CustomCalculator
+#   get: (B:HANDLING_HANDLING_SWITCH_SECONDARY_ELEVATORTRIM_AVAILABLE_COVER_TOGGLE)
+#   set: (>B:HANDLING_HANDLING_SWITCH_SECONDARY_ELEVATORTRIM_AVAILABLE_COVER_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:PRESSURIZATION_DUMP_COVER_TOGGLE)
+    set: (>B:PRESSURIZATION_DUMP_COVER_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:LNG_ENGINE_FUEL_PUSH_RUNSTOP_1_COVER_TOGGLE)
+    set: (>B:LNG_ENGINE_FUEL_PUSH_RUNSTOP_1_COVER_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:LNG_ENGINE_FUEL_PUSH_RUNSTOP_2_COVER_TOGGLE)
+    set: (>B:LNG_ENGINE_FUEL_PUSH_RUNSTOP_2_COVER_TOGGLE)
 
   - # Handling
     type: NumSet

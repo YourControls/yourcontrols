@@ -1,4 +1,4 @@
-# Version 3.1.0
+# Version 3.2.0
 
 include:
   - definitions/FS2020/modules/Instruments/AS_GNS430.yaml
@@ -522,28 +522,28 @@ shared:
 #   var_name: L:LOCAL_milliBar_to_inHg
   -
     type: var
-    var_name: L:222WindowROpen
-  -
-    type: var
-    var_name: L:222DoorRLOpen
+    var_name: L:222WindowLOpen
   -
     type: var
     var_name: L:222DoorRROpen
   -
     type: var
-    var_name: L:222WindowLOpen
+    var_name: L:COWANSIM_LIGHT_LANDING_UP_DOWN
+  -
+    type: var
+    var_name: L:222DoorRLOpen
   -
     type: var
     var_name: L:222DoorFLOpen
-  -
-    type: var
-    var_name: L:COWANSIM_LIGHT_LANDING_UP_DOWN
   -
     type: var
     var_name: L:222DoorFROpen
   -
     type: var
     var_name: L:COWANSIM_LIGHT_LANDING_LR
+  -
+    type: var
+    var_name: L:222WindowROpen
   -
     type: var
     var_name: L:222DoorsHide
@@ -855,9 +855,6 @@ shared:
   -
     type: var
     var_name: L:XMLVAR_AudioPanel_2
-# -
-#   type: var
-#   var_name: L:CS_HeliSAS_Lights_White
 
   - # Medical
     type: var

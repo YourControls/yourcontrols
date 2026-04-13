@@ -8057,22 +8057,6 @@ shared:
 #   type: var
 #   var_name: L:HUD_AP_SELECTED_ALTITUDE
 
-  - # A321
-    type: var
-    var_name: L:N_CONFIG_WINDOW_PLUGS_LF
-  -
-    type: var
-    var_name: L:N_CONFIG_WINDOW_PLUGS_RF
-  -
-    type: var
-    var_name: L:N_CONFIG_WINDOW_PLUGS_LR
-  -
-    type: var
-    var_name: L:N_CONFIG_WINDOW_PLUGS_RR
-  -
-    type: var
-    var_name: L:CB_P29_ACT_XFR_VLV_AUTO_CTL
-
 # - # FS2024
 #   type: var
 #   var_name: L:A32X_ExitState

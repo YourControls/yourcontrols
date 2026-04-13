@@ -1,0 +1,264 @@
+# Version 6.26.0
+
+include:
+  - definitions/FS2024/modules/Instruments/AS_GNS430.yaml
+  - definitions/FS2024/modules/Instruments/AS_GNS530.yaml
+  - definitions/FS2024/modules/Instruments/AS_KT76C.yaml
+  - definitions/FS2024/modules/Instruments/CAR_KFC225.yaml
+  - definitions/FS2024/modules/controls.yaml
+  - definitions/FS2024/modules/engines.yaml
+  - definitions/FS2024/modules/general.yaml
+  - definitions/FS2024/modules/handling.yaml
+  - definitions/FS2024/modules/magnetos.yaml
+  - definitions/FS2024/modules/navigation.yaml
+  - definitions/FS2024/modules/payload.yaml
+  - definitions/FS2024/modules/radios.yaml
+  - definitions/FS2024/modules/safety.yaml
+  - definitions/FS2024/modules/trim.yaml
+
+shared:
+  - # Avionics
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:38
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 38
+    use_calculator: true
+
+  - # Deice
+    type: CustomCalculator
+    get: (B:DEICE_PITOT_HEAT_Toggle)
+    set: (>B:DEICE_PITOT_HEAT_Toggle)
+  -
+    type: NumSet
+    var_name: A:ENG ANTI ICE:1
+    var_units: Bool
+    var_type: i32
+    event_name: ANTI_ICE_SET_ENG1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:WINDSHIELD DEICE SWITCH
+    var_units: Bool
+    var_type: i32
+    event_name: WINDSHIELD_DEICE_SET
+    use_calculator: true
+
+  - # Doors
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:0
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 2
+    use_calculator: true
+
+  - # Electrical
+    type: ToggleSwitch
+    var_name: A:ELECTRICAL MASTER BATTERY:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_MASTER_BATTERY
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG MASTER ALTERNATOR:1
+    var_units: Bool
+    var_type: i32
+    event_name: ALTERNATOR_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG STARTER:1
+    var_units: Bool
+    var_type: i32
+    event_name: SET_STARTER1_HELD
+    use_calculator: true
+
+  - # Fuel
+    type: CustomCalculator
+    get: (B:FUEL_PUMP_Toggle)
+    set: (>B:FUEL_PUMP_Toggle)
+  -
+    type: NumSet
+    var_name: A:FUELSYSTEM JUNCTION SETTING:1
+    var_units: Number
+    var_type: i32
+    event_name: FUELSYSTEM_JUNCTION_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+
+  - # Interior
+    type: ToggleSwitch
+    var_name: A:LIGHT NAV:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_NAV_LIGHTS
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:9
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 9
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT PANEL POWER SETTING:1
+    var_units: Percent
+    var_type: f64
+    event_name: PANEL_LIGHTS_POWER_SETTING_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN:2
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 2
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN POWER SETTING:1
+    var_units: Percent
+    var_type: f64
+    event_name: CABIN_LIGHTS_POWER_SETTING_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+
+  - # Lights
+    type: ToggleSwitch
+    var_name: A:LIGHT STROBE:1
+    var_units: Bool
+    var_type: bool
+    event_name: STROBES_TOGGLE
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT LANDING:1
+    var_units: Bool
+    var_type: bool
+    event_name: LANDING_LIGHTS_TOGGLE
+    event_param: 1
+    use_calculator: true
+
+  - # Passenger
+    type: CustomCalculator
+    get: (B:AUXILIARY_CABIN_HEAT_Toggle)
+    set: (>B:AUXILIARY_CABIN_HEAT_Toggle)
+
+  - # Primer
+    type: CustomCalculator
+    get: (B:ENGINE_PRIMER_Toggle)
+    set: (>B:ENGINE_PRIMER_Toggle)
+
+  - # Test (timed O var)
+    type: CustomCalculator
+    get: (B:AUXILIARY_SAFETY_PUSH_TEST_ACTION_Toggle)
+    set: (>B:AUXILIARY_SAFETY_PUSH_TEST_ACTION_Toggle)
+
+  - # Scoped
+    type: var
+    var_name: L:1:XMLVAR_Observe_Oil_Cap
+  -
+    type: var
+    var_name: L:1:XMLVAR_Observing_Fuel_Cap_1
+  -
+    type: var
+    var_name: L:1:XMLVAR_Observing_Fuel_Cap_2
+
+  - # Global
+    type: var
+    var_name: L:XMLVAR_OBSERVE_BAGGAGE_DOOR
+  -
+    type: var
+    var_name: L:XMLVAR_SWITCH_AUTO_TRIM
+  -
+    type: var
+    var_name: L:XMLVAR_YOKE_LEFT_SWITCH_TRIM
+  -
+    type: var
+    var_name: L:XMLVAR_SAFETY_DOOR_SIDE
+  -
+    type: var
+    var_name: L:XMLVAR_SAFETY_DOOR_TOP
+  -
+    type: var
+    var_name: L:XMLVAR_INSTRUMENT_GMA340_PILOT
+  -
+    type: var
+    var_name: L:XMLVAR_TRANSPONDER_KNOB_1
+  -
+    type: var
+    var_name: L:XMLVAR_CARENADO_KNOB_MODE_FUELFLOW
+# -
+#   type: var
+#   var_name: L:AUX_ANIM_STATIC_STICK
+# -
+#   type: var
+#   var_name: L:XMLVAR_yoke_lever_StickL_Hidden
+# -
+#   type: var
+#   var_name: L:XMLVAR_yoke_lever_StickL001_Hidden
+# -
+#   type: var
+#   var_name: L:XMLVAR_Elevator_Trim_Speed
+# -
+#   type: var
+#   var_name: L:AS430_ManualBrightness_Value
+# -
+#   type: var
+#   var_name: L:AS530_ManualBrightness_Value
+# -
+#   type: var
+#   var_name: L:XMLVAR_FRONT_GAUGES_EMISS_INTENSITY
+  -
+    type: var
+    var_name: L:XMLVAR_INSTRUMENT_Knob_Clock
+# -
+#   type: var
+#   var_name: L:AS430_CDI_Source_1
+  -
+    type: var
+    var_name: L:AS530_ManualBrightness_Enabled
+# -
+#   type: var
+#   var_name: L:AS530_SelectedSource
+# -
+#   type: var
+#   var_name: L:AS530_Default_MapZoomRange
+  -
+    type: var
+    var_name: L:AS430_ManualBrightness_Enabled
+# -
+#   type: var
+#   var_name: L:AS430_SelectedSource
+# -
+#   type: var
+#   var_name: L:AS430_MapZoomRange
+# -
+#   type: var
+#   var_name: L:XML_VAR_MULTIPLIER
+  -
+    type: var
+    var_name: L:XMLVAR_INSTRUMENT_KNOB_EGT_RANGE
+    unreliable: true

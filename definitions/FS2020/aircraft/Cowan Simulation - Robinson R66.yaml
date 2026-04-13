@@ -1,4 +1,4 @@
-# Version 3.4.0
+# Version 3.5.0
 
 include:
   - definitions/FS2020/modules/Instruments/WT_G3X_Touch.yaml
@@ -245,16 +245,16 @@ shared:
     var_name: L:floatsBlown
   -
     type: var
-    var_name: L:CSR66_DoorRROpen
+    var_name: L:CSR66_DoorFLOpen
   -
     type: var
-    var_name: L:CSR66_DoorRLOpen
+    var_name: L:CSR66_DoorRROpen
   -
     type: var
     var_name: L:CSR66_DoorFROpen
   -
     type: var
-    var_name: L:CSR66_DoorFLOpen
+    var_name: L:CSR66_DoorRLOpen
   -
     type: var
     var_name: L:CSR66_DoorFRhide
@@ -298,6 +298,9 @@ shared:
   -
     type: var
     var_name: L:FuelValveGard_2
+# -
+#   type: var
+#   var_name: L:CS_HeliSAS_Driven_By_G3X
   -
     type: var
     var_name: L:CSR66_AC_CIRCUIT

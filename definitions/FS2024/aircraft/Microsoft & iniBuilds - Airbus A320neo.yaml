@@ -2,6 +2,7 @@
 
 include:
   - definitions/FS2024/modules/general.yaml
+  - definitions/FS2024/modules/payload.yaml
 
 shared:
   - # Altimeters
@@ -4894,9 +4895,9 @@ shared:
   -
     type: var
     var_name: L:INI_THROTTLE_MAPPING_USE_REVERSE_ON_AXIS:2
-# -
-#   type: var
-#   var_name: L:INI_IRS_ALIGNMENT_TIME
+  -
+    type: var
+    var_name: L:INI_IRS_ALIGNMENT_TIME
   -
     type: var
     var_name: L:INI_NSW_SETTING
@@ -5198,12 +5199,12 @@ shared:
 # -
 #   type: var
 #   var_name: L:INI_ELEC_AC_BUS_2_IS_POWERED
-  -
-    type: var
-    var_name: L:INI_GALLEY_SHED
-  -
-    type: var
-    var_name: L:INI_GALLEY_PART_SHED
+# -
+#   type: var
+#   var_name: L:INI_GALLEY_SHED
+# -
+#   type: var
+#   var_name: L:INI_GALLEY_PART_SHED
 # -
 #   type: var
 #   var_name: L:INI_ENGINE1_GEN_AVAIL
@@ -7010,15 +7011,15 @@ shared:
 # -
 #   type: var
 #   var_name: L:INI_FUEL_WEIGHT_TRIM
-  -
-    type: var
-    var_name: L:INI_ENGINE1_EMERGENCY_SHUTDOWN
-  -
-    type: var
-    var_name: L:INI_ENGINE2_EMERGENCY_SHUTDOWN
-  -
-    type: var
-    var_name: L:INI_APU_EMERGENCY_SHUTDOWN
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_EMERGENCY_SHUTDOWN
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_EMERGENCY_SHUTDOWN
+# -
+#   type: var
+#   var_name: L:INI_APU_EMERGENCY_SHUTDOWN
 # -
 #   type: var
 #   var_name: L:INI_ENG1_HAS_FUEL
@@ -9314,9 +9315,9 @@ shared:
   -
     type: var
     var_name: L:INI_GPWS_LANDING_SWITCH
-  -
-    type: var
-    var_name: L:INI_BELUGA_CARGO_MAIN_DOOR
+# -
+#   type: var
+#   var_name: L:INI_BELUGA_CARGO_MAIN_DOOR
   -
     type: var
     var_name: L:INI_WXR_ON
@@ -10880,12 +10881,12 @@ shared:
 # -
 #   type: var
 #   var_name: L:ATHR_THR_LEVER2_POS
-  -
-    type: var
-    var_name: L:INI_WXR_TILT_KNOB_ANIMATION
-  -
-    type: var
-    var_name: L:INI_WXR_TILT
+# -
+#   type: var
+#   var_name: L:INI_WXR_TILT_KNOB_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_WXR_TILT
 # -
 #   type: var
 #   var_name: L:INI_SPEED_CALLOUT
@@ -12542,9 +12543,9 @@ shared:
 # -
 #   type: var
 #   var_name: L:INI_ENG1_N1_THR_REQ
-  -
-    type: var
-    var_name: L:INI_ENG1_EMERGENCY_SHUTDOWN
+# -
+#   type: var
+#   var_name: L:INI_ENG1_EMERGENCY_SHUTDOWN
 # -
 #   type: var
 #   var_name: L:INI_ENG1_EMERGENCY_SHUTDOWN_TIMER_START
@@ -12638,9 +12639,9 @@ shared:
 # -
 #   type: var
 #   var_name: L:INI_ENG2_N1_THR_REQ
-  -
-    type: var
-    var_name: L:INI_ENG2_EMERGENCY_SHUTDOWN
+# -
+#   type: var
+#   var_name: L:INI_ENG2_EMERGENCY_SHUTDOWN
 # -
 #   type: var
 #   var_name: L:INI_ENG2_EMERGENCY_SHUTDOWN_TIMER_START
@@ -12706,51 +12707,22 @@ master:
 
   - # Throttles
     type: NumSet
-    var_name: L:INI_THROTTLE_MAPPING_INPUT:1
-    var_units: Position 16k
+    var_name: L:INI_AXIS1_VALUE
+    var_units: Number
     var_type: f64
+    multiply_by: 16384
     event_name: THROTTLE1_SET
     use_calculator: true
     unreliable: true
   -
     type: NumSet
-    var_name: L:INI_THROTTLE_MAPPING_INPUT:2
-    var_units: Position 16k
+    var_name: L:INI_AXIS2_VALUE
+    var_units: Number
     var_type: f64
+    multiply_by: 16384
     event_name: THROTTLE2_SET
     use_calculator: true
     unreliable: true
-
-  - # Fuel
-    type: var
-    var_name: L:INI_FUEL_WEIGHT_LEFT_OUTER
-    var_type: i32
-    interpolate: Default
-  -
-    type: var
-    var_name: L:INI_FUEL_WEIGHT_LEFT_INNER
-    var_type: i32
-    interpolate: Default
-  -
-    type: var
-    var_name: L:INI_FUEL_WEIGHT_RIGHT_OUTER
-    var_type: i32
-    interpolate: Default
-  -
-    type: var
-    var_name: L:INI_FUEL_WEIGHT_RIGHT_INNER
-    var_type: i32
-    interpolate: Default
-  -
-    type: var
-    var_name: L:INI_FUEL_WEIGHT_CENTER
-    var_type: i32
-    interpolate: Default
-  -
-    type: var
-    var_name: L:INI_FUEL_WEIGHT_TRIM
-    var_type: i32
-    interpolate: Default
 
 ignore:
 # EFB Ground

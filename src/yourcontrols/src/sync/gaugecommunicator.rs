@@ -50,12 +50,12 @@ pub struct InterpolateData {
 #[derive(Deserialize, Debug)]
 pub enum InterpolationType {
     Default,
+	DefaultConstant,
+    Invert,
+	InvertConstant,
+	Wrap360,
     Wrap180,
     Wrap90,
-    Wrap360,
-    Invert,
-    DefaultConstant,
-    InvertConstant,
 }
 
 fn format_get(var_name: &str, var_units: Option<&str>) -> String {
@@ -285,12 +285,12 @@ impl GaugeCommunicator {
         for (_, datum) in self.interpolate_datums.iter() {
             let interpolation_type_int = match datum.interpolation_type {
                 InterpolationType::Default => 0,
-                InterpolationType::Wrap180 => 1,
-                InterpolationType::Wrap360 => 2,
-                InterpolationType::Wrap90 => 3,
-                InterpolationType::Invert => 4,
-                InterpolationType::DefaultConstant => 5,
-                InterpolationType::InvertConstant => 6,
+                InterpolationType::DefaultConstant => 1,
+                InterpolationType::Invert => 2,
+                InterpolationType::InvertConstant => 3,
+                InterpolationType::Wrap360 => 4,
+                InterpolationType::Wrap180 => 5,
+                InterpolationType::Wrap90 => 6,
             };
 
             writer.write_u32(datum.datum_id);

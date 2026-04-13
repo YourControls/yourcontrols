@@ -19,12 +19,12 @@ shared:
   -
     type: var
     var_name: L:AS430_CDI_Source_2
-  -
-    type: var
-    var_name: L:AS430_ManualBrightness_Value_1
-  -
-    type: var
-    var_name: L:AS430_ManualBrightness_Value_2
+# -
+#   type: var
+#   var_name: L:AS430_ManualBrightness_Value_1
+# -
+#   type: var
+#   var_name: L:AS430_ManualBrightness_Value_2
   -
     type: var
     var_name: L:AS430_ManualBrightness_Enabled_1

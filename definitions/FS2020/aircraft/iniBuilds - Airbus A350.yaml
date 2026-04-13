@@ -1,0 +1,10174 @@
+# Version 1.2.0
+
+include:
+  - definitions/FS2020/modules/general.yaml
+
+shared:
+  - # Altimeters
+    type: NumSet
+    var_name: A:KOHLSMAN SETTING MB:1
+    var_units: Millibars scaler 16
+    var_type: f64
+    event_name: KOHLSMAN_SET
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:KOHLSMAN SETTING MB:2
+    var_units: Millibars scaler 16
+    var_type: f64
+    event_name: KOHLSMAN_SET
+    event_param: 2
+  -
+    type: NumSet
+    var_name: A:KOHLSMAN SETTING MB:3
+    var_units: Millibars scaler 16
+    var_type: f64
+    event_name: KOHLSMAN_SET
+    event_param: 3
+
+  - # Door 1L
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:0
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 1
+    cancel_h_events: true
+    use_calculator: true
+  - # Door 1R
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 2
+    cancel_h_events: true
+    use_calculator: true
+  - # Door 2L
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:2
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 3
+    cancel_h_events: true
+    use_calculator: true
+  - # Door 2R
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:3
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 4
+    cancel_h_events: true
+    use_calculator: true
+  - # Door 3L
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:4
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 5
+    cancel_h_events: true
+    use_calculator: true
+  - # Door 3R
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:5
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 6
+    cancel_h_events: true
+    use_calculator: true
+  - # Door 4L
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:9
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 10
+    cancel_h_events: true
+    use_calculator: true
+  - # Door 4R
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:8
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 9
+    cancel_h_events: true
+    use_calculator: true
+  - # Forward Cargo
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:7
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 8
+    cancel_h_events: true
+    use_calculator: true
+  - # Aft Cargo
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:6
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 7
+    cancel_h_events: true
+    use_calculator: true
+  - # Bulk Cargo
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:10
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 11
+    cancel_h_events: true
+    use_calculator: true
+
+  - # Handling
+    type: ToggleSwitch
+    var_name: A:BRAKE PARKING POSITION
+    var_units: Bool
+    var_type: bool
+    event_name: PARKING_BRAKES
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FLAPS HANDLE PERCENT
+    var_units: Position 16k
+    var_type: f64
+    event_name: FLAPS_SET
+    use_calculator: true
+    unreliable: true
+
+  - # Radios
+    type: NumSet
+    var_name: A:COM ACTIVE FREQUENCY:1
+    var_units: Hz
+    var_type: i32
+    event_name: COM_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM ACTIVE FREQUENCY:2
+    var_units: Hz
+    var_type: i32
+    event_name: COM2_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM ACTIVE FREQUENCY:3
+    var_units: Hz
+    var_type: i32
+    event_name: COM3_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM STANDBY FREQUENCY:1
+    var_units: Hz
+    var_type: i32
+    event_name: COM_STBY_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM STANDBY FREQUENCY:2
+    var_units: Hz
+    var_type: i32
+    event_name: COM2_STBY_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM STANDBY FREQUENCY:3
+    var_units: Hz
+    var_type: i32
+    event_name: COM3_STBY_RADIO_SET_HZ
+    use_calculator: true
+
+  - # Stick
+    type: event
+    event_name: AUTOPILOT_OFF
+
+  - # Transponder
+    type: NumSet
+    var_name: A:TRANSPONDER IDENT:1
+    var_units: Bool
+    var_type: i32
+    event_name: XPNDR_IDENT_SET
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:TRANSPONDER CODE:1
+    var_units: Bco16
+    var_type: i32
+    event_name: XPNDR_SET
+    event_param: 1
+
+  - # Trim
+    type: NumSet
+    var_name: A:AILERON TRIM PCT
+    var_units: Percent scaler 16k
+    var_type: f64
+    event_name: AILERON_TRIM_SET_EX1
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:ELEVATOR TRIM PCT
+    var_units: Percent scaler 16k
+    var_type: f64
+    event_name: ELEVATOR_TRIM_SET
+    condition:
+      var:
+        var_name: A:SIM ON GROUND
+        var_units: Bool
+        var_type: bool
+      equals:
+        Bool: true
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:RUDDER TRIM PCT
+    var_units: Percent scaler 16k
+    var_type: f64
+    event_name: RUDDER_TRIM_SET_EX1
+    use_calculator: true
+    unreliable: true
+
+  - # LVAR's
+    type: var
+    var_name: L:INI_ANNLT_SWITCH
+  -
+    type: var
+    var_name: L:INI_LOAD_READY_FOR_TAKEOFF
+# -
+#   type: var
+#   var_name: L:INI_PANELSTATE_LOADING_TIMER
+  -
+    type: var
+    var_name: L:INI_PANELSTATES_INDEX
+# -
+#   type: var
+#   var_name: L:INI_SET_HEADING
+# -
+#   type: var
+#   var_name: L:INI_NOSEWHEEL_STEERING_POSITION
+  -
+    type: var
+    var_name: L:INI_EFB_ACTUAL_BRIGHTNESS
+    cancel_h_events: true
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_FORCE_GEAR_DOWN
+  -
+    type: var
+    var_name: L:INI_FORCE_FLAPS_LEVEL
+  -
+    type: var
+    var_name: L:INI_AUTOSTART_ACTIVE
+  -
+    type: var
+    var_name: L:INI_IGNITION_KNOB
+# -
+#   type: var
+#   var_name: L:INI_GEAR0_POSITION
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_POSITION
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_POSITION
+  -
+    type: var
+    var_name: L:INI_OPTION_WINGLET_SHORT
+  -
+    type: NumSet
+    var_name: L:INI_GPU_AVAIL
+    var_units: Number
+    var_type: f64
+    event_name: INIB.TOGGLE_GPU
+    cancel_h_events: true
+    use_calculator: true
+# -
+#   type: var
+#   var_name: L:INI_IS_1000
+  -
+    type: var
+    var_name: L:INI_COVERS_ENABLED
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:INI_EMER_EXIT_SWITCH
+  -
+    type: var
+    var_name: L:INI_RMP1_9_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_NO_SMOKING_SWITCH
+  -
+    type: var
+    var_name: L:INI_RMP3_9_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SEAT_CPT_BKREST_SWITCH
+# -
+#   type: var
+#   var_name: L:XMLVAR_RudderTrim_Switch_1
+  -
+    type: var
+    var_name: L:INI_RMP3_11_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_CTR_VISOR_MAIN
+  -
+    type: var
+    var_name: L:INI_CKPT_LT_DU_MASTER_INHIBIT
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_93
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_OXYTEST_HATCH_4TH
+  -
+    type: var
+    var_name: L:INI_MIP_CONSOLE_BRT_RIGHT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP3_5_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_RMP1_8_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_OXYTEST_CPT_N
+  -
+    type: var
+    var_name: L:INI_WIPER_SWITCH_LEFT
+  -
+    type: var
+    var_name: L:INI_TEMP_KNOB1
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP1_6_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_AIR_X_BLEED
+  -
+    type: var
+    var_name: L:INI_IRS3_STATE
+  -
+    type: var
+    var_name: L:INI_RMP3_8_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_RMP1_5_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_OXYTEST_TO_N
+  -
+    type: var
+    var_name: L:INI_RMP1_10_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_RMP2_6_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_LIGHTS_STROBE
+  -
+    type: var
+    var_name: L:INI_RMP1_7_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_HUD_BRIGHTNESS_RIGHT
+  -
+    type: var
+    var_name: L:INI_PRINTER_TRIGGER_PAPER_TRANSFER
+  -
+    type: var
+    var_name: L:INI_AVIONICS_DOOR_STATE
+  -
+    type: var
+    var_name: L:INI_RMP2_3_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_RMP3_4_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_MAP_MODE_CAPT_SWITCH
+  -
+    type: var
+    var_name: L:INI_IRS2_STATE
+  -
+    type: var
+    var_name: L:INI_OIS_AVNCS_EFB_RIGHT
+  -
+    type: var
+    var_name: L:INI_OXYTEST_HATCH_FO
+  -
+    type: var
+    var_name: L:INI_CKPT_DOOR
+  -
+    type: var
+    var_name: L:INI_OXYTEST_4TH_N
+  -
+    type: var
+    var_name: L:INI_LIGHTS_STBY_COMPASS
+  -
+    type: var
+    var_name: L:INI_FMS_SELECTOR
+  -
+    type: var
+    var_name: L:INI_LIGHTS_LOGO
+  -
+    type: var
+    var_name: L:INI_A350_INT_SEAT_CPT_ARMREST_L_BASE
+  -
+    type: var
+    var_name: L:INI_RMP2_10_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SEAT_FE_BKREST_SWITCH
+  -
+    type: var
+    var_name: L:INI_CPT_VISOR_SIDE
+  -
+    type: var
+    var_name: L:INI_RMP2_4_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_IRS1_STATE
+  -
+    type: var
+    var_name: L:INI_RMP3_1_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_LIGHTS_NOSE
+  -
+    type: var
+    var_name: L:INI_TEMP_KNOB4
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SLIDING_TABLE_BRT_RIGHT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_PITCH_TRIM_LEFT
+  -
+    type: var
+    var_name: L:INI_FO_VISOR_SIDE
+  -
+    type: var
+    var_name: L:INI_CKPT_LT_DOME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_MAP_RANGE_FO_SWITCH
+  -
+    type: var
+    var_name: L:INI_RMP2_7_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_A350_INT_SEAT_FE_ARMREST_R_BASE
+  -
+    type: var
+    var_name: L:INI_RMP3_11_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_COVER
+  -
+    type: var
+    var_name: L:INI_MIP_PEDAL_LT_LEFT
+  -
+    type: var
+    var_name: L:INI_HUD_BRIGHTNESS_LEFT
+  -
+    type: var
+    var_name: L:INI_RMP1_10_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP3_6_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_FCU_INTEG_BRT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SEATBELTS_SWITCH
+  -
+    type: var
+    var_name: L:INI_LIGHTS_LANDING
+  -
+    type: var
+    var_name: L:INI_4TH_OCCPT_READING_BRT
+  -
+    type: var
+    var_name: L:INI_RMP1_3_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_A350_INT_SEAT_FO_ARMREST_L_BASE
+  -
+    type: var
+    var_name: L:INI_RMP_INT_RAD_1
+  -
+    type: var
+    var_name: L:INI_SEAT_CPT_BKFWD_SWITCH
+  -
+    type: var
+    var_name: L:INI_RMP3_9_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_RMP3_2_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_MIP_MAP_BRT_RIGHT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_ANTISKID_SWITCH
+  -
+    type: var
+    var_name: L:INI_HUD_LEFT_STATE
+  -
+    type: var
+    var_name: L:INI_ELT_SWITCH
+  -
+    type: var
+    var_name: L:INI_RMP2_1_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP_INT_RAD_2
+  -
+    type: var
+    var_name: L:INI_FO_VISOR
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_LOUDSPEAKER_2
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SEAT_FO_BKFWD_SWITCH
+  -
+    type: var
+    var_name: L:INI_OXYTEST_HATCH_TO
+  -
+    type: var
+    var_name: L:INI_RMP3_10_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP1_8_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_ELT_SWITCH_GUARD
+  -
+    type: var
+    var_name: L:INI_TEMP_KNOB2
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_TEMP_KNOB3
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_OIS_AVNCS_EFB_LEFT
+  -
+    type: var
+    var_name: L:INI_RMP2_3_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SEAT_FE_BKFWD_SWITCH
+  -
+    type: var
+    var_name: L:INI_RMP3_1_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP1_11_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_AIR_DATA_STATE
+  -
+    type: var
+    var_name: L:INI_INDIV_HEATER_RIGHT
+  -
+    type: var
+    var_name: L:INI_SEAT_CPT_UPDOWN_SWITCH
+  -
+    type: var
+    var_name: L:INI_OXYTEST_FO_N
+  -
+    type: var
+    var_name: L:INI_RMP2_4_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_RMP2_11_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_AIR_FLOW_MODE
+  -
+    type: var
+    var_name: L:INI_INDIV_LAT_VENT_DEFOG_RIGHT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_CKPT_LT_FLOOD
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP1_3_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_LIGHTS_WING
+  -
+    type: var
+    var_name: L:INI_RMP1_1_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_RMP2_2_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP3_8_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP1_4_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP2_5_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP3_7_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_GUARD_1
+  -
+    type: var
+    var_name: L:INI_SEAT_FO_UPDOWN_SWITCH
+  -
+    type: var
+    var_name: L:INI_RMP3_4_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_CPT_VISOR
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP2_7_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP3_7_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_LOUDSPEAKER_1
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_FO_TRAY_PEDAL
+  -
+    type: var
+    var_name: L:INI_RMP3_2_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_INDIV_FOOT_VENT_LEFT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_FO_VISOR_BACK
+  -
+    type: var
+    var_name: L:INI_RMP1_11_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_LIGHTS_NAV
+  -
+    type: var
+    var_name: L:INI_RMP3_3_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP_RAD_NAV_MODE_3
+  -
+    type: var
+    var_name: L:INI_RMP1_2_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_RMP1_5_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP2_6_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_CKPT_LT_INTEG
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP3_10_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_MIP_PEDAL_LT_RIGHT
+  -
+    type: var
+    var_name: L:INI_RMP1_9_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP2_1_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_A350_INT_SEAT_FO_ARMREST_R_BASE
+  -
+    type: var
+    var_name: L:INI_FCU_HUD_XWIND_RIGHT
+  -
+    type: var
+    var_name: L:INI_FCU_DISPLAY_BRT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_3RD_OCCPT_READING_BRT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_INDIV_LAT_VENT_DEFOG_LEFT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_LIGHTS_3RD_OCCPT_CONSOLE_BRT
+  -
+    type: var
+    var_name: L:INI_BATT_VOLTAGE_SELECTOR
+  -
+    type: var
+    var_name: L:INI_LIGHTS_BEACON
+  -
+    type: var
+    var_name: L:INI_FCU_HUD_DECLUTTER_RIGHT_ANIM
+  -
+    type: var
+    var_name: L:INI_HUD_RIGHT_STATE
+  -
+    type: var
+    var_name: L:INI_RMP2_2_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_WIPER_SWITCH_RIGHT
+  -
+    type: var
+    var_name: L:INI_RMP_RAD_NAV_MODE_2
+  -
+    type: var
+    var_name: L:INI_MIP_MAP_BRT_LEFT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_PITCH_TRIM_RIGHT
+  -
+    type: var
+    var_name: L:INI_RMP3_6_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_INDIV_FOOT_VENT_RIGHT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SEAT_FO_BKREST_SWITCH
+  -
+    type: var
+    var_name: L:INI_3RD_OCCPT_CONSOLE_BRT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP2_10_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_A350_INT_SEAT_FE_ARMREST_L_BASE
+  -
+    type: var
+    var_name: L:INI_RMP2_9_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_FCU_HUD_XWIND_LEFT
+  -
+    type: var
+    var_name: L:INI_CPT_TRAY_PEDAL
+  -
+    type: var
+    var_name: L:INI_MIP_CONSOLE_BRT_LEFT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP2_5_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_95
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_HANDLE_STATE
+  -
+    type: var
+    var_name: L:INI_MAP_MODE_FO_SWITCH
+  -
+    type: var
+    var_name: L:INI_RMP1_2_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SIGNS_NO_MOBILE
+  -
+    type: var
+    var_name: L:INI_RMP_INT_RAD_3
+  -
+    type: var
+    var_name: L:INI_RMP1_4_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_RMP2_8_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_94
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP3_5_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_INDIV_HEATER_LEFT
+  -
+    type: var
+    var_name: L:INI_CPT_VISOR_BACK
+  -
+    type: var
+    var_name: L:INI_RMP2_8_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_MAP_RANGE_CAPT_SWITCH
+  -
+    type: var
+    var_name: L:INI_SLIDING_TABLE_BRT_LEFT
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP1_1_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_EVAC_SELECTOR_SWITCH
+  -
+    type: var
+    var_name: L:INI_RMP1_6_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP_RAD_NAV_MODE_1
+  -
+    type: var
+    var_name: L:INI_OXYTEST_HATCH_CPT
+  -
+    type: var
+    var_name: L:INI_RMP2_11_VOLUME
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_RMP1_7_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_RMP2_9_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_GUARD_2
+  -
+    type: var
+    var_name: L:INI_A350_INT_SEAT_CPT_ARMREST_R_BASE
+  -
+    type: var
+    var_name: L:INI_FCU_HUD_DECLUTTER_LEFT_ANIM
+  -
+    type: var
+    var_name: L:INI_RMP3_3_RECEIVE_SEL
+  -
+    type: var
+    var_name: L:INI_SEAT_FE_UPDOWN_SWITCH
+  - # Needed
+    type: var
+    var_name: L:INI_FCU_HUD_DECLUTTER_LEFT_TIMER
+  -
+    type: var
+    var_name: L:INI_FCU_HUD_DECLUTTER_LEFT
+  - # Needed
+    type: var
+    var_name: L:INI_FCU_HUD_DECLUTTER_RIGHT_TIMER
+  -
+    type: var
+    var_name: L:INI_FCU_HUD_DECLUTTER_RIGHT
+# -
+#   type: var
+#   var_name: L:INI_TLA1_REQUEST
+# -
+#   type: var
+#   var_name: L:INI_TLA2_REQUEST
+  -
+    type: var
+    var_name: L:INI_BATTERY_1_SWITCH
+  -
+    type: var
+    var_name: L:INI_BATTERY_2_SWITCH
+  -
+    type: var
+    var_name: L:INI_BATTERY_EMER1_SWITCH
+  -
+    type: var
+    var_name: L:INI_BATTERY_EMER2_SWITCH
+  -
+    type: var
+    var_name: L:INI_RAT1_SWITCH
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:INI_BUS_TIE
+  -
+    type: var
+    var_name: L:INI_COMMERCIAL1_ON
+  -
+    type: var
+    var_name: L:INI_COMMERCIAL2_ON
+  -
+    type: var
+    var_name: L:INI_ELEC_ELM
+# -
+#   type: var
+#   var_name: L:INI_GPU1_CMD
+# -
+#   type: var
+#   var_name: L:INI_GPU2_CMD
+  -
+    type: var
+    var_name: L:INI_GALLEY_CAB
+  -
+    type: var
+    var_name: L:INI_GEN_1A_SWITCH
+  -
+    type: var
+    var_name: L:INI_GEN_1B_SWITCH
+  -
+    type: var
+    var_name: L:INI_GEN_2A_SWITCH
+  -
+    type: var
+    var_name: L:INI_GEN_2B_SWITCH
+  -
+    type: var
+    var_name: L:INI_GEN_APU_GEN_SWITCH
+  -
+    type: var
+    var_name: L:INI_GEN1A_IDG_STATE
+  -
+    type: var
+    var_name: L:INI_GEN1B_IDG_STATE
+  -
+    type: var
+    var_name: L:INI_GEN2A_IDG_STATE
+  -
+    type: var
+    var_name: L:INI_GEN2B_IDG_STATE
+  -
+    type: var
+    var_name: L:INI_ELEC_PAX_SYS
+  -
+    type: var
+    var_name: L:INI_ELEC_SIDE_ISOL
+  -
+    type: var
+    var_name: L:INI_AIR_WINDSHIELD_DEFOG
+  -
+    type: var
+    var_name: L:INI_RAM_AIR_STATE
+  -
+    type: var
+    var_name: L:INI_AIR_PACK1_BUTTON
+  -
+    type: var
+    var_name: L:INI_AIR_PACK2_BUTTON
+  -
+    type: var
+    var_name: L:INI_AIR_HOT_AIR1
+  -
+    type: var
+    var_name: L:INI_AIR_HOT_AIR2
+  -
+    type: var
+    var_name: L:INI_AIR_BLEED_ENG1
+  -
+    type: var
+    var_name: L:INI_AIR_BLEED_ENG2
+  -
+    type: var
+    var_name: L:INI_AIR_BLEED_APU
+  -
+    type: var
+    var_name: L:INI_APU_MASTER_SWITCH
+  -
+    type: var
+    var_name: L:INI_APU_START_BUTTON
+  -
+    type: var
+    var_name: L:INI_IR1_STATE
+  -
+    type: var
+    var_name: L:INI_IR2_STATE
+  -
+    type: var
+    var_name: L:INI_IR3_STATE
+  -
+    type: var
+    var_name: L:INI_ADR1_BUTTON
+  -
+    type: var
+    var_name: L:INI_ADR2_BUTTON
+  -
+    type: var
+    var_name: L:INI_ADR3_BUTTON
+  -
+    type: var
+    var_name: L:INI_HYD_ENG1_GREEN_STATE
+  -
+    type: var
+    var_name: L:INI_HYD_ENG1_YELLOW_STATE
+  -
+    type: var
+    var_name: L:INI_HYD_ENG2_GREEN_STATE
+  -
+    type: var
+    var_name: L:INI_HYD_ENG2_YELLOW_STATE
+  -
+    type: var
+    var_name: L:INI_HYD_SUPPLY_ENG_1_GREEN
+  -
+    type: var
+    var_name: L:INI_HYD_SUPPLY_ENG_1_YELLOW
+  -
+    type: var
+    var_name: L:INI_HYD_SUPPLY_ENG_2_GREEN
+  -
+    type: var
+    var_name: L:INI_HYD_SUPPLY_ENG_2_YELLOW
+  -
+    type: var
+    var_name: L:INI_OUTER_TANK_LEFT
+  -
+    type: var
+    var_name: L:INI_INNER_TANK_LEFT
+  -
+    type: var
+    var_name: L:INI_INNER_TANK_RIGHT
+  -
+    type: var
+    var_name: L:INI_OUTER_TANK_RIGHT
+  -
+    type: var
+    var_name: L:INI_CENTER_TANK_LEFT
+  -
+    type: var
+    var_name: L:INI_CENTER_TANK_RIGHT
+  -
+    type: var
+    var_name: L:INI_XFEED_TRANSFER_ON
+  -
+    type: var
+    var_name: L:INI_XFEED_TRANSFER2_ON
+  -
+    type: var
+    var_name: L:INI_FUEL_TANK_TRANSFER_LEFT
+  -
+    type: var
+    var_name: L:INI_FUEL_TANK_TRANSFER_RIGHT
+  -
+    type: var
+    var_name: L:INI_FUEL_CTR_TANK_FEED_MAN
+  -
+    type: var
+    var_name: L:INI_FUEL_JETTISON_ARM
+  -
+    type: var
+    var_name: L:INI_FUEL_JETTISON_ON
+  -
+    type: var
+    var_name: L:INI_WIPER_RAIN_RPLNT_LEFT
+  -
+    type: var
+    var_name: L:INI_WIPER_RAIN_RPLNT_RIGHT
+  -
+    type: var
+    var_name: L:INI_CALLS_AFT
+  -
+    type: var
+    var_name: L:INI_CALLS_ALL
+  -
+    type: var
+    var_name: L:INI_CALLS_CAB_REST
+  -
+    type: var
+    var_name: L:INI_CALLS_EXIT
+  -
+    type: var
+    var_name: L:INI_CALLS_FLT_REST
+  -
+    type: var
+    var_name: L:INI_CALLS_FWD
+  -
+    type: var
+    var_name: L:INI_CALLS_MECH
+  -
+    type: var
+    var_name: L:INI_CALLS_MID
+  -
+    type: var
+    var_name: L:INI_CALLS_PURS_CMD
+  -
+    type: var
+    var_name: L:INI_CALLS_EMER
+  -
+    type: var
+    var_name: L:INI_EVAC_STATE
+  -
+    type: var
+    var_name: L:INI_EVAC_HORN_OFF_BUTTON
+  -
+    type: var
+    var_name: L:INI_CREW_SUPPLY
+  -
+    type: var
+    var_name: L:INI_OXYGEN_MASK_MAN
+  -
+    type: var
+    var_name: L:INI_RCD_ACMS_TRIGGER
+  -
+    type: var
+    var_name: L:INI_RCD_DFDR_EVENT
+  -
+    type: var
+    var_name: L:INI_GND_CTL
+  -
+    type: var
+    var_name: L:INI_EMER_ELEC_GEN_STATUS
+  -
+    type: var
+    var_name: L:INI_PRIM1_STATUS
+  -
+    type: var
+    var_name: L:INI_PRIM2_STATUS
+  -
+    type: var
+    var_name: L:INI_PRIM3_STATUS
+  -
+    type: var
+    var_name: L:INI_SEC1_STATUS
+  -
+    type: var
+    var_name: L:INI_SEC2_STATUS
+  -
+    type: var
+    var_name: L:INI_SEC3_STATUS
+  -
+    type: var
+    var_name: L:INI_CABIN_LANDSCAPE_CAMERA
+  -
+    type: var
+    var_name: L:INI_CABIN_MOBILE_COM
+  -
+    type: var
+    var_name: L:INI_WING_ANTI_ICE1_STATE
+  -
+    type: var
+    var_name: L:INI_ENG_ANTI_ICE1_STATE
+  -
+    type: var
+    var_name: L:INI_ENG_ANTI_ICE2_STATE
+  -
+    type: var
+    var_name: L:INI_PROBE_WINDOW_HEAT1_STATE
+# -
+#   type: var
+#   var_name: L:INI_CABIN_PRESS_ALTITUDE_TARGET_INC
+# -
+#   type: var
+#   var_name: L:INI_CABIN_PRESS_ALTITUDE_TARGET_DEC
+  -
+    type: var
+    var_name: L:INI_CABIN_PRESS_ALTITUDE_TARGET
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_CABIN_PRESS_ALTITUDE_MODE
+  -
+    type: var
+    var_name: L:INI_CABIN_PRESS_VS_MODE
+# -
+#   type: var
+#   var_name: L:INI_CABIN_PRESS_VS_TARGET_INC
+# -
+#   type: var
+#   var_name: L:INI_CABIN_PRESS_VS_TARGET_DEC
+  -
+    type: var
+    var_name: L:INI_CABIN_PRESS_VS_TARGET
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_DITCHING_STATE
+  -
+    type: var
+    var_name: L:INI_FIRE_APU_FIRE_PB
+  -
+    type: var
+    var_name: L:INI_FIRE_ENG_1_FIRE_PB
+  -
+    type: var
+    var_name: L:INI_FIRE_ENG_2_FIRE_PB
+  -
+    type: var
+    var_name: L:INI_FIRE_APU_AGENT_DISCH
+  -
+    type: var
+    var_name: L:INI_FIRE_ENG_1_AGENT_1_DISCH
+  -
+    type: var
+    var_name: L:INI_FIRE_ENG_1_AGENT_2_DISCH
+  -
+    type: var
+    var_name: L:INI_FIRE_ENG_2_AGENT_1_DISCH
+  -
+    type: var
+    var_name: L:INI_FIRE_ENG_2_AGENT_2_DISCH
+  -
+    type: var
+    var_name: L:INI_FIRE_TEST
+  -
+    type: var
+    var_name: L:INI_APU_ECON_MODE
+  -
+    type: var
+    var_name: L:INI_DOOR_LOCKG_SYS
+  -
+    type: var
+    var_name: L:INI_COM_GND_CONN
+  -
+    type: var
+    var_name: L:INI_ELEC_REMOTE_CB_CTRL
+  -
+    type: var
+    var_name: L:INI_FADEC1_GND_POWER_STATE
+  -
+    type: var
+    var_name: L:INI_FADEC2_GND_POWER_STATE
+  -
+    type: var
+    var_name: L:INI_FUEL_REFUEL
+  -
+    type: var
+    var_name: L:INI_COM_GROUND_HF_DATALINK
+  -
+    type: var
+    var_name: L:INI_OXYGEN_RESET
+  -
+    type: var
+    var_name: L:INI_SERVICE_INTERPHONE_OVRD
+  -
+    type: var
+    var_name: L:INI_TOWING_ON_BAT_POWER
+  -
+    type: var
+    var_name: L:INI_ENG1_MAN_START
+  -
+    type: var
+    var_name: L:INI_ENG2_MAN_START
+  -
+    type: var
+    var_name: L:INI_CAB_SMOKE_IFEC
+  -
+    type: var
+    var_name: L:INI_VENT_AVNCS_EXTRACT
+  -
+    type: var
+    var_name: L:INI_VENT_CABIN_FANS
+  -
+    type: var
+    var_name: L:INI_VENT_COOLING
+  -
+    type: var
+    var_name: L:INI_CARGO_SMOKE_AGENT_TO_FWD
+  -
+    type: var
+    var_name: L:INI_CARGO_SMOKE_AGENT_TO_AFT
+  -
+    type: var
+    var_name: L:INI_ISOL_VALVE_AFT_BUTTON
+  -
+    type: var
+    var_name: L:INI_ISOL_VALVE_FWD_BUTTON
+  -
+    type: var
+    var_name: L:INI_ISOL_VALVE_BULK_BUTTON
+  -
+    type: var
+    var_name: L:INI_CARGO_AIR_COND_HEATER
+  -
+    type: var
+    var_name: L:INI_HYD_ELEC2_STATE
+  -
+    type: var
+    var_name: L:INI_HYD_ELEC1_STATE
+  -
+    type: var
+    var_name: L:INI_HYD_ELEC2_OVERRIDE
+  -
+    type: var
+    var_name: L:INI_HYD_ELEC1_OVERRIDE
+  -
+    type: var
+    var_name: L:INI_OIS_CAB_DATA
+  -
+    type: var
+    var_name: L:INI_OIS_GATELINK
+  -
+    type: var
+    var_name: L:INI_OIS_TO_ANVCS
+  -
+    type: var
+    var_name: L:INI_SURV_TO_SURV
+  -
+    type: var
+    var_name: L:INI_SURV_ROW_ROP
+  -
+    type: var
+    var_name: L:INI_CVR_TEST
+  -
+    type: var
+    var_name: L:INI_CVR_ERASE
+  -
+    type: var
+    var_name: L:INI_1_ALTIMETER_PUSH_COMMAND
+  -
+    type: var
+    var_name: L:INI_1_ALTIMETER_PULL_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_BARO1_INC_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_BARO1_DEC_COMMAND
+# -
+#   type: var
+#   var_name: L:XMLVAR_Baro_Selector_HPA_1
+# -
+#   type: var
+#   var_name: L:INI_CPT_BARO_UNIT_CMD
+  -
+    type: var
+    var_name: L:INI_EFIS_CPT_CSTR_BUTTON
+  -
+    type: var
+    var_name: L:INI_EFIS_CPT_FIXES_BUTTON
+  -
+    type: var
+    var_name: L:INI_EFIS_CPT_VOR_BUTTON
+  -
+    type: var
+    var_name: L:INI_EFIS_CPT_NDB_BUTTON
+  -
+    type: var
+    var_name: L:INI_EFIS_CPT_ARPT_BUTTON
+  -
+    type: var
+    var_name: L:INI_EFIS_BSK_1_CPT
+  -
+    type: var
+    var_name: L:INI_EFIS_BSK_2_CPT
+  -
+    type: var
+    var_name: L:INI_EFIS_BSK_3_CPT
+  -
+    type: var
+    var_name: L:INI_EFIS_BSK_4_CPT
+  -
+    type: var
+    var_name: L:INI_EFIS_BSK_5_CPT
+  -
+    type: var
+    var_name: L:INI_LS_CAPTAIN
+  -
+    type: var
+    var_name: L:INI_TAXI_LEFT
+  -
+    type: var
+    var_name: L:INI_VV_LEFT
+  -
+    type: var
+    var_name: L:INI_2_ALTIMETER_PUSH_COMMAND
+  -
+    type: var
+    var_name: L:INI_2_ALTIMETER_PULL_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_BARO2_INC_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_BARO2_DEC_COMMAND
+# -
+#   type: var
+#   var_name: L:XMLVAR_Baro_Selector_HPA_2
+# -
+#   type: var
+#   var_name: L:INI_FO_BARO_UNIT_CMD
+# -
+#   type: var
+#   var_name: L:INI_EFIS_FO_CSTR_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_EFIS_FO_FIXES_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_EFIS_FO_VOR_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_EFIS_FO_NDB_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_EFIS_FO_ARPT_BUTTON
+  -
+    type: var
+    var_name: L:INI_EFIS_BSK_1_FO
+  -
+    type: var
+    var_name: L:INI_EFIS_BSK_2_FO
+  -
+    type: var
+    var_name: L:INI_EFIS_BSK_3_FO
+  -
+    type: var
+    var_name: L:INI_EFIS_BSK_4_FO
+  -
+    type: var
+    var_name: L:INI_EFIS_BSK_5_FO
+  -
+    type: var
+    var_name: L:INI_LS_FO
+  -
+    type: var
+    var_name: L:INI_TAXI_RIGHT
+  -
+    type: var
+    var_name: L:INI_VV_RIGHT
+# -
+#   type: var
+#   var_name: L:INI_AP1_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_AP2_BUTTON
+# - # ATHR
+#   type: var
+#   var_name: L:AP8_BUTTON
+  -
+    type: var
+    var_name: L:INI_FD_ON
+  - # LOC
+    type: var
+    var_name: L:AP6_BUTTON
+  - # APPR
+    type: var
+    var_name: L:AP7_BUTTON
+  -
+    type: var
+    var_name: L:INI_FCU_LEVEL_OFF_COMMAND
+  -
+    type: var
+    var_name: L:INI_SPD_MACH_BUTTON
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:INI_FCU_HDG_VS_COMMAND
+  -
+    type: var
+    var_name: L:INI_FCU_METRIC_STATE
+  -
+    type: var
+    var_name: L:INI_NORTH_REF_STATE
+  -
+    type: var
+    var_name: L:INI_FCU_MANAGED_SPEED_BUTTON
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:INI_FCU_SELECTED_SPEED_BUTTON
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:INI_AIRSPEED_DIAL_UP_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_AIRSPEED_DIAL_DN_COMMAND
+  -
+    type: var
+    var_name: L:INI_FCU_MANAGED_HEADING_BUTTON
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:INI_FCU_SELECTED_HEADING_BUTTON
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:INI_HEADING_DIAL_UP_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_HEADING_DIAL_DN_COMMAND
+  -
+    type: var
+    var_name: L:INI_FCU_ALTITUDE_PUSH_COMMAND
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:INI_FCU_ALTITUDE_PULL_COMMAND
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:INI_ALTITUDE_DIAL_UP_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_ALTITUDE_DIAL_DN_COMMAND
+  - # VS push
+    type: var
+    var_name: L:INI_FCU_PUSH_COMMAND
+    condition:
+      equals:
+        F64: 1.0
+  - # VS pull
+    type: var
+    var_name: L:AP9_BUTTON
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:INI_VVI_DIAL_UP_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_VVI_DIAL_DN_COMMAND
+  -
+    type: var
+    var_name: L:INI_FCU_ALTITUDE_MODE_COMMAND
+  -
+    type: var
+    var_name: L:INI_CPT_CHRONO_BUTTON
+  -
+    type: var
+    var_name: L:INI_FO_CHRONO_BUTTON
+  -
+    type: var
+    var_name: L:INI_MASTER_CAUTION_COMMAND
+  -
+    type: var
+    var_name: L:INI_MASTER_WARNING_COMMAND
+  -
+    type: var
+    var_name: L:INI_AUTOLAND_LIGHT_TEST
+  -
+    type: var
+    var_name: L:INI_ATC_MSG
+# -
+#   type: var
+#   var_name: L:INI_ISIS1_BARO_PUSH_COMMAND
+  -
+    type: var
+    var_name: L:INI_ISIS1_LSD_COMMAND
+  -
+    type: var
+    var_name: L:INI_ISIS1_MENU
+# -
+#   type: var
+#   var_name: L:INI_ISIS1_MINUS_COMMAND
+  -
+    type: var
+    var_name: L:INI_ISIS1_MODE
+# -
+#   type: var
+#   var_name: L:INI_ISIS1_PLUS_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_ISIS1_BARO_PLUS_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_ISIS1_BARO_MINUS_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_ISIS2_BARO_PUSH_COMMAND
+  -
+    type: var
+    var_name: L:INI_ISIS2_LSD_COMMAND
+  -
+    type: var
+    var_name: L:INI_ISIS2_MENU
+# -
+#   type: var
+#   var_name: L:INI_ISIS2_MINUS_COMMAND
+  -
+    type: var
+    var_name: L:INI_ISIS2_MODE
+# -
+#   type: var
+#   var_name: L:INI_ISIS2_PLUS_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_ISIS2_BARO_PLUS_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_ISIS2_BARO_MINUS_COMMAND
+  -
+    type: var
+    var_name: L:INI_OIS_VIEWOFFSIDE_LEFT
+  -
+    type: var
+    var_name: L:INI_OIS_VIEWOFFSIDE_RIGHT
+  -
+    type: var
+    var_name: L:INI_OIS_ON_CENTER_LEFT
+  -
+    type: var
+    var_name: L:INI_OIS_ON_CENTER_RIGHT
+  -
+    type: var
+    var_name: L:INI_DISPLAY_CYCLE_RIGHT
+  -
+    type: var
+    var_name: L:INI_DISPLAY_CYCLE_LEFT
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_1_ANIMATION
+# -
+#   type: var
+#   var_name: L:XMLVAR_IE_Throttle_VR_Handled
+# -
+#   type: var
+#   var_name: L:XMLVAR_IE_Throttle_VR_Value
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHRUST_TLA:1
+  -
+    type: var
+    var_name: L:INI_AUTOTHROTTLE_ARMED
+  -
+    type: var
+    var_name: L:ATHR_OFF_REQ
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_2_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHRUST_TLA:2
+  -
+    type: var
+    var_name: L:INI_MIXTURE_RATIO1_HANDLE
+  -
+    type: var
+    var_name: L:INI_MIXTURE_RATIO2_HANDLE
+  -
+    type: var
+    var_name: L:INI_MCDU1_OIS
+  -
+    type: var
+    var_name: L:INI_MCDU1_ND
+  -
+    type: var
+    var_name: L:INI_MCDU1_MFD
+  -
+    type: var
+    var_name: L:INI_MCDU1_MAILBOX
+  -
+    type: var
+    var_name: L:INI_MCDU1_DIR_TO
+  -
+    type: var
+    var_name: L:INI_MCDU1_PERF
+  -
+    type: var
+    var_name: L:INI_MCDU1_INIT
+  -
+    type: var
+    var_name: L:INI_MCDU1_FPLAN
+  -
+    type: var
+    var_name: L:INI_MCDU1_RADNAV
+  -
+    type: var
+    var_name: L:INI_MCDU1_SEC
+  -
+    type: var
+    var_name: L:INI_MCDU1_ATC
+  -
+    type: var
+    var_name: L:INI_MCDU1_SURV
+  -
+    type: var
+    var_name: L:INI_MCDU1_CL_MENU
+  -
+    type: var
+    var_name: L:INI_MCDU1_DEST
+  -
+    type: var
+    var_name: L:INI_MCDU1_ENTER
+  -
+    type: var
+    var_name: L:INI_MCDU1_BACKSPACE
+  -
+    type: var
+    var_name: L:INI_MCDU1_NOTEPAD
+  -
+    type: var
+    var_name: L:INI_MCDU1_A
+  -
+    type: var
+    var_name: L:INI_MCDU1_B
+  -
+    type: var
+    var_name: L:INI_MCDU1_C
+  -
+    type: var
+    var_name: L:INI_MCDU1_D
+  -
+    type: var
+    var_name: L:INI_MCDU1_E
+  -
+    type: var
+    var_name: L:INI_MCDU1_F
+  -
+    type: var
+    var_name: L:INI_MCDU1_G
+  -
+    type: var
+    var_name: L:INI_MCDU1_H
+  -
+    type: var
+    var_name: L:INI_MCDU1_I
+  -
+    type: var
+    var_name: L:INI_MCDU1_J
+  -
+    type: var
+    var_name: L:INI_MCDU1_K
+  -
+    type: var
+    var_name: L:INI_MCDU1_L
+  -
+    type: var
+    var_name: L:INI_MCDU1_M
+  -
+    type: var
+    var_name: L:INI_MCDU1_N
+  -
+    type: var
+    var_name: L:INI_MCDU1_O
+  -
+    type: var
+    var_name: L:INI_MCDU1_P
+  -
+    type: var
+    var_name: L:INI_MCDU1_Q
+  -
+    type: var
+    var_name: L:INI_MCDU1_R
+  -
+    type: var
+    var_name: L:INI_MCDU1_S
+  -
+    type: var
+    var_name: L:INI_MCDU1_T
+  -
+    type: var
+    var_name: L:INI_MCDU1_U
+  -
+    type: var
+    var_name: L:INI_MCDU1_V
+  -
+    type: var
+    var_name: L:INI_MCDU1_W
+  -
+    type: var
+    var_name: L:INI_MCDU1_X
+  -
+    type: var
+    var_name: L:INI_MCDU1_Y
+  -
+    type: var
+    var_name: L:INI_MCDU1_Z
+  -
+    type: var
+    var_name: L:INI_MCDU1_SLASH
+  -
+    type: var
+    var_name: L:INI_MCDU1_SPACE
+  -
+    type: var
+    var_name: L:INI_MCDU1_ESC
+  -
+    type: var
+    var_name: L:INI_MCDU1_CLR
+  -
+    type: var
+    var_name: L:INI_MCDU1_UP
+  -
+    type: var
+    var_name: L:INI_MCDU1_DOWN
+  -
+    type: var
+    var_name: L:INI_MCDU1_LEFT
+  -
+    type: var
+    var_name: L:INI_MCDU1_RIGHT
+  -
+    type: var
+    var_name: L:INI_MCDU1_1
+  -
+    type: var
+    var_name: L:INI_MCDU1_2
+  -
+    type: var
+    var_name: L:INI_MCDU1_3
+  -
+    type: var
+    var_name: L:INI_MCDU1_4
+  -
+    type: var
+    var_name: L:INI_MCDU1_5
+  -
+    type: var
+    var_name: L:INI_MCDU1_6
+  -
+    type: var
+    var_name: L:INI_MCDU1_7
+  -
+    type: var
+    var_name: L:INI_MCDU1_8
+  -
+    type: var
+    var_name: L:INI_MCDU1_9
+  -
+    type: var
+    var_name: L:INI_MCDU1_0
+  -
+    type: var
+    var_name: L:INI_MCDU1_DECIMAL
+  -
+    type: var
+    var_name: L:INI_MCDU1_PLUS
+  -
+    type: var
+    var_name: L:INI_MCDU1_KBD
+  -
+    type: var
+    var_name: L:INI_MCDU1_SCROLL_DOWN
+  -
+    type: var
+    var_name: L:INI_MCDU1_SCROLL_UP
+  -
+    type: var
+    var_name: L:INI_MCDU1_WHEEL_ANIMATION
+  -
+    type: var
+    var_name: L:INI_MCDU2_OIS
+  -
+    type: var
+    var_name: L:INI_MCDU2_ND
+  -
+    type: var
+    var_name: L:INI_MCDU2_MFD
+  -
+    type: var
+    var_name: L:INI_MCDU2_MAILBOX
+  -
+    type: var
+    var_name: L:INI_MCDU2_DIR_TO
+  -
+    type: var
+    var_name: L:INI_MCDU2_PERF
+  -
+    type: var
+    var_name: L:INI_MCDU2_INIT
+  -
+    type: var
+    var_name: L:INI_MCDU2_FPLAN
+  -
+    type: var
+    var_name: L:INI_MCDU2_RADNAV
+  -
+    type: var
+    var_name: L:INI_MCDU2_SEC
+  -
+    type: var
+    var_name: L:INI_MCDU2_ATC
+  -
+    type: var
+    var_name: L:INI_MCDU2_SURV
+  -
+    type: var
+    var_name: L:INI_MCDU2_CL_MENU
+  -
+    type: var
+    var_name: L:INI_MCDU2_DEST
+  -
+    type: var
+    var_name: L:INI_MCDU2_ENTER
+  -
+    type: var
+    var_name: L:INI_MCDU2_BACKSPACE
+  -
+    type: var
+    var_name: L:INI_MCDU2_NOTEPAD
+  -
+    type: var
+    var_name: L:INI_MCDU2_A
+  -
+    type: var
+    var_name: L:INI_MCDU2_B
+  -
+    type: var
+    var_name: L:INI_MCDU2_C
+  -
+    type: var
+    var_name: L:INI_MCDU2_D
+  -
+    type: var
+    var_name: L:INI_MCDU2_E
+  -
+    type: var
+    var_name: L:INI_MCDU2_F
+  -
+    type: var
+    var_name: L:INI_MCDU2_G
+  -
+    type: var
+    var_name: L:INI_MCDU2_H
+  -
+    type: var
+    var_name: L:INI_MCDU2_I
+  -
+    type: var
+    var_name: L:INI_MCDU2_J
+  -
+    type: var
+    var_name: L:INI_MCDU2_K
+  -
+    type: var
+    var_name: L:INI_MCDU2_L
+  -
+    type: var
+    var_name: L:INI_MCDU2_M
+  -
+    type: var
+    var_name: L:INI_MCDU2_N
+  -
+    type: var
+    var_name: L:INI_MCDU2_O
+  -
+    type: var
+    var_name: L:INI_MCDU2_P
+  -
+    type: var
+    var_name: L:INI_MCDU2_Q
+  -
+    type: var
+    var_name: L:INI_MCDU2_R
+  -
+    type: var
+    var_name: L:INI_MCDU2_S
+  -
+    type: var
+    var_name: L:INI_MCDU2_T
+  -
+    type: var
+    var_name: L:INI_MCDU2_U
+  -
+    type: var
+    var_name: L:INI_MCDU2_V
+  -
+    type: var
+    var_name: L:INI_MCDU2_W
+  -
+    type: var
+    var_name: L:INI_MCDU2_X
+  -
+    type: var
+    var_name: L:INI_MCDU2_Y
+  -
+    type: var
+    var_name: L:INI_MCDU2_Z
+  -
+    type: var
+    var_name: L:INI_MCDU2_SLASH
+  -
+    type: var
+    var_name: L:INI_MCDU2_SPACE
+  -
+    type: var
+    var_name: L:INI_MCDU2_ESC
+  -
+    type: var
+    var_name: L:INI_MCDU2_CLR
+  -
+    type: var
+    var_name: L:INI_MCDU2_UP
+  -
+    type: var
+    var_name: L:INI_MCDU2_DOWN
+  -
+    type: var
+    var_name: L:INI_MCDU2_LEFT
+  -
+    type: var
+    var_name: L:INI_MCDU2_RIGHT
+  -
+    type: var
+    var_name: L:INI_MCDU2_1
+  -
+    type: var
+    var_name: L:INI_MCDU2_2
+  -
+    type: var
+    var_name: L:INI_MCDU2_3
+  -
+    type: var
+    var_name: L:INI_MCDU2_4
+  -
+    type: var
+    var_name: L:INI_MCDU2_5
+  -
+    type: var
+    var_name: L:INI_MCDU2_6
+  -
+    type: var
+    var_name: L:INI_MCDU2_7
+  -
+    type: var
+    var_name: L:INI_MCDU2_8
+  -
+    type: var
+    var_name: L:INI_MCDU2_9
+  -
+    type: var
+    var_name: L:INI_MCDU2_0
+  -
+    type: var
+    var_name: L:INI_MCDU2_DECIMAL
+  -
+    type: var
+    var_name: L:INI_MCDU2_PLUS
+  -
+    type: var
+    var_name: L:INI_MCDU2_KBD
+  -
+    type: var
+    var_name: L:INI_MCDU2_SCROLL_DOWN
+  -
+    type: var
+    var_name: L:INI_MCDU2_SCROLL_UP
+  -
+    type: var
+    var_name: L:INI_MCDU2_WHEEL_ANIMATION
+  -
+    type: var
+    var_name: L:INI_ECAM_SD_KNOB_PUSH
+# -
+#   type: var
+#   var_name: L:INI_ECAM_SD_KNOB_INC
+# -
+#   type: var
+#   var_name: L:INI_ECAM_SD_KNOB_DEC
+  -
+    type: var
+    var_name: L:INI_ECAM_ABN
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_ALL
+# -
+#   type: var
+#   var_name: L:INI_PUSH_ECAM_APU_RELEASE
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_BLEED
+  -
+    type: var
+    var_name: L:INI_ECAM_CHECKLIST_LEFT
+  -
+    type: var
+    var_name: L:INI_ECAM_CHECKLIST_RIGHT
+  -
+    type: var
+    var_name: L:INI_ECAM_WHEEL_L_PLUS_COMMAND
+  -
+    type: var
+    var_name: L:INI_ECAM_WHEEL_L_MINUS_COMMAND
+  -
+    type: var
+    var_name: L:INI_ECAM_WHEEL_R_PLUS_COMMAND
+  -
+    type: var
+    var_name: L:INI_ECAM_WHEEL_R_MINUS_COMMAND
+  -
+    type: var
+    var_name: L:PUSH_ECAM_CLR
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_COND
+  -
+    type: var
+    var_name: L:INI_ECAM_DEFRD
+  -
+    type: var
+    var_name: L:INI_ECAM_DISPCH
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_DOOR
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_ELEC_AC
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_ELEC_DC
+  -
+    type: var
+    var_name: L:PUSH_ECAM_EMER_CANCEL
+  -
+    type: var
+    var_name: L:INI_ECAM_EMER_CANCEL_GUARD
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_ENG
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_FCTL
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_FUEL
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_HYD
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_MORE
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_PRESS
+  -
+    type: var
+    var_name: L:INI_ECAM_RCL_ALL
+  -
+    type: var
+    var_name: L:PUSH_ECAM_RCL
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_STS
+  -
+    type: var
+    var_name: L:PUSH_ECAM_TOCONFIG
+# -
+#   type: var
+#   var_name: L:INI_ECAM_VIDEO
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_WHEEL
+  -
+    type: NumSet
+    var_name: L:INI_SPOILERS_ARMED
+    var_units: Number
+    var_type: f64
+    event_name: SPOILERS_ARM_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: L:INI_SPOILERS_HANDLE_POSITION
+    var_units: Number
+    var_type: f64
+    multiply_by: 16384
+    event_name: SPOILERS_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_EMER_DESCENT_REQ
+  -
+    type: var
+    var_name: L:INI_WXR_ELEV_LEFT_PUSH
+  -
+    type: var
+    var_name: L:INI_WXR_ELEV_LEFT_PULL
+  -
+    type: var
+    var_name: L:INI_WXR_ELEV_LEFT_UP
+  -
+    type: var
+    var_name: L:INI_WXR_ELEV_LEFT_DN
+  -
+    type: var
+    var_name: L:INI_WXR_ELEV_LEFT
+  -
+    type: var
+    var_name: L:INI_WXR_ELEV_RIGHT_PUSH
+  -
+    type: var
+    var_name: L:INI_WXR_ELEV_RIGHT_PULL
+  -
+    type: var
+    var_name: L:INI_WXR_ELEV_RIGHT_UP
+  -
+    type: var
+    var_name: L:INI_WXR_ELEV_RIGHT_DN
+  -
+    type: var
+    var_name: L:INI_WXR_ELEV_RIGHT
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN_LEFT_PUSH
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN_LEFT_PULL
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN_LEFT_UP
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN_LEFT_DN
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN_LEFT
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN_RIGHT_PUSH
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN_RIGHT_PULL
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN_RIGHT_UP
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN_RIGHT_DN
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN_RIGHT
+  -
+    type: var
+    var_name: L:INI_WXR_VD_AZIM_LEFT_PUSH
+  -
+    type: var
+    var_name: L:INI_WXR_VD_AZIM_LEFT_PULL
+  -
+    type: var
+    var_name: L:INI_WXR_VD_AZIM_LEFT_UP
+  -
+    type: var
+    var_name: L:INI_WXR_VD_AZIM_LEFT_DN
+  -
+    type: var
+    var_name: L:INI_WXR_VD_AZIM_LEFT
+  -
+    type: var
+    var_name: L:INI_WXR_VD_AZIM_RIGHT_PUSH
+  -
+    type: var
+    var_name: L:INI_WXR_VD_AZIM_RIGHT_PULL
+  -
+    type: var
+    var_name: L:INI_WXR_VD_AZIM_RIGHT_UP
+  -
+    type: var
+    var_name: L:INI_WXR_VD_AZIM_RIGHT_DN
+  -
+    type: var
+    var_name: L:INI_WXR_VD_AZIM_RIGHT
+  -
+    type: var
+    var_name: L:INI_GPWS_GS_STATE
+  -
+    type: var
+    var_name: L:INI_tcas_mode
+  -
+    type: var
+    var_name: L:INI_tcas_mode_pedestal
+  -
+    type: var
+    var_name: L:INI_WXR_SYS
+  -
+    type: var
+    var_name: L:INI_XPDR_SYS
+  -
+    type: var
+    var_name: L:INI_ACCU_REINFLATE
+# -
+#   type: var
+#   var_name: L:INI_CKPT_LT_DU_MASTER_BRT_INC
+# -
+#   type: var
+#   var_name: L:INI_CKPT_LT_DU_MASTER_BRT_DEC
+  -
+    type: var
+    var_name: L:INI_CKPT_LT_DU_MASTER_BRT
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_1_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_2_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_3_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_4_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_5_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_6_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_7_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_8_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_9_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_0_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_UP_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_DOWN_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_CLR_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_PERIOD_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_LOAD_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_RSK_1_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_RSK_2_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_RSK_3_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_CLR_INFO_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_LSK_1_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_LSK_2_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_LSK_3_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_VHF_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_HF_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_TEL_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_SQWK_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_MENU_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NAV_KEY
+  -
+    type: var
+    var_name: L:INI_RMP1_TRANSMIT_CHANNEL
+  -
+    type: var
+    var_name: L:INI_RMP1_PA_CHANNEL
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_1_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_2_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_3_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_4_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_5_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_6_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_7_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_8_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_9_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_0_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_UP_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_DOWN_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_CLR_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_PERIOD_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_LOAD_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_RSK_1_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_RSK_2_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_RSK_3_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_CLR_INFO_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_LSK_1_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_LSK_2_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_LSK_3_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_VHF_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_HF_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_TEL_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_SQWK_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_MENU_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NAV_KEY
+  -
+    type: var
+    var_name: L:INI_RMP2_TRANSMIT_CHANNEL
+  -
+    type: var
+    var_name: L:INI_RMP2_PA_CHANNEL
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_1_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_2_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_3_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_4_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_5_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_6_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_7_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_8_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_9_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_0_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_UP_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_DOWN_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_CLR_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_PERIOD_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_LOAD_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_RSK_1_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_RSK_2_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_RSK_3_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_CLR_INFO_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_LSK_1_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_LSK_2_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_LSK_3_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_VHF_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_HF_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_TEL_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_SQWK_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_MENU_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NAV_KEY
+  -
+    type: var
+    var_name: L:INI_RMP3_TRANSMIT_CHANNEL
+  -
+    type: var
+    var_name: L:INI_RMP3_PA_CHANNEL
+  -
+    type: var
+    var_name: L:INI_GEAR_HANDLE_STATUS
+  -
+    type: var
+    var_name: L:INI_RWY_COND_BRK_ACTION_SELECTOR_PUSH
+  -
+    type: var
+    var_name: L:INI_RWY_COND_BRK_ACTION_SELECTOR_PULL
+  - # Needed cause no other var
+    type: var
+    var_name: L:INI_RWY_COND_BRK_ACTION_SELECTOR_INC
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:INI_RWY_COND_BRK_ACTION_SELECTOR_DEC
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:INI_RWY_COND_BRK_ACTION_MODE_SELECTOR
+  -
+    type: var
+    var_name: L:INI_AUTOBRAKE_ARMED_CMD
+  -
+    type: var
+    var_name: L:INI_BRAKE_FAN_ON
+# -
+#   type: var
+#   var_name: L:INI_OIS_VIEWOFFSIDE_LEFT_CMD
+# -
+#   type: var
+#   var_name: L:INI_OIS_VIEWOFFSIDE_RIGHT_CMD
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_31_STATE
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_33_STATE
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_35_STATE
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_37_STATE
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_39_STATE
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_41_STATE
+  -
+    type: var
+    var_name: L:INI_TILLER_DISC
+  -
+    type: var
+    var_name: L:INI_A350_INT_SEAT_JS_SEAT
+  -
+    type: var
+    var_name: L:INI_AVBAY_HATCH
+  -
+    type: var
+    var_name: L:INI_HUD_COVER_LEFT
+  -
+    type: var
+    var_name: L:INI_HUD_COVER_RIGHT
+  -
+    type: var
+    var_name: L:INI_LIGHTS_DOME_OVERRIDE
+  -
+    type: var
+    var_name: L:INI_COCKPIT_DOOR_LOCK
+  -
+    type: var
+    var_name: L:INI_COCKPIT_DOOR
+  -
+    type: var
+    var_name: L:INI_PRINTER_SIDE_PAPER_VIS
+  -
+    type: var
+    var_name: L:A350_INT_INI_PEN
+  -
+    type: var
+    var_name: L:INI_CPT_TRAY_COVER_TGT
+  -
+    type: var
+    var_name: L:INI_CPT_TRAY
+  -
+    type: var
+    var_name: L:INI_FO_TRAY_COVER_TGT
+  -
+    type: var
+    var_name: L:INI_FO_TRAY
+  -
+    type: var
+    var_name: L:INI_OXYTEST_BLINKER_CPT
+  -
+    type: var
+    var_name: L:INI_OXYTEST_EMER_CPT
+  -
+    type: var
+    var_name: L:INI_OXYTEST_BLINKER_FO
+  -
+    type: var
+    var_name: L:INI_OXYTEST_EMER_FO
+  -
+    type: var
+    var_name: L:INI_OXYTEST_BLINKER_TO
+  -
+    type: var
+    var_name: L:INI_OXYTEST_EMER_TO
+  -
+    type: var
+    var_name: L:INI_OXYTEST_BLINKER_4TH
+  -
+    type: var
+    var_name: L:INI_OXYTEST_EMER_4TH
+# -
+#   type: var
+#   var_name: L:FIRE_APU_AGENT_SOUND
+# -
+#   type: var
+#   var_name: L:FIRE_ENG_1_AGENT_1_SOUND
+# -
+#   type: var
+#   var_name: L:FIRE_ENG_1_AGENT_2_SOUND
+# -
+#   type: var
+#   var_name: L:FIRE_ENG_2_AGENT_1_SOUND
+# -
+#   type: var
+#   var_name: L:FIRE_ENG_2_AGENT_2_SOUND
+# -
+#   type: var
+#   var_name: L:INI_Baro_Selector_HPA_1_SOUND
+# -
+#   type: var
+#   var_name: L:INI_EFIS_BSK_4_CPT_SOUND
+# -
+#   type: var
+#   var_name: L:INI_Baro_Selector_HPA_2_SOUND
+# -
+#   type: var
+#   var_name: L:INI_EFIS_BSK_4_FO_SOUND
+# -
+#   type: var
+#   var_name: L:INI_FD_ON_SOUND
+# -
+#   type: var
+#   var_name: L:INI_AXIS1_TLA
+# -
+#   type: var
+#   var_name: L:INI_AXIS2_TLA
+# -
+#   type: var
+#   var_name: L:INI_TCAS_ABV_SOUND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_BLW_SOUND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_TA_ONLY_SOUND
+# -
+#   type: var
+#   var_name: L:INI_WXR_SYS_1_SOUND
+# -
+#   type: var
+#   var_name: L:INI_WXR_SYS_2_SOUND
+# -
+#   type: var
+#   var_name: L:INI_XPDR_SYS_1_SOUND
+# -
+#   type: var
+#   var_name: L:INI_XPDR_SYS_2_SOUND
+  -
+    type: var
+    var_name: L:INI_TRIGGER_IDENT
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_31
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_32
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_33
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_34
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_35
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_36
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_37
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_38
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_39
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_40
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_41
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_42
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:INI_GENERAL_LIGHT_MULTIPLIER
+# -
+#   type: var
+#   var_name: L:INI_ELEC_AC_ESS_SHED_BUS_IS_POWERED
+# -
+#   type: var
+#   var_name: L:INI_AC_LIGHTS_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_battery_on
+# -
+#   type: var
+#   var_name: L:INI_ELEC_AC_ESS_BUS_IS_POWERED
+# -
+#   type: var
+#   var_name: L:INI_DC_LIGHTS_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_SEAT_CPT_BKREST_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_SIDESTICK1_POSITION_X_ANIMATION
+# -
+#   type: var
+#   var_name: L:WIPER_ANIMATION_CPT
+# -
+#   type: var
+#   var_name: L:INI_PRINTER_PAPER_OUT_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_COCKPIT_DOOR_ANIM
+# -
+#   type: var
+#   var_name: L:INI_ACCU_YELLOW_PRESSURE_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_SEAT_FO_BKREST_ANIMATION
+# -
+#   type: var
+#   var_name: L:WIPER_ANIMATION_FO
+  -
+    type: NumSet
+    var_name: L:RIGHT_BRAKE_PEDAL_INPUT
+    var_units: Number
+    var_type: f64
+    multiply_by: 32768
+    add_by: -16384
+    event_name: AXIS_RIGHT_BRAKE_SET
+    use_calculator: true
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:ENG_Shake_LEFT
+# -
+#   type: var
+#   var_name: L:INI_FLAPS_SHAKE
+# -
+#   type: var
+#   var_name: L:INI_SIDESTICK2_POSITION_Y_ANIMATION
+  -
+    type: NumSet
+    var_name: L:LEFT_BRAKE_PEDAL_INPUT
+    var_units: Number
+    var_type: f64
+    multiply_by: 32768
+    add_by: -16384
+    event_name: AXIS_LEFT_BRAKE_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SEAT_CPT_UPDOWN_ANIMATION
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:INI_FO_TRAY_COVER
+# -
+#   type: var
+#   var_name: L:INI_ACCU_GREEN_PRESSURE_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_REVERSE1_HANDLE_PERCENT_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_RUDDER_PEDAL_POSITION
+  -
+    type: var
+    var_name: L:INI_SEAT_FE_BKFWD_ANIMATION
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SEAT_FE_UPDOWN_ANIMATION
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SEAT_FO_BKFWD_ANIMATION
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:INI_TILLER_POSITION_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_SEAT_FE_BKREST_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_SIDESTICK2_POSITION_X_ANIMATION
+  -
+    type: var
+    var_name: L:AUTOPILOT_OFF_REQ
+# -
+#   type: var
+#   var_name: L:INI_REVERSE2_HANDLE_PERCENT_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_Wiper_Park_Right
+# -
+#   type: var
+#   var_name: L:INI_CPT_TRAY_COVER
+# -
+#   type: var
+#   var_name: L:INI_ALTITUDE_STATE
+  -
+    type: var
+    var_name: L:INI_SEAT_FO_UPDOWN_ANIMATION
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_SEAT_CPT_BKFWD_ANIMATION
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:INI_Wiper_Park_Left
+# -
+#   type: var
+#   var_name: L:INI_SIDESTICK1_POSITION_Y_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_1_FAULT
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_2_FAULT
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_EMER1_FAULT
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_EMER2_FAULT
+  -
+    type: var
+    var_name: L:INI_ELEC_ELM_FAULT
+  -
+    type: var
+    var_name: L:INI_GEN_EXT_A_ONLINE
+# -
+#   type: var
+#   var_name: L:INI_GPU1_SWITCH
+  -
+    type: var
+    var_name: L:INI_GEN_EXT_B_ONLINE
+# -
+#   type: var
+#   var_name: L:INI_GPU2_SWITCH
+# -
+#   type: var
+#   var_name: L:INI_GEN_1A_FAULT
+# -
+#   type: var
+#   var_name: L:INI_GEN_1B_FAULT
+# -
+#   type: var
+#   var_name: L:INI_GEN_2A_FAULT
+# -
+#   type: var
+#   var_name: L:INI_GEN_2B_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ELEC_GEN_APU_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ELEC_IDG_1A_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ELEC_IDG_1B_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ELEC_IDG_2A_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ELEC_IDG_2B_FAULT
+  -
+    type: var
+    var_name: L:INI_ELEC_PAX_SYS_ISOL
+# -
+#   type: var
+#   var_name: L:INI_AIR_PACK1_FAULT
+# -
+#   type: var
+#   var_name: L:INI_AIR_PACK2_FAULT
+# -
+#   type: var
+#   var_name: L:INI_AIR_HOT_AIR1_FAULT
+# -
+#   type: var
+#   var_name: L:INI_AIR_HOT_AIR2_FAULT
+# -
+#   type: var
+#   var_name: L:INI_AIR_BLEED_ENG1_FAULT
+# -
+#   type: var
+#   var_name: L:INI_AIR_BLEED_ENG2_FAULT
+# -
+#   type: var
+#   var_name: L:INI_AIR_BLEED_APU_FAULT
+# -
+#   type: var
+#   var_name: L:INI_APU_MASTER_FAULT
+# -
+#   type: var
+#   var_name: L:INI_APU_AVAILABLE
+# -
+#   type: var
+#   var_name: L:INI_IR1_FAULT
+# -
+#   type: var
+#   var_name: L:INI_IR2_FAULT
+# -
+#   type: var
+#   var_name: L:INI_IR3_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ADR1_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ADF2_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ADF3_FAULT
+# -
+#   type: var
+#   var_name: L:INI_IRS_ON_BATTERY
+# -
+#   type: var
+#   var_name: L:INI_HYD_ENG1_GREEN_FAULT
+# -
+#   type: var
+#   var_name: L:INI_HYD_ENG1_YELLOW_FAULT
+# -
+#   type: var
+#   var_name: L:INI_HYD_ENG2_GREEN_FAULT
+# -
+#   type: var
+#   var_name: L:INI_HYD_ENG2_YELLOW_FAULT
+  -
+    type: var
+    var_name: L:INI_HYD_SUPPLY_ENG_1_GREEN_OVHT
+  -
+    type: var
+    var_name: L:INI_HYD_SUPPLY_ENG_1_YELLOW_OVHT
+  -
+    type: var
+    var_name: L:INI_HYD_SUPPLY_ENG_2_GREEN_OVHT
+  -
+    type: var
+    var_name: L:INI_HYD_SUPPLY_ENG_2_YELLOW_OVHT
+# -
+#   type: var
+#   var_name: L:INI_OUTER_TANK_LEFT_FAULT
+# -
+#   type: var
+#   var_name: L:INI_INNER_TANK_LEFT_FAULT
+# -
+#   type: var
+#   var_name: L:INI_INNER_TANK_RIGHT_FAULT
+# -
+#   type: var
+#   var_name: L:INI_OUTER_TANK_RIGHT_FAULT
+# -
+#   type: var
+#   var_name: L:INI_CENTER_TANK_LEFT_FAULT
+# -
+#   type: var
+#   var_name: L:INI_CENTER_TANK_RIGHT_FAULT
+# -
+#   type: var
+#   var_name: L:INI_XFEED_TRANSFER_OPEN
+# -
+#   type: var
+#   var_name: L:INI_XFEED_TRANSFER2_OPEN
+  -
+    type: var
+    var_name: L:INI_FUEL_TANK_TRANSFER_LEFT_FAULT
+  -
+    type: var
+    var_name: L:INI_FUEL_TANK_TRANSFER_RIGHT_FAULT
+  -
+    type: var
+    var_name: L:INI_FUEL_CTR_TANK_FEED_FAULT
+  -
+    type: var
+    var_name: L:INI_JETTISON_ARM_FAULT
+# -
+#   type: var
+#   var_name: L:INI_FUEL_JETTISON_OPEN
+  -
+    type: var
+    var_name: L:INI_CALLS_EMER_CALL
+# -
+#   type: var
+#   var_name: L:INI_EVAC_LIGHT
+  -
+    type: var
+    var_name: L:INI_EMER_ELEC_GEN_FAULT
+# -
+#   type: var
+#   var_name: L:INI_PRIM1_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_PRIM2_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_PRIM3_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_SEC1_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_SEC2_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_SEC3_FAILURE
+  -
+    type: var
+    var_name: L:INI_CABIN_LAVATORY_OCCUPIED
+# -
+#   type: var
+#   var_name: L:INI_WING_ANTI_ICE1_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ENG_ANTI_ICE1_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ENG_ANTI_ICE2_FAULT
+# -
+#   type: var
+#   var_name: L:INI_FIRE_APU_FIRE
+# -
+#   type: var
+#   var_name: L:INI_FIRE_ENG_1_FIRE
+# -
+#   type: var
+#   var_name: L:INI_FIRE_ENG_2_FIRE
+# -
+#   type: var
+#   var_name: L:INI_APU_SQUIB
+  -
+    type: var
+    var_name: L:INI_ENG1_AGENT1_SQUIB
+  -
+    type: var
+    var_name: L:INI_ENG1_AGENT2_SQUIB
+  -
+    type: var
+    var_name: L:INI_ENG2_AGENT1_SQUIB
+  -
+    type: var
+    var_name: L:INI_ENG2_AGENT2_SQUIB
+  -
+    type: var
+    var_name: L:INI_FUEL_REFUEL_END
+  -
+    type: var
+    var_name: L:INI_OXYGEN_RESET_FAULT
+  -
+    type: var
+    var_name: L:INI_OXYGEN_RESET_ON
+  -
+    type: var
+    var_name: L:INI_CAB_SMOKE_IFEC_SMOKE
+  -
+    type: var
+    var_name: L:INI_VENT_AVNCS_EXTRACT_FAULT
+  -
+    type: var
+    var_name: L:INI_VENT_AVNCS_SMOKE
+  -
+    type: var
+    var_name: L:INI_VENT_COOLING_FAULT
+  -
+    type: var
+    var_name: L:INI_CARGO_SMOKE_BOTTLE_3
+  -
+    type: var
+    var_name: L:INI_CARGO_SMOKE_BOTTLE_2
+  -
+    type: var
+    var_name: L:INI_CARGO_SMOKE_BOTTLE_1
+  -
+    type: var
+    var_name: L:INI_CARGO_SMOKE_FWD_SMOKE
+  -
+    type: var
+    var_name: L:INI_CARGO_SMOKE_FWD_DISCH
+  -
+    type: var
+    var_name: L:INI_CARGO_SMOKE_AFT_SMOKE
+  -
+    type: var
+    var_name: L:INI_CARGO_SMOKE_AFT_DISCH
+# -
+#   type: var
+#   var_name: L:INI_ISOL_VALVE_AFT_STATE
+# -
+#   type: var
+#   var_name: L:INI_ISOL_VALVE_FWD_STATE
+# -
+#   type: var
+#   var_name: L:INI_ISOL_VALVE_BULK_STATE
+  -
+    type: var
+    var_name: L:INI_CARGO_AIR_COND_HEATER_FAULT
+  -
+    type: var
+    var_name: L:INI_GND_HYD_GREEN_ELEC_PUMP_FAULT
+  -
+    type: var
+    var_name: L:INI_GND_HYD_YELLOW_ELEC_PUMP_FAULT
+# -
+#   type: var
+#   var_name: L:INI_HYD_ELEC2_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_HYD_ELEC1_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_HYD_ELEC3_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_CENTER_POWERED
+# -
+#   type: var
+#   var_name: L:INI_EFB1_POWERED
+# -
+#   type: var
+#   var_name: L:INI_LEFT_EFIS_POWERED
+# -
+#   type: var
+#   var_name: L:INI_FMS_POWERED
+# -
+#   type: var
+#   var_name: L:INI_RIGHT_EFIS_POWERED
+# -
+#   type: var
+#   var_name: L:INI_EFB2_POWERED
+# -
+#   type: var
+#   var_name: L:INI_ISIS1_POWERED
+  -
+    type: var
+    var_name: L:INI_ISIS_BRIGHTNESS
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:INI_ISIS2_POWERED
+  -
+    type: var
+    var_name: L:INI_ISIS2_BRIGHTNESS
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:EFB1_BRIGHTNESS_ACT
+  -
+    type: var
+    var_name: L:INI_EFB1_STATE
+# -
+#   type: var
+#   var_name: L:EFB2_BRIGHTNESS_ACT
+  -
+    type: var
+    var_name: L:INI_EFB2_STATE
+# -
+#   type: var
+#   var_name: L:MFD_BRIGHTNESS_ACT
+  -
+    type: var
+    var_name: L:INI_MFD_STATE
+  - # Cargo bar lights
+    type: var
+    var_name: L:INI_POTENTIOMETER_43
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_12
+  -
+    type: var
+    var_name: L:INI_FCU_BACKUP_FMS1
+  -
+    type: var
+    var_name: L:INI_SHOW_CONSTRAINTS
+  -
+    type: var
+    var_name: L:INI_SHOW_FIXES
+  -
+    type: var
+    var_name: L:INI_SHOW_VORS
+  -
+    type: var
+    var_name: L:INI_SHOW_NDBS
+  -
+    type: var
+    var_name: L:INI_SHOW_AIRPORTS
+  -
+    type: var
+    var_name: L:INI_CPT_VOR1_ACTIVE
+  -
+    type: var
+    var_name: L:INI_CPT_ADF1_ACTIVE
+  -
+    type: var
+    var_name: L:INI_WXR_ON
+  -
+    type: var
+    var_name: L:INI_TERR_ON_CAPT
+  -
+    type: var
+    var_name: L:INI_TCAS_ON_CPT
+  -
+    type: var
+    var_name: L:INI_CPT_VOR2_ACTIVE
+  -
+    type: var
+    var_name: L:INI_CPT_ADF2_ACTIVE
+  -
+    type: var
+    var_name: L:INI_FCU_BACKUP_FMS2
+  -
+    type: var
+    var_name: L:INI_SHOW_CONSTRAINTS2
+  -
+    type: var
+    var_name: L:INI_SHOW_FIXES2
+  -
+    type: var
+    var_name: L:INI_SHOW_VORS2
+  -
+    type: var
+    var_name: L:INI_SHOW_NDBS2
+  -
+    type: var
+    var_name: L:INI_SHOW_AIRPORTS2
+  -
+    type: var
+    var_name: L:INI_FO_VOR1_ACTIVE
+  -
+    type: var
+    var_name: L:INI_FO_ADF1_ACTIVE
+  -
+    type: var
+    var_name: L:INI_WXR2_ON
+  -
+    type: var
+    var_name: L:INI_TERR_ON_FO
+  -
+    type: var
+    var_name: L:INI_TCAS_ON_FO
+  -
+    type: var
+    var_name: L:INI_FO_VOR2_ACTIVE
+  -
+    type: var
+    var_name: L:INI_FO_ADF2_ACTIVE
+  -
+    type: var
+    var_name: L:INI_ap1_on
+  -
+    type: var
+    var_name: L:INI_ap2_on
+# -
+#   type: var
+#   var_name: L:INI_ATHR_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_MCU_LOC_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_MCU_LAND_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_LEVEL_OFF_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_MASTER_CAUTION_CAPT_TOP
+# -
+#   type: var
+#   var_name: L:INI_MASTER_CAUTION_CAPT_BOTTOM
+# -
+#   type: var
+#   var_name: L:INI_MASTER_CAUTION_FO_TOP
+# -
+#   type: var
+#   var_name: L:INI_MASTER_CAUTION_FO_BOTTOM
+# -
+#   type: var
+#   var_name: L:INI_MASTER_WARNING_CAPT_TOP
+# -
+#   type: var
+#   var_name: L:INI_MASTER_WARNING_CAPT_BOTTOM
+# -
+#   type: var
+#   var_name: L:INI_MASTER_WARNING_FO_TOP
+# -
+#   type: var
+#   var_name: L:INI_MASTER_WARNING_FO_BOTTOM
+  -
+    type: var
+    var_name: L:INI_CPT_PRIORITY_UPPER_LIGHT
+  -
+    type: var
+    var_name: L:INI_CPT_PRIORITY_LOWER_LIGHT
+  -
+    type: var
+    var_name: L:INI_FO_PRIORITY_UPPER_LIGHT
+  -
+    type: var
+    var_name: L:INI_FO_PRIORITY_LOWER_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_AUTOLAND_LIGHT
+  -
+    type: var
+    var_name: L:INI_ATC_MSG_LIGHT
+  -
+    type: var
+    var_name: L:INI_OIS_ON_CENTER_RIGHT_INOP
+  -
+    type: var
+    var_name: L:INI_OIS_ON_CENTER_LEFT_INOP
+  -
+    type: var
+    var_name: L:INI_ENG_1_FIRE
+  -
+    type: var
+    var_name: L:INI_ENG_1_FAULT
+  -
+    type: var
+    var_name: L:INI_ENG_2_FIRE
+  -
+    type: var
+    var_name: L:INI_ENG_2_FAULT
+  -
+    type: var
+    var_name: L:ECAM_CURRENT_STATUS
+  -
+    type: var
+    var_name: L:INI_ECAM_ABN_LIGHT
+  -
+    type: var
+    var_name: L:INI_ECAM_ACTIVE_PAGE
+# -
+#   type: var
+#   var_name: L:INI_ECAM_CLR_LIGHT
+  -
+    type: var
+    var_name: L:INI_ECAM_DEFRD_LIGHT
+  -
+    type: var
+    var_name: L:INI_ECAM_DISPCH_LIGHT
+  -
+    type: var
+    var_name: L:INI_ECAM_EMER_CANCEL
+  -
+    type: var
+    var_name: L:INI_ECAM_MORE_STATUS
+  -
+    type: var
+    var_name: L:INI_EMER_DES_ARMED_LIGHT
+  -
+    type: var
+    var_name: L:INI_CKPT_DOOR_FAULT
+# -
+#   type: var
+#   var_name: L:RMP_CPT_LOAD_LIGHT
+# -
+#   type: var
+#   var_name: L:RMP_1_OFF_LIGHT_SEQ1
+# -
+#   type: var
+#   var_name: L:RMP_1_OFF_LIGHT_SEQ2
+# -
+#   type: var
+#   var_name: L:RMP_FO_LOAD_LIGHT
+# -
+#   type: var
+#   var_name: L:RMP_2_OFF_LIGHT_SEQ1
+# -
+#   type: var
+#   var_name: L:RMP_2_OFF_LIGHT_SEQ2
+# -
+#   type: var
+#   var_name: L:RMP_OVHD_LOAD_LIGHT
+# -
+#   type: var
+#   var_name: L:RMP_3_OFF_LIGHT_SEQ1
+# -
+#   type: var
+#   var_name: L:RMP_3_OFF_LIGHT_SEQ2
+  -
+    type: var
+    var_name: L:INI_PRINTER_STATUS_1
+  -
+    type: var
+    var_name: L:INI_PRINTER_STATUS_2
+# -
+#   type: var
+#   var_name: L:INI_GEAR_DOWN_ARROW_LIGHT
+  -
+    type: var
+    var_name: L:INI_AUTOBRAKE_ARMED
+  -
+    type: var
+    var_name: L:INI_BRAKES_HOT
+# -
+#   type: var
+#   var_name: L:INI_OIS_VIEWOFFSIDE_LEFT_INOP
+# -
+#   type: var
+#   var_name: L:INI_OIS_VIEWOFFSIDE_RIGHT_INOP
+# -
+#   type: var
+#   var_name: L:INI_AVIONICS_PC_LIGHT_1
+# -
+#   type: var
+#   var_name: L:INI_AVIONICS_PC_LIGHT_2
+# -
+#   type: var
+#   var_name: L:INI_AVIONICS_PC_LIGHT_3
+# -
+#   type: var
+#   var_name: L:INI_AVIONICS_PC_LIGHT_4
+# -
+#   type: var
+#   var_name: L:INI_DOOR0_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR2_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR4_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR9_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR1_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR3_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR5_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR8_ARMED
+  -
+    type: var
+    var_name: L:INI_IS_HUD
+  -
+    type: var
+    var_name: L:INI_OPTION_FUEL_JETTISON
+  -
+    type: var
+    var_name: L:INI_OPTION_FO_ISIS
+  -
+    type: var
+    var_name: L:INI_OPTION_DISPLAY_OLD
+  -
+    type: var
+    var_name: L:INI_OPTION_BRAKE_FANS
+# -
+#   type: var
+#   var_name: L:INI_PREFERRED_SEAT
+# -
+#   type: var
+#   var_name: L:CUR_WING_TEMP
+# -
+#   type: var
+#   var_name: L:HUMIDITY
+# -
+#   type: var
+#   var_name: L:EXP_WING_TEMP
+# -
+#   type: var
+#   var_name: L:DEW_POINT
+# -
+#   type: var
+#   var_name: L:AMBIENT WIND
+# -
+#   type: var
+#   var_name: L:AMBIENT WIND GUST
+  -
+    type: var
+    var_name: L:INI_FX_PERF_MODE
+# -
+#   type: var
+#   var_name: L:INI_ENG1_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG2_N1
+  -
+    type: var
+    var_name: L:INI_BIRDSTRIKE
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL0_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL0_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:Right_spoiler_6
+# -
+#   type: var
+#   var_name: L:LEFT_AILERON_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_OVERBOARD_POSITION
+# -
+#   type: var
+#   var_name: L:RIGHT_AILERON_ANIMATION
+# -
+#   type: var
+#   var_name: L:ENG_Shake_RIGHT
+# -
+#   type: var
+#   var_name: L:INI_REFUEL_ANIM
+  -
+    type: var
+    var_name: L:INI_MFP_2
+# -
+#   type: var
+#   var_name: L:FLAPS_OUTER_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_OUTFLOW_VALVE
+  -
+    type: var
+    var_name: L:INI_ASU_AVAIL
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:INI_WEATHERING
+# -
+#   type: var
+#   var_name: L:INI_GEAR0_DOOR_RATIO
+# -
+#   type: var
+#   var_name: L:Left_spoiler_5
+# -
+#   type: var
+#   var_name: L:INI_ENG2_OIL_QUANTITY
+  -
+    type: var
+    var_name: L:INI_SSA_3
+# -
+#   type: var
+#   var_name: L:FLAPS_ANIMATION
+# -
+#   type: var
+#   var_name: L:ENG_Shake_RIGHT_ROT
+# -
+#   type: var
+#   var_name: L:LEFT_OUTER_AILERON_ANIMATION
+  -
+    type: var
+    var_name: L:INI_ACU_AVAIL
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_DOOR_RATIO
+  -
+    type: var
+    var_name: L:INI_MFP_3
+  -
+    type: var
+    var_name: L:INI_OPTION_LIGHT_LED_HID
+# -
+#   type: var
+#   var_name: L:Left_spoiler_2
+# -
+#   type: var
+#   var_name: L:Left_spoiler_4
+  -
+    type: var
+    var_name: L:INI_APU_Service
+# -
+#   type: var
+#   var_name: L:INI_APU_FLAP_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_DOOR_RATIO
+# -
+#   type: var
+#   var_name: L:INI_Brake_Fans_ANIM
+# -
+#   type: var
+#   var_name: L:ELEVATORS_HSTAB_1_ANIMATION
+# -
+#   type: var
+#   var_name: L:Left_spoiler_7
+# -
+#   type: var
+#   var_name: L:INI_ENG1_OIL_QUANTITY
+# -
+#   type: var
+#   var_name: L:Right_spoiler_3
+# -
+#   type: var
+#   var_name: L:INI_ENG1_N2
+  -
+    type: var
+    var_name: L:INI_AOA
+# -
+#   type: var
+#   var_name: L:Right_spoiler_7
+# -
+#   type: var
+#   var_name: L:Left_spoiler_6
+# -
+#   type: var
+#   var_name: L:RUDDER_ANGLE_ANIM
+# -
+#   type: var
+#   var_name: L:Right_spoiler_1
+# -
+#   type: var
+#   var_name: L:Right_spoiler_5
+# -
+#   type: var
+#   var_name: L:INI_REVERSE_PERCENTAGE_ENG1
+# -
+#   type: var
+#   var_name: L:Elevator_Flutter
+  -
+    type: var
+    var_name: L:INI_SSA_1
+# -
+#   type: var
+#   var_name: L:INI_ENG2_N2
+# -
+#   type: var
+#   var_name: L:INI_Engine_Cowl_Left_Anim
+# -
+#   type: var
+#   var_name: L:INI_REVERSE_PERCENTAGE_ENG2
+# -
+#   type: var
+#   var_name: L:SLATS_PREDEPLOY_ANIM
+# -
+#   type: var
+#   var_name: L:ELEV_TRIM_RATIO
+# -
+#   type: var
+#   var_name: L:Left_spoiler_1
+# -
+#   type: var
+#   var_name: L:Right_spoiler_4
+# -
+#   type: var
+#   var_name: L:INI_RAT1_DEPLOYMENT_SPEED
+# -
+#   type: var
+#   var_name: L:ENG_Shake_LEFT_ROT
+  -
+    type: var
+    var_name: L:INI_MFP_1
+# -
+#   type: var
+#   var_name: L:Right_spoiler_2
+# -
+#   type: var
+#   var_name: L:INI_Engine_Cowl_Right_Anim
+# -
+#   type: var
+#   var_name: L:RIGHT_OUTER_AILERON_ANIMATION
+# -
+#   type: var
+#   var_name: L:Left_spoiler_3
+  -
+    type: var
+    var_name: L:INI_SSA_2
+# -
+#   type: var
+#   var_name: L:ELEVATORS_HSTAB_2_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_RAT1_DEPLOYMENT_STATUS
+  -
+    type: var
+    var_name: L:INI_TIRE6_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE7_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE8_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE9_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE10_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE11_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE0_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE1_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE2_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE3_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE4_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE5_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE0_NG_WEAR
+  -
+    type: var
+    var_name: L:INI_TIRE1_NG_WEAR
+  -
+    type: var
+    var_name: L:INI_Stairs_Cowl_L
+  -
+    type: var
+    var_name: L:INI_ASU_NOT_AVAIL
+  -
+    type: var
+    var_name: L:INI_ACU_NOT_AVAIL
+  -
+    type: var
+    var_name: L:INI_OPTION_SATCOM
+  -
+    type: var
+    var_name: L:INI_OPTION_ADF
+  -
+    type: var
+    var_name: L:INI_OPTION_BATTERY_EXHAUST
+  -
+    type: var
+    var_name: L:INI_OPTION_LAV_VENT
+  -
+    type: var
+    var_name: L:INI_OPTION_NOSE_PROBE
+  -
+    type: var
+    var_name: L:INI_OPTION_TAXI_CAM
+  -
+    type: var
+    var_name: L:INI_OPTION_VENT_BELLY_CAP
+  -
+    type: var
+    var_name: L:INI_OPTION_SUPP_COOLING_INLET
+  -
+    type: var
+    var_name: L:INI_OPTION_SUPP_COOLING_3
+  -
+    type: var
+    var_name: L:INI_OPTION_SUPP_COOLING_4
+  -
+    type: var
+    var_name: L:INI_OPTION_HOOKS
+  -
+    type: var
+    var_name: L:INI_OPTION_WHICKS_DYNAMIC
+  -
+    type: var
+    var_name: L:INI_OPTION_WHICKS_STATIC
+  -
+    type: var
+    var_name: L:INI_OPTION_WINGLET_LONG
+  -
+    type: var
+    var_name: L:INI_DIRT_LEVEL
+    unreliable: true
+  -
+    type: NumSet
+    var_name: L:INI_CHOCKS_ENABLED
+    var_units: Number
+    var_type: f64
+    event_name: INIB.TOGGLE_CHOCKS 
+    cancel_h_events: true
+    use_calculator: true
+  - # Accumulation slider
+    type: var
+    var_name: L:SNOW_VISIBILITY
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:INI_APU_N1
+# -
+#   type: var
+#   var_name: L:YourControlsPanelId
+# -
+#   type: var
+#   var_name: L:IS2024
+  -
+    type: var
+    var_name: L:INI_CHART_TYPE
+  -
+    type: var
+    var_name: L:INI_NAVDATA_OPTION
+  -
+    type: var
+    var_name: L:INI_EFB_STATE
+  -
+    type: var
+    var_name: L:INI_DFD_VERSION
+  -
+    type: var
+    var_name: L:INI_ENABLE_NG_UPDATE
+  -
+    type: var
+    var_name: L:INI_PURS_SEL_TEMP
+  -
+    type: var
+    var_name: L:INI_IS_FIRST_LOAD
+  -
+    type: var
+    var_name: L:INI_IS_METRIC
+  -
+    type: var
+    var_name: L:INI_5_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_10_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_20_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_30_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_40_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_50_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_60_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_70_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_80_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_90_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_100_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_200_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_300_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_400_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_500_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_1000_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_2000_CALLOUT_OPTION
+  -
+    type: var
+    var_name: L:INI_2500_CALLOUT_OPTION
+# -
+#   type: var
+#   var_name: L:INI_AUTOSAVE_INTERVAL
+# -
+#   type: var
+#   var_name: L:INI_PAUSE_AT_TOD_DISTANCE
+# -
+#   type: var
+#   var_name: L:DEBUG_SKIP_STARTUP
+  -
+    type: var
+    var_name: L:INI_PRINTER_AUTOPRINT_FPLAN_INIT
+  -
+    type: var
+    var_name: L:INI_AUTO_DEROTATE
+  -
+    type: var
+    var_name: L:INI_PRINTER_AUTOPRINT_TODATA
+  -
+    type: var
+    var_name: L:INI_PRINTER_AUTOPRINT_WIND
+  -
+    type: var
+    var_name: L:INI_OIS_CURSOR
+  -
+    type: var
+    var_name: L:INI_AUTO_REMOVE_COVERS
+  -
+    type: var
+    var_name: L:INI_NOSMOKING_SIGN_MODE
+  -
+    type: var
+    var_name: L:INI_AUTOSAVE_NOTIFICATIONS_ENABLED
+  -
+    type: var
+    var_name: L:INI_AUTOSAVE_ENABLED
+  -
+    type: var
+    var_name: L:INI_EFB_AUTO_BRIGHTNESS
+  -
+    type: var
+    var_name: L:INI_EFB_AUTO_CHARTS
+  -
+    type: var
+    var_name: L:INI_ACCEL_HEIGHT_OPTIONS
+  -
+    type: var
+    var_name: L:INI_DISPLAY_REFRESH_RATE_OPTION
+  -
+    type: var
+    var_name: L:INI_IRS_ALIGNMENT_TIME
+  -
+    type: var
+    var_name: L:INI_LINKED_INSTRUMENTS
+  -
+    type: var
+    var_name: L:INI_NSW_SETTING
+  -
+    type: var
+    var_name: L:INIB_AUTO_TILLER_DISCONNECT
+  -
+    type: var
+    var_name: L:INI_EFB_TC_GLOBALDEADZONE
+  -
+    type: NumSet
+    var_name: L:INI_THROTTLE_MAPPING_USE_REVERSE_ON_AXIS
+    var_units: Number
+    var_type: f64
+    event_name: INIB.SET_THROTTLE_REVERSE_ON_AXIS
+    cancel_h_events: true
+    use_calculator: true
+  -
+    type: var
+    var_name: L:INI_BATTERY_OPTION
+  -
+    type: var
+    var_name: L:INI_AUTO_STEP_CLIMB_ENABLED
+# -
+#   type: var
+#   var_name: L:INI_PAUSE_AT_TOD_ENABLED
+  -
+    type: var
+    var_name: L:INI_AUTO_TIME_COMPRESSION_ENABLED
+  -
+    type: var
+    var_name: L:INI_AUTO_TIME_COMPRESSION_RATE
+  -
+    type: var
+    var_name: L:INI_AUTO_INSERT_STEP_CLIMBS
+  -
+    type: var
+    var_name: L:INI_OPTION_Wing_Taxi_Cam
+  -
+    type: var
+    var_name: L:INI_PERF_ENABLE
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_VOL_MASTER
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_VOL_INT_ENGINE
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_VOL_EXT_ENGINE
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_VOL_MANIPS
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_VOL_ANNOUNCE
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_VOL_SYSTEMS
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_VOL_ENV
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_VOL_GND
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_LFGAIN
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_VOL_COCKPITWIND
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_VOL_AURAL
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_HEADPHONES
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_TO_WHINE
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_GEARBUMP
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_CHIMES_IN_COCKPIT
+  -
+    type: var
+    var_name: L:INI_VSD_PLAN_MODE
+  -
+    type: var
+    var_name: L:INI_ANF_AUTO_ZOOM
+# -
+#   type: var
+#   var_name: L:INI_AUDIO_THRUST_DETENT
+  -
+    type: var
+    var_name: L:INI_FMC_RESET
+# -
+#   type: var
+#   var_name: L:INI_STREAMER_MODE
+  -
+    type: var
+    var_name: L:INI_AUTO_GPU_DISCONNECT
+  -
+    type: var
+    var_name: L:INI_AFK_MODE
+  -
+    type: var
+    var_name: L:INI_GPS_JAMMING
+# -
+#   type: var
+#   var_name: L:INI_CABIN_LANGUAGE_PACK
+# -
+#   type: var
+#   var_name: L:INI_GSX_INTEG_ENABLED
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_SET_REMOTECONTROL
+  -
+    type: var
+    var_name: L:INI_DEPRESSURISATION_ENABLED
+  -
+    type: var
+    var_name: L:INI_ENG1_FAIL_REQ
+  -
+    type: var
+    var_name: L:INI_ENG2_FAIL_REQ
+  -
+    type: var
+    var_name: L:CABIN_SCENARIO_MEDICAL
+  -
+    type: var
+    var_name: L:CABIN_SCENARIO_UNRULY_PAX
+  -
+    type: var
+    var_name: L:CABIN_SCENARIO_SMOKE
+  -
+    type: var
+    var_name: L:INI_SMOKE_L2
+  -
+    type: var
+    var_name: L:INI_SMOKE_L3
+# -
+#   type: var
+#   var_name: L:WasmInstrument_ScreenLuminosity
+# -
+#   type: var
+#   var_name: L:WasmInstrument_State
+  -
+    type: var
+    var_name: L:INI_FMC_KEY_INPUT
+# -
+#   type: var
+#   var_name: L:EFB1_CONTRAST_ACT
+# -
+#   type: var
+#   var_name: L:EFB2_CONTRAST_ACT
+  -
+    type: var
+    var_name: L:INI_FAIL_RESET_ALL
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_1_PCT
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_2_PCT
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_EMER1_PCT
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_EMER2_PCT
+# -
+#   type: var
+#   var_name: L:INI_APU_RUNNING_HOURS
+# -
+#   type: var
+#   var_name: L:INI_APU_RUNNING_TIME
+# -
+#   type: var
+#   var_name: L:INI_APU_START_CYCLES
+  -
+    type: var
+    var_name: L:INI_EFB_REQUEST_STAIRS_1L
+  -
+    type: var
+    var_name: L:INI_EFB_REQUEST_STAIRS_2L
+  -
+    type: var
+    var_name: L:INI_EFB_REQUEST_STAIRS_4L
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_REFUELING_STATE
+# -
+#   type: var
+#   var_name: L:INI_FUEL_WEIGHT_LEFT_INNER
+# -
+#   type: var
+#   var_name: L:INI_FUEL_WEIGHT_RIGHT_INNER
+# -
+#   type: var
+#   var_name: L:INI_FUEL_WEIGHT_CENTER
+# -
+#   type: var
+#   var_name: L:INI_FUEL_WEIGHT_CENTER2
+  -
+    type: var
+    var_name: L:INI_PAX_BUSSINESS
+  -
+    type: var
+    var_name: L:INI_PAX_ECONOMY_1
+  -
+    type: var
+    var_name: L:INI_PAX_ECONOMY_2
+  -
+    type: var
+    var_name: L:INI_CARGO_FWD_BAGGAGE_KG
+  -
+    type: var
+    var_name: L:INI_CARGO_AFT_BAGGAGE_KG
+  -
+    type: var
+    var_name: L:INI_CARGO_BULK_BAGGAGE_KG
+  -
+    type: var
+    var_name: L:INI_TERRAIN_EXISTS
+  - # Accumulation slider
+    type: var
+    var_name: L:SNOW_HEAVY_VISIBILITY
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:FMGS_PAUSE_TYPE
+# -
+#   type: var
+#   var_name: L:INI_IS_PAUSED
+  -
+    type: var
+    var_name: L:INI_START_TURNAROUND
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_92
+# -
+#   type: var
+#   var_name: L:FMGS_SIMULATION_RATE
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_INPUT:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_INPUT:2
+# -
+#   type: var
+#   var_name: L:INI_HYD_1_RSV_LEVEL
+# -
+#   type: var
+#   var_name: L:INI_HYD_2_RSV_LEVEL
+# -
+#   type: var
+#   var_name: L:FMGS_TAKEOFF_WEIGHT
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_COUATL_STARTED
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEBOARDING_STATE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_CATERING_STATE
+  -
+    type: var
+    var_name: L:INI_EFB_IS_REFUELING
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_BOARDING_STATE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEPARTURE_STATE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEICING_STATE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_NUMPASSENGERS_BOARDING_TOTAL
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_NUMPASSENGERS_DEBOARDING_TOTAL
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_BOARDING_CARGO_PERCENT
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEBOARDING_CARGO_PERCENT
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_SIMBRIEF_SUCCESS
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_MENU_OPEN
+  -
+    type: var
+    var_name: L:INI_RESET_FAILURES
+# -
+#   type: var
+#   var_name: L:INI_EFB_NG_TOKEN_UPDATED
+  -
+    type: var
+    var_name: L:INI_CPDLC_SOURCE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_MENU_CHOICE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_NUMPASSENGERS_TOTAL
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_SET_AUTOMODE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DISABLE_DOORS_MSG
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_SetGate_Name
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_SetGate_Number
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_SetGate_Suffix
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_SET_GOOD_ENGINE_START
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_FUELHOSE_CONNECTED
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEICING_CONCENTRATION
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEICING_TYPE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_FUEL_PRICE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_PUSHBACK_STATUS
+# -
+#   type: var
+#   var_name: L:INI_GSX_AUTO_SELECT_HANDLER
+# -
+#   type: var
+#   var_name: L:INI_GSX_BOARDING_REFUEL
+# -
+#   type: var
+#   var_name: L:INI_GSX_GPU_AUTO
+# -
+#   type: var
+#   var_name: L:INI_GSX_CATERING_AUTO
+# -
+#   type: var
+#   var_name: L:INI_GSX_REFUELING_AUTO
+# -
+#   type: var
+#   var_name: L:INI_GSX_PUSHBACK_AUTO
+# -
+#   type: var
+#   var_name: L:INI_GSX_DEBOARDING_AUTO
+# -
+#   type: var
+#   var_name: L:INI_GSX_LAVATORY_AUTO
+# -
+#   type: var
+#   var_name: L:INI_GSX_WATER_AUTO
+# -
+#   type: var
+#   var_name: L:INI_GSX_DEICING_AUTO
+# -
+#   type: var
+#   var_name: L:INI_GSX_CHOCKS_AUTO
+# -
+#   type: var
+#   var_name: L:INI_GSX_JETWAYS_AUTO
+# -
+#   type: var
+#   var_name: L:INI_RAM_AIR_OPEN
+# - # Does not exist
+#   type: var
+#   var_name: L:INI_LDG_ELEV_KNOB
+# -
+#   type: var
+#   var_name: L:INI_DEBUG_CAB_VS_TGT
+# -
+#   type: var
+#   var_name: L:INI_DEBUG_OUTFLOW_VS_TGT
+# -
+#   type: var
+#   var_name: L:INI_DEBUG_ALTITUDE_TGT
+  -
+    type: var
+    var_name: L:INI_SLIDES_REQ
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:INI_JETWAY_REQUESTED
+# -
+#   type: var
+#   var_name: L:PUSH_ECAM_APU
+  -
+    type: var
+    var_name: L:PUSH_ECAM_CB
+# -
+#   type: var
+#   var_name: L:INI_APU_PUMP_FAULT
+# -
+#   type: var
+#   var_name: L:INI_DEV_PROCEDURE_ACTIVATION_DURING_UPDATE
+  -
+    type: var
+    var_name: L:INI_TAPRV1_FAILED
+  -
+    type: var
+    var_name: L:INI_TAPRV2_FAILED
+  -
+    type: var
+    var_name: L:INI_SMOKE_L_AVIONICS
+  -
+    type: var
+    var_name: L:INI_SMOKE_R_AVIONICS
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_1
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_2
+# -
+#   type: var
+#   var_name: L:INI_VAPP_IS_AFFECTED
+  -
+    type: var
+    var_name: L:INI_RA_SYSA_FAULT
+  -
+    type: var
+    var_name: L:INI_RA_SYSB_FAULT
+  -
+    type: var
+    var_name: L:INI_RA_SYSC_FAULT
+# -
+#   type: var
+#   var_name: L:FM_DEBUG_MAX_DES_G
+# -
+#   type: var
+#   var_name: L:FM_DEBUG_MIN_DES_G
+# -
+#   type: var
+#   var_name: L:FM_DEBUG_COM_DES_G
+# -
+#   type: var
+#   var_name: L:FM_DEBUG_FINAL_DES_G
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_BYPASS_PIN
+# -
+#   type: var
+#   var_name: L:SIAI_Pushback_Active
+# -
+#   type: var
+#   var_name: L:INI_IRS1_ALIGNED
+  -
+    type: var
+    var_name: L:INI_AIRSPEED_DIAL
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_ALTITUDE_DIAL
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:INI_VERT_DEV
+# -
+#   type: var
+#   var_name: L:INI_PITCH_ROLL_MODE
+  -
+    type: var
+    var_name: L:INI_AT_ON
+# -
+#   type: var
+#   var_name: L:INI_ECAM_PREVIOUS_PAGE
+# -
+#   type: var
+#   var_name: L:INI_APU_EGT
+# -
+#   type: var
+#   var_name: L:INI_APU_RUN
+# -
+#   type: var
+#   var_name: L:INI_APU_PSI
+  -
+    type: var
+    var_name: L:INI_XBLEED_MODE
+  -
+    type: var
+    var_name: L:INI_XBLEED
+  -
+    type: var
+    var_name: L:INI_APU_BLEED_BUTTON
+  -
+    type: var
+    var_name: L:INI_PACK1_BUTTON
+  -
+    type: var
+    var_name: L:INI_PACK2_BUTTON
+  -
+    type: var
+    var_name: L:INI_AUTOBRAKE_LEVEL
+# -
+#   type: var
+#   var_name: L:INI_GALLEY_SHED
+# -
+#   type: var
+#   var_name: L:INI_GALLEY_PART_SHED
+  -
+    type: var
+    var_name: L:INI_VVI_DIAL
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:INI_ROLL_MODE
+# -
+#   type: var
+#   var_name: L:INI_ROLL_MODE_ARM
+# -
+#   type: var
+#   var_name: L:INI_PITCH_MODE
+# -
+#   type: var
+#   var_name: L:INI_PITCH_MODE_ARM
+# -
+#   type: var
+#   var_name: L:INI_HYD_GREEN_PRESSURE
+  -
+    type: var
+    var_name: L:INI_OVHD_ELEC_BAT_1_PB_IS_AUTO
+  -
+    type: var
+    var_name: L:INI_OVHD_ELEC_BAT_2_PB_IS_AUTO
+  -
+    type: var
+    var_name: L:INI_OVHD_ELEC_BAT_3_PB_IS_AUTO
+# -
+#   type: var
+#   var_name: L:ELEVATORS_HSTAB_1
+# -
+#   type: var
+#   var_name: L:ELEVATORS_HSTAB_2
+# -
+#   type: var
+#   var_name: L:LEFT_AILERON
+# -
+#   type: var
+#   var_name: L:RIGHT_AILERON
+# -
+#   type: var
+#   var_name: L:ECAM_IS_STS_CLEARABLE
+# -
+#   type: var
+#   var_name: L:ECAM_STATUS_IS_NORMAL
+# -
+#   type: var
+#   var_name: L:ECAM_EDW_REQUESTED_PAGE
+# -
+#   type: var
+#   var_name: L:INI_MAP_MODE_CAPT
+# -
+#   type: var
+#   var_name: L:INI_MAP_RANGE_CAPT
+  -
+    type: var
+    var_name: L:AP1_BUTTON
+  -
+    type: var
+    var_name: L:AP2_BUTTON
+  -
+    type: var
+    var_name: L:AP3_BUTTON
+  -
+    type: var
+    var_name: L:AP4_BUTTON
+  -
+    type: var
+    var_name: L:AP5_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_PACK1_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_PACK2_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_PACK1_FLOW
+# -
+#   type: var
+#   var_name: L:INI_PACK2_FLOW
+# -
+#   type: var
+#   var_name: L:INI_XBLEED_OPEN
+# -
+#   type: var
+#   var_name: L:INI_BLEED_AIR_MODE
+  -
+    type: var
+    var_name: L:INI_FIRE_HANDLE_ENG1
+  -
+    type: var
+    var_name: L:INI_FIRE_HANDLE_ENG2
+# -
+#   type: var
+#   var_name: L:INI_MIXTURE_RATIO1
+# -
+#   type: var
+#   var_name: L:INI_MIXTURE_RATIO2
+# -
+#   type: var
+#   var_name: L:ENGINE_1_AVAIL
+# -
+#   type: var
+#   var_name: L:ENGINE_2_AVAIL
+# -
+#   type: var
+#   var_name: L:INI_SPOILER1_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_SPOILER2_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_SPOILER3_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_SPOILER4_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_SPOILER5_FAILURE
+# -
+#   type: var
+#   var_name: L:INI_SPOILER6_FAILURE
+  -
+    type: var
+    var_name: L:INI_LEFT_ELEVATOR_FAILURE
+  -
+    type: var
+    var_name: L:INI_RIGHT_ELEVATOR_FAILURE
+# -
+#   type: var
+#   var_name: L:SLATS
+# -
+#   type: var
+#   var_name: L:FLAPS_DEPLOYED_ANGLE
+# -
+#   type: var
+#   var_name: L:FLAPS_INNER_DEPLOYED_ANGLE
+# -
+#   type: var
+#   var_name: L:FLAPS_OUTER_DEPLOYED_ANGLE
+# -
+#   type: var
+#   var_name: L:FLAPS_INTERNAL_CONFIG
+# -
+#   type: var
+#   var_name: L:INI_CABIN_IS_READY
+# -
+#   type: var
+#   var_name: L:INI_EWD_FLIGHT_PHASE
+# -
+#   type: var
+#   var_name: L:RUDDER_TRIM_TARGET_ANGLE
+# -
+#   type: var
+#   var_name: L:INI_MAP_MODE_FO
+# -
+#   type: var
+#   var_name: L:INI_MAP_RANGE_FO
+  -
+    type: var
+    var_name: L:INI_RAM_AIR_ON
+# -
+#   type: var
+#   var_name: L:INI_PACK1_TARGET
+# -
+#   type: var
+#   var_name: L:INI_PACK2_TARGET
+# -
+#   type: var
+#   var_name: L:ENG1_IS_SPOOLING_UP
+# -
+#   type: var
+#   var_name: L:ENG2_IS_SPOOLING_UP
+# -
+#   type: var
+#   var_name: L:INI_IRS1_IS_ALIGNING
+# -
+#   type: var
+#   var_name: L:INI_IRS2_IS_ALIGNING
+# -
+#   type: var
+#   var_name: L:INI_IRS3_IS_ALIGNING
+# -
+#   type: var
+#   var_name: L:INI_IRS_ALIGN_START
+# -
+#   type: var
+#   var_name: L:INI_IRS2_ALIGNED
+# -
+#   type: var
+#   var_name: L:INI_IRS3_ALIGNED
+# -
+#   type: var
+#   var_name: L:INI_IRS1_TIME_REMAIN
+# -
+#   type: var
+#   var_name: L:INI_IRS2_TIME_REMAIN
+# -
+#   type: var
+#   var_name: L:INI_IRS3_TIME_REMAIN
+# -
+#   type: var
+#   var_name: L:INI_IRS_ATTITUDE_ALIGNED
+# -
+#   type: var
+#   var_name: L:INI_IRS_ALIGNED
+  -
+    type: var
+    var_name: L:INI_AC_UNIT_STATE
+  -
+    type: var
+    var_name: L:INI_FIRE_HANDLE_APU
+# -
+#   type: var
+#   var_name: L:INI_AUTOBRAKE_ENGAGED
+# -
+#   type: var
+#   var_name: L:INI_AUTOBRAKE_LAST_USED
+# -
+#   type: var
+#   var_name: L:INI_RESET_AUTOBRAKE
+# -
+#   type: var
+#   var_name: L:INI_AUTOBRAKE_DISCONNECTED
+# -
+#   type: var
+#   var_name: L:INI_BRAKE_AXIS_LEFT
+# -
+#   type: var
+#   var_name: L:INI_BRAKE_AXIS_RIGHT
+# -
+#   type: var
+#   var_name: L:INI_BRAKE_PRESSURE_ACCU_PRESS
+# -
+#   type: var
+#   var_name: L:INI_BRAKE_PRESSURE_LEFT
+# -
+#   type: var
+#   var_name: L:INI_BRAKE_PRESSURE_RIGHT
+# -
+#   type: var
+#   var_name: L:INI_CABIN_TIMER
+# -
+#   type: var
+#   var_name: L:INI_CABIN_ALT
+  -
+    type: var
+    var_name: L:INI_CABIN_MAN_PRESS
+# -
+#   type: var
+#   var_name: L:CAPT_SIDESTICK_ROLL
+# -
+#   type: var
+#   var_name: L:CAPT_SIDESTICK_PITCH
+# -
+#   type: var
+#   var_name: L:YAW
+# -
+#   type: var
+#   var_name: L:TOTAL_SIDESTICK_ROLL
+# -
+#   type: var
+#   var_name: L:TOTAL_SIDESTICK_PITCH
+# -
+#   type: var
+#   var_name: L:TOTAL_INPUT_ROLL
+# -
+#   type: var
+#   var_name: L:TOTAL_INPUT_PITCH
+# -
+#   type: var
+#   var_name: L:TOTAL_INPUT_YAW
+# -
+#   type: var
+#   var_name: L:AUTOFLT_ROLL
+# -
+#   type: var
+#   var_name: L:AUTOFLT_PITCH
+# -
+#   type: var
+#   var_name: L:AUTOFLT_YAW
+  -
+    type: var
+    var_name: L:CAPT_SIDESTICK_DISABLED
+# -
+#   type: var
+#   var_name: L:TOTAL_AILERON
+# -
+#   type: var
+#   var_name: L:L_aileron_avail
+# -
+#   type: var
+#   var_name: L:R_aileron_avail
+# -
+#   type: var
+#   var_name: L:L_elevator_avail
+# -
+#   type: var
+#   var_name: L:R_elevator_avail
+# -
+#   type: var
+#   var_name: L:TOTAL_ELEVATOR
+# -
+#   type: var
+#   var_name: L:RUDDER_TRAVEL_LIM
+# -
+#   type: var
+#   var_name: L:RUDDER_TRIM_ACTUAL_ANGLE
+# -
+#   type: var
+#   var_name: L:AUGMENTED_RUDDER_ANGLE
+# -
+#   type: var
+#   var_name: L:RUDDER
+# -
+#   type: var
+#   var_name: L:TOTAL_RUDDER
+  -
+    type: var
+    var_name: L:HUMAN_RUDDER_TRIM
+# -
+#   type: var
+#   var_name: L:RESETTING_RUDDER_TRIM
+# -
+#   type: var
+#   var_name: L:SLATS_IN_TRANSIT
+# -
+#   type: var
+#   var_name: L:FLAPS_IN_TRANSIT
+# -
+#   type: var
+#   var_name: L:SLATS_PREDEPLOY_RATIO
+# -
+#   type: var
+#   var_name: L:FLAPS_DEPLOYED_RATIO
+# -
+#   type: var
+#   var_name: L:FLAPS_OUTER_DEPLOYED_RATIO
+  -
+    type: var
+    var_name: L:OVERRIDE_FLAP_AUTO_EXTEND_AND_RETRACT
+# -
+#   type: var
+#   var_name: L:FLAPS_HANDLE_POSITION
+# -
+#   type: var
+#   var_name: L:INI_ADR1_STATE
+# -
+#   type: var
+#   var_name: L:INI_ADR2_STATE
+# -
+#   type: var
+#   var_name: L:INI_ADR3_STATE
+# -
+#   type: var
+#   var_name: L:INI_FUEL_WEIGHT_LEFT_OUTER
+# -
+#   type: var
+#   var_name: L:INI_FUEL_WEIGHT_RIGHT_OUTER
+# -
+#   type: var
+#   var_name: L:INI_FUEL_WEIGHT_TRIM
+  -
+    type: var
+    var_name: L:INI_APU_EMERGENCY_SHUTDOWN
+# -
+#   type: var
+#   var_name: L:INI_FUEL_FLOW1
+# -
+#   type: var
+#   var_name: L:INI_FUEL_FLOW2
+  -
+    type: var
+    var_name: L:INI_ENG1_FUEL_SOURCE
+  -
+    type: var
+    var_name: L:INI_ENG2_FUEL_SOURCE
+  -
+    type: var
+    var_name: L:INI_APU_FAULT
+  -
+    type: var
+    var_name: L:INI_APU_FUEL_SOURCE
+  -
+    type: var
+    var_name: L:INI_CGCC_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_THRUST_CLIMB_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG1_OIL_PRESSURE
+# -
+#   type: var
+#   var_name: L:INI_ENG2_OIL_PRESSURE
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_COOLING_EGT
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_COOLING_EGT
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_IDLE_N1
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_IDLE_N1
+# -
+#   type: var
+#   var_name: L:INI_THRUST_TOGA_N1
+# -
+#   type: var
+#   var_name: L:INI_THRUST_MAXIMUM_N1
+# -
+#   type: var
+#   var_name: L:LEFT_OUTER_AILERON
+# -
+#   type: var
+#   var_name: L:RIGHT_OUTER_AILERON
+# -
+#   type: var
+#   var_name: L:AUGMENTED_PITCH_TRIM_RATIO
+# -
+#   type: var
+#   var_name: L:ELEV_TRIM_RATIO_TARGET
+# -
+#   type: var
+#   var_name: L:INI_MAX_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR3_POSITION
+  -
+    type: var
+    var_name: L:INI_OVERBOARD_VALVE
+  -
+    type: var
+    var_name: L:INI_PACK_FLOW
+# -
+#   type: var
+#   var_name: L:INI_TRIM_VALVE_SPEED
+  -
+    type: var
+    var_name: L:XMLVAR_LDG_ELEV
+  -
+    type: var
+    var_name: L:INI_FLRS_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_HOT_AIR2_TEMP
+# -
+#   type: var
+#   var_name: L:INI_CAPT_PFD_VALID
+# -
+#   type: var
+#   var_name: L:INI_CAPT_ND_VALID
+# -
+#   type: var
+#   var_name: L:INI_FO_PFD_VALID
+# -
+#   type: var
+#   var_name: L:INI_FO_ND_VALID
+# -
+#   type: var
+#   var_name: L:INI_ECAM_VALID
+# -
+#   type: var
+#   var_name: L:INI_EWD_VALID
+# -
+#   type: var
+#   var_name: L:INI_CAPT_PFD_DISPLAYING_STATUS
+# -
+#   type: var
+#   var_name: L:INI_CAPT_ND_DISPLAYING_STATUS
+# -
+#   type: var
+#   var_name: L:INI_FO_PFD_DISPLAYING_STATUS
+# -
+#   type: var
+#   var_name: L:INI_FO_ND_DISPLAYING_STATUS
+# -
+#   type: var
+#   var_name: L:INI_EWD_DISPLAYING_STATUS
+# -
+#   type: var
+#   var_name: L:INI_ECAM_DISPLAYING_STATUS
+# -
+#   type: var
+#   var_name: L:CAPT_PFD_BRIGHTNESS_ACT
+# -
+#   type: var
+#   var_name: L:INI_IS_FWC1_OK
+# -
+#   type: var
+#   var_name: L:INI_IS_FWC2_OK
+# -
+#   type: var
+#   var_name: L:FO_PFD_BRIGHTNESS_ACT
+# -
+#   type: var
+#   var_name: L:CAPT_ND_BRIGHTNESS_ACT
+# -
+#   type: var
+#   var_name: L:FO_ND_BRIGHTNESS_ACT
+# -
+#   type: var
+#   var_name: L:ECAM_BRIGHTNESS_ACT
+# -
+#   type: var
+#   var_name: L:EWD_BRIGHTNESS_ACT
+# -
+#   type: var
+#   var_name: L:INI_STEER_VALUE
+# -
+#   type: var
+#   var_name: L:INI_NOSEWHEEL_STEERING_ANGLE
+# -
+#   type: var
+#   var_name: L:INI_NOSEWHEEL_STEERING_COMMAND
+  -
+    type: var
+    var_name: L:INI_EWD_PAGE
+  -
+    type: var
+    var_name: L:INI_MASTER_WARNING_ACTIVE
+  -
+    type: var
+    var_name: L:INI_MASTER_CAUTION_ACTIVE
+  -
+    type: var
+    var_name: L:INI_CABIN_MAN_PRESS_FAULT
+  -
+    type: var
+    var_name: L:INI_ANTISKID_POWERED
+# -
+#   type: var
+#   var_name: L:BRAKES_LEFT_EVENT
+# -
+#   type: var
+#   var_name: L:BRAKES_RIGHT_EVENT
+# -
+#   type: var
+#   var_name: L:BRAKES_ID
+# -
+#   type: var
+#   var_name: L:INI_BRAKE_LEFT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_BRAKE_RIGHT_COMMAND
+# -
+#   type: var
+#   var_name: L:BRAKES_LEFT_ID
+# -
+#   type: var
+#   var_name: L:BRAKES_RIGHT_ID
+# -
+#   type: var
+#   var_name: L:INI_FMC1_CLR_ENTRY
+# -
+#   type: var
+#   var_name: L:INI_FMC2_CLR_ENTRY
+  -
+    type: var
+    var_name: L:INI_FMC_PAGE1
+  -
+    type: var
+    var_name: L:INI_FMC_PAGE2
+# -
+#   type: var
+#   var_name: L:INI_ISIS_TIMER
+# -
+#   type: var
+#   var_name: L:INI_ISIS2_TIMER
+# -
+#   type: var
+#   var_name: L:INI_TEST_ROT4
+  -
+    type: var
+    var_name: L:INI_ATT_HDG_STATE
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_7
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_8
+# -
+#   type: var
+#   var_name: L:INI_NEW_ROUTE_CB
+# -
+#   type: var
+#   var_name: L:INI_CUSTOM_NAVAID_NUM
+# -
+#   type: var
+#   var_name: L:INI_IRS_LATITUDE
+# -
+#   type: var
+#   var_name: L:INI_IRS_LONGITUDE
+# -
+#   type: var
+#   var_name: L:INI_MISSED_APP
+# -
+#   type: var
+#   var_name: L:INI_RESET_APPROACH
+# -
+#   type: var
+#   var_name: L:INI_OFFSET
+# -
+#   type: var
+#   var_name: L:INI_RNAV_FPA
+# -
+#   type: var
+#   var_name: L:INI_RNAV_IDX_FIRST
+# -
+#   type: var
+#   var_name: L:INI_TD_IDX
+# -
+#   type: var
+#   var_name: L:INI_TD_DIST
+# -
+#   type: var
+#   var_name: L:INI_RNAV_IDX_LAST
+# -
+#   type: var
+#   var_name: L:INI_CALC_OFFSET
+# -
+#   type: var
+#   var_name: L:INI_ALT_REACH_IDX
+# -
+#   type: var
+#   var_name: L:INI_ALT_REACH_DIST
+# -
+#   type: var
+#   var_name: L:FMGS_DIST
+# -
+#   type: var
+#   var_name: L:INI_DECEL_IDX
+# -
+#   type: var
+#   var_name: L:INI_DECEL_DIST
+# -
+#   type: var
+#   var_name: L:INI_CABIN_FPLAN_DISTANCE
+# -
+#   type: var
+#   var_name: L:INI_REST_WPT_SPD_IDX
+# -
+#   type: var
+#   var_name: L:INI_REST_WPT_SPD
+# -
+#   type: var
+#   var_name: L:INI_REST_WPT_SPD_TGT
+# -
+#   type: var
+#   var_name: L:INI_flight_phase
+# -
+#   type: var
+#   var_name: L:INI_VAPP_SPEED
+# -
+#   type: var
+#   var_name: L:FCPC_S_SPEED
+# -
+#   type: var
+#   var_name: L:FCPC_F_SPEED
+# -
+#   type: var
+#   var_name: L:FMGEC_GD_SPD
+# -
+#   type: var
+#   var_name: L:INI_REST_WPT_ALT
+# -
+#   type: var
+#   var_name: L:INI_REST_WPT_ALT_T
+# -
+#   type: var
+#   var_name: L:INI_REST_WPT_ALT_IDX
+# -
+#   type: var
+#   var_name: L:INI_FUEL_FLOW1_KG
+# -
+#   type: var
+#   var_name: L:INI_FUEL_FLOW2_KG
+# -
+#   type: var
+#   var_name: L:INI_FUEL_FLOW1_NEEDLE
+# -
+#   type: var
+#   var_name: L:INI_FUEL_FLOW2_NEEDLE
+  -
+    type: var
+    var_name: L:INI_TC_FUEL
+  -
+    type: var
+    var_name: L:INI_PAYLOAD_WEIGHT_TOTAL
+  -
+    type: var
+    var_name: L:INI_TD_FUEL
+  -
+    type: var
+    var_name: L:INI_TC_WEIGHT
+# -
+#   type: var
+#   var_name: L:INI_LANDING_WEIGHT
+# -
+#   type: var
+#   var_name: L:INI_START_CG
+# -
+#   type: var
+#   var_name: L:INI_ORIGINAL_CG
+# -
+#   type: var
+#   var_name: L:INI_CUSTOM_CG
+  -
+    type: var
+    var_name: L:INI_VR
+  -
+    type: var
+    var_name: L:INI_V1
+  -
+    type: var
+    var_name: L:INI_LANDING_WIND_CORR
+  -
+    type: var
+    var_name: L:INI_LANDING_CONFIG
+# -
+#   type: var
+#   var_name: L:INI_FMS_CG
+# -
+#   type: var
+#   var_name: L:INI_LOCALIZER_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_APPROACH_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_vvi_dial_AP
+  -
+    type: var
+    var_name: L:INI_PROGRESS_PAGE
+# -
+#   type: var
+#   var_name: L:INI_HEADING_HOLD_DIAL
+  -
+    type: var
+    var_name: L:INI_HEADING_DIAL
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_DESCENT_INIT
+  -
+    type: var
+    var_name: L:INI_VOR1_FREQUENCY_MHZ
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_VOR1_FREQUENCY_KHZ
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_VOR2_FREQUENCY_MHZ
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_VOR2_FREQUENCY_KHZ
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:INI_RADIO_HEIGHT
+# -
+#   type: var
+#   var_name: L:INI_ILS_FREQUENCY
+  -
+    type: var
+    var_name: L:INI_FMC1_VERT_REV_MODE
+  -
+    type: var
+    var_name: L:INI_FMC2_VERT_REV_MODE
+# -
+#   type: var
+#   var_name: L:INI_FMC1_FREEZE_TIMER
+# -
+#   type: var
+#   var_name: L:INI_FMC2_FREEZE_TIMER
+  -
+    type: var
+    var_name: L:INI_FMC2_LAT_REV_MODE
+  -
+    type: var
+    var_name: L:INI_FMC1_HOLD_MODE
+  -
+    type: var
+    var_name: L:INI_FMC2_HOLD_MODE
+  -
+    type: var
+    var_name: L:INI_FMC1_DEPARTURE_MODE
+  -
+    type: var
+    var_name: L:INI_FMC2_DEPARTURE_MODE
+  -
+    type: var
+    var_name: L:INI_FMC1_AIRWAYS_MODE
+  -
+    type: var
+    var_name: L:INI_FMC2_AIRWAYS_MODE
+  -
+    type: var
+    var_name: L:INI_FMC1_LAT_REV_MODE
+  -
+    type: var
+    var_name: L:INI_FMC1_FUEL_PRED_MODE
+  -
+    type: var
+    var_name: L:INI_FMC2_FUEL_PRED_MODE
+  -
+    type: var
+    var_name: L:INI_FMC1_APPROACH_MODE
+  -
+    type: var
+    var_name: L:INI_FMC2_APPROACH_MODE
+  -
+    type: var
+    var_name: L:INI_FMC1_DES_FORECAST_MODE
+  -
+    type: var
+    var_name: L:INI_FMC2_DES_FORECAST_MODE
+# -
+#   type: var
+#   var_name: L:INI_VS_SPEED
+# -
+#   type: var
+#   var_name: L:INI_VLS_SPEED
+# -
+#   type: var
+#   var_name: L:INI_FLAPS_SLATS_DEPLOYED_RATIO
+# -
+#   type: var
+#   var_name: L:INI_VREF_SPEED
+# -
+#   type: var
+#   var_name: L:INI_bleed_pack1_percent
+# -
+#   type: var
+#   var_name: L:INI_bleed_pack2_percent
+# -
+#   type: var
+#   var_name: L:INI_THRUST_CRZ_N1
+# -
+#   type: var
+#   var_name: L:INI_THRUST_MCT_N1
+# -
+#   type: var
+#   var_name: L:INI_OPTIMUM_CRUISE_LEVEL
+  -
+    type: var
+    var_name: L:INI_NAV_MODE
+# -
+#   type: var
+#   var_name: L:INI_HOLD_IMM_EXIT
+# -
+#   type: var
+#   var_name: L:INI_MAX_CRUISE_LEVEL
+  -
+    type: var
+    var_name: L:INI_ENG_OUT_CONFIRMED
+# -
+#   type: var
+#   var_name: L:INI_MAGVAR
+  -
+    type: var
+    var_name: L:INI_FLEX_TEMPERATURE
+  -
+    type: var
+    var_name: L:INI_transition_level
+  -
+    type: var
+    var_name: L:INI_transition_altitude
+# -
+#   type: var
+#   var_name: L:INI_TD_DIST_TOTAL
+# -
+#   type: var
+#   var_name: L:INI_SD_IDX
+# -
+#   type: var
+#   var_name: L:INI_CLIMB_TRANSITION_MACH_ALTITUDE
+# -
+#   type: var
+#   var_name: L:INI_SC_DIST
+# -
+#   type: var
+#   var_name: L:INI_THRUST_FLEX_N1
+# -
+#   type: var
+#   var_name: L:INI_SD_DIST
+# -
+#   type: var
+#   var_name: L:INI_IMMEDIATE_DESCENT_SPEED
+# -
+#   type: var
+#   var_name: L:INI_DUPLICATE_NAMES_ACTION
+# -
+#   type: var
+#   var_name: L:INI_RNP
+# -
+#   type: var
+#   var_name: L:INI_RESTRICTION_ALTITUDE
+# -
+#   type: var
+#   var_name: L:INI_LAST_EDITED_STEP_ID
+# -
+#   type: var
+#   var_name: L:INI_SC_IDX
+# -
+#   type: var
+#   var_name: L:INI_APPROACH_TYPE_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_APPROACH_TYPE_ALTERNATE
+# -
+#   type: var
+#   var_name: L:INI_ANP
+  -
+    type: var
+    var_name: L:FMGS_FPLAN_SCROLL3
+# -
+#   type: var
+#   var_name: L:INI_LEGS_STEP3
+# -
+#   type: var
+#   var_name: L:INI_SC_TOTAL_DIST
+# -
+#   type: var
+#   var_name: L:FMGS_TRACK
+# -
+#   type: var
+#   var_name: L:INI_HOLD_PHASE
+# -
+#   type: var
+#   var_name: L:INI_HOLD_CIRCUIT
+# -
+#   type: var
+#   var_name: L:INI_DIR_TO_DIST_CENTER
+# -
+#   type: var
+#   var_name: L:INI_DIR_TO_RADIUS
+# -
+#   type: var
+#   var_name: L:INI_TD_IDX_BREAK
+# -
+#   type: var
+#   var_name: L:INI_SD_TOTAL_DIST
+# -
+#   type: var
+#   var_name: L:INI_DIR_TO_COURSE
+# -
+#   type: var
+#   var_name: L:INI_DIR_TO_ACT_CRS
+# -
+#   type: var
+#   var_name: L:INI_DECEL_LAT
+# -
+#   type: var
+#   var_name: L:INI_DECEL_LON
+# -
+#   type: var
+#   var_name: L:INI_DECEL_DEF_LON
+# -
+#   type: var
+#   var_name: L:INI_DECEL_DEF_LAT
+# -
+#   type: var
+#   var_name: L:INI_CALC_OFFSET_DIST
+# -
+#   type: var
+#   var_name: L:INI_VNAV_ALT_ERR2
+# -
+#   type: var
+#   var_name: L:INI_VNAV_ALT_ERR
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_ALT1_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_HDG1_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_SPD1_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_ALT2_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_HDG2_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_SPD2_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_ALT3_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_HDG3_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_SPD3_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_VNAV_PTH_FPM_CALC
+# -
+#   type: var
+#   var_name: L:INI_VNAV_PTH_ALT_CORR_CALC
+# -
+#   type: var
+#   var_name: L:INI_VNAV_VVI_CORR
+# -
+#   type: var
+#   var_name: L:INI_UPPER_SPEED_RANGE
+# -
+#   type: var
+#   var_name: L:INI_TOTAL_APPR_DIST
+# -
+#   type: var
+#   var_name: L:INI_DES_VVI_TARGET
+  -
+    type: var
+    var_name: L:INI_LEVEL_CHANGE_MODE
+# -
+#   type: var
+#   var_name: L:INI_ED_DIST_REMAIN
+# -
+#   type: var
+#   var_name: L:INI_DIR_TO_ALPHA
+# -
+#   type: var
+#   var_name: L:INI_DECEL_ACTIVE_TIMER
+  -
+    type: var
+    var_name: L:INI_CLIMB_MODE
+  -
+    type: var
+    var_name: L:INI_CLIMB_MODE2
+# -
+#   type: var
+#   var_name: L:INI_VNAV_DES_RATE
+  -
+    type: var
+    var_name: L:INI_LEVEL_CHANGE_PROFILE_DESCENT
+# -
+#   type: var
+#   var_name: L:INI_ED_TO_DIST
+# -
+#   type: var
+#   var_name: L:INI_DES_VVI_LIMIT
+  -
+    type: var
+    var_name: L:INI_CRUISE_MODE
+  -
+    type: var
+    var_name: L:INI_CRUISE_MODE2
+# -
+#   type: var
+#   var_name: L:INI_CLIMB_MODE2_SPEED
+# -
+#   type: var
+#   var_name: L:INI_APPROACH_TYPE
+# -
+#   type: var
+#   var_name: L:INI_FAC_XTRACK
+# -
+#   type: var
+#   var_name: L:INI_FAC_CRS
+# -
+#   type: var
+#   var_name: L:INI_DES_VVI
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_HDG4_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_WIND_SPD4_SECONDARY
+  -
+    type: var
+    var_name: L:INI_ED_ALT2_HOLD
+  -
+    type: var
+    var_name: L:INI_DESCENT_MODE
+  -
+    type: var
+    var_name: L:INI_DESCENT_MODE2
+# -
+#   type: var
+#   var_name: L:INI_CRUISE_MODE2_SPEED
+# -
+#   type: var
+#   var_name: L:INI_VNAV_PATH_FPM
+# -
+#   type: var
+#   var_name: L:INI_VNAV_PATH_ALT
+  -
+    type: var
+    var_name: L:INI_TD_ALT2_HOLD
+# -
+#   type: var
+#   var_name: L:INI_GP_VVI
+# -
+#   type: var
+#   var_name: L:INI_GP_DEV
+# -
+#   type: var
+#   var_name: L:INI_FAC_TRACK
+  -
+    type: var
+    var_name: L:INI_MAX_DESCENT_ACTIVE
+  -
+    type: var
+    var_name: L:INI_MAX_CLIMB_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_MODE2_SPEED
+  -
+    type: var
+    var_name: L:INI_CRUISE_SWITCHED_MACH
+  -
+    type: var
+    var_name: L:INI_V2
+  -
+    type: var
+    var_name: L:INI_TAKEOFF_SHIFT
+  -
+    type: var
+    var_name: L:INI_SECONDARY_IS_COPY
+  -
+    type: var
+    var_name: L:INI_MAX_CRUISE_ACTIVE
+  -
+    type: var
+    var_name: L:FMGS_FPLAN_SCROLL2
+  -
+    type: var
+    var_name: L:INI_FMS_MDA
+  -
+    type: var
+    var_name: L:INI_ENG_OUT_DETECTED
+# -
+#   type: var
+#   var_name: L:INI_CLIMB_MODE_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_CRUISE_MODE_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_DESCENT_MODE_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_PERF_COST_INDEX_CLIMB
+# -
+#   type: var
+#   var_name: L:INI_PERF_COST_INDEX_CRUISE
+# -
+#   type: var
+#   var_name: L:INI_PERF_COST_INDEX_DESCENT
+  -
+    type: var
+    var_name: L:INI_TRP_MODE
+# -
+#   type: var
+#   var_name: L:INI_TRP_MODE_OLD
+# -
+#   type: var
+#   var_name: L:INI_PERF_SPEED_CLIMB_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_PERF_SPEED_CRUISE_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_PERF_SPEED_DESCENT_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_PERF_COST_INDEX_CLIMB_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_PERF_COST_INDEX_CRUISE_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_PERF_COST_INDEX_DESCENT_SECONDARY
+# -
+#   type: var
+#   var_name: L:INI_FMS_gps_primary_lost
+  -
+    type: var
+    var_name: L:INI_eng_ignition_switch
+# - # Causes weirdness
+#   type: var
+#   var_name: L:INI_managed_speed
+# -
+#   type: var
+#   var_name: L:INI_LOWER_SPEED_RANGE
+# -
+#   type: var
+#   var_name: L:INI_VNAV_SPEED_TARGET
+# -
+#   type: var
+#   var_name: L:INI_APPROACH_SPEED_TARGET
+# -
+#   type: var
+#   var_name: L:INI_MORE_DRAG
+# -
+#   type: var
+#   var_name: L:INI_PERFORMANCE_FMGS_DRAW_TIME
+# -
+#   type: var
+#   var_name: L:INI_PERF_SPEED_CLIMB
+# -
+#   type: var
+#   var_name: L:INI_PERF_SPEED_CRUISE
+# -
+#   type: var
+#   var_name: L:INI_PERF_SPEED_DESCENT
+# -
+#   type: var
+#   var_name: L:INI_VNAV_VPA_TEST
+# -
+#   type: var
+#   var_name: L:INI_ac_emergency_bus_off
+# -
+#   type: var
+#   var_name: L:INI_FMS1_message_light
+# -
+#   type: var
+#   var_name: L:INI_FMS1_display_light
+# -
+#   type: var
+#   var_name: L:INI_FMS2_message_light
+# -
+#   type: var
+#   var_name: L:INI_FMS2_display_light
+# -
+#   type: var
+#   var_name: L:INI_DES_SPEED_KNOTS
+# -
+#   type: var
+#   var_name: L:INI_DEP_RUNWAY_LENGTH
+# -
+#   type: var
+#   var_name: L:INI_DEP_RUNWAY_HDG
+# -
+#   type: var
+#   var_name: L:INI_ARR_RUNWAY_LENGTH
+# -
+#   type: var
+#   var_name: L:INI_ARR_RUNWAY_HDG
+# -
+#   type: var
+#   var_name: L:INI_DEP_ICAO_EFB
+# -
+#   type: var
+#   var_name: L:INI_DEP_ICAO2_EFB
+# -
+#   type: var
+#   var_name: L:INI_ARR_ICAO_EFB
+# -
+#   type: var
+#   var_name: L:INI_ARR_ICAO2_EFB
+# -
+#   type: var
+#   var_name: L:INI_CALLSIGN_EFB
+# -
+#   type: var
+#   var_name: L:INI_CALLSIGN2_EFB
+# -
+#   type: var
+#   var_name: L:INI_CALLSIGN3_EFB
+# -
+#   type: var
+#   var_name: L:INI_VERSION_EFB
+# -
+#   type: var
+#   var_name: L:INI_FMC_DIST_TO_DEST
+  -
+    type: var
+    var_name: L:INI_FMGS_SHOW_GRID
+# -
+#   type: var
+#   var_name: L:INI_PERFORMANCE_FMGS_UPDATE_TIME
+# -
+#   type: var
+#   var_name: L:INI_WPT_FROM
+# -
+#   type: var
+#   var_name: L:INI_WPT_TO
+# -
+#   type: var
+#   var_name: L:INI_HOLD_LENGTH
+# -
+#   type: var
+#   var_name: L:INI_HOLD_RADIUS
+# -
+#   type: var
+#   var_name: L:INI_at_mode
+# -
+#   type: var
+#   var_name: L:INI_FORCE_VVI
+# -
+#   type: var
+#   var_name: L:INI_VVI_DIAL_TARGET
+# -
+#   type: var
+#   var_name: L:INI_PITCH_RATE_CHANGE
+# -
+#   type: var
+#   var_name: L:INI_PITCH_ROLL_MODE_ARM
+  -
+    type: var
+    var_name: L:INI_ENABLE_TRIM
+# -
+#   type: var
+#   var_name: L:INI_LEVEL_CHANGE_MAX_ACCEL
+# -
+#   type: var
+#   var_name: L:INI_LEVEL_CHANGE_MAX_PITCH_SPEED
+# -
+#   type: var
+#   var_name: L:PID_LIVE_P_GAIN
+# -
+#   type: var
+#   var_name: L:PID_LIVE_I_GAIN
+# -
+#   type: var
+#   var_name: L:PID_LIVE_D_GAIN
+# -
+#   type: var
+#   var_name: L:RUDDER_PID_LIVE_P_GAIN
+# -
+#   type: var
+#   var_name: L:RUDDER_PID_LIVE_I_GAIN
+# -
+#   type: var
+#   var_name: L:RUDDER_PID_LIVE_D_GAIN
+# -
+#   type: var
+#   var_name: L:RUDDER_FLARE_PID_LIVE_P_GAIN
+# -
+#   type: var
+#   var_name: L:INI_FDIR_SWITCH_CAPT
+# -
+#   type: var
+#   var_name: L:INI_FDIR_SWITCH_FO
+# -
+#   type: var
+#   var_name: L:INI_ROLL_RATE
+# -
+#   type: var
+#   var_name: L:INI_PITCH_FDIR_ERROR
+# -
+#   type: var
+#   var_name: L:INI_GLIDESLOPE_VVI
+  -
+    type: var
+    var_name: L:INI_ap_on
+  -
+    type: var
+    var_name: L:INI_CWS_on
+# -
+#   type: var
+#   var_name: L:INI_AUTOLAND_ROLLOUT_FD_PITCH
+# -
+#   type: var
+#   var_name: L:INI_CWS_PITCH
+# -
+#   type: var
+#   var_name: L:INI_CWS_ROLL
+# -
+#   type: var
+#   var_name: L:INI_AUTOPILOT_CAPABILITY
+# -
+#   type: var
+#   var_name: L:INI_PITCH_RATE_TARGET
+# -
+#   type: var
+#   var_name: L:INI_GLIDESLOPE_ERROR
+# -
+#   type: var
+#   var_name: L:INI_GLIDESLOPE_ALTITUDE
+# -
+#   type: var
+#   var_name: L:INI_AP_ELEVATOR_OUTPUT
+# -
+#   type: var
+#   var_name: L:INI_TAKEOFF_TIMER
+  -
+    type: var
+    var_name: L:INI_ENG1_IS_FIRE
+  -
+    type: var
+    var_name: L:INI_engine1_is_failed
+  -
+    type: var
+    var_name: L:INI_engine2_is_failed
+# -
+#   type: var
+#   var_name: L:INI_ALTITUDE_MEM_DIAL
+  -
+    type: var
+    var_name: L:INI_Airspeed_is_mach
+# -
+#   type: var
+#   var_name: L:INI_Airspeed_Dial_Mach_knots
+# -
+#   type: var
+#   var_name: L:INI_IS_PROFILE
+# -
+#   type: var
+#   var_name: L:INI_AUTOLAND_AILERON_FLARE
+# -
+#   type: var
+#   var_name: L:INI_AUTOLAND_AILERON_OUTPUT_FLARE_ERROR
+  -
+    type: var
+    var_name: L:INI_ENG2_IS_FIRE
+# -
+#   type: var
+#   var_name: L:INI_MANAGED_DES_SPEED
+  -
+    type: var
+    var_name: L:INI_CLIMB_SWITCHED_MACH
+# -
+#   type: var
+#   var_name: L:INI_LOC_INTERCEPT_VALID
+# -
+#   type: var
+#   var_name: L:INI_LOCALIZER_DOTS
+# -
+#   type: var
+#   var_name: L:INI_LOC_ENGAGEMENT_CONDITION
+# -
+#   type: var
+#   var_name: L:INI_LOCALIZER_DOTS_PRED
+# -
+#   type: var
+#   var_name: L:INI_LAST_PITCH_MODE
+# -
+#   type: var
+#   var_name: L:INI_EXPERIMENTAL_FDIR
+  -
+    type: var
+    var_name: L:INI_vor1_course
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_vor2_course
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:INI_IMM_DES_TIMER
+# -
+#   type: var
+#   var_name: L:INI_PITCH_MODE_ARM2
+# -
+#   type: var
+#   var_name: L:INI_FLAPS_RESET_TIMER
+# -
+#   type: var
+#   var_name: L:INI_PRESET_SPEED
+# -
+#   type: var
+#   var_name: L:INI_PRESET_LIGHT
+  -
+    type: var
+    var_name: L:INI_PRESET_SETTING
+  -
+    type: var
+    var_name: L:INI_PRESELECTED_MACH_SWITCH
+  -
+    type: var
+    var_name: L:INI_PRESET_IS_MACH
+  -
+    type: var
+    var_name: L:INI_LEVEL_CHANGE_MACH_CHANGE
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_AP_THR
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_AP_THR
+# -
+#   type: var
+#   var_name: L:INI_TOGA_LOCK_ACTIVE
+  -
+    type: var
+    var_name: L:INI_TOGA_LOCK_DISABLED
+# -
+#   type: var
+#   var_name: L:INI_MISSED_APPROACH_NUM
+# -
+#   type: var
+#   var_name: L:INI_FORCE_THRUST_LATCH
+  -
+    type: var
+    var_name: L:INI_TAKEOFF_AT_PRESSED
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHROTTLE_DISCONNECT_TIMER_START
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHROTTLE_DISCONNECTED
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHROTTLE_DISCONNECT_TIMER
+# -
+#   type: var
+#   var_name: L:INI_MCU_LEVEL_CHANGE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_LAST_PITCH_MODE_IS_PROFILE
+# -
+#   type: var
+#   var_name: L:INI_MCU_ALTTUDE_HOLD_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_MCU_NAV_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_MCU_HDG_SEL_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_hyd_yellow_pressure
+  -
+    type: var
+    var_name: L:INI_hyd_servo_green_status
+# -
+#   type: var
+#   var_name: L:INI_ac_essential_bus_off
+  -
+    type: var
+    var_name: L:INI_AUTOPILOT_DISCONNECT
+  -
+    type: var
+    var_name: L:INI_AP_DISCONNECTED
+# -
+#   type: var
+#   var_name: L:INI_hyd_blue_pressure
+  -
+    type: var
+    var_name: L:INI_AP_DISCONNECT_BUTTON
+  -
+    type: var
+    var_name: L:INI_FCU_SYNC_HEADING_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_MODE
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_MODE
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_N1_REQUEST
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_N1_REQUEST
+# -
+#   type: var
+#   var_name: L:INI_LOAD_SB_ROUTE
+# -
+#   type: var
+#   var_name: L:INI_SB_PENDING
+  -
+    type: var
+    var_name: L:INI_DOME_LIGHT_SWITCH
+  -
+    type: var
+    var_name: L:INI_STORM_LIGHT_SWITCH
+  -
+    type: var
+    var_name: L:INI_LANDING_LIGHT_ANIMATION
+  -
+    type: var
+    var_name: L:INI_LANDING_LIGHT_SWITCH
+  -
+    type: var
+    var_name: L:INI_TAXI_LIGHT_SWITCH
+  -
+    type: var
+    var_name: L:INI_BEACON_LIGHT_SWITCH
+  -
+    type: var
+    var_name: L:INI_WING_LIGHT_SWITCH
+  -
+    type: var
+    var_name: L:INI_LOGO_LIGHT_SWITCH
+  -
+    type: var
+    var_name: L:INI_STROBE_LIGHT_SWITCH
+  -
+    type: var
+    var_name: L:INI_TURNOFF_LIGHT_SWITCH
+# -
+#   type: var
+#   var_name: L:INI_CHAIR_CPT_POS
+  -
+    type: var
+    var_name: L:INI_CHAIR_CPT_POS_TARGET
+# -
+#   type: var
+#   var_name: L:INI_CHAIR_FO_POS
+  -
+    type: var
+    var_name: L:INI_CHAIR_FO_POS_TARGET
+# -
+#   type: var
+#   var_name: L:INI_HOLD_TERM
+# -
+#   type: var
+#   var_name: L:FMGS_TRK_TURN
+# -
+#   type: var
+#   var_name: L:FMGS_TRK_TURN2
+# -
+#   type: var
+#   var_name: L:FMGS_XTRACK
+  -
+    type: var
+    var_name: L:INI_FD1_ON
+  -
+    type: var
+    var_name: L:INI_FD2_ON
+  -
+    type: var
+    var_name: L:INI_DEFAULT_PANELSTATE
+  -
+    type: var
+    var_name: L:INI_INSTRUMENTS_LINKED
+  -
+    type: var
+    var_name: L:INI_ILS_FREQUENCY_MHZ
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_ILS_FREQUENCY_KHZ
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_COMPANY_MSG_RECEIVED
+# -
+#   type: var
+#   var_name: L:INI_ADF1_NEEDLE
+# -
+#   type: var
+#   var_name: L:INI_ADF2_NEEDLE
+# -
+#   type: var
+#   var_name: L:INI_VOR1_NEEDLE
+# -
+#   type: var
+#   var_name: L:INI_VOR2_NEEDLE
+  -
+    type: var
+    var_name: L:INI_FMC1_OFFSET_MODE
+  -
+    type: var
+    var_name: L:INI_ILS_AUTOTUNE_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_VOR1_FREQUENCY
+# -
+#   type: var
+#   var_name: L:INI_VOR2_FREQUENCY
+# -
+#   type: var
+#   var_name: L:INI_CPT_VHF_TRANSFER_SWITCH_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_FO_VHF_TRANSFER_SWITCH_COMMAND
+# - # Synced by simvar
+#   type: var
+#   var_name: L:INI_COM3_FREQUENCY
+# -
+#   type: var
+#   var_name: L:INI_COM3_STBY_FREQUENCY
+  -
+    type: var
+    var_name: L:CPT_WIPER_SWITCH
+  -
+    type: var
+    var_name: L:FO_WIPER_SWITCH
+  -
+    type: var
+    var_name: L:INI_LOAD_ON_GPU
+# -
+#   type: var
+#   var_name: L:INI_LEVER_IN_TOGA
+# -
+#   type: var
+#   var_name: L:INI_LEVER_IN_MAN_THRUST
+# -
+#   type: var
+#   var_name: L:INI_LEVER_IN_FLEX_MCT
+# -
+#   type: var
+#   var_name: L:INI_LEVER_IN_CL
+# -
+#   type: var
+#   var_name: L:INI_DONT_SINK_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_GLIDESLOPE_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_OBSTACLE_AHEAD_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_PULL_UP_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_SINK_RATE_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TERRAIN_AHEAD_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TOO_LOW_FLAPS_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TOO_LOW_GEAR_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TOO_LOW_TERRAIN_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TERRAIN_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_DONT_SINK_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_GLIDESLOPE_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_OBSTACLE_AHEAD_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_PULL_UP_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_SINK_RATE_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_TERRAIN_AHEAD_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_TOO_LOW_FLAPS_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_TOO_LOW_GEAR_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_TOO_LOW_TERRAIN_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_TERRAIN_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_GPWS_TEST_STEP
+# -
+#   type: var
+#   var_name: L:INI_GPWS_TIMER
+# -
+#   type: var
+#   var_name: L:INI_GPWS_GLIDESLOPE_INHIBIT
+# -
+#   type: var
+#   var_name: L:INI_GPWS_TEST
+# -
+#   type: var
+#   var_name: L:INI_GPWS_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_GPWS_TEST_TYPE
+# -
+#   type: var
+#   var_name: L:INI_GPWS_FAULT
+  -
+    type: var
+    var_name: L:INI_TERR_MODE_FAULT
+# -
+#   type: var
+#   var_name: L:INI_GLIDESLOPE_LIGHT
+  -
+    type: var
+    var_name: L:INI_GPWS_TERRAIN_TEST_PATTERN
+  -
+    type: var
+    var_name: L:INI_GPWS_FLAP_SWITCH
+  -
+    type: var
+    var_name: L:INI_GPWS_LANDING_SWITCH
+  -
+    type: var
+    var_name: L:INI_WXR_MODE
+  -
+    type: var
+    var_name: L:INI_WX_SYS_SWITCH
+  -
+    type: var
+    var_name: L:INI_CPT_ALTIMETER_PULL_COMMAND
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:INI_CPT_ALTIMETER_STD_COMMAND
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:INI_FO_ALTIMETER_PULL_COMMAND
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:INI_FO_ALTIMETER_STD_COMMAND
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:XMLVAR_Baro1_Mode
+  -
+    type: var
+    var_name: L:XMLVAR_Baro2_Mode
+  -
+    type: var
+    var_name: L:XMLVAR_Baro3_Mode
+# -
+#   type: var
+#   var_name: L:INI_BARO1_PRESSURE
+# -
+#   type: var
+#   var_name: L:INI_BARO2_PRESSURE
+# -
+#   type: var
+#   var_name: L:INI_BARO3_PRESSURE
+  -
+    type: NumSet
+    var_name: L:INI_TOTAL_FUEL_WEIGHT
+    var_units: Number
+    var_type: f64
+    event_name: INIB.SET_FUEL
+    use_calculator: true
+  -
+    type: var
+    var_name: L:INI_CLOCK_DATE_BUTTON
+  -
+    type: var
+    var_name: L:INI_RMP1_STATE
+  -
+    type: var
+    var_name: L:INI_RMP2_STATE
+  -
+    type: var
+    var_name: L:INI_RMP3_STATE
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MODE_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_PITCH_MODE_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_ROLL_MODE_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_AP_MODE_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_FD_MODE_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_ATHR_MODE_ACTIVE
+  -
+    type: var
+    var_name: L:INI_CLOCK_RUN_STATE
+  -
+    type: var
+    var_name: L:INI_CHRONO_STARTED
+  -
+    type: var
+    var_name: L:INI_ET_RUNNING
+  -
+    type: var
+    var_name: L:INI_ET_STARTED
+  -
+    type: var
+    var_name: L:INI_CHR_RESET_COMMAND
+  -
+    type: var
+    var_name: L:INI_CHRONO_RUNNING
+  -
+    type: var
+    var_name: L:INI_CHR_START_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_0_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_1_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_2_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_3_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_4_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_5_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_6_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_7_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_8_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_9_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TCAS_CLR_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_TEST_ROT5
+# -
+#   type: var
+#   var_name: L:INI_TEST_ROT6
+# -
+#   type: var
+#   var_name: L:INI_TEST_ROT7
+  -
+    type: var
+    var_name: L:INI_SHOW_GRID
+  -
+    type: var
+    var_name: L:INI_ND_CHRONO_RUNNING_CPT
+  -
+    type: var
+    var_name: L:INI_ND_CHRONO_RUNNING_FO
+# -
+#   type: var
+#   var_name: L:INI_DEBUG_CURVES
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_TLA_N1
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_TLA_N1
+# -
+#   type: var
+#   var_name: L:FBW_TOTAL_CONTROL_LAW
+# -
+#   type: var
+#   var_name: L:FBW_LATERAL_LAW
+# -
+#   type: var
+#   var_name: L:FBW_VERTICAL_LAW
+# -
+#   type: var
+#   var_name: L:FBW_YAW_LAW
+# -
+#   type: var
+#   var_name: L:FBW_ALT_TO_DIRECT_LAW
+# -
+#   type: var
+#   var_name: L:FBW_ABN_LAW_TRIM_INHIB
+# -
+#   type: var
+#   var_name: L:FBW_VERTICAL_FLARE_MODE_RATIO
+# -
+#   type: var
+#   var_name: L:FBW_VERTICAL_GROUND_MODE_RATIO
+# -
+#   type: var
+#   var_name: L:FBW_LATERAL_GROUND_MODE_RATIO
+# -
+#   type: var
+#   var_name: L:FBW_LATERAL_FLIGHT_MODE_RATIO
+# -
+#   type: var
+#   var_name: L:FBW_FLARE_MODE_MEMORISED_ATT
+# -
+#   type: var
+#   var_name: L:FBW_FLARE_MODE_COMPUTED_Q
+# -
+#   type: var
+#   var_name: L:INI_ANY_WHEEL_ON_GROUND
+# -
+#   type: var
+#   var_name: L:INI_AFT_WHEEL_ON_GROUND
+# -
+#   type: var
+#   var_name: L:FBW_VERTICAL_FLIGHT_MODE_RATIO
+# -
+#   type: var
+#   var_name: L:INI_ALL_ON_GROUND
+# -
+#   type: var
+#   var_name: L:CAPT_RA_ALT_FT
+# -
+#   type: var
+#   var_name: L:FO_RA_ALT_FT
+# -
+#   type: var
+#   var_name: L:INI_TCAS_TARA
+# -
+#   type: var
+#   var_name: L:INI_TCAS_TA
+# -
+#   type: var
+#   var_name: L:INI_TCAS_TEST_STEP
+# -
+#   type: var
+#   var_name: L:INI_TCAS_TEST_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_TCAS_TEST_PASSED
+# -
+#   type: var
+#   var_name: L:INI_TCAS_ADJUST_VS
+# -
+#   type: var
+#   var_name: L:INI_TCAS_CLEAR
+# -
+#   type: var
+#   var_name: L:INI_TCAS_CLIMB
+# -
+#   type: var
+#   var_name: L:INI_TCAS_CLIMB_CROSS
+# -
+#   type: var
+#   var_name: L:INI_TCAS_CLIMB_MORE
+# -
+#   type: var
+#   var_name: L:INI_TCAS_CLIMB_NOW
+# -
+#   type: var
+#   var_name: L:INI_TCAS_DESCENT
+# -
+#   type: var
+#   var_name: L:INI_TCAS_DESCENT_CROSS
+# -
+#   type: var
+#   var_name: L:INI_TCAS_DESCENT_MORE
+# -
+#   type: var
+#   var_name: L:INI_TCAS_DESCENT_NOW
+# -
+#   type: var
+#   var_name: L:INI_TCAS_LEVEL_OFF
+# -
+#   type: var
+#   var_name: L:INI_TCAS_MAINTAIN_VS
+# -
+#   type: var
+#   var_name: L:INI_TCAS_MAINTAIN_VS_CROSS
+# -
+#   type: var
+#   var_name: L:INI_TCAS_MONITOR_VS
+# -
+#   type: var
+#   var_name: L:INI_TCAS_TEST_FAIL
+# -
+#   type: var
+#   var_name: L:INI_TCAS_TRAFFIC
+# -
+#   type: var
+#   var_name: L:INI_TCAS_NEAREST_RA_MSG
+# -
+#   type: var
+#   var_name: L:INI_TCAS_RA_UP_VVI
+# -
+#   type: var
+#   var_name: L:INI_TCAS_RA_DOWN_VVI
+# -
+#   type: var
+#   var_name: L:INI_TCAS_RA_UP
+# -
+#   type: var
+#   var_name: L:INI_TCAS_RA_DOWN
+# -
+#   type: var
+#   var_name: L:INI_TCAS_NEAREST_PLANE_M
+  -
+    type: var
+    var_name: L:INI_EMER_CANCEL_STATE
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_17
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHROTTLE_ENGINE1_AT_REQUEST
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHROTTLE_ENGINE2_AT_REQUEST
+# -
+#   type: var
+#   var_name: L:TOTAL_LATERAL_G_LOAD
+# -
+#   type: var
+#   var_name: L:FBW_MLA_output
+# -
+#   type: var
+#   var_name: L:FBW_GLA_output
+# -
+#   type: var
+#   var_name: L:L_aileron
+# -
+#   type: var
+#   var_name: L:R_aileron
+# -
+#   type: var
+#   var_name: L:FBW_LAF_DEGRADED_AIL
+# -
+#   type: var
+#   var_name: L:FBW_ROLL_OUTPUT
+# -
+#   type: var
+#   var_name: L:FBW_AOA_PROT_ACTIVE
+# -
+#   type: var
+#   var_name: L:FBW_HSP_PROT_ACTIVE
+# -
+#   type: var
+#   var_name: L:FBW_BANK_PROTECTION_LIMIT_1
+# -
+#   type: var
+#   var_name: L:FBW_BANK_PROTECTION_LIMIT_2
+# -
+#   type: var
+#   var_name: L:FBW_PITCH_OUTPUT
+# -
+#   type: var
+#   var_name: L:FBW_YAW_OUTPUT
+# -
+#   type: var
+#   var_name: L:TOTAL_VERTICAL_G_LOAD
+# -
+#   type: var
+#   var_name: L:GROUND_SPOILERS_MODE
+# -
+#   type: var
+#   var_name: L:FRONT_GEAR_ON_GROUND
+# -
+#   type: var
+#   var_name: L:VPATH
+# -
+#   type: var
+#   var_name: L:FBW_MAX_PITCH
+# -
+#   type: var
+#   var_name: L:FBW_AOA_V_SP
+# -
+#   type: var
+#   var_name: L:FBW_AOA_SP
+# -
+#   type: var
+#   var_name: L:FAC_MIXED_APROT_AOA
+# -
+#   type: var
+#   var_name: L:THS_TRIM_LIMIT_RATIO
+# -
+#   type: var
+#   var_name: L:THS_TRIM_RANGE_LIMITED
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_CSTAR_INPUT
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_GET_C_STAR_INPUT
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_ENTERY_RATIO
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_Q_INPUT
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_OUTPUT
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_SIDESTICK_G
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_SIDESTICK_G_CORR
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_MAX_G
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_MIN_G
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_NEUTRAL_G
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_MIN_CSTAR
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_MAX_CSTAR
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_CSTAR_OUTPUT
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_GSTAR_CURRENT
+# -
+#   type: var
+#   var_name: L:FBW_FLIGHT_ELEV_RAT
+# -
+#   type: var
+#   var_name: L:INI_PID_CSTAR_P_GAIN
+# -
+#   type: var
+#   var_name: L:INI_PID_CSTAR_I_GAIN
+# -
+#   type: var
+#   var_name: L:INI_PID_CSTAR_D_GAIN
+# -
+#   type: var
+#   var_name: L:FBW_VS1G
+# -
+#   type: var
+#   var_name: L:FCPC_A0_AOA
+# -
+#   type: var
+#   var_name: L:AFLOOR_AOA
+# -
+#   type: var
+#   var_name: L:FCPC_Aprot_AoA
+# -
+#   type: var
+#   var_name: L:FAC_2_Aprot_AoA
+# -
+#   type: var
+#   var_name: L:FCPC_Amax_AoA
+# -
+#   type: var
+#   var_name: L:FAC_2_Amax_AoA
+# -
+#   type: var
+#   var_name: L:FAC_MIXED_Amax_AoA
+# -
+#   type: var
+#   var_name: L:FCPC_Vaprot_VSW
+# -
+#   type: var
+#   var_name: L:FCPC_Valpha_MAX
+# -
+#   type: var
+#   var_name: L:Filtered_FCPC_AoA
+# -
+#   type: var
+#   var_name: L:VMAX
+# -
+#   type: var
+#   var_name: L:INI_V_ALPHA_MAX_SPEED
+# -
+#   type: var
+#   var_name: L:INI_V_ALPHA_PROT_SPEED
+# -
+#   type: var
+#   var_name: L:INI_PID_ROLL_P_GAIN
+# -
+#   type: var
+#   var_name: L:INI_PID_ROLL_I_GAIN
+# -
+#   type: var
+#   var_name: L:INI_PID_ROLL_D_GAIN
+# -
+#   type: var
+#   var_name: L:INI_ADIRS_PITCH_ATT_RATE
+# -
+#   type: var
+#   var_name: L:INI_ADIRS_ROLL_ATT_RATE
+# -
+#   type: var
+#   var_name: L:INI_ADIRS_HEADING_ATT_RATE
+# -
+#   type: var
+#   var_name: L:INI_BODY_PITCH_ATT_RATE
+# -
+#   type: var
+#   var_name: L:INI_BODY_ROLL_ATT_RATE
+# -
+#   type: var
+#   var_name: L:INI_BODY_YAW_ATT_RATE
+# -
+#   type: var
+#   var_name: L:INI_TCAS_ACTUAL_MODE
+  -
+    type: var
+    var_name: L:INI_TCAS_STBY_STATE
+  -
+    type: var
+    var_name: L:INI_WX_PWS_SWITCH
+# -
+#   type: var
+#   var_name: L:INI_DTA_ROT_CPT
+# -
+#   type: var
+#   var_name: L:INI_DTA_ROT_FO
+# -
+#   type: var
+#   var_name: L:INI_FCU_ALT_ROT_CPT
+# -
+#   type: var
+#   var_name: L:INI_FCU_ALT_ROT_FO
+# -
+#   type: var
+#   var_name: L:INI_TD_ROT_CPT
+# -
+#   type: var
+#   var_name: L:INI_TD_ROT_FO
+# -
+#   type: var
+#   var_name: L:INI_SC_ROT_CPT
+# -
+#   type: var
+#   var_name: L:INI_SC_ROT_FO
+  -
+    type: var
+    var_name: L:INI_TURB_DAMPER_STATE
+# -
+#   type: var
+#   var_name: L:INI_TURB_DAMPER_FAULT
+# -
+#   type: var
+#   var_name: L:EWD_IS_LDG_MEMO_SHOWED
+  -
+    type: var
+    var_name: L:INI_CALL_ALL_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_TD_TIME
+  -
+    type: var
+    var_name: L:INI_TRACK_FPA_STATE
+  -
+    type: var
+    var_name: L:INI_GPWS_FLAP_STATE
+  -
+    type: var
+    var_name: L:INI_GPWS_TERR_STATE
+# -
+#   type: var
+#   var_name: L:INI_EVAC_SOUND
+  -
+    type: var
+    var_name: L:INI_EVAC_COMMAND_BUTTON
+  -
+    type: var
+    var_name: L:INI_ECAM_VIDEO_STATE
+  -
+    type: var
+    var_name: L:INI_CPT_CHONO_STATE
+  -
+    type: var
+    var_name: L:INI_FO_CHONO_STATE
+  -
+    type: var
+    var_name: L:INI_APU_FIRE_TEST
+  -
+    type: var
+    var_name: L:INI_ENG1_FIRE_TEST
+  -
+    type: var
+    var_name: L:INI_ENG2_FIRE_TEST
+# -
+#   type: var
+#   var_name: L:Left_spoiler_1_failed
+# -
+#   type: var
+#   var_name: L:Left_spoiler_2_failed
+# -
+#   type: var
+#   var_name: L:Left_spoiler_3_failed
+# -
+#   type: var
+#   var_name: L:Left_spoiler_4_failed
+# -
+#   type: var
+#   var_name: L:Left_spoiler_5_failed
+# -
+#   type: var
+#   var_name: L:Left_spoiler_6_failed
+# -
+#   type: var
+#   var_name: L:Right_spoiler_1_failed
+# -
+#   type: var
+#   var_name: L:Right_spoiler_2_failed
+# -
+#   type: var
+#   var_name: L:Right_spoiler_3_failed
+# -
+#   type: var
+#   var_name: L:Right_spoiler_4_failed
+# -
+#   type: var
+#   var_name: L:Right_spoiler_5_failed
+# -
+#   type: var
+#   var_name: L:Right_spoiler_6_failed
+# -
+#   type: var
+#   var_name: L:LEFT_AILERON_FAILED
+# -
+#   type: var
+#   var_name: L:RIGHT_AILERON_FAILED
+# -
+#   type: var
+#   var_name: L:LEFT_OUTER_AILERON_FAILED
+# -
+#   type: var
+#   var_name: L:RIGHT_OUTER_AILERON_FAILED
+# -
+#   type: var
+#   var_name: L:LEFT_ELEVATOR_FAILED
+# -
+#   type: var
+#   var_name: L:RIGHT_ELEVATOR_FAILED
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_LEFT_GUARD_STATE
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_RIGHT_GUARD_STATE
+# -
+#   type: var
+#   var_name: L:INI_V1_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_V1_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_RETARD_CALLOUT_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_RETARD_CALLOUT
+  -
+    type: var
+    var_name: L:INI_engine1_is_shutdown
+  -
+    type: var
+    var_name: L:INI_engine2_is_shutdown
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_UNLK_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_UNLK_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_GEAR3_UNLK_LIGHT
+  -
+    type: var
+    var_name: L:EWD_SHOW_NORMAL
+# -
+#   type: var
+#   var_name: L:INI_2500_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_1000_CALLOUT
+  -
+    type: var
+    var_name: L:INI_SELECTED_RADIO_CPT
+  -
+    type: var
+    var_name: L:INI_SELECTED_RADIO_FO
+  -
+    type: var
+    var_name: L:INI_ADF1_FREQUENCY
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_ADF1_STBY_FREQUENCY
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_ADF2_FREQUENCY
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_ADF2_STBY_FREQUENCY
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:INI_IR1_DRIFT
+# -
+#   type: var
+#   var_name: L:INI_IR2_DRIFT
+# -
+#   type: var
+#   var_name: L:INI_IR3_DRIFT
+# -
+#   type: var
+#   var_name: L:INI_ENG1_FUEL_USED
+# -
+#   type: var
+#   var_name: L:INI_ENG2_FUEL_USED
+  -
+    type: var
+    var_name: L:INI_ENG1_AGENT1_DISCH
+  -
+    type: var
+    var_name: L:INI_ENG1_AGENT2_DISCH
+  -
+    type: var
+    var_name: L:INI_ENG2_AGENT1_DISCH
+  -
+    type: var
+    var_name: L:INI_ENG2_AGENT2_DISCH
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_LEFT_GAURD
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_RIGHT_GAURD
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_OUTER_GUARD_STATE
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_LEFT_GAURD_COMMAND
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_RIGHT_GAURD_COMMAND
+  -
+    type: var
+    var_name: L:INI_GRAVITY_GEAR_OUTER_GUARD_COMMAND
+# -
+#   type: var
+#   var_name: L:INI_STALL_HORN_SOUND
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_1
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_2
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_3
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_4
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_5
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_6
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_46
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_47
+# -
+#   type: var
+#   var_name: L:FBW_VERTICAL_ROTATION_MODE_RATIO
+# -
+#   type: var
+#   var_name: L:FILTERED_AOA
+# -
+#   type: var
+#   var_name: L:FILTERED_IAS
+# -
+#   type: var
+#   var_name: L:INI_SIM_IS_PAUSED
+# -
+#   type: var
+#   var_name: L:FMGS_TMPY_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_TEST_SPEED
+# -
+#   type: var
+#   var_name: L:FMGS_CURRENT_SEGMENT
+# -
+#   type: var
+#   var_name: L:FMGS_SEGMENT_MODE
+# -
+#   type: var
+#   var_name: L:FMGS_DEBUG_CALC
+# -
+#   type: var
+#   var_name: L:FMGS_TURN_RATE
+# -
+#   type: var
+#   var_name: L:FMGS_WPT_DIST
+  -
+    type: var
+    var_name: L:INI_GPWS_SYS_STATE
+  -
+    type: var
+    var_name: L:INI_BULK_ISOL_VALVE
+  -
+    type: var
+    var_name: L:INI_BULK_HOT_AIR_STATE
+  -
+    type: var
+    var_name: L:XMLVAR_Baro_Selector_HPA_3
+# -
+#   type: var
+#   var_name: L:FMGS1_LOADING_SUBSYSTEM
+# -
+#   type: var
+#   var_name: L:FMGS2_LOADING_SUBSYSTEM
+# -
+#   type: var
+#   var_name: L:ADIRS_HEADWIND_COMPONENT
+# -
+#   type: var
+#   var_name: L:FCU_HDG_TIMER
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_MAX_EGT
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_MAX_EGT
+# -
+#   type: var
+#   var_name: L:INI_WINDSHEAR
+# -
+#   type: var
+#   var_name: L:INI_AUTOLAND_LIGHT_FLASHING
+# -
+#   type: var
+#   var_name: L:INI_FDIR_ROLL_FLASHING
+# -
+#   type: var
+#   var_name: L:INI_FDIR_PITCH_FLASHING
+# -
+#   type: var
+#   var_name: L:INI_FDIR_ROLL_FLASHING_TIMER
+# -
+#   type: var
+#   var_name: L:INI_FDIR_PITCH_FLASHING_TIMER
+  -
+    type: var
+    var_name: L:INI_FPA_DIAL
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_TRK_DIAL
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:INI_ALT_STAR_TIMER
+# -
+#   type: var
+#   var_name: L:FMGS_FINAL_DECEL_IDX
+# -
+#   type: var
+#   var_name: L:FMGS_FINAL_DECEL_DIST
+  -
+    type: var
+    var_name: L:INI_PAX_NUMBER
+# -
+#   type: var
+#   var_name: L:FMGS_IDLE_FACTOR
+# -
+#   type: var
+#   var_name: L:FMGS_PERF_FACTOR
+# -
+#   type: var
+#   var_name: L:FMGS1_BOOT_TIMER
+# -
+#   type: var
+#   var_name: L:FMGS2_BOOT_TIMER
+# -
+#   type: var
+#   var_name: L:FMGS_AIRPORT_STEP
+  -
+    type: var
+    var_name: L:INI_FMGS_1_BRIGHTNESS
+    unreliable: true
+  -
+    type: var
+    var_name: L:INI_FMGS_2_BRIGHTNESS
+    unreliable: true
+  -
+    type: var
+    var_name: L:FMGS1_INIT_MODE
+  -
+    type: var
+    var_name: L:FMGS2_INIT_MODE
+  -
+    type: var
+    var_name: L:INI_MCDU1_BRT_SWITCH
+  -
+    type: var
+    var_name: L:INI_MCDU2_BRT_SWITCH
+# -
+#   type: var
+#   var_name: L:FMGS_OOOI_OUT_TIME
+# -
+#   type: var
+#   var_name: L:FMGS_OOOI_IN_TIME
+# -
+#   type: var
+#   var_name: L:FMGS_OOOI_OFF_TIME
+# -
+#   type: var
+#   var_name: L:FMGS_OOOI_ON_TIME
+# -
+#   type: var
+#   var_name: L:FMGS_OOOI_FLIGHT_TIME
+# -
+#   type: var
+#   var_name: L:FMGS_OOOI_BLOCK_TIME
+# -
+#   type: var
+#   var_name: L:FMGS1_ACTIVE_SUBSYSTEM
+  -
+    type: var
+    var_name: L:FMGS1_PERF_MODE
+  -
+    type: var
+    var_name: L:FMGS2_PERF_MODE
+# -
+#   type: var
+#   var_name: L:INI_VFE_SPEED
+# -
+#   type: var
+#   var_name: L:FMGS_SELECTED_GPS
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_55
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_56
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_57
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_58
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_59
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_60
+# -
+#   type: var
+#   var_name: L:INI_FLIGHT_PROGRESS_EFB
+# -
+#   type: var
+#   var_name: L:INI_ALTN_ICAO_EFB
+# -
+#   type: var
+#   var_name: L:INI_ALTN_ICAO2_EFB
+  -
+    type: var
+    var_name: L:INI_CPT_CONSOLE_SWITCH
+  -
+    type: var
+    var_name: L:INI_FO_CONSOLE_SWITCH
+# -
+#   type: var
+#   var_name: L:INI_IS_BELUGA
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_LEVER1_POS
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_LEVER2_POS
+# -
+#   type: var
+#   var_name: L:INI_MINIMUMS_CALLOUT
+  -
+    type: var
+    var_name: L:INI_CPT_CHRONO
+  -
+    type: var
+    var_name: L:INI_FO_CHRONO
+  -
+    type: var
+    var_name: L:INI_COCKPIT_DOOR_LOCK_SWITCH
+  -
+    type: var
+    var_name: L:FMGS2_ACTIVE_SUBSYSTEM
+  -
+    type: var
+    var_name: L:INI_ENG_FIRE_TEST
+  -
+    type: var
+    var_name: L:INI_EFIS_DMC_NORM_STATE
+  -
+    type: var
+    var_name: L:INI_EFIS_DMC_NORM_STATE_FO
+  -
+    type: var
+    var_name: L:INI_CPT_COM_SEL
+  -
+    type: var
+    var_name: L:INI_FO_COM_SEL
+  -
+    type: var
+    var_name: L:INI_FO_WINDOW_COMMAND
+  -
+    type: var
+    var_name: L:INI_CAPT_WINDOW_COMMAND
+  -
+    type: var
+    var_name: L:INI_FO_WINDOW
+  -
+    type: var
+    var_name: L:INI_CAPT_WINDOW
+# -
+#   type: var
+#   var_name: L:FMGS_ACCEPTED_GPS_COORDS
+  -
+    type: var
+    var_name: L:INI_COM3_VHF_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_BELUGA_CARGO_MAIN_DOOR_TARGET
+  -
+    type: var
+    var_name: L:INI_SELECTED_RADIO_COM3
+# -
+#   type: var
+#   var_name: L:INI_EXPERIMENTAL_AT
+# -
+#   type: var
+#   var_name: L:AP_ROLL_LIMIT
+  -
+    type: var
+    var_name: L:INI_ND_MESSAGE
+# -
+#   type: var
+#   var_name: L:INI_COM3_VHF_TRANSFER_SWITCH_COMMAND
+  -
+    type: var
+    var_name: L:FMGS1_PERF_PAGE
+  -
+    type: var
+    var_name: L:FMGS2_PERF_PAGE
+  -
+    type: var
+    var_name: L:INI_COM3_COM_SEL
+# -
+#   type: var
+#   var_name: L:INI_FPA
+# -
+#   type: var
+#   var_name: L:INI_SLIDES_ARMED
+# -
+#   type: var
+#   var_name: L:INI_ALT_REACH_DIST_TOTAL
+# -
+#   type: var
+#   var_name: L:INI_AP_MASTER
+# -
+#   type: var
+#   var_name: L:FMGS_SB_ERROR
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_N1
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_N1
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_N3
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_N3
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_N2
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_N2
+# -
+#   type: var
+#   var_name: L:INI_PERF_ALT_REACH_DIST
+# -
+#   type: var
+#   var_name: L:INI_PERF_ALT_REACH_IDX
+# -
+#   type: var
+#   var_name: L:INI_PERF_ALT_REACH_TOTAL_DIST
+  -
+    type: var
+    var_name: L:FMGS_PERF_PAGE_ALTITUDE
+# -
+#   type: var
+#   var_name: L:INI_GROUND_TIMER
+# -
+#   type: var
+#   var_name: L:INI_ALTIMETER_ALTITUDE_ALERT_TIMER
+# -
+#   type: var
+#   var_name: L:INI_ALTITUDE_ALERT_SOUND
+# -
+#   type: var
+#   var_name: L:INI_AUTOPILOT_LOWER_CAPABILITY_REQ
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_80
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_81
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_82
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_83
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_84
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_85
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_86
+# -
+#   type: var
+#   var_name: L:FMGS_FUEL_CALC_TIMER
+  -
+    type: var
+    var_name: L:INI_MCDU1_CLR_KEY
+  -
+    type: var
+    var_name: L:INI_MCDU2_CLR_KEY
+# -
+#   type: var
+#   var_name: L:INI_VS_FLASHING
+# -
+#   type: var
+#   var_name: L:INI_VS_FLASHING_TIMER
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHROTTLE_ENGINE1_AT_EPR_REQUEST
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHROTTLE_ENGINE2_AT_EPR_REQUEST
+# -
+#   type: var
+#   var_name: L:FG_PHI_DEG
+# -
+#   type: var
+#   var_name: L:FG_XTRACK_NM
+# -
+#   type: var
+#   var_name: L:FG_TAE_DEG
+# -
+#   type: var
+#   var_name: L:FMGS_LNAV_TAD
+# -
+#   type: var
+#   var_name: L:FMGS_SEND_TO_PERF
+# -
+#   type: var
+#   var_name: L:INI_VMAX_SPEED
+# -
+#   type: var
+#   var_name: L:INI_REQUESTED_RUDDER
+# -
+#   type: var
+#   var_name: L:FG_LEFT_AILERON_REQUESTED
+# -
+#   type: var
+#   var_name: L:FG_RIGHT_AILERON_REQUESTED
+# -
+#   type: var
+#   var_name: L:INI_AP_NSW_COMMAND
+# -
+#   type: var
+#   var_name: L:FMGS1_AIRPORT_BUTTON_REQ
+# -
+#   type: var
+#   var_name: L:FMGS2_AIRPORT_BUTTON_REQ
+  -
+    type: var
+    var_name: L:PUSH_ECAM_TOCONFIG_PRESSED
+# -
+#   type: var
+#   var_name: L:ATHR_THR_LEVER1_POS
+# -
+#   type: var
+#   var_name: L:ATHR_THR_LEVER2_POS
+  -
+    type: var
+    var_name: L:INI_WXR_TILT
+# -
+#   type: var
+#   var_name: L:INI_SPEED_CALLOUT
+  - # A FLOOR override
+    type: var
+    var_name: L:INI_TOGA_LOCK_PREV
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHROTTLE_DISCONNECT_TYPE
+  -
+    type: var
+    var_name: L:INI_THRUST_LOCKED
+  -
+    type: var
+    var_name: L:INI_ATC_MSG_CMD
+# -
+#   type: var
+#   var_name: L:INI_FILTERED_IAS_SPD
+  -
+    type: var
+    var_name: L:INI_PROBE_HEAT
+# -
+#   type: var
+#   var_name: L:INI_FLAPS_HANDLE_MOVEMENT_RATIO
+# -
+#   type: var
+#   var_name: L:FBW_ELEV_OUTPUT
+# -
+#   type: var
+#   var_name: L:FMGS_RECALC_TRIP
+  -
+    type: var
+    var_name: L:INI_WXR_GAIN
+# -
+#   type: var
+#   var_name: L:FMGS_MISSED_APPROACH_STRING
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_SHOW_AVAIL
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_SHOW_AVAIL
+# -
+#   type: var
+#   var_name: L:FMGS_TOTAL_SEGMENT
+# -
+#   type: var
+#   var_name: L:FG_NZ_ORDER
+# -
+#   type: var
+#   var_name: L:FG_PITCH_ORDER_NZ
+# -
+#   type: var
+#   var_name: L:FMGS_CUSTOM_VAPP
+# -
+#   type: var
+#   var_name: L:INI_FILTERED_ACCEL_KTS
+# -
+#   type: var
+#   var_name: L:INI_FMC_PAGE1_PREV
+# -
+#   type: var
+#   var_name: L:INI_FMC_PAGE2_PREV
+  -
+    type: var
+    var_name: L:FMGS1_WIND_MODE
+  -
+    type: var
+    var_name: L:FMGS2_WIND_MODE
+  -
+    type: var
+    var_name: L:INI_CALL_FWD_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_CENTER_TANK_LEFT_FEEDING
+# -
+#   type: var
+#   var_name: L:INI_CENTER_TANK_RIGHT_FEEDING
+# -
+#   type: var
+#   var_name: L:INI_STEER_MAX_VALUE
+# -
+#   type: var
+#   var_name: L:Left_Speedbrake_1
+# -
+#   type: var
+#   var_name: L:Left_Speedbrake_2
+# -
+#   type: var
+#   var_name: L:Left_Speedbrake_3
+# -
+#   type: var
+#   var_name: L:Left_Speedbrake_4
+# -
+#   type: var
+#   var_name: L:Left_Speedbrake_5
+# -
+#   type: var
+#   var_name: L:Left_Speedbrake_6
+# -
+#   type: var
+#   var_name: L:Right_Speedbrake_1
+# -
+#   type: var
+#   var_name: L:Right_Speedbrake_2
+# -
+#   type: var
+#   var_name: L:Right_Speedbrake_3
+# -
+#   type: var
+#   var_name: L:Right_Speedbrake_4
+# -
+#   type: var
+#   var_name: L:Right_Speedbrake_5
+# -
+#   type: var
+#   var_name: L:Right_Speedbrake_6
+# -
+#   type: var
+#   var_name: L:FE_THS_ORDER
+# -
+#   type: var
+#   var_name: L:FE_ELEV_ORDER
+# -
+#   type: var
+#   var_name: L:ADIRS1_BODY_PITCH
+# -
+#   type: var
+#   var_name: L:ADIRS1_BODY_ROLL
+# -
+#   type: var
+#   var_name: L:ADIRS1_BODY_PITCH_RATE
+# -
+#   type: var
+#   var_name: L:ADIRS1_BODY_ROLL_RATE
+# -
+#   type: var
+#   var_name: L:ADIRS1_BODY_YAW_RATE
+# -
+#   type: var
+#   var_name: L:ADIRS1_HEADING_RATE
+# -
+#   type: var
+#   var_name: L:ADIRS1_PITCH_ATT_RATE
+# -
+#   type: var
+#   var_name: L:ADIRS1_ROLL_ATT_RATE
+# -
+#   type: var
+#   var_name: L:ADIRS1_BODY_LONGITUDINAL_ACC
+# -
+#   type: var
+#   var_name: L:ADIRS1_BODY_LATERAL_ACC
+# -
+#   type: var
+#   var_name: L:ADIRS1_BODY_NORMAL_ACC
+# -
+#   type: var
+#   var_name: L:INI_TEST_ROT8
+  -
+    type: var
+    var_name: L:INI_SMOKE_TEST_BUTTON
+  -
+    type: var
+    var_name: L:INI_CARGO_AFT_AGENT_DISCH
+# -
+#   type: var
+#   var_name: L:INI_NO_SMOKING_ON
+# -
+#   type: var
+#   var_name: L:INI_SPOILERS_OUT
+# -
+#   type: var
+#   var_name: L:FMGS_TO_TRIM_TIMER
+# -
+#   type: var
+#   var_name: L:FMGS_TO_TRIM_DEG
+# -
+#   type: var
+#   var_name: L:FMGS_FILTERED_RA
+  -
+    type: var
+    var_name: L:INI_CKPT_DOOR_VIDEO
+  -
+    type: var
+    var_name: L:INI_CPT_WIPER_SWITCH
+  -
+    type: var
+    var_name: L:INI_FO_WIPER_SWITCH
+# -
+#   type: var
+#   var_name: L:FG_N1_TGT
+# -
+#   type: var
+#   var_name: L:FG_ROLL_ORDER
+# -
+#   type: var
+#   var_name: L:FG_ROLL_ORDER_FD
+# -
+#   type: var
+#   var_name: L:FMGS_HOLD_ACTIVE
+# -
+#   type: var
+#   var_name: L:FG_RNAV_CRS
+# -
+#   type: var
+#   var_name: L:FMGS_ADD_FPLANS_BUTTON
+# -
+#   type: var
+#   var_name: L:INI_ENGINE1_RR_STARTER_BOX
+# -
+#   type: var
+#   var_name: L:INI_ENGINE2_RR_STARTER_BOX
+# -
+#   type: var
+#   var_name: L:FG_N1_ALT_SOFT
+# -
+#   type: var
+#   var_name: L:FMGS2_ADD_FPLANS_BUTTON
+# -
+#   type: var
+#   var_name: L:FBW_THS_ORDER
+# -
+#   type: var
+#   var_name: L:ADIRS2_BODY_PITCH
+# -
+#   type: var
+#   var_name: L:ADIRS2_BODY_ROLL
+# -
+#   type: var
+#   var_name: L:ADIRS2_BODY_PITCH_ATT_RATE
+# -
+#   type: var
+#   var_name: L:ADIRS2_BODY_ROLL_ATT_RATE
+# -
+#   type: var
+#   var_name: L:ADIRS2_BODY_NORMAL_ACC
+# -
+#   type: var
+#   var_name: L:FBW_YD_OUTPUT
+# -
+#   type: var
+#   var_name: L:FMGS1_INIT_BUTTON_REQ
+# -
+#   type: var
+#   var_name: L:FMGS2_INIT_BUTTON_REQ
+# -
+#   type: var
+#   var_name: L:INI_AUTOPILOT_DISCONNECT_SOUND
+# -
+#   type: var
+#   var_name: L:INI_AUTOPILOT_DISCONNECT_SOUND_LOW
+# -
+#   type: var
+#   var_name: L:INI_AUTOPILOT_DISCONNECT_ECAM
+# -
+#   type: var
+#   var_name: L:INI_AUTOPILOT_DISCONNECT_EWD
+  -
+    type: var
+    var_name: L:INI_AUTOPILOT_DISCONNECT_TYPE
+# -
+#   type: var
+#   var_name: L:FMGS_CLIMB_TRANSITION_MACH_ALTITUDE_SELECTED
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_10
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_11
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_14
+  -
+    type: var
+    var_name: L:INI_ADR2_FAULT
+  -
+    type: var
+    var_name: L:INI_ADR3_FAULT
+# -
+#   type: var
+#   var_name: L:INI_HOT_AIR_FAULT
+  -
+    type: var
+    var_name: L:INI_GPWS_FLAP_MODE
+  -
+    type: var
+    var_name: L:INI_SWP_EIS_DMC
+  -
+    type: var
+    var_name: L:INI_SWP_ECAM_ND_XFR
+# -
+#   type: var
+#   var_name: L:FG_VNAV_ALT
+# -
+#   type: var
+#   var_name: L:FG_VNAV_VS
+# -
+#   type: var
+#   var_name: L:FG_VNAV_ERR
+# -
+#   type: var
+#   var_name: L:FG_VNAV_SPD
+# -
+#   type: var
+#   var_name: L:FG_VNAV_DIST_DEST
+  -
+    type: var
+    var_name: L:INI_TCAS_ATC_STATE
+# -
+#   type: var
+#   var_name: L:FG_VNAV_SPD_MANAGED
+# -
+#   type: var
+#   var_name: L:FG_VNAV_LOWER_SPEED_MARGIN
+# -
+#   type: var
+#   var_name: L:FG_VNAV_UPPER_SPEED_MARGIN
+# -
+#   type: var
+#   var_name: L:FG_VNAV_GUIDANCE_REQ_MODE
+# -
+#   type: var
+#   var_name: L:FG_VNAV_SPEEDS_MANAGED_ATHR
+# -
+#   type: var
+#   var_name: L:FG_VNAV_SPEEDS_MANAGED_PFD
+# -
+#   type: var
+#   var_name: L:INI_AUTOPILOT_DISCONNECT_LIGHT
+# -
+#   type: var
+#   var_name: L:FBW_REQUEST_RESET_TRIM
+# -
+#   type: var
+#   var_name: L:FMGS_RECALC_VNAV
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_65
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_66
+# -
+#   type: var
+#   var_name: L:INI_SEATBELTS_ON
+# -
+#   type: var
+#   var_name: L:FCU_SPD_TIMER
+  -
+    type: var
+    var_name: L:INI_Preset_Dial
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_FORCE_IRS_ON
+# -
+#   type: var
+#   var_name: L:XMLVAR_RudderTrim
+# -
+#   type: var
+#   var_name: L:FCU_VVI_TIMER
+  -
+    type: var
+    var_name: L:XMLVAR_VHF_1_CPT_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_VHF_1_FO_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_VHF_2_CPT_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_VHF_2_FO_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_VHF_3_CPT_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_VHF_3_FO_Switch_Down
+  -
+    type: var
+    var_name: L:INI_FUEL_EFB_LOADING
+  -
+    type: var
+    var_name: L:INI_VHF_1_VOLUME_CPT
+  -
+    type: var
+    var_name: L:INI_CPT_PFD_ND_TFR
+  -
+    type: var
+    var_name: L:INI_FO_PFD_ND_TFR
+# -
+#   type: var
+#   var_name: L:INI_LOC_VALID
+# -
+#   type: var
+#   var_name: L:INI_LOC_DEV
+# -
+#   type: var
+#   var_name: L:INI_GS_DEV
+# -
+#   type: var
+#   var_name: L:FBW_NORMAL_LAW_TRIM_DEG
+# -
+#   type: var
+#   var_name: L:FBW_NORMAL_LAW_G_DEMAND
+# -
+#   type: var
+#   var_name: L:TOTAL_ELEV_INPUT
+# -
+#   type: var
+#   var_name: L:FBW_NORMAL_LAW_G_CUR
+  -
+    type: var
+    var_name: L:INI_REALISTIC_ND_DRAWING
+# -
+#   type: var
+#   var_name: L:FMGS_RECALC_HOLD
+# -
+#   type: var
+#   var_name: L:FMGS_SEC_TIMER
+# -
+#   type: var
+#   var_name: L:INI_EXPERIMENTAL_LNAV
+# -
+#   type: var
+#   var_name: L:FMGS_RECALC_VNAV_TIMER
+# -
+#   type: var
+#   var_name: L:FG_VNAV_SPD_MACH
+  -
+    type: var
+    var_name: L:INI_VHF_2_VOLUME_CPT
+  -
+    type: var
+    var_name: L:INI_VHF_3_VOLUME_CPT
+  -
+    type: var
+    var_name: L:INI_VHF_1_VOLUME_FO
+  -
+    type: var
+    var_name: L:INI_VHF_2_VOLUME_FO
+  -
+    type: var
+    var_name: L:INI_VHF_3_VOLUME_FO
+  -
+    type: var
+    var_name: L:INI_VHF_1_VOLUME_COM3
+  -
+    type: var
+    var_name: L:INI_VHF_2_VOLUME_COM3
+  -
+    type: var
+    var_name: L:INI_VHF_3_VOLUME_COM3
+  -
+    type: var
+    var_name: L:XMLVAR_VHF_1_COM3_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_VHF_2_COM3_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_VHF_3_COM3_Switch_Down
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_90
+  -
+    type: var
+    var_name: L:XMLVAR_HF_1_CPT_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_HF_2_CPT_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_HF_1_FO_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_HF_2_FO_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_HF_1_COM3_Switch_Down
+  -
+    type: var
+    var_name: L:XMLVAR_HF_2_COM3_Switch_Down
+  -
+    type: var
+    var_name: L:INI_HF_1_VOLUME_CPT
+  -
+    type: var
+    var_name: L:INI_HF_2_VOLUME_CPT
+  -
+    type: var
+    var_name: L:INI_HF_1_VOLUME_FO
+  -
+    type: var
+    var_name: L:INI_HF_2_VOLUME_FO
+  -
+    type: var
+    var_name: L:INI_HF_1_VOLUME_COM3
+  -
+    type: var
+    var_name: L:INI_HF_2_VOLUME_COM3
+# -
+#   type: var
+#   var_name: L:INI_ECAM_CURRENT_PAGE
+# -
+#   type: var
+#   var_name: L:INI_ECAM_AUTOMATIC_PAGE
+# -
+#   type: var
+#   var_name: L:ADIRS2_BODY_PITCH_ATT_RATE_TGT
+# -
+#   type: var
+#   var_name: L:INI_EXPERIMENTAL_VNAV_CLB
+# -
+#   type: var
+#   var_name: L:INI_FORCE_AP
+# -
+#   type: var
+#   var_name: L:INI_ZFWCG_EFB
+  -
+    type: var
+    var_name: L:INI_TCAS_IDENT_COMMAND
+  -
+    type: var
+    var_name: L:INI_FMC1_VERT_REV_PAGE
+  -
+    type: var
+    var_name: L:INI_FMC2_VERT_REV_PAGE
+  -
+    type: var
+    var_name: L:AUTO_THROTTLE_DISCONNECT_REQ
+# -
+#   type: var
+#   var_name: L:FMGS_FL100_ALT
+  -
+    type: var
+    var_name: L:FMGS1_SHOW_NEXT_WPT_WINDOW
+  -
+    type: var
+    var_name: L:FMGS2_SHOW_NEXT_WPT_WINDOW
+  -
+    type: var
+    var_name: L:FMGS1_SHOW_NEW_DEST_WINDOW
+  -
+    type: var
+    var_name: L:FMGS2_SHOW_NEW_DEST_WINDOW
+# -
+#   type: var
+#   var_name: L:Left_spoiler_7_failed
+# -
+#   type: var
+#   var_name: L:Right_spoiler_7_failed
+# -
+#   type: var
+#   var_name: L:INI_HDG_PRESET
+  -
+    type: var
+    var_name: L:RUDDER_TRIM_RESET_REQ
+# -
+#   type: var
+#   var_name: L:INI_SB_SET
+  -
+    type: var
+    var_name: L:INI_LIGHTS_INT_COAT_STWG
+  -
+    type: var
+    var_name: L:INI_READING_LT_LEFT
+  -
+    type: var
+    var_name: L:INI_READING_LT_RIGHT
+  -
+    type: var
+    var_name: L:INI_LANDING_LIGHT_L_ANIMATION
+  -
+    type: var
+    var_name: L:INI_LANDING_LIGHT_R_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_NO_PORTABLE_DEVICES_ON
+# -
+#   type: var
+#   var_name: L:INI_FMS_VALID
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_44
+  -
+    type: var
+    var_name: L:INI_COMMERCIAL_PART_SHED
+# -
+#   type: var
+#   var_name: L:INI_MLG_BAY_FIRE
+  -
+    type: var
+    var_name: L:INI_CPT_CURSOR_SCREEN
+  -
+    type: var
+    var_name: L:INI_FO_CURSOR_SCREEN
+  -
+    type: var
+    var_name: L:INI_REFUEL_IN_PROGRESS
+  -
+    type: var
+    var_name: L:INI_REFUEL_DOOR
+# -
+#   type: var
+#   var_name: L:INI_SPOILER7_FAILURE
+# -
+#   type: var
+#   var_name: L:Left_Speedbrake_7
+# -
+#   type: var
+#   var_name: L:Right_Speedbrake_7
+# -
+#   type: var
+#   var_name: L:INI_HYD_YELLOW_ELEC_PRESSURE
+# -
+#   type: var
+#   var_name: L:INI_FCU_SPD_DASHED
+# -
+#   type: var
+#   var_name: L:INI_FCU_HDG_DASHED
+# -
+#   type: var
+#   var_name: L:INI_FCU_VS_DASHED
+# -
+#   type: var
+#   var_name: L:INI_FCU_SPD_DOT
+# -
+#   type: var
+#   var_name: L:INI_FCU_HDG_DOT
+# -
+#   type: var
+#   var_name: L:INI_FCU_ALT_DOT
+  -
+    type: var
+    var_name: L:INI_FORCE_APPROACH
+  -
+    type: var
+    var_name: L:AcarsLogonWaiting
+  -
+    type: var
+    var_name: L:AcarsLogonActive
+  -
+    type: var
+    var_name: L:TO_FLAPS_VS1G
+  -
+    type: var
+    var_name: L:TO_FLAPS_WEIGHT
+  -
+    type: var
+    var_name: L:TO_FLAPS_CONF
+  -
+    type: var
+    var_name: L:INI_FUEL_REQ
+  -
+    type: var
+    var_name: L:FMGS1_FPLAN_MODE
+  -
+    type: var
+    var_name: L:FMGS2_FPLAN_MODE
+# -
+#   type: var
+#   var_name: L:INI_IS_AVATAR
+  -
+    type: var
+    var_name: L:INI_FORCE_RUNWAY_FLT
+  -
+    type: var
+    var_name: L:INI_FORCE_APPROACH_FLT
+  -
+    type: var
+    var_name: L:INI_EMER_DESCENT
+  -
+    type: var
+    var_name: L:INI_EMER_DESCENT_ARMED
+# -
+#   type: var
+#   var_name: L:INI_ATC_MSG_SOUND
+  -
+    type: var
+    var_name: L:INI_REQUEST_STAIRS_1L
+  -
+    type: var
+    var_name: L:INI_REQUEST_STAIRS_2L
+  -
+    type: var
+    var_name: L:INI_REQUEST_STAIRS_4L
+# -
+#   type: var
+#   var_name: L:INI_FLAPS_TRANSIT_SOUND
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_61
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_62
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_63
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_64
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_67
+  -
+    type: var
+    var_name: L:INI_POTENTIOMETER_68
+# -
+#   type: var
+#   var_name: L:FG_SHORT_TERM_SPEED
+# -
+#   type: var
+#   var_name: L:FMGS_SIM_RATE_REQ
+# -
+#   type: var
+#   var_name: L:INI_THRUST_DERATED_CLIMB_N1
+# -
+#   type: var
+#   var_name: L:INI_THRUST_DERATED_CLIMB_PCT
+# -
+#   type: var
+#   var_name: L:INI_FLAPS_OVERRIDE_RATIO
+# -
+#   type: var
+#   var_name: L:INI_SLATS_OVERRIDE_RATIO
+  -
+    type: var
+    var_name: L:INI_ISIS_LS_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_APPROACHING_MINIMUMS_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_PITCH_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_EFB_NG_TOKEN_EXPIRED
+# -
+#   type: var
+#   var_name: L:INI_THRUST_GA_SOFT_N1
+# -
+#   type: var
+#   var_name: L:INI_EO_MAX_CRUISE_LEVEL
+# -
+#   type: var
+#   var_name: L:FG_N1_EWD_TGT
+# -
+#   type: var
+#   var_name: L:INI_ENG1_THR_COMMANDED
+# -
+#   type: var
+#   var_name: L:INI_ENG2_THR_COMMANDED
+  -
+    type: var
+    var_name: L:INI_AUTOBRK_OFF_MEMO
+  -
+    type: var
+    var_name: L:INI_Engine_Cowl_Left
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:INI_Engine_Cowl_Right
+    cancel_h_events: true
+  -
+    type: var
+    var_name: L:INI_FORCE_LIGHTS_REFRESH
+# -
+#   type: var
+#   var_name: L:INI_CARGO_DOOR_POWERED
+# -
+#   type: var
+#   var_name: L:INI_TIME_MARKER_SOUND
+  -
+    type: var
+    var_name: L:INI_CABIN_MUSIC_PLAYING
+  -
+    type: var
+    var_name: L:INI_OUTER_TANK_LEFT_PUMP_ON
+  -
+    type: var
+    var_name: L:INI_INNER_TANK_RIGHT_PUMP_ON
+# -
+#   type: var
+#   var_name: L:INI_TIME_OF_DAY
+# -
+#   type: var
+#   var_name: L:INI_ENG1_FLEX
+# -
+#   type: var
+#   var_name: L:INI_ENG2_FLEX
+  -
+    type: var
+    var_name: L:INI_MLG_Bay_VIS
+  -
+    type: var
+    var_name: L:INI_NLG_BAY_VIS
+# -
+#   type: var
+#   var_name: L:INI_CABIN_VIS
+# -
+#   type: var
+#   var_name: L:INI_MASTER_CAUTION_CHIME
+  -
+    type: var
+    var_name: L:INI_RESET_HYD_RSV
+# -
+#   type: var
+#   var_name: L:INI_SSA_ANIM
+# -
+#   type: var
+#   var_name: L:INI_MFP_ANIM
+# -
+#   type: var
+#   var_name: L:INI_AOA_ANIM
+  -
+    type: var
+    var_name: L:INI_CHECKLIST_MENU_FMC1
+  -
+    type: var
+    var_name: L:INI_CHECKLIST_MENU_FMC2
+# -
+#   type: var
+#   var_name: L:FMGS_ISA_DEV
+  -
+    type: var
+    var_name: L:INI_Gear_GND_Opening_Left
+  -
+    type: var
+    var_name: L:INI_Gear_GND_Opening_Right
+  -
+    type: var
+    var_name: L:INI_Brake_Wear_Indicator_LFI
+  -
+    type: var
+    var_name: L:INI_Brake_Wear_Indicator_LFO
+  -
+    type: var
+    var_name: L:INI_Brake_Wear_Indicator_LRI
+  -
+    type: var
+    var_name: L:INI_Brake_Wear_Indicator_LRO
+  -
+    type: var
+    var_name: L:INI_Brake_Wear_Indicator_RFI
+  -
+    type: var
+    var_name: L:INI_Brake_Wear_Indicator_RFO
+  -
+    type: var
+    var_name: L:INI_Brake_Wear_Indicator_RRI
+  -
+    type: var
+    var_name: L:INI_Brake_Wear_Indicator_RRO
+  -
+    type: var
+    var_name: L:INI_REQ_GPS_JAMMING
+  -
+    type: var
+    var_name: L:FBW_BACKUP_CONTROL_ACTIVE
+  -
+    type: var
+    var_name: L:FBW_BCM_REQUEST_FAILED
+  -
+    type: var
+    var_name: L:INI_NLG_Door_Opening
+  -
+    type: var
+    var_name: L:INI_RWY_TOO_SHORT
+  -
+    type: var
+    var_name: L:INI_SET_MAX_REV
+  -
+    type: var
+    var_name: L:INI_KEEP_MAX_REV
+  -
+    type: var
+    var_name: L:INI_BRAKE_MAX_BRAKING
+  -
+    type: var
+    var_name: L:INI_MLG_Door_Opening_Hatch
+# -
+#   type: var
+#   var_name: L:INI_ACU_AVAIL_SHOW
+# -
+#   type: var
+#   var_name: L:INI_ASU_AVAIL_SHOW
+# -
+#   type: var
+#   var_name: L:INI_APPROACH_TYPE_TEMPORARY
+  -
+    type: var
+    var_name: L:INI_ISIS_SWAP_MODE
+  -
+    type: var
+    var_name: L:INI_REQ_BOARDING
+  -
+    type: var
+    var_name: L:INI_REQ_REFUELLING
+  -
+    type: var
+    var_name: L:INI_BARO_PRESET_CPT
+  -
+    type: var
+    var_name: L:INI_BARO_PRESET_FO
+  -
+    type: var
+    var_name: L:INI_BARO_PRESET_CPT_SHOW
+  -
+    type: var
+    var_name: L:INI_BARO_PRESET_FO_SHOW
+# -
+#   type: var
+#   var_name: L:INI_DOME_LIGHT_VALUE
+  -
+    type: var
+    var_name: L:INI_MLG_GEAR_BAY_LIGHT
+  -
+    type: var
+    var_name: L:INI_STAIRS_ANIM_VALUE_1L
+  -
+    type: var
+    var_name: L:INI_STAIRS_ANIM_VALUE_2L
+  -
+    type: var
+    var_name: L:INI_STAIRS_ANIM_VALUE_4L
+# -
+#   type: var
+#   var_name: L:INI_STAIRS_1L_SPAWNED
+# -
+#   type: var
+#   var_name: L:INI_STAIRS_2L_SPAWNED
+# -
+#   type: var
+#   var_name: L:INI_STAIRS_4L_SPAWNED
+# -
+#   type: var
+#   var_name: L:FG_VNAV_DIST_PPOS
+# -
+#   type: var
+#   var_name: L:INI_PARKING_BRAKE_CMD
+# -
+#   type: var
+#   var_name: L:INI_AUTOPILOT_LOWER_CAPABILITY
+# -
+#   type: var
+#   var_name: L:INI_TCAS_VS_TGT
+# -
+#   type: var
+#   var_name: L:MFD_CONTRAST_ACT
+# -
+#   type: var
+#   var_name: L:INI_CONDENSATION_LEVEL
+# -
+#   type: var
+#   var_name: L:INI_IS_ULR
+  -
+    type: var
+    var_name: L:INI_BTV_EXIT_SELECTED
+# -
+#   type: var
+#   var_name: L:INI_DOME_LIGHT_VALUE_OVERRIDE
+# -
+#   type: var
+#   var_name: L:INI_CKPT_LT_FLOOD_OVERRIDE
+# -
+#   type: var
+#   var_name: L:INI_MIP_MAP_BRT_LEFT_OVERRIDE
+# -
+#   type: var
+#   var_name: L:INI_MIP_MAP_BRT_RIGHT_OVERRIDE
+  -
+    type: var
+    var_name: L:INI_REQ_APU_PANELSTATE
+  -
+    type: var
+    var_name: L:INI_RESET_BRAKE_TEMPS
+  -
+    type: var
+    var_name: L:INI_MCDU_OPTION
+  -
+    type: var
+    var_name: L:INI_Gear_GND_Opening_Center
+# -
+#   type: var
+#   var_name: L:FG_VNAV_DIST_PPOS_BEFORE_DES
+# -
+#   type: var
+#   var_name: L:ELEV_TRIM_RATIO_ANIM
+  -
+    type: var
+    var_name: L:INI_REQ_CRZ_FLT
+# -
+#   type: var
+#   var_name: L:INI_AXIS1_VALUE
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_REVERSE_LOW:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_REVERSE_HIGH:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_REVERSE_IDLE_LOW:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_REVERSE_IDLE_HIGH:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_IDLE_LOW:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_IDLE_HIGH:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_CLIMB_LOW:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_CLIMB_HIGH:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_FLEXMCT_LOW:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_FLEXMCT_HIGH:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_TOGA_LOW:1
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_TOGA_HIGH:1
+# -
+#   type: var
+#   var_name: L:INI_AXIS2_VALUE
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_REVERSE_LOW:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_REVERSE_HIGH:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_REVERSE_IDLE_LOW:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_REVERSE_IDLE_HIGH:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_IDLE_LOW:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_IDLE_HIGH:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_CLIMB_LOW:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_CLIMB_HIGH:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_FLEXMCT_LOW:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_FLEXMCT_HIGH:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_TOGA_LOW:2
+# -
+#   type: var
+#   var_name: L:INI_THROTTLE_MAPPING_TOGA_HIGH:2
+# -
+#   type: var
+#   var_name: L:INI_SPOILERS_GROUND_SPOILERS_ACTIVE
+# -
+#   type: var
+#   var_name: L:INI_SPOILERS_SIM_HANDLE_POS
+# -
+#   type: var
+#   var_name: L:INI_FLAPS_HANDLE_INDEX
+# -
+#   type: var
+#   var_name: L:INI_FLAPS_HANDLE_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_3
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_4
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_3_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_4_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_1_REQUEST
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_2_REQUEST
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_3_REQUEST
+# -
+#   type: var
+#   var_name: L:INI_3D_THROTTLE_LEVER_POSITION_4_REQUEST
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHRUST_TLA:3
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHRUST_TLA:4
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHRUST_TLA_ANIMATION:1
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHRUST_TLA_ANIMATION:2
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHRUST_TLA_ANIMATION:3
+# -
+#   type: var
+#   var_name: L:INI_AUTOTHRUST_TLA_ANIMATION:4
+# -
+#   type: var
+#   var_name: L:INI_REVERSE1_HANDLE_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_REVERSE2_HANDLE_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_REVERSE3_HANDLE_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_REVERSE4_HANDLE_PERCENT
+# -
+#   type: var
+#   var_name: L:INI_REVERSE3_HANDLE_PERCENT_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_REVERSE4_HANDLE_PERCENT_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_SIDESTICK1_POSITION_X
+# -
+#   type: var
+#   var_name: L:INI_SIDESTICK1_POSITION_Y
+# -
+#   type: var
+#   var_name: L:INI_SIDESTICK2_POSITION_X
+# -
+#   type: var
+#   var_name: L:INI_SIDESTICK2_POSITION_Y
+# -
+#   type: var
+#   var_name: L:INI_TILLER_POSITION
+# -
+#   type: var
+#   var_name: L:INI_TILLER_POSITION_ANIMATION_VIS
+# -
+#   type: var
+#   var_name: L:INI_FO_TILLER_POSITION_ANIMATION_VIS
+  -
+    type: var
+    var_name: L:INI_PRINTER_TEST_VAR
+# -
+#   type: var
+#   var_name: L:INI_PRINTING_SOUND
+# -
+#   type: var
+#   var_name: L:INI_PAPER_SOUND
+# -
+#   type: var
+#   var_name: L:INI_PAPER_ATTACHED_SOUND
+  -
+    type: var
+    var_name: L:INI_ECAM_USE_DEV_INPUT
+# -
+#   type: var
+#   var_name: L:INI_APU_OIL_LEVEL
+# -
+#   type: var
+#   var_name: L:INI_ENG1_EGT
+# -
+#   type: var
+#   var_name: L:INI_ENG1_OIL_PRESS
+# -
+#   type: var
+#   var_name: L:INI_ENG1_VIB_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG1_VIB_N2
+# -
+#   type: var
+#   var_name: L:INI_ENG1_VIB_N3
+# -
+#   type: var
+#   var_name: L:INI_ENG1_OIL_DELTA_T
+# -
+#   type: var
+#   var_name: L:INI_ENG1_MASTER
+  -
+    type: var
+    var_name: L:INI_ENG1_IGNITER_A
+  -
+    type: var
+    var_name: L:INI_ENG1_IGNITER_B
+# -
+#   type: var
+#   var_name: L:INI_ENG1_MIXTURE_RATIO
+  -
+    type: var
+    var_name: L:INI_ENG1_IGNITION
+# -
+#   type: var
+#   var_name: L:INI_ENG1_FF
+# -
+#   type: var
+#   var_name: L:INI_ENG1_POWER
+# -
+#   type: var
+#   var_name: L:INI_ENG1_POWER_DISPLAY
+# -
+#   type: var
+#   var_name: L:INI_ENG1_POWER_REQUESTED
+# -
+#   type: var
+#   var_name: L:INI_ENG1_WINDMILL_RPM_ANIM
+# -
+#   type: var
+#   var_name: L:INI_ENG1_N1_RPM_ANIM
+# -
+#   type: var
+#   var_name: L:INI_ENG1_N1_DISPLAYED
+# -
+#   type: var
+#   var_name: L:INI_ENG1_N3
+# -
+#   type: var
+#   var_name: L:INI_ENG1_THROTTLE_POS
+# -
+#   type: var
+#   var_name: L:INI_ENG1_AVAIL
+# -
+#   type: var
+#   var_name: L:INI_ENG1_COOLING_TIME
+# -
+#   type: var
+#   var_name: L:INI_ENG1_COOLING_NEED
+# -
+#   type: var
+#   var_name: L:INI_ENG1_THR_LBS
+# -
+#   type: var
+#   var_name: L:INI_ENG1_THR_PCT
+# -
+#   type: var
+#   var_name: L:INI_ENG1_N1_THR_REQ
+# -
+#   type: var
+#   var_name: L:INI_ENG1_EMERGENCY_SHUTDOWN
+# -
+#   type: var
+#   var_name: L:INI_ENG1_EMERGENCY_SHUTDOWN_TIMER_START
+# -
+#   type: var
+#   var_name: L:INI_ENG1_EMERGENCY_SHUTDOWN_TIMER
+# -
+#   type: var
+#   var_name: L:INI_ENG1_FUEL_INTRO_N2
+# -
+#   type: var
+#   var_name: L:INI_ENG1_COOLING_EGT
+# -
+#   type: var
+#   var_name: L:INI_ENG1_IDLE_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG1_CLB_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG1_FLEX_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG1_MCT_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG1_TOGA_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG2_EGT
+# -
+#   type: var
+#   var_name: L:INI_ENG2_OIL_PRESS
+# -
+#   type: var
+#   var_name: L:INI_ENG2_VIB_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG2_VIB_N2
+# -
+#   type: var
+#   var_name: L:INI_ENG2_VIB_N3
+# -
+#   type: var
+#   var_name: L:INI_ENG2_OIL_DELTA_T
+# -
+#   type: var
+#   var_name: L:INI_ENG2_MASTER
+  -
+    type: var
+    var_name: L:INI_ENG2_IGNITER_A
+  -
+    type: var
+    var_name: L:INI_ENG2_IGNITER_B
+# -
+#   type: var
+#   var_name: L:INI_ENG2_MIXTURE_RATIO
+  -
+    type: var
+    var_name: L:INI_ENG2_IGNITION
+# -
+#   type: var
+#   var_name: L:INI_ENG2_FF
+# -
+#   type: var
+#   var_name: L:INI_ENG2_POWER
+# -
+#   type: var
+#   var_name: L:INI_ENG2_POWER_DISPLAY
+# -
+#   type: var
+#   var_name: L:INI_ENG2_POWER_REQUESTED
+# -
+#   type: var
+#   var_name: L:INI_ENG2_WINDMILL_RPM_ANIM
+# -
+#   type: var
+#   var_name: L:INI_ENG2_N1_RPM_ANIM
+# -
+#   type: var
+#   var_name: L:INI_ENG2_N1_DISPLAYED
+# -
+#   type: var
+#   var_name: L:INI_ENG2_N3
+# -
+#   type: var
+#   var_name: L:INI_ENG2_THROTTLE_POS
+# -
+#   type: var
+#   var_name: L:INI_ENG2_AVAIL
+# -
+#   type: var
+#   var_name: L:INI_ENG2_COOLING_TIME
+# -
+#   type: var
+#   var_name: L:INI_ENG2_COOLING_NEED
+# -
+#   type: var
+#   var_name: L:INI_ENG2_THR_LBS
+# -
+#   type: var
+#   var_name: L:INI_ENG2_THR_PCT
+# -
+#   type: var
+#   var_name: L:INI_ENG2_N1_THR_REQ
+# -
+#   type: var
+#   var_name: L:INI_ENG2_EMERGENCY_SHUTDOWN
+# -
+#   type: var
+#   var_name: L:INI_ENG2_EMERGENCY_SHUTDOWN_TIMER_START
+# -
+#   type: var
+#   var_name: L:INI_ENG2_EMERGENCY_SHUTDOWN_TIMER
+# -
+#   type: var
+#   var_name: L:INI_ENG2_FUEL_INTRO_N2
+# -
+#   type: var
+#   var_name: L:INI_ENG2_COOLING_EGT
+# -
+#   type: var
+#   var_name: L:INI_ENG2_IDLE_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG2_CLB_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG2_FLEX_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG2_MCT_N1
+# -
+#   type: var
+#   var_name: L:INI_ENG2_TOGA_N1
+# -
+#   type: var
+#   var_name: L:INI_GEAR0_UNLK_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL0_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL1_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL1_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL2_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL2_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL3_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL3_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL4_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL4_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL5_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR1_WHEEL5_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL0_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL1_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL1_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL2_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL2_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL3_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL3_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL4_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL4_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL5_SPEED
+# -
+#   type: var
+#   var_name: L:INI_GEAR2_WHEEL5_BRAKE_TEMP
+# -
+#   type: var
+#   var_name: L:INI_HYD1_PRESSURE
+# -
+#   type: var
+#   var_name: L:INI_HYD2_PRESSURE
+# -
+#   type: var
+#   var_name: L:INI_HYD_ELEC1_PRESSURE
+# -
+#   type: var
+#   var_name: L:INI_HYD_ELEC2_PRESSURE
+  -
+    type: var
+    var_name: L:INI_HYD_ELEC3_STATE
+  -
+    type: var
+    var_name: L:INI_HYD_ELEC3_OVERRIDE
+# -
+#   type: var
+#   var_name: L:INI_HYD_ELEC3_PRESSURE
+  -
+    type: var
+    var_name: L:INI_HYD_RAT1_STATE
+# -
+#   type: var
+#   var_name: L:INI_HYD_RAT1_PRESSURE
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_1_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_2_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_EMER1_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_BATTERY_EMER2_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_GEN0_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_GEN0_AMPS
+# -
+#   type: var
+#   var_name: L:INI_GEN0_FREQ
+  -
+    type: var
+    var_name: L:INI_GEN1A_IDG_FAULT
+# -
+#   type: var
+#   var_name: L:INI_GEN1_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_GEN1_AMPS
+# -
+#   type: var
+#   var_name: L:INI_GEN1_FREQ
+  -
+    type: var
+    var_name: L:INI_GEN1B_IDG_FAULT
+# -
+#   type: var
+#   var_name: L:INI_GEN2_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_GEN2_AMPS
+# -
+#   type: var
+#   var_name: L:INI_GEN2_FREQ
+  -
+    type: var
+    var_name: L:INI_GEN2A_IDG_FAULT
+# -
+#   type: var
+#   var_name: L:INI_GEN3_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_GEN3_AMPS
+# -
+#   type: var
+#   var_name: L:INI_GEN3_FREQ
+  -
+    type: var
+    var_name: L:INI_GEN2B_IDG_FAULT
+  -
+    type: var
+    var_name: L:INI_GEN_APU_SWITCH
+# -
+#   type: var
+#   var_name: L:INI_GEN_APU_FAULT
+# -
+#   type: var
+#   var_name: L:INI_GEN4_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_GEN4_AMPS
+# -
+#   type: var
+#   var_name: L:INI_GEN4_FREQ
+  -
+    type: var
+    var_name: L:INI_GENAPU_IDG_STATE
+  -
+    type: var
+    var_name: L:INI_GENAPU_IDG_FAULT
+  -
+    type: var
+    var_name: L:INI_GEN_EXT1_SWITCH
+# -
+#   type: var
+#   var_name: L:INI_GEN_EXT1_FAULT
+# -
+#   type: var
+#   var_name: L:INI_GEN5_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_GEN5_AMPS
+# -
+#   type: var
+#   var_name: L:INI_GEN5_FREQ
+  -
+    type: var
+    var_name: L:INI_GENEXT1_IDG_STATE
+  -
+    type: var
+    var_name: L:INI_GENEXT1_IDG_FAULT
+  -
+    type: var
+    var_name: L:INI_GEN_EXT2_SWITCH
+# -
+#   type: var
+#   var_name: L:INI_GEN_EXT2_FAULT
+# -
+#   type: var
+#   var_name: L:INI_GEN6_VOLTAGE
+# -
+#   type: var
+#   var_name: L:INI_GEN6_AMPS
+# -
+#   type: var
+#   var_name: L:INI_GEN6_FREQ
+  -
+    type: var
+    var_name: L:INI_GENEXT2_IDG_STATE
+  -
+    type: var
+    var_name: L:INI_GENEXT2_IDG_FAULT
+  -
+    type: var
+    var_name: L:INI_ATU1A_FAULT
+  -
+    type: var
+    var_name: L:INI_ATU1B_FAULT
+  -
+    type: var
+    var_name: L:INI_ATU2A_FAULT
+  -
+    type: var
+    var_name: L:INI_ATU2B_FAULT
+  -
+    type: var
+    var_name: L:INI_ATUEMER 1_FAULT
+  -
+    type: var
+    var_name: L:INI_ATUEMER 2_FAULT
+# -
+#   type: var
+#   var_name: L:INI_ARRIVAL_ANNOUNCEMENT_ENG_AM
+# -
+#   type: var
+#   var_name: L:INI_BOARDING_ANNOUNCEMENT_ENG_AM
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_LDG_ANNOUNCEMENT_ENG_AM
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_TO_ANNOUNCEMENT_ENG_AM
+# -
+#   type: var
+#   var_name: L:INI_PREDEP_ANNOUNCEMENT_ENG_AM
+# -
+#   type: var
+#   var_name: L:INI_SAFETY_ANNOUNCEMENT_ENG_AM
+# -
+#   type: var
+#   var_name: L:INI_ARRIVAL_ANNOUNCEMENT_ENG_BR
+# -
+#   type: var
+#   var_name: L:INI_BOARDING_ANNOUNCEMENT_ENG_BR
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_LDG_ANNOUNCEMENT_ENG_BR
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_TO_ANNOUNCEMENT_ENG_BR
+# -
+#   type: var
+#   var_name: L:INI_PREDEP_ANNOUNCEMENT_ENG_BR
+# -
+#   type: var
+#   var_name: L:INI_SAFETY_ANNOUNCEMENT_ENG_BR
+# -
+#   type: var
+#   var_name: L:INI_ARRIVAL_ANNOUNCEMENT_GER
+# -
+#   type: var
+#   var_name: L:INI_BOARDING_ANNOUNCEMENT_GER
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_LDG_ANNOUNCEMENT_GER
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_TO_ANNOUNCEMENT_GER
+# -
+#   type: var
+#   var_name: L:INI_PREDEP_ANNOUNCEMENT_GER
+# -
+#   type: var
+#   var_name: L:INI_SAFETY_ANNOUNCEMENT_GER
+# -
+#   type: var
+#   var_name: L:INI_ARRIVAL_ANNOUNCEMENT_JAP
+# -
+#   type: var
+#   var_name: L:INI_BOARDING_ANNOUNCEMENT_JAP
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_LDG_ANNOUNCEMENT_JAP
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_TO_ANNOUNCEMENT_JAP
+# -
+#   type: var
+#   var_name: L:INI_PREDEP_ANNOUNCEMENT_JAP
+# -
+#   type: var
+#   var_name: L:INI_SAFETY_ANNOUNCEMENT_JAP
+# -
+#   type: var
+#   var_name: L:INI_ARRIVAL_ANNOUNCEMENT_RUS
+# -
+#   type: var
+#   var_name: L:INI_BOARDING_ANNOUNCEMENT_RUS
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_LDG_ANNOUNCEMENT_RUS
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_TO_ANNOUNCEMENT_RUS
+# -
+#   type: var
+#   var_name: L:INI_PREDEP_ANNOUNCEMENT_RUS
+# -
+#   type: var
+#   var_name: L:INI_SAFETY_ANNOUNCEMENT_RUS
+# -
+#   type: var
+#   var_name: L:INI_ARRIVAL_ANNOUNCEMENT_SPA
+# -
+#   type: var
+#   var_name: L:INI_BOARDING_ANNOUNCEMENT_SPA
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_LDG_ANNOUNCEMENT_SPA
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_TO_ANNOUNCEMENT_SPA
+# -
+#   type: var
+#   var_name: L:INI_PREDEP_ANNOUNCEMENT_SPA
+# -
+#   type: var
+#   var_name: L:INI_SAFETY_ANNOUNCEMENT_SPA
+# -
+#   type: var
+#   var_name: L:INI_ARRIVAL_ANNOUNCEMENT_BRA
+# -
+#   type: var
+#   var_name: L:INI_BOARDING_ANNOUNCEMENT_BRA
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_LDG_ANNOUNCEMENT_BRA
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_TO_ANNOUNCEMENT_BRA
+# -
+#   type: var
+#   var_name: L:INI_PREDEP_ANNOUNCEMENT_BRA
+# -
+#   type: var
+#   var_name: L:INI_SAFETY_ANNOUNCEMENT_BRA
+# -
+#   type: var
+#   var_name: L:INI_ARRIVAL_ANNOUNCEMENT_FRE
+# -
+#   type: var
+#   var_name: L:INI_BOARDING_ANNOUNCEMENT_FRE
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_LDG_ANNOUNCEMENT_FRE
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_TO_ANNOUNCEMENT_FRE
+# -
+#   type: var
+#   var_name: L:INI_PREDEP_ANNOUNCEMENT_FRE
+# -
+#   type: var
+#   var_name: L:INI_SAFETY_ANNOUNCEMENT_FRE
+# -
+#   type: var
+#   var_name: L:INI_ARRIVAL_ANNOUNCEMENT_POR
+# -
+#   type: var
+#   var_name: L:INI_BOARDING_ANNOUNCEMENT_POR
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_LDG_ANNOUNCEMENT_POR
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_TO_ANNOUNCEMENT_POR
+# -
+#   type: var
+#   var_name: L:INI_PREDEP_ANNOUNCEMENT_POR
+# -
+#   type: var
+#   var_name: L:INI_SAFETY_ANNOUNCEMENT_POR
+# -
+#   type: var
+#   var_name: L:INI_ARRIVAL_ANNOUNCEMENT_ARA
+# -
+#   type: var
+#   var_name: L:INI_BOARDING_ANNOUNCEMENT_ARA
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_LDG_ANNOUNCEMENT_ARA
+# -
+#   type: var
+#   var_name: L:INI_CABIN_READY_TO_ANNOUNCEMENT_ARA
+# -
+#   type: var
+#   var_name: L:INI_PREDEP_ANNOUNCEMENT_ARA
+# -
+#   type: var
+#   var_name: L:INI_SAFETY_ANNOUNCEMENT_ARA
+# -
+#   type: var
+#   var_name: L:L:FSDT_GSX_DEICING_STATE
+  -
+    type: var
+    var_name: L:INI_OXYGEN1_STATE
+  -
+    type: var
+    var_name: L:INI_OXYGEN2_STATE
+  -
+    type: var
+    var_name: L:INI_OXYGEN3_STATE
+  -
+    type: var
+    var_name: L:INI_OXYGEN4_STATE
+# -
+#   type: var
+#   var_name: L:INI_DOOR0_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR0_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR1_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR1_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR2_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR2_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR3_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR3_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR4_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR4_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR5_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR5_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR6_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR6_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR6_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR7_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR7_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR7_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR8_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR8_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR9_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR9_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR10_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR10_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR10_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_DOOR11_ARMED
+# -
+#   type: var
+#   var_name: L:INI_DOOR11_ARMED_TOGGLE_CMD
+# -
+#   type: var
+#   var_name: L:INI_DOOR11_PRESSURE_LIGHT
+# -
+#   type: var
+#   var_name: L:INI_AIR_PACK1_FLOW
+# -
+#   type: var
+#   var_name: L:INI_AIR_PACK1_FLOW_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_AIR_PACK2_FLOW
+# -
+#   type: var
+#   var_name: L:INI_AIR_PACK2_FLOW_ANIMATION
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_COCKPIT
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_CABIN1
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_CABIN2
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_CABIN3
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_CABIN4
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_CABIN5
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_CABIN6
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_CABIN7
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_FWD
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_AFT
+# -
+#   type: var
+#   var_name: L:INI_COND_TEMP_BULK
+# -
+#   type: var
+#   var_name: L:INI_INBOARD_POSITION
+# -
+#   type: var
+#   var_name: L:INI_2000_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_500_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_400_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_300_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_200_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_100_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_90_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_80_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_70_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_60_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_50_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_40_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_30_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_20_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_10_CALLOUT
+# -
+#   type: var
+#   var_name: L:INI_5_CALLOUT
+  -
+    type: var
+    var_name: L:INI_CAB_PRESS_EXCESS_ALT_OVERRIDE
+  -
+    type: var
+    var_name: L:INI_FWD_CARGO_TEMP_REGUL_INSTALLED
+  -
+    type: var
+    var_name: L:INI_WING_AI_REQRD_OFF
+  -
+    type: var
+    var_name: L:INI_SOFT_GA_AVAIL
+  -
+    type: var
+    var_name: L:INI_AUTO_ANTI_ICE_AVAIL
+  -
+    type: var
+    var_name: L:INI_AUTO_ANTI_ICE_BUTTON
+  -
+    type: var
+    var_name: L:INI_AUTOFLIGHT_MANUAL_ONLY
+  -
+    type: var
+    var_name: L:INI_LDG_MEMO_OVERRIDE
+#  -
+#    type: var
+#    var_name: L:INI_FMC1_IND
+#  -
+#    type: var
+#    var_name: L:INI_FMC1_RDY
+#  -
+#    type: var
+#    var_name: L:INI_FMC1_FM1
+#  -
+#    type: var
+#    var_name: L:INI_FMC1_FM2
+#  -
+#    type: var
+#    var_name: L:INI_FMC1_DASH
+#  -
+#    type: var
+#    var_name: L:INI_FMC1_FAIL
+#  -
+#    type: var
+#    var_name: L:INI_FMC1_FM
+#  -
+#    type: var
+#    var_name: L:INI_FMC1_MCDU
+  -
+    type: var
+    var_name: L:INI_MCDU1_MODE
+  -
+    type: var
+    var_name: L:INI_MCDU1_TACT_MODE
+  -
+    type: var
+    var_name: L:INI_MCDU1_REF
+  -
+    type: var
+    var_name: L:INI_MCDU1_TO_APPR
+  -
+    type: var
+    var_name: L:INI_MCDU1_SEC_PLAN
+  -
+    type: var
+    var_name: L:INI_MCDU1_MENU
+  -
+    type: var
+    var_name: L:INI_MCDU1_ENGOUT
+  -
+    type: var
+    var_name: L:INI_MCDU1_PROG
+  -
+    type: var
+    var_name: L:INI_MCDU1_AIRPORT
+  -
+    type: var
+    var_name: L:INI_MCDU1_DATA
+  -
+    type: var
+    var_name: L:INI_MCDU1_FUEL
+  -
+    type: var
+    var_name: L:INI_MCDU1_DIR
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK1L
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK2L
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK3L
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK4L
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK5L
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK6L
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK1R
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK2R
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK3R
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK4R
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK5R
+  -
+    type: var
+    var_name: L:INI_MCDU1_LSK6R
+  -
+    type: var
+    var_name: L:INI_MCDU1_UARROW
+  -
+    type: var
+    var_name: L:INI_MCDU1_PREV
+  -
+    type: var
+    var_name: L:INI_MCDU1_NEXT
+  -
+    type: var
+    var_name: L:INI_MCDU1_OVERFLY
+  -
+    type: var
+    var_name: L:INI_MCDU1_MINUS
+  -
+    type: var
+    var_name: L:INI_MCDU1_DOT
+#  -
+#    type: var
+#    var_name: L:INI_FMC2_IND
+#  -
+#    type: var
+#    var_name: L:INI_FMC2_RDY
+#  -
+#    type: var
+#    var_name: L:INI_FMC2_FM1
+#  -
+#    type: var
+#    var_name: L:INI_FMC2_FM2
+#  -
+#    type: var
+#    var_name: L:INI_FMC2_DASH
+#  -
+#    type: var
+#    var_name: L:INI_FMC2_FAIL
+#  -
+#    type: var
+#    var_name: L:INI_FMC2_FM
+#  -
+#    type: var
+#    var_name: L:INI_FMC2_MCDU
+  -
+    type: var
+    var_name: L:INI_MCDU2_MODE
+  -
+    type: var
+    var_name: L:INI_MCDU2_TACT_MODE
+  -
+    type: var
+    var_name: L:INI_MCDU2_REF
+  -
+    type: var
+    var_name: L:INI_MCDU2_TO_APPR
+  -
+    type: var
+    var_name: L:INI_MCDU2_SEC_PLAN
+  -
+    type: var
+    var_name: L:INI_MCDU2_MENU
+  -
+    type: var
+    var_name: L:INI_MCDU2_ENGOUT
+  -
+    type: var
+    var_name: L:INI_MCDU2_PROG
+  -
+    type: var
+    var_name: L:INI_MCDU2_AIRPORT
+  -
+    type: var
+    var_name: L:INI_MCDU2_DATA
+  -
+    type: var
+    var_name: L:INI_MCDU2_FUEL
+  -
+    type: var
+    var_name: L:INI_MCDU2_DIR
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK1L
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK2L
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK3L
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK4L
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK5L
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK6L
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK1R
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK2R
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK3R
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK4R
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK5R
+  -
+    type: var
+    var_name: L:INI_MCDU2_LSK6R
+  -
+    type: var
+    var_name: L:INI_MCDU2_UARROW
+  -
+    type: var
+    var_name: L:INI_MCDU2_PREV
+  -
+    type: var
+    var_name: L:INI_MCDU2_NEXT
+  -
+    type: var
+    var_name: L:INI_MCDU2_OVERFLY
+  -
+    type: var
+    var_name: L:INI_MCDU2_MINUS
+  -
+    type: var
+    var_name: L:INI_MCDU2_DOT
+  -
+    type: var
+    var_name: L:INI_VHF1_VOLUME
+  -
+    type: var
+    var_name: L:INI_VHF1_SELECTED
+# -
+#   type: var
+#   var_name: L:INI_VHF1_ACTIVE_FREQ_MHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF1_ACTIVE_FREQ_KHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF1_STANDBY_FREQ_MHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF1_STANDBY_FREQ_KHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF1_ACTIVE_FREQ
+# -
+#   type: var
+#   var_name: L:INI_VHF1_STANDBY_FREQ
+  -
+    type: var
+    var_name: L:INI_VHF2_VOLUME
+  -
+    type: var
+    var_name: L:INI_VHF2_SELECTED
+# -
+#   type: var
+#   var_name: L:INI_VHF2_ACTIVE_FREQ_MHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF2_ACTIVE_FREQ_KHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF2_STANDBY_FREQ_MHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF2_STANDBY_FREQ_KHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF2_ACTIVE_FREQ
+# -
+#   type: var
+#   var_name: L:INI_VHF2_STANDBY_FREQ
+  -
+    type: var
+    var_name: L:INI_VHF3_VOLUME
+  -
+    type: var
+    var_name: L:INI_VHF3_SELECTED
+# -
+#   type: var
+#   var_name: L:INI_VHF3_ACTIVE_FREQ_MHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF3_ACTIVE_FREQ_KHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF3_STANDBY_FREQ_MHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF3_STANDBY_FREQ_KHZ
+# -
+#   type: var
+#   var_name: L:INI_VHF3_ACTIVE_FREQ
+# -
+#   type: var
+#   var_name: L:INI_VHF3_STANDBY_FREQ
+  -
+    type: var
+    var_name: L:INI_HF1_VOLUME
+  -
+    type: var
+    var_name: L:INI_HF1_SELECTED
+  -
+    type: var
+    var_name: L:INI_HF1_ACTIVE_FREQ
+  -
+    type: var
+    var_name: L:INI_HF1_STANDBY_FREQ
+  -
+    type: var
+    var_name: L:INI_HF2_VOLUME
+  -
+    type: var
+    var_name: L:INI_HF2_SELECTED
+  -
+    type: var
+    var_name: L:INI_HF2_ACTIVE_FREQ
+  -
+    type: var
+    var_name: L:INI_HF2_STANDBY_FREQ
+  -
+    type: var
+    var_name: L:INI_CPT_RADIO_MODE
+  -
+    type: var
+    var_name: L:INI_RMP_BRT_1
+  -
+    type: var
+    var_name: L:INI_RMP_CPT_OFF
+  -
+    type: var
+    var_name: L:INI_RMP_PAGE_CPT
+  -
+    type: var
+    var_name: L:RMP_CPT_ATC_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_LSK_4_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_RSK_4_KEY
+  -
+    type: var
+    var_name: L:RMP_CPT_NUM_PERIOD_KEY
+  -
+    type: var
+    var_name: L:INI_FO_RADIO_MODE
+  -
+    type: var
+    var_name: L:INI_RMP_BRT_2
+  -
+    type: var
+    var_name: L:INI_RMP_FO_OFF
+  -
+    type: var
+    var_name: L:INI_RMP_PAGE_FO
+  -
+    type: var
+    var_name: L:RMP_FO_ATC_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_LSK_4_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_RSK_4_KEY
+  -
+    type: var
+    var_name: L:RMP_FO_NUM_PERIOD_KEY
+  -
+    type: var
+    var_name: L:INI_OVHD_RADIO_MODE
+  -
+    type: var
+    var_name: L:INI_RMP_BRT_3
+  -
+    type: var
+    var_name: L:INI_RMP_OVHD_OFF
+  -
+    type: var
+    var_name: L:INI_RMP_PAGE_OVHD
+  -
+    type: var
+    var_name: L:RMP_OVHD_ATC_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_LSK_4_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_RSK_4_KEY
+  -
+    type: var
+    var_name: L:RMP_OVHD_NUM_PERIOD_KEY
+# -
+#   type: var
+#   var_name: L:YourControlsServerRunning
+# -
+#   type: var
+#   var_name: L:HUD_AP_SELECTED_SPEED
+# -
+#   type: var
+#   var_name: L:HUD_AP_SELECTED_ALTITUDE
+# -
+#   type: var
+#   var_name: L:INI_EFB_RESTARTED_WASM_WORKAROUND
+
+master:
+  - # Controls
+    type: NumSet
+    var_name: L:INI_SIDESTICK1_POSITION_X
+    var_units: Position 16k
+    var_type: f64
+    multiply_by: -16384
+    event_name: AXIS_AILERONS_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: L:INI_SIDESTICK1_POSITION_Y
+    var_units: Position 16k
+    var_type: f64
+    multiply_by: -16384
+    event_name: AXIS_ELEVATOR_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: L:INI_RUDDER_PEDAL_POSITION
+    var_units: Position 16k
+    var_type: f64
+    multiply_by: -16384
+    event_name: AXIS_RUDDER_SET
+    use_calculator: true
+    unreliable: true
+
+  - # Throttles
+    type: NumSet
+    var_name: L:INI_AXIS1_VALUE
+    var_units: Number
+    var_type: f64
+    multiply_by: 16384
+    event_name: THROTTLE1_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: L:INI_AXIS2_VALUE
+    var_units: Number
+    var_type: f64
+    multiply_by: 16384
+    event_name: THROTTLE2_SET
+    use_calculator: true
+    unreliable: true
+
+  - # Fuel
+    type: var
+    var_name: L:INI_FUEL_WEIGHT_LEFT_OUTER
+    var_type: i32
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_FUEL_WEIGHT_LEFT_INNER
+    var_type: i32
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_FUEL_WEIGHT_RIGHT_OUTER
+    var_type: i32
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_FUEL_WEIGHT_RIGHT_INNER
+    var_type: i32
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_FUEL_WEIGHT_CENTER
+    var_type: i32
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_FUEL_WEIGHT_CENTER2
+    var_type: i32
+    interpolate: Default
+  -
+    type: var
+    var_name: L:INI_FUEL_WEIGHT_TRIM
+    var_type: i32
+    interpolate: Default
+
+ignore:
+# EFB Settings
+  - iniEfbA350#snow_slider
+  - iniEfbA350#weatheringSlider
+# EFB Volume
+  - iniEfbA350#audio_slider_master
+  - iniEfbA350#audio_slider_int_eng
+  - iniEfbA350#audio_slider_manip
+  - iniEfbA350#audio_slider_systems
+  - iniEfbA350#audio_slider_gnd
+  - iniEfbA350#audio_slider_lfgain
+  - iniEfbA350#audio_slider_ext_eng
+  - iniEfbA350#audio_slider_announce
+  - iniEfbA350#audio_slider_env
+  - iniEfbA350#audio_slider_aural
+  - iniEfbA350#audio_slider_cockpitwind
+# EFB Preferred seat
+  - iniEfbA350#4259428250
+  - iniEfbA350#364220828

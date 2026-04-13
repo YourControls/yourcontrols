@@ -1,0 +1,4 @@
+# Version 2.4.0.3311
+
+include:
+  - definitions/FS2024/aircraft/Fenix Simulations - Airbus A320ceo.yaml

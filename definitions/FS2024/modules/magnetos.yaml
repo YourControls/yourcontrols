@@ -10,14 +10,14 @@ shared:
     type: NumSet
     var_name: A:RECIP ENG LEFT MAGNETO:1
     var_units: Bool
-    var_type: i32
+    var_type: f64
     event_name: MAGNETO1_LEFT
     is_user_event: true
   -
     type: NumSet
     var_name: A:RECIP ENG RIGHT MAGNETO:1
     var_units: Bool
-    var_type: i32
+    var_type: f64
     event_name: MAGNETO1_RIGHT
     is_user_event: true
   -
@@ -27,14 +27,14 @@ shared:
     type: NumSet
     var_name: A:RECIP ENG LEFT MAGNETO:2
     var_units: Bool
-    var_type: i32
+    var_type: f64
     event_name: MAGNETO2_LEFT
     is_user_event: true
   -
     type: NumSet
     var_name: A:RECIP ENG RIGHT MAGNETO:2
     var_units: Bool
-    var_type: i32
+    var_type: f64
     event_name: MAGNETO2_RIGHT
     is_user_event: true
   -
@@ -44,14 +44,14 @@ shared:
     type: NumSet
     var_name: A:RECIP ENG LEFT MAGNETO:3
     var_units: Bool
-    var_type: i32
+    var_type: f64
     event_name: MAGNETO3_LEFT
     is_user_event: true
   -
     type: NumSet
     var_name: A:RECIP ENG RIGHT MAGNETO:3
     var_units: Bool
-    var_type: i32
+    var_type: f64
     event_name: MAGNETO3_RIGHT
     is_user_event: true
   -
@@ -61,14 +61,14 @@ shared:
     type: NumSet
     var_name: A:RECIP ENG LEFT MAGNETO:4
     var_units: Bool
-    var_type: i32
+    var_type: f64
     event_name: MAGNETO4_LEFT
     is_user_event: true
   -
     type: NumSet
     var_name: A:RECIP ENG RIGHT MAGNETO:4
     var_units: Bool
-    var_type: i32
+    var_type: f64
     event_name: MAGNETO4_RIGHT
     is_user_event: true
   -

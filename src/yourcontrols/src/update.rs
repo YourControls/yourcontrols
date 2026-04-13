@@ -6,9 +6,9 @@ use std::{
 };
 
 const RELEASE_DIRECT_URL: &str =
-    "https://github.com/sequal32/yourcontrolsinstaller/releases/latest/download/installer.zip";
+    "https://github.com/yourcontrols/yourcontrols-installer/releases/latest/download/installer.zip";
 const PROGRAM_RELEASE_URL: &str =
-    "https://api.github.com/repos/sequal32/yourcontrols/releases/latest";
+    "https://api.github.com/repos/yourcontrols/yourcontrols/releases/latest";
 
 const USER_AGENT: &str =
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:53.0) Gecko/20100101 Firefox/53.0";
@@ -107,7 +107,7 @@ impl Updater {
         }
 
         // Run exe
-        dir.push("installer.exe");
+        dir.push("yourcontrolsinstaller.exe");
 
         let mut process = std::process::Command::new(dir.as_os_str());
         process

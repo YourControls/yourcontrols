@@ -1,0 +1,3088 @@
+# Version 6.31.0
+
+include:
+  - definitions/FS2024/modules/controls.yaml
+  - definitions/FS2024/modules/general.yaml
+  - definitions/FS2024/modules/payload_new.yaml
+
+shared:
+  - # Altimeters
+    type: NumSet
+    var_name: A:KOHLSMAN SETTING MB:1
+    var_units: Millibars scaler 16
+    var_type: f64
+    event_name: KOHLSMAN_SET
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:KOHLSMAN SETTING MB:2
+    var_units: Millibars scaler 16
+    var_type: f64
+    event_name: KOHLSMAN_SET
+    event_param: 2
+  -
+    type: NumSet
+    var_name: A:KOHLSMAN SETTING MB:3
+    var_units: Millibars scaler 16
+    var_type: f64
+    event_name: KOHLSMAN_SET
+    event_param: 3
+
+  - # APU
+    type: CustomCalculator
+    get: (B:ENGINE_APU) 0 ==
+    set: 0 (>B:ENGINE_APU_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ENGINE_APU) 1 ==
+    set: 1 (>B:ENGINE_APU_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ENGINE_APU) 2 ==
+    set: 2 (>B:ENGINE_APU_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: NumSet
+    var_name: A:PNEUMATICS APU BLEED AIR
+    var_units: Bool
+    var_type: i32
+    event_name: APU_BLEED_AIR_SOURCE_SET
+    use_calculator: true
+  -
+    type: CustomCalculator
+    get: (B:ELECTRICAL_APU_GENERATOR_1) 0 ==
+    set: 0 (>B:ELECTRICAL_APU_GENERATOR_1_ON)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ELECTRICAL_APU_GENERATOR_1) 2 ==
+    set: 2 (>B:ELECTRICAL_APU_GENERATOR_1_OFF)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ELECTRICAL_APU_GENERATOR_2) 0 ==
+    set: 0 (>B:ELECTRICAL_APU_GENERATOR_2_ON)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ELECTRICAL_APU_GENERATOR_2) 2 ==
+    set: 2 (>B:ELECTRICAL_APU_GENERATOR_2_OFF)
+    condition:
+      equals:
+        F64: 1.0
+
+  - # Annuciators
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_FIRE_WARN_1_PUSH)
+    set: (>B:ANNUNCIATION_FIRE_WARN_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_MASTER_CAUTION_1_PUSH)
+    set: (>B:ANNUNCIATION_MASTER_CAUTION_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_RECALL_1_PUSH)
+    set: (>B:ANNUNCIATION_RECALL_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_AP_DISENGAGE_1_PUSH)
+    set: (>B:ANNUNCIATION_AP_DISENGAGE_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_AT_DISENGAGE_1_PUSH)
+    set: (>B:ANNUNCIATION_AT_DISENGAGE_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_FMC_LIGHT_1_PUSH)
+    set: (>B:ANNUNCIATION_FMC_LIGHT_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_AP_DISENGAGE_2_PUSH)
+    set: (>B:ANNUNCIATION_AP_DISENGAGE_2_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_AT_DISENGAGE_2_PUSH)
+    set: (>B:ANNUNCIATION_AT_DISENGAGE_2_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_FMC_LIGHT_2_PUSH)
+    set: (>B:ANNUNCIATION_FMC_LIGHT_2_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_RECALL_2_PUSH)
+    set: (>B:ANNUNCIATION_RECALL_2_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_MASTER_CAUTION_2_PUSH)
+    set: (>B:ANNUNCIATION_MASTER_CAUTION_2_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_FIRE_WARN_2_PUSH)
+    set: (>B:ANNUNCIATION_FIRE_WARN_2_PUSH)
+
+  - # Clocks
+    type: CustomCalculator
+    get: (B:BEHIND_YOKE_CLOCK_1_PUSH)
+    set: (>B:BEHIND_YOKE_CLOCK_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:BEHIND_YOKE_CLOCK_2_PUSH)
+    set: (>B:BEHIND_YOKE_CLOCK_2_PUSH)
+
+  - # MIC
+    type: CustomCalculator
+    get: (B:BEHIND_YOKE_MIC_1_PUSH)
+    set: (>B:BEHIND_YOKE_MIC_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:BEHIND_YOKE_MIC_2_PUSH)
+    set: (>B:BEHIND_YOKE_MIC_2_PUSH)
+
+  - # Autopilot
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT MASTER
+    var_units: Bool
+    var_type: bool
+    event_name: AP_MASTER
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT AIRSPEED HOLD VAR:1
+    var_units: Knots
+    var_type: f64
+    event_name: AP_SPD_VAR_SET
+    event_param: 1
+    condition:
+      var:
+        var_name: A:AUTOPILOT MANAGED SPEED IN MACH
+        var_units: Bool
+        var_type: bool
+      equals:
+        Bool: false
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT MACH HOLD VAR:1
+    var_units: Mach
+    var_type: f64
+    multiply_by: 100
+    event_name: AP_MACH_VAR_SET
+    event_param: 1
+    condition:
+      var:
+        var_name: A:AUTOPILOT MANAGED SPEED IN MACH
+        var_units: Bool
+        var_type: bool
+      equals:
+        Bool: true
+    unreliable: true
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT HEADING LOCK
+    var_units: Bool
+    var_type: bool
+    event_name: AP_HDG_HOLD
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT HEADING LOCK DIR:1
+    var_units: Degrees
+    var_type: f64
+    event_name: HEADING_BUG_SET
+    event_param: 1
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT FLIGHT DIRECTOR ACTIVE:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_FLIGHT_DIRECTOR
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:AUTOPILOT FLIGHT DIRECTOR ACTIVE:2
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_FLIGHT_DIRECTOR
+    event_param: 2
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT MAX BANK ID
+    var_units: Number
+    var_type: i32
+    event_name: AP_MAX_BANK_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT ALTITUDE LOCK VAR:3
+    var_units: Feet
+    var_type: i32
+    event_name: AP_ALT_VAR_SET_ENGLISH
+    event_param: 3
+  -
+    type: NumSet
+    var_name: A:AUTOPILOT VERTICAL HOLD VAR:1
+    var_units: Feet per minute
+    var_type: i32
+    event_name: AP_VS_VAR_SET_ENGLISH
+    event_param: 1
+  -
+    type: CustomCalculator
+    get: (B:FCC_ALTITUDE_INTERVENTION_PUSH)
+    set: (>B:FCC_ALTITUDE_INTERVENTION_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:FCC_APP_PUSH)
+    set: (>B:FCC_APP_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:FCC_VS_PUSH)
+    set: (>B:FCC_VS_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:FCC_DISENGAGE_Toggle)
+    set: (>B:FCC_DISENGAGE_Toggle)
+
+  - # AFT Cargo
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:4
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 5
+    cancel_h_events: true
+    use_calculator: true
+  - # FWD Cargo
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:5
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 6
+    cancel_h_events: true
+    use_calculator: true
+
+  - # Bleeds
+    type: NumSet
+    var_name: A:BLEED AIR APU
+    var_units: Bool
+    var_type: i32
+    event_name: APU_BLEED_AIR_SOURCE_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:BLEED AIR ENGINE:1
+    var_units: Bool
+    var_type: i32
+    event_name: ENGINE_BLEED_AIR_SOURCE_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:BLEED AIR ENGINE:2
+    var_units: Bool
+    var_type: i32
+    event_name: ENGINE_BLEED_AIR_SOURCE_SET
+    event_param: 2
+    index_reversed: true
+    use_calculator: true
+
+  - # Engine cutoffs
+    type: NumSet
+    var_name: A:FUELSYSTEM VALVE SWITCH:1
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_VALVE_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FUELSYSTEM VALVE SWITCH:2
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_VALVE_SET
+    event_param: 2
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FUELSYSTEM VALVE SWITCH:3
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_VALVE_SET
+    event_param: 3
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FUELSYSTEM VALVE SWITCH:4
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_VALVE_SET
+    event_param: 4
+    index_reversed: true
+    use_calculator: true
+
+  - # Generators
+    type: CustomCalculator
+    get: (B:ELECTRICAL_GENERATOR_1) 0 ==
+    set: 0 (>B:ELECTRICAL_GENERATOR_1_ON)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ELECTRICAL_GENERATOR_1) 2 ==
+    set: 2 (>B:ELECTRICAL_GENERATOR_1_OFF)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ELECTRICAL_GENERATOR_2) 0 ==
+    set: 0 (>B:ELECTRICAL_GENERATOR_2_ON)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ELECTRICAL_GENERATOR_2) 2 ==
+    set: 2 (>B:ELECTRICAL_GENERATOR_2_OFF)
+    condition:
+      equals:
+        F64: 1.0
+
+  - # Hydraulics
+    type: NumSet
+    var_name: A:HYDRAULIC VALVE TARGET POS:1
+    var_units: Bool
+    var_type: i32
+    event_name: HYDRAULIC_VALVE_SET
+    event_param: 1
+    index_reversed: true
+  -
+    type: NumSet
+    var_name: A:HYDRAULIC SWITCH:4
+    var_units: Bool
+    var_type: i32
+    event_name: HYDRAULIC_SWITCH_TOGGLE
+    event_param: 4
+    index_reversed: true
+  -
+    type: NumSet
+    var_name: A:HYDRAULIC VALVE TARGET POS:2
+    var_units: Bool
+    var_type: i32
+    event_name: HYDRAULIC_VALVE_SET
+    event_param: 2
+    index_reversed: true
+  -
+    type: NumSet
+    var_name: A:HYDRAULIC SWITCH:3
+    var_units: Bool
+    var_type: i32
+    event_name: HYDRAULIC_SWITCH_TOGGLE
+    event_param: 3
+    index_reversed: true
+
+  - # Navigation
+    type: NumSet
+    var_name: A:NAV OBS:1
+    var_units: Degrees
+    var_type: f64
+    event_name: VOR1_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV OBS:2
+    var_units: Degrees
+    var_type: f64
+    event_name: VOR2_SET
+    use_calculator: true
+  - # still does nothing
+    type: NumSet
+    var_name: A:DECISION HEIGHT
+    var_units: Feet
+    var_type: f64
+    event_name: DECISION_HEIGHT_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:DECISION ALTITUDE MSL
+    var_units: Feet
+    var_type: f64
+    event_name: SET_DECISION_ALTITUDE_MSL
+    use_calculator: true
+
+  - # Spoiler hydraulics
+    type: NumSet
+    var_name: A:HYDRAULIC VALVE ACTIVE:8
+    var_units: Bool
+    var_type: i32
+    event_name: HYDRAULIC_VALVE_SET
+    event_param: 8
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:HYDRAULIC VALVE ACTIVE:9
+    var_units: Bool
+    var_type: i32
+    event_name: HYDRAULIC_VALVE_SET
+    event_param: 9
+    index_reversed: true
+    use_calculator: true
+
+  - # Ground power
+    type: CustomCalculator
+    get: (B:ELECTRICAL_EXTERNAL_POWER) 0 ==
+    set: 0 (>B:ELECTRICAL_EXTERNAL_POWER_ON)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ELECTRICAL_EXTERNAL_POWER) 2 ==
+    set: 0 (>B:ELECTRICAL_EXTERNAL_POWER_OFF)
+    condition:
+      equals:
+        F64: 1.0
+
+  - # Handling
+    type: NumSet
+    var_name: A:GEAR HANDLE POSITION
+    var_units: Bool
+    var_type: i32
+    event_name: GEAR_SET
+    use_calculator: true
+  -
+    type: var
+    var_name: A:FLAPS HANDLE INDEX
+    var_units: Number
+    var_type: f64
+  -
+    type: NumSet
+    var_name: A:SPOILERS HANDLE POSITION
+    var_units: Position 16k
+    var_type: f64
+    event_name: SPOILERS_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:SPOILERS ARMED
+    var_units: Bool
+    var_type: i32
+    event_name: SPOILERS_ARM_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:BRAKE PARKING POSITION
+    var_units: Bool
+    var_type: i32
+    event_name: PARKING_BRAKE_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:AUTO BRAKE SWITCH CB
+    var_units: Number
+    var_type: i32
+    event_name: SET_AUTOBRAKE_CONTROL
+    use_calculator: true
+
+  - # Overhead breaker lights
+    type: NumSet
+    var_name: A:LIGHT CABIN:4
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 4
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN POWER SETTING:4
+    var_units: Percent
+    var_type: f64
+    event_name: CABIN_LIGHTS_POWER_SETTING_SET
+    event_param: 4
+    index_reversed: true
+    use_calculator: true
+
+  - # Overhead panel lights
+    type: NumSet
+    var_name: A:LIGHT PANEL:2
+    var_units: Bool
+    var_type: i32
+    event_name: PANEL_LIGHTS_SET
+    event_param: 2
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT PANEL POWER SETTING:2
+    var_units: Percent
+    var_type: f64
+    event_name: PANEL_LIGHTS_POWER_SETTING_SET
+    event_param: 2
+    index_reversed: true
+    use_calculator: true
+
+  - # Compass light
+    type: ToggleSwitch
+    var_name: A:LIGHT CABIN:5
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_CABIN_LIGHTS
+    event_param: 5
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN POWER SETTING:5
+    var_units: Percent
+    var_type: f64
+    event_name: CABIN_LIGHTS_POWER_SETTING_SET
+    event_param: 5
+    index_reversed: true
+    use_calculator: true
+
+  - # Dome light
+    type: NumSet
+    var_name: A:LIGHT CABIN:6
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 6
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN POWER SETTING:6
+    var_units: Percent
+    var_type: f64
+    event_name: CABIN_LIGHTS_POWER_SETTING_SET
+    event_param: 6
+    index_reversed: true
+    use_calculator: true
+
+  - # CPT map light
+    type: NumSet
+    var_name: A:LIGHT CABIN:1
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN POWER SETTING:1
+    var_units: Percent
+    var_type: f64
+    event_name: CABIN_LIGHTS_POWER_SETTING_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+
+  - # FO map light
+    type: NumSet
+    var_name: A:LIGHT CABIN:2
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 2
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN POWER SETTING:2
+    var_units: Percent
+    var_type: f64
+    event_name: CABIN_LIGHTS_POWER_SETTING_SET
+    event_param: 2
+    index_reversed: true
+    use_calculator: true
+
+  - # FO chart light
+    type: NumSet
+    var_name: A:LIGHT CABIN:3
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 3
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN POWER SETTING:3
+    var_units: Percent
+    var_type: f64
+    event_name: CABIN_LIGHTS_POWER_SETTING_SET
+    event_param: 3
+    index_reversed: true
+    use_calculator: true
+
+  - # Main CPT panel lights
+    type: NumSet
+    var_name: A:LIGHT PANEL:3
+    var_units: Bool
+    var_type: i32
+    event_name: PANEL_LIGHTS_SET
+    event_param: 3
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT PANEL POWER SETTING:3
+    var_units: Percent
+    var_type: f64
+    event_name: PANEL_LIGHTS_POWER_SETTING_SET
+    event_param: 3
+    index_reversed: true
+    use_calculator: true
+
+  - # Background lights
+    type: ToggleSwitch
+    var_name: A:LIGHT GLARESHIELD:2
+    var_units: Bool
+    var_type: bool
+    event_name: GLARESHIELD_LIGHTS_TOGGLE
+    event_param: 2
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT GLARESHIELD POWER SETTING:2
+    var_units: Percent
+    var_type: f64
+    event_name: GLARESHIELD_LIGHTS_POWER_SETTING_SET
+    event_param: 2
+    index_reversed: true
+    use_calculator: true
+
+  - # AFDS lights
+    type: ToggleSwitch
+    var_name: A:LIGHT GLARESHIELD:1
+    var_units: Bool
+    var_type: bool
+    event_name: GLARESHIELD_LIGHTS_TOGGLE
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT GLARESHIELD POWER SETTING:1
+    var_units: Percent
+    var_type: f64
+    event_name: GLARESHIELD_LIGHTS_POWER_SETTING_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+
+  - # Main FO panel lights
+    type: NumSet
+    var_name: A:LIGHT PANEL:4
+    var_units: Bool
+    var_type: i32
+    event_name: PANEL_LIGHTS_SET
+    event_param: 4
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT PANEL POWER SETTING:4
+    var_units: Percent
+    var_type: f64
+    event_name: PANEL_LIGHTS_POWER_SETTING_SET
+    event_param: 4
+    index_reversed: true
+    use_calculator: true
+
+  - # Pedestal lights
+    type: ToggleSwitch
+    var_name: A:LIGHT PEDESTRAL:1
+    var_units: Bool
+    var_type: bool
+    event_name: PEDESTRAL_LIGHTS_TOGGLE
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT PEDESTRAL POWER SETTING:1
+    var_units: Percent
+    var_type: f64
+    event_name: PEDESTRAL_LIGHTS_POWER_SETTING_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT PANEL:1
+    var_units: Bool
+    var_type: i32
+    event_name: PANEL_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT PANEL POWER SETTING:1
+    var_units: Percent
+    var_type: f64
+    event_name: PANEL_LIGHTS_POWER_SETTING_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+
+  - # Fuel crossfeed
+    type: NumSet
+    var_name: A:FUELSYSTEM VALVE SWITCH:5
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_VALVE_SET
+    event_param: 5
+    index_reversed: true
+    use_calculator: true
+
+  - # Fuel pumps
+    type: NumSet
+    var_name: A:FUELSYSTEM PUMP SWITCH:1
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_PUMP_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FUELSYSTEM PUMP SWITCH:2
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_PUMP_SET
+    event_param: 2
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FUELSYSTEM PUMP SWITCH:3
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_PUMP_SET
+    event_param: 3
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FUELSYSTEM PUMP SWITCH:4
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_PUMP_SET
+    event_param: 4
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FUELSYSTEM PUMP SWITCH:5
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_PUMP_SET
+    event_param: 5
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FUELSYSTEM PUMP SWITCH:6
+    var_units: Bool
+    var_type: i32
+    event_name: FUELSYSTEM_PUMP_SET
+    event_param: 6
+    index_reversed: true
+    use_calculator: true
+
+  - # Passenger
+    type: CustomCalculator
+    get: (B:PASSENGER_ATTEND_PUSH)
+    set: (>B:PASSENGER_ATTEND_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:PASSENGER_GRD_CALL_PUSH)
+    set: (>B:PASSENGER_GRD_CALL_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:PASSENGER_CABIN_READY_PUSH)
+    set: (>B:PASSENGER_CABIN_READY_PUSH)
+
+  - # Cabin temps
+    type: NumSet
+    var_name: A:PNEUMATICS AREA TARGET TEMPERATURE:1
+    var_units: Celsius
+    var_type: i32
+    event_name: PNEUMATICS_AREA_TEMPERATURE_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:PNEUMATICS AREA TARGET TEMPERATURE:2
+    var_units: Celsius
+    var_type: i32
+    event_name: PNEUMATICS_AREA_TEMPERATURE_SET
+    event_param: 2
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:PNEUMATICS AREA TARGET TEMPERATURE:3
+    var_units: Celsius
+    var_type: i32
+    event_name: PNEUMATICS_AREA_TEMPERATURE_SET
+    event_param: 3
+    index_reversed: true
+    use_calculator: true
+
+  - # Packs
+    type: NumSet
+    var_name: A:PNEUMATICS PACK SWITCH:1
+    var_units: Bool
+    var_type: i32
+    event_name: PNEUMATICS_PACK_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:PNEUMATICS PACK FLOW AUTO:1
+    var_units: Bool
+    var_type: i32
+    event_name: PNEUMATICS_PACK_FLOW_AUTO_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:PNEUMATICS PACK SWITCH:2
+    var_units: Bool
+    var_type: i32
+    event_name: PNEUMATICS_PACK_SET
+    event_param: 2
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:PNEUMATICS PACK FLOW AUTO:2
+    var_units: Bool
+    var_type: i32
+    event_name: PNEUMATICS_PACK_FLOW_AUTO_SET
+    event_param: 2
+    index_reversed: true
+    use_calculator: true
+
+  - # Isolation valve
+    type: CustomCalculator
+    get: (B:PNEUMATICS_ISOLATION_VALVE) 0 ==
+    set: 0 (>B:PNEUMATICS_ISOLATION_VALVE_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:PNEUMATICS_ISOLATION_VALVE) 1 ==
+    set: 1 (>B:PNEUMATICS_ISOLATION_VALVE_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:PNEUMATICS_ISOLATION_VALVE) 2 ==
+    set: 2 (>B:PNEUMATICS_ISOLATION_VALVE_Set)
+    condition:
+      equals:
+        F64: 1.0
+
+  - # Voice recorder
+    type: CustomCalculator
+    get: (B:VOICE_ERASE_PUSH)
+    set: (>B:VOICE_ERASE_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:VOICE_TEST_PUSH)
+    set: (>B:VOICE_TEST_PUSH)
+
+  - # Alt horn
+    type: CustomCalculator
+    get: (B:PASSENGER_ALT_HORN_PUSH)
+    set: (>B:PASSENGER_ALT_HORN_PUSH)
+
+  - # Trip reset
+    type: CustomCalculator
+    get: (B:PNEUMATICS_TRIP_RESET_PUSH)
+    set: (>B:PNEUMATICS_TRIP_RESET_PUSH)
+  - # OVHT test
+    type: CustomCalculator
+    get: (B:PNEUMATICS_OVHT_PRESS_TEST_PUSH)
+    set: (>B:PNEUMATICS_OVHT_PRESS_TEST_PUSH)
+
+  - # Engine bleeds
+    type: NumSet
+    var_name: A:PNEUMATICS ENGINE BLEED AIR:1
+    var_units: Bool
+    var_type: i32
+    event_name: ENGINE_BLEED_AIR_SOURCE_SET
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:PNEUMATICS ENGINE BLEED AIR:2
+    var_units: Bool
+    var_type: i32
+    event_name: ENGINE_BLEED_AIR_SOURCE_SET
+    event_param: 2
+    index_reversed: true
+    use_calculator: true
+
+  - # Outflow valve
+    type: CustomCalculator
+    get: (B:PNEUMATICS_VALVE) 0 ==
+    set: 0 (>B:PNEUMATICS_VALVE_CLOSE)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:PNEUMATICS_VALVE) 2 ==
+    set: 2 (>B:PNEUMATICS_VALVE_OPEN)
+    condition:
+      equals:
+        F64: 1.0
+
+  - # TOGA/DISC
+    type: CustomCalculator
+    get: (B:ENGINE_TOGA_1_PUSH)
+    set: (>B:ENGINE_TOGA_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ENGINE_TOGA_2_PUSH)
+    set: (>B:ENGINE_TOGA_2_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ENGINE_AT_DISENGAGE_1_PUSH)
+    set: (>B:ENGINE_AT_DISENGAGE_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:ENGINE_AT_DISENGAGE_2_PUSH)
+    set: (>B:ENGINE_AT_DISENGAGE_2_PUSH)
+
+  - # Lights
+    type: ToggleSwitch
+    var_name: A:LIGHT TAXI:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_TAXI_LIGHTS
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT TAXI:2
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_TAXI_LIGHTS
+    event_param: 2
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT TAXI:3
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_TAXI_LIGHTS
+    event_param: 3
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT LOGO:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_LOGO_LIGHTS
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT BEACON:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_BEACON_LIGHTS
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT WING:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_WING_LIGHTS
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:LIGHT TAXI:4
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_TAXI_LIGHTS
+    event_param: 4
+    use_calculator: true
+
+  - # Radios
+    type: NumSet
+    var_name: A:ADF ACTIVE FREQUENCY:1
+    var_units: Frequency ADF BCD32
+    var_type: i32
+    event_name: ADF_ACTIVE_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:ADF ACTIVE FREQUENCY:2
+    var_units: Frequency ADF BCD32
+    var_type: i32
+    event_name: ADF2_ACTIVE_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:ADF STANDBY FREQUENCY:1
+    var_units: Frequency ADF BCD32
+    var_type: i32
+    event_name: ADF_STBY_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:ADF STANDBY FREQUENCY:2
+    var_units: Frequency ADF BCD32
+    var_type: i32
+    event_name: ADF2_STBY_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:ADF SOUND:1
+    var_units: Bool
+    var_type: i32
+    event_name: RADIO_ADF_IDENT_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:ADF SOUND:2
+    var_units: Bool
+    var_type: i32
+    event_name: RADIO_ADF2_IDENT_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:ADF VOLUME:1
+    var_units: Percent
+    var_type: f64
+    event_name: ADF_VOLUME_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:ADF VOLUME:2
+    var_units: Percent
+    var_type: f64
+    event_name: ADF2_VOLUME_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM ACTIVE FREQUENCY:1
+    var_units: Hz
+    var_type: i32
+    event_name: COM_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM ACTIVE FREQUENCY:2
+    var_units: Hz
+    var_type: i32
+    event_name: COM2_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM ACTIVE FREQUENCY:3
+    var_units: Hz
+    var_type: i32
+    event_name: COM3_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM STANDBY FREQUENCY:1
+    var_units: Hz
+    var_type: i32
+    event_name: COM_STBY_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM STANDBY FREQUENCY:2
+    var_units: Hz
+    var_type: i32
+    event_name: COM2_STBY_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM STANDBY FREQUENCY:3
+    var_units: Hz
+    var_type: i32
+    event_name: COM3_STBY_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM1 STORED FREQUENCY
+    var_units: Hz
+    var_type: i32
+    event_name: COM1_STORED_FREQUENCY_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM2 STORED FREQUENCY
+    var_units: Hz
+    var_type: i32
+    event_name: COM2_STORED_FREQUENCY_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM3 STORED FREQUENCY
+    var_units: Hz
+    var_type: i32
+    event_name: COM3_STORED_FREQUENCY_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM VOLUME:1
+    var_units: Percent
+    var_type: f64
+    event_name: COM1_VOLUME_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM VOLUME:2
+    var_units: Percent
+    var_type: f64
+    event_name: COM2_VOLUME_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM VOLUME:3
+    var_units: Percent
+    var_type: f64
+    event_name: COM3_VOLUME_SET
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:COM TEST:1
+    var_units: Bool
+    var_type: bool
+    event_name: RADIO_COMMNAV1_TEST_TOGGLE
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:COM TEST:2
+    var_units: Bool
+    var_type: bool
+    event_name: RADIO_COMMNAV2_TEST_TOGGLE
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:COM TEST:3
+    var_units: Bool
+    var_type: bool
+    event_name: RADIO_COMMNAV3_TEST_TOGGLE
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM SPACING MODE:1
+    var_units: Enum
+    var_type: i32
+    event_name: COM_1_SPACING_MODE_SWITCH
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM SPACING MODE:2
+    var_units: Enum
+    var_type: i32
+    event_name: COM_2_SPACING_MODE_SWITCH
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM SPACING MODE:3
+    var_units: Enum
+    var_type: i32
+    event_name: COM_3_SPACING_MODE_SWITCH
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM RECEIVE ALL
+    var_units: Bool
+    var_type: i32
+    event_name: COM_RECEIVE_ALL_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM RECEIVE EX1:1
+    var_units: Bool
+    var_type: i32
+    event_name: COM1_RECEIVE_SELECT
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM RECEIVE EX1:2
+    var_units: Bool
+    var_type: i32
+    event_name: COM2_RECEIVE_SELECT
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM RECEIVE EX1:3
+    var_units: Bool
+    var_type: i32
+    event_name: COM3_RECEIVE_SELECT
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:DME SOUND:1
+    var_units: Bool
+    var_type: i32
+    event_name: RADIO_DME1_IDENT_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:DME SOUND:2
+    var_units: Bool
+    var_type: i32
+    event_name: RADIO_DME2_IDENT_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV ACTIVE FREQUENCY:1
+    var_units: Hz
+    var_type: i32
+    event_name: NAV1_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV ACTIVE FREQUENCY:2
+    var_units: Hz
+    var_type: i32
+    event_name: NAV2_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV ACTIVE FREQUENCY:3
+    var_units: Hz
+    var_type: i32
+    event_name: NAV3_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV ACTIVE FREQUENCY:4
+    var_units: Hz
+    var_type: i32
+    event_name: NAV4_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV STANDBY FREQUENCY:1
+    var_units: Hz
+    var_type: i32
+    event_name: NAV1_STBY_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV STANDBY FREQUENCY:2
+    var_units: Hz
+    var_type: i32
+    event_name: NAV2_STBY_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV STANDBY FREQUENCY:3
+    var_units: Hz
+    var_type: i32
+    event_name: NAV3_STBY_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV STANDBY FREQUENCY:4
+    var_units: Hz
+    var_type: i32
+    event_name: NAV4_STBY_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV SOUND:1
+    var_units: Bool
+    var_type: i32
+    event_name: RADIO_VOR1_IDENT_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV SOUND:2
+    var_units: Bool
+    var_type: i32
+    event_name: RADIO_VOR2_IDENT_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV SOUND:3
+    var_units: Bool
+    var_type: i32
+    event_name: RADIO_VOR3_IDENT_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV SOUND:4
+    var_units: Bool
+    var_type: i32
+    event_name: RADIO_VOR4_IDENT_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV VOLUME:1
+    var_units: Percent
+    var_type: f64
+    event_name: NAV1_VOLUME_SET_EX1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV VOLUME:2
+    var_units: Percent
+    var_type: f64
+    event_name: NAV2_VOLUME_SET_EX1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV VOLUME:3
+    var_units: Percent
+    var_type: f64
+    event_name: NAV3_VOLUME_SET_EX1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV VOLUME:4
+    var_units: Percent
+    var_type: f64
+    event_name: NAV4_VOLUME_SET_EX1
+    use_calculator: true
+
+  - # Transponder
+    type: NumSet
+    var_name: A:TRANSPONDER IDENT:1
+    var_units: Bool
+    var_type: i32
+    event_name: XPNDR_IDENT_SET
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:TRANSPONDER CODE:1
+    var_units: Bco16
+    var_type: i32
+    event_name: XPNDR_SET
+    event_param: 1
+
+  - # Trim air
+    type: CustomCalculator
+    get: (B:TEMPERATURE_PANEL_TRIM_AIR_Toggle)
+    set: (>B:TEMPERATURE_PANEL_TRIM_AIR_Toggle)
+
+  - # Trim
+    type: NumSet
+    var_name: A:AILERON TRIM PCT
+    var_units: Percent scaler 16k
+    var_type: f64
+    event_name: AILERON_TRIM_SET_EX1
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:ELEVATOR TRIM PCT
+    var_units: Percent scaler 16k
+    var_type: f64
+    event_name: ELEVATOR_TRIM_SET
+    condition:
+      var:
+        var_name: A:SIM ON GROUND
+        var_units: Bool
+        var_type: bool
+      equals:
+        Bool: true
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:RUDDER TRIM PCT
+    var_units: Percent scaler 16k
+    var_type: f64
+    event_name: RUDDER_TRIM_SET_EX1
+    use_calculator: true
+    unreliable: true
+
+  - # Yaw damper
+    type: NumSet
+    var_name: A:AUTOPILOT YAW DAMPER
+    var_units: Bool
+    var_type: i32
+    event_name: YAW_DAMPER_SET
+    use_calculator: true
+
+  - # Overhead AFT
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_ELT_Cover_Open
+  -
+    type: CustomCalculator
+    get: (B:AFT_OVHD_ELT_TOGGLE)
+    set: (>B:AFT_OVHD_ELT_TOGGLE)
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_DSPL_SEL_Value
+  -
+    type: CustomCalculator
+    get: (B:AFT_OVHD_DSPL_SEL) 0 ==
+    set: 0 (>B:AFT_OVHD_DSPL_SEL_TEST)
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_ISDU_BRT_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_SYS_DSPL_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_ELEVATOR_JAM_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_ELEVATOR_JAM_Value
+  -
+    type: CustomCalculator
+    get: (B:AFT_OVHD_LE_DEVICES_TEST_PUSH)
+    set: (>B:AFT_OVHD_LE_DEVICES_TEST_PUSH)
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_L_IRS_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_R_IRS_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_SERVICE_INTERPHONE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_EEC_1_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_EEC_2_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_EEC_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_EEC_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_PASS_OXYGEN_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_PASS_OXYGEN_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_AFT_OVHD_STALL_WARNING_1_Value
+  -
+    type: CustomCalculator
+    get: (B:AFT_OVHD_STALL_WARNING_1_PUSH)
+    set: (>B:AFT_OVHD_STALL_WARNING_1_PUSH)
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_AFT_OVHD_STALL_WARNING_2_Value
+  -
+    type: CustomCalculator
+    get: (B:AFT_OVHD_STALL_WARNING_2_PUSH)
+    set: (>B:AFT_OVHD_STALL_WARNING_2_PUSH)
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_FLT_RECORDER_TEST_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_AFT_OVHD_FLT_RECORDER_TEST_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_AFT_OVHD_MACH_AIRSPEED_TEST_1_Value
+  -
+    type: CustomCalculator
+    get: (B:AFT_OVHD_MACH_AIRSPEED_TEST_1_PUSH)
+    set: (>B:AFT_OVHD_MACH_AIRSPEED_TEST_1_PUSH)
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_AFT_OVHD_MACH_AIRSPEED_TEST_2_Value
+  -
+    type: CustomCalculator
+    get: (B:AFT_OVHD_MACH_AIRSPEED_TEST_2_PUSH)
+    set: (>B:AFT_OVHD_MACH_AIRSPEED_TEST_2_PUSH)
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_1_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_2_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_3_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_4_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_5_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_6_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_7_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_8_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_9_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_10_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_11_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_12_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_13_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_14_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_15_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_16_3_Value
+    unreliable: true
+  - # Held O var
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_PTT_COM_3_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_FILTER_3_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_ALT_NORM_3_Value
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_SAT_COM_1_3_PUSH)
+    set: (>B:COM_PANEL_SAT_COM_1_3_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_MIC_SELECT_9_3_PUSH)
+    set: (>B:COM_PANEL_MIC_SELECT_9_3_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_MIC_SELECT_10_3_PUSH)
+    set: (>B:COM_PANEL_MIC_SELECT_10_3_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_SAT_COM_2_3_PUSH)
+    set: (>B:COM_PANEL_SAT_COM_2_3_PUSH)
+
+  - # Overhead FWD
+    type: var
+    var_name: L:1:XMLVAR_FLT_CONTROLS_PANEL_FLT_CONTROL_1_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_FLT_CONTROLS_PANEL_FLT_CONTROL_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FLT_CONTROLS_PANEL_FLT_CONTROL_2_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_FLT_CONTROLS_PANEL_FLT_CONTROL_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FLT_CONTROLS_PANEL_ALTERNATE_FLAPS_ARM_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_FLT_CONTROLS_PANEL_ALTERNATE_FLAPS_ARM_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FLT_CONTROLS_PANEL_ALTERNATE_FLAPS_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FLT_CONTROLS_PANEL_SPOILER_1_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_FLT_CONTROLS_PANEL_SPOILER_2_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_NAVIGATION_VHF_NAV_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_NAVIGATION_IRS_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_NAVIGATION_FMC_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_DISPLAYS_SOURCE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_DISPLAYS_CONTROL_PANEL_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_DC_METERS_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_AC_METERS_Value
+  -
+    type: CustomCalculator
+    get: (B:ELECTRICAL_MAINT_PUSH)
+    set: (>B:ELECTRICAL_MAINT_PUSH)
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_BATTERY_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_BATTERY_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_CAB_UTIL_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_IFE_PASS_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_STANDBY_POWER_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_STANDBY_POWER_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_GENERATOR_DRIVE_DISCONNECT_1_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_GENERATOR_DRIVE_DISCONNECT_1_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_GENERATOR_DRIVE_DISCONNECT_2_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_GENERATOR_DRIVE_DISCONNECT_2_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_BUS_TRANSFER_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_ELECTRICAL_BUS_TRANSFER_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EQUIP_COOLING_SUPPLY_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EQUIP_COOLING_EXHAUST_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_PASSENGER_EXIT_LIGHTS_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_PASSENGER_EXIT_LIGHTS_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_PASSENGER_NO_SMOKING_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_PASSENGER_FASTEN_BELTS_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_WINDSHIELD_L_WIPER_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_WINDSHIELD_R_WIPER_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_WINDOW_HEAT_L_SIDE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_WINDOW_HEAT_L_FWD_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_WINDOW_HEAT_OVHT_TEST_Value
+  -
+    type: CustomCalculator
+    get: (B:WINDOW_HEAT_OVHT_TEST) 0 ==
+    set: 0 (>B:WINDOW_HEAT_OVHT_TEST_PWR_TEST)
+  -
+    type: CustomCalculator
+    get: (B:WINDOW_HEAT_OVHT_TEST) 2 ==
+    set: 2 (>B:WINDOW_HEAT_OVHT_TEST_OVHT)
+  -
+    type: var
+    var_name: L:1:XMLVAR_WINDOW_HEAT_R_FWD_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_WINDOW_HEAT_R_SIDE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_PROBE_HEAT_A_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_PROBE_HEAT_B_Value
+  -
+    type: CustomCalculator
+    get: (B:PROBE_HEAT_TAT_TEST_PUSH)
+    set: (>B:PROBE_HEAT_TAT_TEST_PUSH)
+  -
+    type: var
+    var_name: L:1:XMLVAR_ANTI_ICE_WING_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ANTI_ICE_ENG_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ANTI_ICE_ENG_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ALTITUDE_BELL_WARNING
+  -
+    type: var
+    var_name: L:1:XMLVAR_VOICE_RECORDER_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_SEL_AIR_COND_TEMPERATURE
+  -
+    type: var
+    var_name: L:1:XMLVAR_TEMPERATURE_PANEL_TEMP_SOURCE_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_TEMPERATURE_PANEL_TEMP_1_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_TEMPERATURE_PANEL_TEMP_2_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_TEMPERATURE_PANEL_TEMP_3_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_PNEUMATICS_RECIRC_FAN_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_PNEUMATICS_RECIRC_FAN_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_PNEUMATICS_L_PACK_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_PNEUMATICS_R_PACK_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_PRESSURIZATION_ALTITUDE_FLIGHT
+    interpolate: Default
+  -
+    type: var
+    var_name: L:1:XMLVAR_PRESSURIZATION_ALTITUDE_LANDING
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_PRESSURIZATION_LANDING_ALT_PRESSURE
+  -
+    type: var
+    var_name: L:1:XMLVAR_PNEUMATICS_VALUE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_PNEUMATICS_PRESS_SELEC_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_LIGHT_LANDING_FIXED_L
+  -
+    type: var
+    var_name: L:1:XMLVAR_LIGHT_LANDING_FIXED_R
+  -
+    type: var
+    var_name: L:1:XMLVAR_ENGINE_APU_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_ENGINE_IGNITION_1_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_Engine_1_Start_Value_Cutout
+  -
+    type: var
+    var_name: L:1:XMLVAR_ENGINE_IGNITION_SELECT_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_ENGINE_IGNITION_2_Position
+  -
+    type: var
+    var_name: L:1:XMLVAR_Engine_2_Start_Value_Cutout
+  -
+    type: var
+    var_name: L:1:XMLVAR_LIGHTING_POSITION_LIGHT_Position
+
+  - # Overhead HUD
+    type: var
+    var_name: L:1:XMLVAR_HUD_DISPLAY_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_HUD_BRT_Value
+
+  - # Left front
+    type: var
+    var_name: L:1:XMLVAR_AP_Disengaged_Manually
+  -
+    type: var
+    var_name: L:1:XMLVAR_AT_Disengaged_Manually
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_ANNUNCIATION_WARNING_TEST_1_Value
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_WARNING_TEST_1) 0 ==
+    set: 0 (>B:ANNUNCIATION_WARNING_TEST_1_MCP_2)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_WARNING_TEST_1) 2 ==
+    set: 2 (>B:ANNUNCIATION_WARNING_TEST_1_MCP_1)
+    condition:
+      equals:
+        F64: 1.0
+#  -
+#    type: var
+#    var_name: L:1:XMLVAR_Master_Lights_Test
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_MASTER_LIGHTS) 0 ==
+    set: 0 (>B:ANNUNCIATION_MASTER_LIGHTS_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_MASTER_LIGHTS) 1 ==
+    set: 1 (>B:ANNUNCIATION_MASTER_LIGHTS_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_MASTER_LIGHTS) 2 ==
+    set: 2 (>B:ANNUNCIATION_MASTER_LIGHTS_Set)
+    condition:
+      equals:
+        F64: 1.0
+#  -
+#    type: var
+#    var_name: L:1:XMLVAR_INDICATOR_Brightness
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_CHART_LIGHT_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_FOOT_AIR_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_WINDSHIELD_AIR_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_OUTBD_BRT_CONTRAST_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_OUTBD_DU_BRIGHT_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_INBD_BRT_CONTRAST_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_INBD_DU_BRIGHT_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_PFD_MFD_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_YOKE_CHECKLIST_MARKER_1_Value
+    unreliable: true
+
+  - # Center front
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_NOSE_WHEEL_STEER_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_NOSE_WHEEL_STEER_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_Gears_lever_Locked
+  -
+    type: var
+    var_name: L:1:XMLVAR_FWD_PDSTL_FUEL_FLOW_Value
+  -
+    type: CustomCalculator
+    get: (B:FWD_PDSTL_FUEL_FLOW) 0 ==
+    set: 0 (>B:FWD_PDSTL_FUEL_FLOW_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:FWD_PDSTL_FUEL_FLOW) 2 ==
+    set: 2 (>B:FWD_PDSTL_FUEL_FLOW_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:1:XMLVAR_FWD_PDSTL_OUTER_SELEC_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FWD_PDSTL_INNER_SELEC_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FWD_PDSTL_OUTER_SELEC_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FWD_PDSTL_INNER_SELEC_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_Trim_Disabled
+  -
+    type: var
+    var_name: L:1:XMLVAR_ENGINE_STARTER_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ENGINE_STARTER_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_LANDING_CONFIG_WARNING
+  -
+    type: var
+    var_name: L:1:XMLVAR_LANDING_CONFIG_WARNING_CAN_BE_STOPPED
+  -
+    type: CustomCalculator
+    get: (B:TRIM_PANEL_HORN_CUT_PUSH)
+    set: (>B:TRIM_PANEL_HORN_CUT_PUSH)
+  -
+    type: var
+    var_name: L:1:XMLVAR_TRIM_PANEL_STAB_TRIM_PRMY_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_TRIM_PANEL_STAB_TRIM_PRMY_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_Primary_Stab_Trim_Cutout
+  -
+    type: var
+    var_name: L:1:XMLVAR_TRIM_PANEL_STAB_TRIM_BACKUP_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_TRIM_PANEL_STAB_TRIM_BACKUP_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_Backup_Stab_Trim_Cutout
+
+# - # Right front
+#   type: var
+#   var_name: L:1:XMLVAR_ANNUNCIATION_WARNING_TEST_2_Value
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_WARNING_TEST_2) 0 ==
+    set: 0 (>B:ANNUNCIATION_WARNING_TEST_2_MCP_2)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:ANNUNCIATION_WARNING_TEST_2) 2 ==
+    set: 2 (>B:ANNUNCIATION_WARNING_TEST_2_MCP_1)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_FOOT_AIR_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_WINDSHIELD_AIR_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_OUTBD_BRT_CONTRAST_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_OUTBD_DU_BRIGHT_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_INBD_BRT_CONTRAST_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_INBD_DU_BRIGHT_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_PFD_MFD_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_RWY_INHIBIT_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_RWY_INHIBIT_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_TERR_INHIBIT_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_TERR_INHIBIT_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_GEAR_INHIBIT_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_GEAR_INHIBIT_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_FLAP_INHIBIT_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_BEHIND_YOKE_FLAP_INHIBIT_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_YOKE_CHECKLIST_MARKER_2_Value
+    unreliable: true
+
+  - # Left glareshield
+    type: var
+    var_name: L:1:XMLVAR_EFIS_Mins_Ref_1_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_EFIS_Mins_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_FPV_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_MTRS_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_VSD_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_Baro_1_Tooltip_Displayed_Unit
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_Mode_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_Range_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_TFC_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_VOR_ADF_1_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_VOR_ADF_2_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_WXR_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_STA_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_WPT_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_ARPT_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_DATA_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_POS_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_TERR_1_Value
+
+  - # Center glareshield
+    type: var
+    var_name: L:1:XMLVAR_FCC_AUTOTHROTTLE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_AirSpeedIsInMach
+  -
+    type: var
+    var_name: L:1:XMLVAR_FCC_BANK_ANGLE_SEL_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FCC_1_CMD_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FCC_2_CMD_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FCC_CWS_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FCC_CWS_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FCC_DISENGAGE_Value
+
+  - # Right glareshield
+    type: var
+    var_name: L:1:XMLVAR_EFIS_Mins_Ref_2_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_EFIS_Mins_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_FPV_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_MTRS_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_VSD_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_Baro_2_Tooltip_Displayed_Unit
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_Mode_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_Range_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_TFC_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_VOR_ADF_1_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_VOR_ADF_2_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_WXR_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_STA_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_WPT_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_ARPT_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_DATA_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_POS_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_EFIS_TERR_2_Value
+
+  - # Pedestal left
+    type: CustomCalculator
+    get: (B:RADIO_PANEL_PNL_OFF_1_Toggle)
+    set: (>B:RADIO_PANEL_PNL_OFF_1_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:RADIO_PANEL_VHF_TEST_1_Toggle)
+    set: (>B:RADIO_PANEL_VHF_TEST_1_Toggle)
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_PANEL_HF_SENSITIVITY_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_TRANSMITTER_1_TUNING_SOURCE
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_PANEL_1_TUNING_SOURCE
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_PANEL_TUNING_AM_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_1_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_2_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_3_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_4_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_5_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_6_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_7_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_8_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_9_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_10_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_11_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_12_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_13_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_14_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_15_1_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_16_1_Value
+    unreliable: true
+  - # Held O var
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_PTT_COM_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_FILTER_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_ALT_NORM_1_Value
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_SAT_COM_1_1_PUSH)
+    set: (>B:COM_PANEL_SAT_COM_1_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_MIC_SELECT_9_1_PUSH)
+    set: (>B:COM_PANEL_MIC_SELECT_9_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_MIC_SELECT_10_1_PUSH)
+    set: (>B:COM_PANEL_MIC_SELECT_10_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_SAT_COM_2_1_PUSH)
+    set: (>B:COM_PANEL_SAT_COM_2_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:NAV_PANEL_NAV_TEST_1_PUSH)
+    set: (>B:NAV_PANEL_NAV_TEST_1_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:RADIO_PANEL_PNL_OFF_3_Toggle)
+    set: (>B:RADIO_PANEL_PNL_OFF_3_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:RADIO_PANEL_VHF_TEST_3_Toggle)
+    set: (>B:RADIO_PANEL_VHF_TEST_3_Toggle)
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_PANEL_HF_SENSITIVITY_3_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_TRANSMITTER_3_TUNING_SOURCE
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_PANEL_3_TUNING_SOURCE
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_PANEL_TUNING_AM_3_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_HANDLING_STAB_TRIM_OVRD_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_HANDLING_STAB_TRIM_OVRD_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_UNKNOWN_DOOR_LOCK_Value
+
+  - # Pedestal center
+    type: var
+    var_name: L:1:XMLVAR_FIRE_CONTROL_OVHT_DET_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FIRE_CONTROL_OVHT_DET_TEST_Position
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_OVHT_DET_TEST) 0 ==
+    set: 0 (>B:FIRE_CONTROL_OVHT_DET_TEST_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_OVHT_DET_TEST) 2 ==
+    set: 2 (>B:FIRE_CONTROL_OVHT_DET_TEST_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:1:XMLVAR_FIRE_CONTROL_ENGINE_1_Position
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_ENGINE_1) 0 ==
+    set: 0 (>B:FIRE_CONTROL_ENGINE_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_ENGINE_1) 1 ==
+    set: 1 (>B:FIRE_CONTROL_ENGINE_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_ENGINE_1) 2 ==
+    set: 2 (>B:FIRE_CONTROL_ENGINE_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:1:XMLVAR_FIRE_CONTROL_ENGINE_ARM_1_Value
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_ENGINE_ARM_1_TOGGLE)
+    set: (>B:FIRE_CONTROL_ENGINE_ARM_1_TOGGLE)
+  -
+    type: var
+    var_name: L:1:XMLVAR_FIRE_CONTROL_APU_Position
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_APU) 0 ==
+    set: 0 (>B:FIRE_CONTROL_APU_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_APU) 1 ==
+    set: 1 (>B:FIRE_CONTROL_APU_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_APU) 2 ==
+    set: 2 (>B:FIRE_CONTROL_APU_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:1:XMLVAR_FIRE_CONTROL_APU_ARM_Value
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_APU_ARM_TOGGLE)
+    set: (>B:FIRE_CONTROL_APU_ARM_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_FIRE_CUTOUT_PUSH)
+    set: (>B:FIRE_CONTROL_FIRE_CUTOUT_PUSH)
+  -
+    type: var
+    var_name: L:1:XMLVAR_FIRE_CONTROL_ENGINE_2_Position
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_ENGINE_2) 0 ==
+    set: 0 (>B:FIRE_CONTROL_ENGINE_2_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_ENGINE_2) 1 ==
+    set: 1 (>B:FIRE_CONTROL_ENGINE_2_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_ENGINE_2) 2 ==
+    set: 2 (>B:FIRE_CONTROL_ENGINE_2_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:1:XMLVAR_FIRE_CONTROL_ENGINE_ARM_2_Value
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_ENGINE_ARM_2_TOGGLE)
+    set: (>B:FIRE_CONTROL_ENGINE_ARM_2_TOGGLE)
+  -
+    type: var
+    var_name: L:1:XMLVAR_FIRE_CONTROL_OVHT_DET_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FIRE_CONTROL_EXT_TEST_Value
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_EXT_TEST) 0 ==
+    set: 0 (>B:FIRE_CONTROL_EXT_TEST_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (B:FIRE_CONTROL_EXT_TEST) 2 ==
+    set: 2 (>B:FIRE_CONTROL_EXT_TEST_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:1:XMLVAR_CARGO_FIRE_DET_SELECT_FWD_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_CARGO_FIRE_DET_SELECT_AFT_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_Cargo_Fire_Test
+  -
+    type: var
+    var_name: L:1:XMLVAR_CARGO_FIRE_ARM_FWD_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_CARGO_FIRE_ARM_AFT_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_CARGO_FIRE_DISCH_Cover_Open
+  -
+    type: var
+    var_name: L:1:XMLVAR_CARGO_BOTTLE_DISCHARGED
+  -
+    type: CustomCalculator
+    get: (B:CARGO_FIRE_DISCH_PUSH)
+    set: (>B:CARGO_FIRE_DISCH_PUSH)
+  -
+    type: var
+    var_name: L:1:XMLVAR_XPDR_PANEL_SYS_SELEC_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_XPDR_PANEL_ALT_SOURCE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_XPDR_PANEL_XPDR_MODE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_XPDR_PANEL_ORIENTATION_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_XPDR_PANEL_XPDR_OPERATING_MODE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ADF_PANEL_TONE_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_ADF_PANEL_FREQ_TENTHS_1_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_ADF_PANEL_FREQ_TENS_1_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_ADF_PANEL_FREQ_HUNDREDS_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ADF_PANEL_ADF_MODE_L_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_ADF_PANEL_ADF_MODE_R_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_ADF_PANEL_FREQ_TENTHS_2_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_ADF_PANEL_FREQ_TENS_2_Value
+# -
+#   type: var
+#   var_name: L:1:XMLVAR_ADF_PANEL_FREQ_HUNDREDS_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_WEATHER_RADAR_WXR_MODE_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_WEATHER_RADAR_WXR_TEST_NORM_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_WEATHER_RADAR_WXR_MODE_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_MFD_1_WXR_ALTITUDE
+    interpolate: Default
+  -
+    type: var
+    var_name: L:1:XMLVAR_WEATHER_RADAR_WXR_GAIN_1_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_WEATHER_RADAR_WXR_GAIN_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_MFD_2_WXR_ALTITUDE
+    interpolate: Default
+  -
+    type: CustomCalculator
+    get: (B:VIDEO_PANEL_CAM_DSPL_PUSH)
+    set: (>B:VIDEO_PANEL_CAM_DSPL_PUSH)
+  -
+    type: var
+    var_name: L:1:XMLVAR_VIDEO_PANEL_CAM_SEL_Value
+
+  - # Pedestal right
+    type: CustomCalculator
+    get: (B:RADIO_PANEL_PNL_OFF_2_Toggle)
+    set: (>B:RADIO_PANEL_PNL_OFF_2_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:RADIO_PANEL_VHF_TEST_2_Toggle)
+    set: (>B:RADIO_PANEL_VHF_TEST_2_Toggle)
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_PANEL_HF_SENSITIVITY_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_TRANSMITTER_2_TUNING_SOURCE
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_PANEL_2_TUNING_SOURCE
+  -
+    type: var
+    var_name: L:1:XMLVAR_RADIO_PANEL_TUNING_AM_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_1_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_2_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_3_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_4_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_5_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_6_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_7_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_8_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_9_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_10_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_11_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_12_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_13_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_14_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_15_2_Value
+    unreliable: true
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_RECEIVER_16_2_Value
+    unreliable: true
+  - # Held O var
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_PTT_COM_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_FILTER_2_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COM_PANEL_ALT_NORM_2_Value
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_SAT_COM_1_2_PUSH)
+    set: (>B:COM_PANEL_SAT_COM_1_2_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_MIC_SELECT_9_2_PUSH)
+    set: (>B:COM_PANEL_MIC_SELECT_9_2_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_MIC_SELECT_10_2_PUSH)
+    set: (>B:COM_PANEL_MIC_SELECT_10_2_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:COM_PANEL_SAT_COM_2_2_PUSH)
+    set: (>B:COM_PANEL_SAT_COM_2_2_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:NAV_PANEL_NAV_TEST_2_PUSH)
+    set: (>B:NAV_PANEL_NAV_TEST_2_PUSH)
+
+  - # Seats
+    type: var
+    var_name: L:1:XMLVAR_COMMON_SEATS_1_L_ARMREST_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COMMON_SEATS_1_R_ARMREST_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COMMON_SEATS_2_L_ARMREST_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COMMON_SEATS_2_R_ARMREST_Value
+
+  - # Gear door
+    type: var
+    var_name: L:1:XMLVAR_FLOOR_PULL_GEAR_L_MAIN_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FLOOR_PULL_GEAR_NOSE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_FLOOR_PULL_GEAR_R_MAIN_Value
+  -
+    type: CustomCalculator
+    get: (B:FLOOR_GEAR_DOOR_TOGGLE)
+    set: (>B:FLOOR_GEAR_DOOR_TOGGLE)
+
+  - # Shades
+    type: var
+    var_name: L:1:XMLVAR_COMMON_WINDOW_SHADE01_TONGUE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COMMON_WINDOW_SHADE02_TONGUE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COMMON_WINDOW_SHADE03_TONGUE_Value
+  -
+    type: var
+    var_name: L:1:XMLVAR_COMMON_WINDOW_SHADE04_TONGUE_Value
+
+  - # Walkaround
+    type: var
+    var_name: L:1:Anim_TOILET_SERVICE_DOOR_Position
+
+  - # Global (trimmed)
+    type: NumSet
+    var_name: L:AS01B_AUTO_THROTTLE_ARM_STATE
+    var_units: Number
+    var_type: f64
+    event_name: AUTO_THROTTLE_ARM
+    use_calculator: true
+# -
+#   type: var
+#   var_name: L:N1_ACTIVE
+# -
+#   type: var
+#   var_name: L:AP_SPD_ACTIVE
+# -
+#   type: var
+#   var_name: L:AP_VNAV_ARMED
+# -
+#   type: var
+#   var_name: L:AP_LNAV_ARMED
+# -
+#   type: var
+#   var_name: L:AP_FLCH_ACTIVE
+# -
+#   type: var
+#   var_name: L:AP_LOC_ARMED
+# -
+#   type: var
+#   var_name: L:AP_APR_ARMED
+# -
+#   type: var
+#   var_name: L:AP_ALT_HOLD_ACTIVE
+# -
+#   type: var
+#   var_name: L:VS_ACTIVE
+# -
+#   type: var
+#   var_name: L:AP_HEADING_SELECT_ACTIVE
+# -
+#   type: var
+#   var_name: L:XMLVAR_Baro1_ForcedToSTD
+# -
+#   type: var
+#   var_name: L:XMLVAR_Baro2_ForcedToSTD
+  -
+    type: var
+    var_name: L:WT_AUTO_PERF_INIT_ENABLED
+  -
+    type: var
+    var_name: L:WT_AUTO_PERF_INIT_CRZ_ALT
+  -
+    type: var
+    var_name: L:WT_AUTO_PERF_INIT_COST_INDEX
+  -
+    type: var
+    var_name: L:WT_AUTO_PERF_INIT_RESERVE_FUEL
+# -
+#   type: var
+#   var_name: L:YourControlsPanelId
+# -
+#   type: var
+#   var_name: L:WT_IRS_POS_SET_1
+# -
+#   type: var
+#   var_name: L:WT_IRS_POS_SET_2
+# -
+#   type: var
+#   var_name: L:XMLVAR_VNAVButtonValue
+# -
+#   type: var
+#   var_name: L:XMLVAR_SpeedIsManuallySet
+  -
+    type: var
+    var_name: L:XMLVAR_TRK_MODE_ACTIVE
+# -
+#   type: var
+#   var_name: L:WT_Boeing_Fms_Operating_Phase
+# -
+#   type: var
+#   var_name: L:XMLVAR_Baro1_SavedPressure
+# -
+#   type: var
+#   var_name: L:WTB38M_MAXSPEED
+# -
+#   type: var
+#   var_name: L:WTB38M_MINSPEED
+# -
+#   type: var
+#   var_name: L:FMC_EXEC_ACTIVE
+# -
+#   type: var
+#   var_name: L:XMLVAR_NEXTGEN_FLIGHTPLAN_ENABLED
+# -
+#   type: var
+#   var_name: L:WT_Boeing_Autothrottle_Status
+# -
+#   type: var
+#   var_name: L:AP_THR_ACTIVE
+  -
+    type: var
+    var_name: L:WT_MFD_1_CONTRAST
+  -
+    type: var
+    var_name: L:WT_MFD_2_CONTRAST
+  -
+    type: var
+    var_name: L:WT_PFD_1_CONTRAST
+# -
+#   type: var
+#   var_name: L:Generic_Master_Caution_Active
+# -
+#   type: var
+#   var_name: L:Generic_Master_Warning_Active
+# -
+#   type: var
+#   var_name: L:WT_Boeing_Autopilot_Disconnected
+# -
+#   type: var
+#   var_name: L:WT_TOGA_ACTIVE
+# -
+#   type: var
+#   var_name: L:WT_BOEING_MINIMUMS_MODE
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Mode:1
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Running:1
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Reference_Time:1
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Reference_Value:1
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Initial_Value:1
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Value:1
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Mode:2
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Running:2
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Reference_Time:2
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Reference_Value:2
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Initial_Value:2
+# -
+#   type: var
+#   var_name: L:WTFltTimer_Value:2
+  -
+    type: var
+    var_name: L:WT_AUTOBRAKE_DISARM
+# -
+#   type: var
+#   var_name: L:WT_SEAT_BELTS_MODE
+  -
+    type: var
+    var_name: L:XMLVAR_ALTN_FLAPS_ARMED
+  -
+    type: var
+    var_name: L:XMLVAR_ALTN_FLAPS_SELECTOR
+# -
+#   type: var
+#   var_name: L:WT_APU_DOOR_PERCENT_OPEN
+# -
+#   type: var
+#   var_name: L:WT_APU_LOW_OIL_PRESSURE
+# -
+#   type: var
+#   var_name: L:WT_APU_DOOR_ALERT
+# -
+#   type: var
+#   var_name: L:WT_FILTERED_PITCH_TRIM_PERCENT
+# -
+#   type: var
+#   var_name: L:WT_Auto_Backlight
+# -
+#   type: var
+#   var_name: L:YourControlsServerRunning
+  -
+    type: var
+    var_name: L:WT_PRESS_MAN_ALT_ON
+# -
+#   type: var
+#   var_name: L:WT_PRESS_LDG_ALT
+# -
+#   type: var
+#   var_name: L:WT_Irs_On_Bat
+# -
+#   type: var
+#   var_name: L:HUD_AP_SELECTED_SPEED
+# -
+#   type: var
+#   var_name: L:HUD_AP_SELECTED_ALTITUDE
+# -
+#   type: var
+#   var_name: L:WT_Flight_Started
+# -
+#   type: var
+#   var_name: L:XMLVAR_ThrottlePosition_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_ThrottlePosition_2
+# -
+#   type: var
+#   var_name: L:AP_CLBCON_ACTIVE
+# -
+#   type: var
+#   var_name: L:AP_HEADING_LOCK_ACTIVE
+# -
+#   type: var
+#   var_name: L:AP_VS_ACTIVE
+# -
+#   type: var
+#   var_name: L:AP_LOC_ACTIVE
+  -
+    type: var
+    var_name: L:XMLVAR_ELECTRICAL_Battery_Position
+
+master:
+  -
+    type: NumSet
+    var_name: L:WT_Virtual_Throttle_Lever_Pos_1
+    var_units: Position 16k
+    var_type: f64
+    event_name: THROTTLE1_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: L:WT_Virtual_Throttle_Lever_Pos_2
+    var_units: Position 16k
+    var_type: f64
+    event_name: THROTTLE2_SET
+    use_calculator: true
+    unreliable: true
+
+ignore:
+  - Altimeter_Baro_Inc
+  - Altimeter_Baro_Dec
+
+  - AS05B_FMC_1_AP_VNAV
+  - AS05B_FMC_1_ALTITUDE_INTERVENTION
+  - AS05B_FMC_1_SPEED_INTERVENTION
+  - AS05B_FMC_1_CHANGEOVER
+  - AS05B_FMC_1_VS
+  - AS05B_FMC_1_AP_HEADING_SELECT
+  - AS05B_FMC_1_AUTOTHROTTL_ARM
+  - AS05B_FMC_1_AUTOTHROTTLE_OFF
+
+  - AS05B_FCC_1_COURSE_INC
+  - AS05B_FCC_1_COURSE_DEC
+  - AS05B_FMC_1_SPEED_SEL_INC
+  - AS05B_FMC_1_SPEED_SEL_DEC
+  - AS05B_FMC_1_HEADING_SEL_INC
+  - AS05B_FMC_1_HEADING_SEL_DEC
+  - AS05B_FMC_1_ALTITUDE_SEL_INC
+  - AS05B_FMC_1_ALTITUDE_SEL_DEC
+  - AS05B_FMC_1_VERTICAL_SPEED_INC
+  - AS05B_FMC_1_VERTICAL_SPEED_DEC
+  - AS05B_FCC_1_CMD
+  - AS05B_FCC_2_CMD
+  - AS05B_FCC_2_COURSE_INC
+  - AS05B_FCC_2_COURSE_DEC
+  - AS05B_PFD_1_CLOCK
+  - AS05B_PFD_2_CLOCK
+  - AS05B_PRESSURIZATION_FLIGHT_ALT_INC
+  - AS05B_PRESSURIZATION_FLIGHT_ALT_DEC
+  - AS05B_PRESSURIZATION_LANDING_ALT_INC
+  - AS05B_PRESSURIZATION_LANDING_ALT_DEC
+  - AS05B_MFD_1_WXR_GAIN_CHANGED
+  - AS05B_MFD_2_WXR_GAIN_CHANGED
+  - AS05B_MFD_1_WXR_ALTITUDE_INC
+  - AS05B_MFD_1_WXR_ALTITUDE_DEC
+  - AS05B_MFD_2_WXR_ALTITUDE_INC
+  - AS05B_MFD_2_WXR_ALTITUDE_DEC
+  - AS05B_PFD_1_EFIS_MINS_INC
+  - AS05B_PFD_1_EFIS_MINS_DEC
+  - AS05B_PFD_2_EFIS_MINS_INC
+  - AS05B_PFD_2_EFIS_MINS_DEC
+
+  - WT_NAV_PANEL_1_FREQ_SWAP
+  - WT_NAV_PANEL_2_FREQ_SWAP
+  - WT_RADIO_PANEL_1_FREQ_INNER_INC
+  - WT_RADIO_PANEL_1_FREQ_INNER_DEC
+  - WT_RADIO_PANEL_1_FREQ_OUTER_INC
+  - WT_RADIO_PANEL_1_FREQ_OUTER_DEC
+  - WT_RADIO_PANEL_1_HF_SENSITIVITY_INC
+  - WT_RADIO_PANEL_1_HF_SENSITIVITY_DEC
+  - WT_RADIO_PANEL_1_FREQ_TRANSFER
+  - WT_RADIO_PANEL_2_FREQ_INNER_INC
+  - WT_RADIO_PANEL_2_FREQ_INNER_DEC
+  - WT_RADIO_PANEL_2_FREQ_OUTER_INC
+  - WT_RADIO_PANEL_2_FREQ_OUTER_DEC
+  - WT_RADIO_PANEL_2_HF_SENSITIVITY_INC
+  - WT_RADIO_PANEL_2_HF_SENSITIVITY_DEC
+  - WT_RADIO_PANEL_2_FREQ_TRANSFER
+  - WT_RADIO_PANEL_3_FREQ_INNER_INC
+  - WT_RADIO_PANEL_3_FREQ_INNER_DEC
+  - WT_RADIO_PANEL_3_FREQ_OUTER_INC
+  - WT_RADIO_PANEL_3_FREQ_OUTER_DEC
+  - WT_RADIO_PANEL_3_HF_SENSITIVITY_INC
+  - WT_RADIO_PANEL_3_HF_SENSITIVITY_DEC
+  - WT_RADIO_PANEL_3_FREQ_TRANSFER
+  - WT_RADIO_PANEL_ADF_1_FREQ_TENTHS_INC
+  - WT_RADIO_PANEL_ADF_1_FREQ_TENTHS_DEC
+  - WT_RADIO_PANEL_ADF_1_FREQ_TENS_INC
+  - WT_RADIO_PANEL_ADF_1_FREQ_TENS_DEC
+  - WT_RADIO_PANEL_ADF_1_FREQ_HUNDREDS_INC
+  - WT_RADIO_PANEL_ADF_1_FREQ_HUNDREDS_DEC
+  - WT_RADIO_PANEL_ADF_2_FREQ_TENTHS_INC
+  - WT_RADIO_PANEL_ADF_2_FREQ_TENTHS_DEC
+  - WT_RADIO_PANEL_ADF_2_FREQ_TENS_INC
+  - WT_RADIO_PANEL_ADF_2_FREQ_TENS_DEC
+  - WT_RADIO_PANEL_ADF_2_FREQ_HUNDREDS_INC
+  - WT_RADIO_PANEL_ADF_2_FREQ_HUNDREDS_DEC

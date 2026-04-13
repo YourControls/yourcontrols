@@ -1,4 +1,4 @@
-# Version 2.0.51
+# Version 2.0.52
 
 include:
   - definitions/FS2020/modules/Instruments/AS_GNS430.yaml

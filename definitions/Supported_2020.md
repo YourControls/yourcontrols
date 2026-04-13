@@ -1,4 +1,4 @@
-# Actively supported FS2020 modules (as of 2.8.12)
+# Current supported FS2020 modules (as of 2.8.16)
 
 ## Developer name & Verified version
 
@@ -7,8 +7,8 @@
 - AeroSachs - Tecnam P92 Echo  # v1.6.0
 - Aerosoft - DHC-6 Twin Otter  # v1.1.1
 - Asobo Studio - Airbus A320neo  # v0.1.110
-- Asobo Studio - Beechcraft Baron G58  # v0.1.77
-- Asobo Studio - Beechcraft Bonanza G36  # v0.1.89
+- Asobo Studio - Beechcraft Baron G58  # v0.1.79
+- Asobo Studio - Beechcraft Bonanza G36  # v0.1.91
 - Asobo Studio - Beechcraft King Air 350i  # v0.1.83
 - Asobo Studio - Boeing 747-8 Intercontinental  # v0.1.114
 - Asobo Studio - Boeing 787-10 Dreamliner  # v0.1.112
@@ -42,14 +42,21 @@
 - Asobo Studio - Zlin Shock Ultra  # v0.1.81
 - Big Radials - Grumman JRF-6B Goose  # v1.0.9
 - Big Radials - Noorduyn Norseman  # v1.0.3
+- Black Square - Beechcraft Baron B58 (Professional)  # v0.1.1
 - Black Square - Beechcraft Baron B58 (Steam Overhaul)  # v0.1.2
+- Black Square - Beechcraft Bonanza A36 (Professional)  # v0.1.0
 - Black Square - Beechcraft Bonanza A36 (Steam Overhaul)  # v0.1.3
+- Black Square - Beechcraft Duke B60  # v0.1.2
 - Black Square - Beechcraft King Air 350i (Steam Overhaul)  # v0.1.4
+- Black Square - Cessna 208B Grand Caravan (Professional)  # v0.1.1
 - Black Square - Cessna 208B Grand Caravan (Steam Overhaul)  # v0.1.5
 - Black Square - Daher TBM 850  # v0.1.4
 - Black Square - Velocity XL  # v0.1.4
 - BlackBox Simulation - BN-2 Islander  # v2.2.2
 - BlackBox Simulation - BN-3 Trislander  # v1.2.0
+- BRsimDesigns - Beechcraft Bonanza H35  # v1.3
+- BRsimDesigns - Beechcraft Debonair 35-B33  # v1.8
+- BRsimDesigns - Embraer EMB-121A1 Xingu II  # v1.7.0
 - Carenado - Cessna 170B  # v2.0.2
 - Carenado - Cessna 337H Skymaster II  # v2.0.4
 - Carenado - Cessna R182 II Skylane RG  # v1.0.5
@@ -57,24 +64,28 @@
 - Carenado - Mooney M20R Ovation  # v2.0.3
 - Carenado - Pilatus PC-12  # v2.0.3
 - Carenado - Piper PA-28-181 Archer II  # v1.0.4
+- Carenado - Piper PA-28-236 Dakota  # v1.0.3
 - Carenado - Piper PA-28R-201 Arrow III  # v2.0.4
 - Carenado - Piper PA-34-220T Seneca V  # v2.0.4
 - Carenado - Piper PA-44-180 Seminole  # v2.0.2
 - Cowan Simulation - Airbus H125 (AS350B3e)  # v3.3.0
-- Cowan Simulation - Bell 206B-3 JetRanger III  # v3.2.0
-- Cowan Simulation - Bell 206L-3 LongRanger III  # v3.2.0
-- Cowan Simulation - Bell 222B  # v3.1.0
-- Cowan Simulation - MD Helicopters 500E  # v3.3.0
-- Cowan Simulation - Robinson R66  # v3.4.0
+- Cowan Simulation - Bell 206B-3 JetRanger III  # v3.3.0
+- Cowan Simulation - Bell 206L-3 LongRanger III  # v3.3.0
+- Cowan Simulation - Bell 222B  # v3.2.0
+- Cowan Simulation - MD Helicopters 500E  # v3.4.0
+- Cowan Simulation - Robinson R66  # v3.5.0
 - COWS - Diamond DA40 Diamond Star  # v1.1.3
 - COWS - Diamond DA42 Twin Star  # v1.2.5
 - DC Designs - Boeing PT-17 Stearman  # v1.0.6
 - DC Designs - Concorde  # v1.1.2
 - Deejing - Van's RV-7  # v1.1.2
 - Erasam - Tecnam P92 Echo  # v2.0.1
+- Fenix Simulations - Airbus A319ceo  # v2.4.0.3311
 - Fenix Simulations - Airbus A320ceo  # v2.4.0.3311
+- Fenix Simulations - Airbus A321ceo  # v2.4.0.3311
 - FlightFX - Cirrus SF50 Vision Jet G2  # v2.3.5
 - FlightFX - Honda HA-420 HondaJet  # v2.1.2
+- FlightSim Studio - Embraer E-Jet Series  # v0.9.34
 - FlightSim Studio - SeaRey Elite  # v1.0.3
 - FlightSim Studio - Tecnam P2006T MkII  # v1.1.2
 - FlyByWire Simulations - Airbus A320-251N  # v0.12.3
@@ -88,8 +99,10 @@
 - Headwind Simulations - Sukhoi SuperJet 100-95  # v0.6.1
 - Horizon Simulations - Boeing 787-9 Dreamliner  # v1.2.1
 - HypePerformanceGroup - Airbus H135  # Build 447
+- iniBuilds - Airbus A350  # v1.2.0
 - IRIS Simulations - Grob G115E Tutor T.1  # v2.4.0
 - IRIS Simulations - Jabiru J160 & J170  # v1.5.6
+- Just Flight - British Aerospace 146  # v0.2.1
 - Just Flight - Piper PA-28-161 Warrior II  # v0.4.3
 - Just Flight - Piper PA-28R-201 Arrow III  # v0.11.3
 - Just Flight - Piper PA-28R-201T Turbo Arrow III & IV  # v0.6.3
@@ -98,7 +111,7 @@
 - Kurorin - Boeing 787-8 Dreamliner  # v3.0.1
 - LatinVFR - Airbus A318ceo (Legacy)  # v2.2.7
 - LatinVFR - Airbus A319ceo (Legacy)  # v2.2.4
-- LatinVFR - Airbus A320ceo (Legacy)  # v2.2.4
+- LatinVFR - Airbus A320ceo (Legacy)  # v2.2.7
 - LatinVFR - Airbus A321neo (Legacy)  # v2.2.3
 - LatinVFR - Airbus A330-900neo (Legacy)  # v1.1.5
 - LatinVFR - Airbus A340-300 (Legacy)  # v1.1.0
@@ -118,8 +131,10 @@
 - Microsoft & FSS AG - DG Aviation DG-1001e neo  # v0.8.7
 - Microsoft & iniBuilds - Airbus A320neo  # v1.0.21 Enhanced
 - Microsoft & iniBuilds - Curtiss JN-4D Jenny  # v1.1.10
-- Microsoft & iniBuilds - Grumman G-21A Goose  # v1.1.10
+- Microsoft & iniBuilds - Grumman G-21A Goose  # v1.1.11
 - Microsoft & iniBuilds - Saab B 17A  # v1.0.12
+- Microsoft & Mike Johnson - Grumman G-111 Albatross  # v1.3.1
+- Microsoft & Mike Johnson - Grumman HU-16 Albatross  # v1.3.1
 - Microsoft & Mike Johnson - Savoia-Marchetti S.55 & 55X  # v1.5.4
 - Microsoft & Nemeth Designs - Bell 407  # v0.3.6
 - Microsoft & Oliver Moser - Dornier Do J Wal  # v0.2.2
@@ -135,13 +150,14 @@
 - Parallel 42 - Juice Goose UTV  # v1.1.0
 - PILOT'S - Boeing 314 Clipper  # v1.6.2
 - PMDG Simulations - Boeing 737NG Series  # v3.0.65
-- PMDG Simulations - Douglas DC-6 (A/B)  # v2.0.51
+- PMDG Simulations - Douglas DC-6  # v2.0.52
 - RotorSimPilot & Airland - Airbus H125  # v1.3.9b
 - RotorSimPilot & Airland - Robinson R44 Raven II  # v1.4
 - Salty Simulations - Boeing 747-8 Intercontinental  # v0.6.0
 - Shrike Simulations - MD Helicopters 530F  # v1.2.1
 - Sim Skunk Works - Lockheed TF-104G Starfighter  # v3.3.11
 - SimWorks Studios - Daher Kodiak 100  # v1.6.0
+- SimWorks Studios - Pilatus PC-12  # v1.6.11
 - SimWorks Studios - Van's RV-10  # v1.1.0
 - SimWorks Studios - Van's RV-14  # v1.4.0
 - VrilleAPlat - Cessna A-37B Dragonfly  # v1.1.2

@@ -1,0 +1,8951 @@
+# Version 0.2.1
+
+include:
+  - definitions/FS2020/modules/general.yaml
+  - definitions/FS2020/modules/navigation.yaml
+  - definitions/FS2020/modules/payload.yaml
+
+shared:
+  - # Altimeters
+    type: NumSet
+    var_name: A:KOHLSMAN SETTING MB:3
+    var_units: Millibars scaler 16
+    var_type: f64
+    event_name: KOHLSMAN_SET
+    event_param: 3
+  -
+    type: NumSet
+    var_name: A:KOHLSMAN SETTING MB:4
+    var_units: Millibars scaler 16
+    var_type: f64
+    event_name: KOHLSMAN_SET
+    event_param: 4
+
+  - # Brakes
+    type: NumSet
+    var_name: A:BRAKE LEFT POSITION EX1
+    var_units: Position 32k
+    var_type: f64
+    add_by: -16384
+    event_name: AXIS_LEFT_BRAKE_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:BRAKE RIGHT POSITION EX1
+    var_units: Position 32k
+    var_type: f64
+    add_by: -16384
+    event_name: AXIS_RIGHT_BRAKE_SET
+    use_calculator: true
+    unreliable: true
+
+  - # Radios
+    type: NumSet
+    var_name: A:COM ACTIVE FREQUENCY:1
+    var_units: Hz
+    var_type: i32
+    event_name: COM_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM ACTIVE FREQUENCY:2
+    var_units: Hz
+    var_type: i32
+    event_name: COM2_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM STANDBY FREQUENCY:1
+    var_units: Hz
+    var_type: i32
+    event_name: COM_STBY_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:COM STANDBY FREQUENCY:2
+    var_units: Hz
+    var_type: i32
+    event_name: COM2_STBY_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV ACTIVE FREQUENCY:1
+    var_units: Hz
+    var_type: i32
+    event_name: NAV1_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV ACTIVE FREQUENCY:2
+    var_units: Hz
+    var_type: i32
+    event_name: NAV2_RADIO_SET_HZ
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:NAV STANDBY FREQUENCY:1
+    var_units: Hz
+    var_type: i32
+    event_name: NAV1_STBY_SET_HZ
+    use_calculator: true
+
+  - # Transponder (backup)
+    type: NumSet
+    var_name: A:TRANSPONDER CODE:1
+    var_units: Bco16
+    var_type: i32
+    event_name: XPNDR_SET
+    event_param: 1
+
+  - # Trim
+    type: NumSet
+    var_name: A:RUDDER TRIM PCT
+    var_units: Percent scaler 16k
+    var_type: f64
+    event_name: RUDDER_TRIM_SET_EX1
+    use_calculator: true
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_MID_Elev_trim_wheel
+    var_type: f64
+    condition:
+      var:
+        var_name: A:AUTOPILOT MASTER
+        var_units: Bool
+        var_type: bool
+      equals:
+        Bool: false
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:AILERON TRIM PCT
+    var_units: Percent scaler 16k
+    var_type: f64
+    event_name: AILERON_TRIM_SET_EX1
+    use_calculator: true
+    unreliable: true
+
+  - # Payload
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:11
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:12
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:13
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+  -
+    type: var
+    var_name: A:PAYLOAD STATION WEIGHT:14
+    var_units: Pounds
+    var_type: f64
+    unreliable: true
+
+# - # LVAR's
+#   type: var
+#   var_name: L:AircraftState
+# -
+#   type: var
+#   var_name: L:Cabin_enabled
+# -
+#   type: var
+#   var_name: L:EXT_Elevator
+# -
+#   type: var
+#   var_name: L:EXT_Elevator_servo_tab
+# -
+#   type: var
+#   var_name: L:EXT_Elevator_trim_tab
+# -
+#   type: var
+#   var_name: L:EXT_Aileron_L
+# -
+#   type: var
+#   var_name: L:EXT_Aileron_R
+# -
+#   type: var
+#   var_name: L:EXT_Aileron_L_servo_tab
+# -
+#   type: var
+#   var_name: L:EXT_Aileron_L_trim_tab
+# -
+#   type: var
+#   var_name: L:EXT_Aileron_R_servo_tab
+# -
+#   type: var
+#   var_name: L:EXT_Aileron_R_trim_tab
+  -
+    type: var
+    var_name: L:DOOR_cockpit_LC
+  -
+    type: var
+    var_name: L:EFB_Home_SC
+# -
+#   type: var
+#   var_name: L:EFB_L_Down_LC
+# -
+#   type: var
+#   var_name: L:EFB_L_Up_LC
+# -
+#   type: var
+#   var_name: L:EFB_L_Left_LC
+# -
+#   type: var
+#   var_name: L:EFB_L_Right_LC
+# -
+#   type: var
+#   var_name: L:EFB_R_Down_LC
+# -
+#   type: var
+#   var_name: L:EFB_R_Up_LC
+# -
+#   type: var
+#   var_name: L:EFB_R_Left_LC
+# -
+#   type: var
+#   var_name: L:EFB_R_Right_LC
+  -
+    type: var
+    var_name: L:EFB_L_vis
+  -
+    type: var
+    var_name: L:EFB_R_vis
+# -
+#   type: var
+#   var_name: L:L_CLOCK_StopGo_inc
+# -
+#   type: var
+#   var_name: L:L_CLOCK_StopGo_dec
+  -
+    type: var
+    var_name: L:L_CLOCK_Wind
+    interpolate: Default
+  -
+    type: var
+    var_name: L:L_CLOCK_Push_rotate
+    interpolate: Default
+  -
+    type: var
+    var_name: L:L_CLOCK_Push_top
+# -
+#   type: var
+#   var_name: L:L_ASI_Bug_white_inc
+# -
+#   type: var
+#   var_name: L:L_ASI_Bug_white_dec
+# -
+#   type: var
+#   var_name: L:L_ASI_Bug_amber_inc
+# -
+#   type: var
+#   var_name: L:L_ASI_Bug_amber_dec
+# -
+#   type: var
+#   var_name: L:L_ASI_Bug_orange_inc
+# -
+#   type: var
+#   var_name: L:L_ASI_Bug_orange_dec
+# -
+#   type: var
+#   var_name: L:L_ASI_Bug_knob
+  -
+    type: var
+    var_name: L:L_RMI_NAV1_mode_button_IsDown
+# -
+#   type: var
+#   var_name: L:L_RMI_NAV1_mode_button_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_RMI_NAV1_mode_button_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_RMI_NAV2_mode_button_IsDown
+# -
+#   type: var
+#   var_name: L:L_RMI_NAV2_mode_button_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_RMI_NAV2_mode_button_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_ADI_Test_IsDown
+# -
+#   type: var
+#   var_name: L:L_ADI_Test_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_ADI_Test_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:L_ALT_Knob
+  -
+    type: var
+    var_name: L:L_ALT_Std_LC
+# -
+#   type: var
+#   var_name: L:L_RADALT_DH_knob
+  -
+    type: var
+    var_name: L:L_RADALT_DH_knob_test
+  -
+    type: var
+    var_name: L:L_STBY_ADI_Knob
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_Knob
+  -
+    type: var
+    var_name: L:Left_sill
+  -
+    type: var
+    var_name: L:L_MISC_Annun_dim
+    unreliable: true
+  -
+    type: var
+    var_name: L:L_MISC_RA_dim
+    unreliable: true
+  -
+    type: var
+    var_name: L:L_MISC_Compass_slew
+  -
+    type: var
+    var_name: L:L_MISC_Comp_switch
+  -
+    type: var
+    var_name: L:L_MISC_Att_switch
+  -
+    type: var
+    var_name: L:L_MISC_Compass_switch
+  -
+    type: var
+    var_name: L:L_MISC_Compass_cover
+  -
+    type: var
+    var_name: L:L_MISC_Mkr_sense
+  -
+    type: var
+    var_name: L:L_MISC_Alerts
+  -
+    type: var
+    var_name: L:L_MISC_HSI_mode
+  -
+    type: var
+    var_name: L:L_MISC_Comp_cover
+  -
+    type: var
+    var_name: L:L_MISC_Att_cover
+  -
+    type: var
+    var_name: L:L_MISC_Annun_test_IsDown
+# -
+#   type: var
+#   var_name: L:L_MISC_Annun_test_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_MISC_Annun_test_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Idnt1_IsDown
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Idnt1_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Idnt1_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Idnt2_IsDown
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Idnt2_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Idnt2_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N1_bug_knob
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N1_bug_knob
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N1_bug_knob
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N1_bug_knob
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_TGT_bug_knob
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_TGT_bug_knob
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_TGT_bug_knob
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_TGT_bug_knob
+  -
+    type: var
+    var_name: L:CTR_ENG1_FF_knob_IsDown
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_FF_knob_MinReleaseTime
+  -
+    type: var
+    var_name: L:CTR_ENG1_FF_knob_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:CTR_ENG2_FF_knob_IsDown
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_FF_knob_MinReleaseTime
+  -
+    type: var
+    var_name: L:CTR_ENG2_FF_knob_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:CTR_ENG3_FF_knob_IsDown
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_FF_knob_MinReleaseTime
+  -
+    type: var
+    var_name: L:CTR_ENG3_FF_knob_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:CTR_ENG4_FF_knob_IsDown
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_FF_knob_MinReleaseTime
+  -
+    type: var
+    var_name: L:CTR_ENG4_FF_knob_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:CTR_MISC_Gear_override
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Gear_handle_LC
+  -
+    type: var
+    var_name: L:Emer_gear_door
+  -
+    type: var
+    var_name: L:Emer_gear_handle_LC
+  -
+    type: var
+    var_name: L:CTR_MISC_Vibn_test_IsDown
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Vibn_test_MinReleaseTime
+  -
+    type: var
+    var_name: L:CTR_MISC_Vibn_test_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_CLOCK_StopGo_inc
+# -
+#   type: var
+#   var_name: L:R_CLOCK_StopGo_dec
+  -
+    type: var
+    var_name: L:R_CLOCK_Wind
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_CLOCK_Push_rotate
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_CLOCK_Push_top
+# -
+#   type: var
+#   var_name: L:R_ASI_Bug_white_inc
+# -
+#   type: var
+#   var_name: L:R_ASI_Bug_white_dec
+# -
+#   type: var
+#   var_name: L:R_ASI_Bug_amber_inc
+# -
+#   type: var
+#   var_name: L:R_ASI_Bug_amber_dec
+# -
+#   type: var
+#   var_name: L:R_ASI_Bug_orange_inc
+# -
+#   type: var
+#   var_name: L:R_ASI_Bug_orange_dec
+# -
+#   type: var
+#   var_name: L:R_ASI_Bug_knob
+  -
+    type: var
+    var_name: L:R_RMI_NAV1_mode_button_IsDown
+# -
+#   type: var
+#   var_name: L:R_RMI_NAV1_mode_button_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_RMI_NAV1_mode_button_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_RMI_NAV2_mode_button_IsDown
+# -
+#   type: var
+#   var_name: L:R_RMI_NAV2_mode_button_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_RMI_NAV2_mode_button_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_ADI_Test_IsDown
+# -
+#   type: var
+#   var_name: L:R_ADI_Test_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_ADI_Test_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_ALT_Knob
+  -
+    type: var
+    var_name: L:R_ALT_Std_LC
+# -
+#   type: var
+#   var_name: L:R_RADALT_DH_knob
+  -
+    type: var
+    var_name: L:R_RADALT_DH_knob_test
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Idnt1_IsDown
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Idnt1_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Idnt1_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Idnt2_IsDown
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Idnt2_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Idnt2_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_TMS_Dim
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_TMS_Ref_dig1
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_TMS_Ref_dig2
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_TMS_Ref_dig3
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_TMS_TGT_dig1
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_TMS_TGT_dig2
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_TMS_TGT_dig3
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng1_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng1_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng1_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng2_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng2_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng2_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng3_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng3_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng3_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng4_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng4_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng4_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_To_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_To_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_To_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Mct_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Mct_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Mct_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Tgt_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Tgt_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Tgt_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Desc_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Desc_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Desc_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Sync_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Sync_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Sync_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Ctrl_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Ctrl_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Ctrl_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Mstr_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Mstr_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Mstr_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Pwr_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Pwr_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Pwr_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_TMS_Test_IsDown
+# -
+#   type: var
+#   var_name: L:R_TMS_Test_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_TMS_Test_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:Right_sill
+  -
+    type: var
+    var_name: L:R_MISC_TMS_Dim
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_MISC_MWS_Dim
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_MISC_MWS_Ctrl
+  -
+    type: var
+    var_name: L:R_MISC_MWS_Test
+  -
+    type: var
+    var_name: L:R_MISC_RA_dim
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_MISC_Compass_slew
+  -
+    type: var
+    var_name: L:R_MISC_Compass_switch
+  -
+    type: var
+    var_name: L:R_MISC_Compass_cover
+  -
+    type: var
+    var_name: L:R_MISC_HSI_mode
+  -
+    type: var
+    var_name: L:R_ANNUNS_FlapWarnOvrd_cover
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_FlapWarnOvrd_button_IsDown
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_FlapWarnOvrd_button_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_FlapWarnOvrd_button_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_SteepApp_IsDown
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_SteepApp_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_SteepApp_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_COAMING_FD_bars
+  -
+    type: var
+    var_name: L:L_COAMING_LiftSplr_push_IsDown
+# -
+#   type: var
+#   var_name: L:L_COAMING_LiftSplr_push_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_COAMING_LiftSplr_push_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_COAMING_GPWS_push_IsDown
+# -
+#   type: var
+#   var_name: L:L_COAMING_GPWS_push_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_COAMING_GPWS_push_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_COAMING_MWS_Red_IsDown
+# -
+#   type: var
+#   var_name: L:L_COAMING_MWS_Red_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_COAMING_MWS_Red_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_COAMING_MWS_Amber_IsDown
+# -
+#   type: var
+#   var_name: L:L_COAMING_MWS_Amber_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_COAMING_MWS_Amber_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:L_VHFNAV_Knob_inner
+  -
+    type: var
+    var_name: L:L_VHFNAV_Knob_on
+# -
+#   type: var
+#   var_name: L:L_VHFNAV_Knob_outer
+  -
+    type: var
+    var_name: L:L_VHFNAV_Mode
+  -
+    type: var
+    var_name: L:L_VHFNAV_ILS_test
+  -
+    type: var
+    var_name: L:L_VHFNAV_ActPre
+  -
+    type: var
+    var_name: L:L_VHFNAV_DME_test_IsDown
+# -
+#   type: var
+#   var_name: L:L_VHFNAV_DME_test_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_VHFNAV_DME_test_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_VHFNAV_Flip_IsDown
+# -
+#   type: var
+#   var_name: L:L_VHFNAV_Flip_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_VHFNAV_Flip_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_NAV1_sel
+# -
+#   type: var
+#   var_name: L:MCP_NAV2_sel
+# -
+#   type: var
+#   var_name: L:MCP_HDG_sel
+  -
+    type: var
+    var_name: L:MCP_HDG_sel_sync
+# -
+#   type: var
+#   var_name: L:MCP_Alt_sel_knob
+  -
+    type: var
+    var_name: L:MCP_NAV_split
+# -
+#   type: var
+#   var_name: L:MCP_Mode_GSL_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_GSL_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_GSL_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Mode_ALT_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_ALT_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_ALT_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VS_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VS_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VS_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Mode_MACH_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_MACH_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_MACH_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VNAV_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VNAV_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VNAV_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Mode_IAS_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_IAS_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_IAS_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VL_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VL_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VL_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Mode_BLOC_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_BLOC_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_BLOC_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Mode_TURB_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_TURB_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_TURB_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Mode_LNAV_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_LNAV_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_LNAV_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Mode_HDG_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Mode_HDG_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Mode_HDG_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:MCP_Alt_test_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Alt_test_MinReleaseTime
+  -
+    type: var
+    var_name: L:MCP_Alt_test_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:MCP_Alt_arm_IsDown
+# -
+#   type: var
+#   var_name: L:MCP_Alt_arm_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:MCP_Alt_arm_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_VHFNAV_knob_outer
+# -
+#   type: var
+#   var_name: L:R_VHFNAV_knob_middle
+# -
+#   type: var
+#   var_name: L:R_VHFNAV_knob_inner
+  -
+    type: var
+    var_name: L:R_VHFNAV_ILS_test
+  -
+    type: var
+    var_name: L:R_VHFNAV_VOR_test_IsDown
+# -
+#   type: var
+#   var_name: L:R_VHFNAV_VOR_test_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_VHFNAV_VOR_test_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_COAMING_FD_bars
+  -
+    type: var
+    var_name: L:R_COAMING_LiftSplr_push_IsDown
+# -
+#   type: var
+#   var_name: L:R_COAMING_LiftSplr_push_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_COAMING_LiftSplr_push_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_COAMING_GPWS_push_IsDown
+# -
+#   type: var
+#   var_name: L:R_COAMING_GPWS_push_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_COAMING_GPWS_push_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_COAMING_MWS_Red_IsDown
+# -
+#   type: var
+#   var_name: L:R_COAMING_MWS_Red_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_COAMING_MWS_Red_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_COAMING_MWS_Amber_IsDown
+# -
+#   type: var
+#   var_name: L:R_COAMING_MWS_Amber_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_COAMING_MWS_Amber_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_SIDE_Fdeck_air
+    unreliable: true
+  -
+    type: var
+    var_name: L:L_SIDE_Floor_air
+    unreliable: true
+  -
+    type: var
+    var_name: L:L_SIDE_Sunvisor_attached
+  -
+    type: var
+    var_name: L:L_SIDE_Sunvisor_slide
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:L_SIDE_Tiller
+  -
+    type: var
+    var_name: L:L_SIDE_Lights_Sill_flex
+    unreliable: true
+  -
+    type: var
+    var_name: L:L_SIDE_Lights_Sill_rotate
+    unreliable: true
+  -
+    type: var
+    var_name: L:L_SIDE_Lights_FltKit
+    unreliable: true
+  -
+    type: var
+    var_name: L:L_SIDE_Lights_Push_knob
+    unreliable: true
+  -
+    type: var
+    var_name: L:L_SIDE_Lights_Flood
+    unreliable: true
+  -
+    type: var
+    var_name: L:L_SIDE_Lights_Insts
+    unreliable: true
+  -
+    type: var
+    var_name: L:L_SIDE_Oxy_knob
+  -
+    type: var
+    var_name: L:L_SIDE_Lights_Push_Sill_IsDown
+# -
+#   type: var
+#   var_name: L:L_SIDE_Lights_Push_Sill_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_SIDE_Lights_Push_Sill_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_SIDE_Lights_Push_Lap_IsDown
+# -
+#   type: var
+#   var_name: L:L_SIDE_Lights_Push_Lap_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_SIDE_Lights_Push_Lap_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_SIDE_CVR_Test_IsDown
+# -
+#   type: var
+#   var_name: L:L_SIDE_CVR_Test_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_SIDE_CVR_Test_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_SIDE_CVR_Erase_IsDown
+# -
+#   type: var
+#   var_name: L:L_SIDE_CVR_Erase_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_SIDE_CVR_Erase_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:L_SIDE_Oxy_test_IsDown
+# -
+#   type: var
+#   var_name: L:L_SIDE_Oxy_test_MinReleaseTime
+  -
+    type: var
+    var_name: L:L_SIDE_Oxy_test_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:L_SIDE_PedalAdjust
+  -
+    type: var
+    var_name: L:L_SIDE_Cupholder
+  -
+    type: var
+    var_name: L:FLTCTRLS_AP_button_L_IsDown
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_AP_button_L_MinReleaseTime
+  -
+    type: var
+    var_name: L:FLTCTRLS_AP_button_L_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:FLTCTRLS_RT_button_L
+  -
+    type: var
+    var_name: L:FLTCTRLS_AP_button_R_IsDown
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_AP_button_R_MinReleaseTime
+  -
+    type: var
+    var_name: L:FLTCTRLS_AP_button_R_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:FLTCTRLS_RT_button_R
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_Yoke_pitch_LC
+  -
+    type: var
+    var_name: L:Mic_LC
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_VHF1_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_VHF1_vol_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_VHF2_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_VHF2_vol_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_VHF3_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_VHF3_vol_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_HF_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_HF_vol_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_Int_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_Int_vol_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_Mkr
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_Mkr_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_NAV1
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_NAV1_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_NAV2
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_NAV2_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_ADF1
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_ADF1_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_ADF2
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_ADF2_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_Int
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_Int_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_DME1
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_DME1_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_DME2
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_DME2_push
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_Test
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_VHF1_sel
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_VHF2_sel
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_VHF3_sel
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_HF_sel
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_Int_sel
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_PA_sel
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_Voice
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_Boom
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_RT
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Range
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Gain
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Int
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Tilt
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Off
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Stby
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Wx
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Cyc
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Map
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Stab
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Azim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_WX_Azim_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Azim_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Scan_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_WX_Scan_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Scan_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Frz_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_WX_Frz_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Frz_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Tgt_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_WX_Tgt_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_FWD_WX_Tgt_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_FWD_CTR_Split
+  -
+    type: var
+    var_name: L:PED_FWD_CTR_TerrainDisp_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_CTR_TerrainDisp_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_FWD_CTR_TerrainDisp_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_ADF1_Outer
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_ADF1_Middle
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_ADF1_Inner
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_ADF2_Outer
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_ADF2_Middle
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_ADF2_Inner
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF1_Mode
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF2_Mode
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF1_BFO
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF2_BFO
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_VHF_Act_outer
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_VHF_Act_inner
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_VHF_Stby_outer
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_VHF_Stby_inner
+  -
+    type: var
+    var_name: L:PED_FWD_L_VHF_Mode
+  -
+    type: var
+    var_name: L:PED_FWD_L_VHF_Tfr
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_VHF_Act_outer
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_VHF_Act_inner
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_VHF_Stby_outer
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_VHF_Stby_inner
+  -
+    type: var
+    var_name: L:PED_FWD_R_VHF_Mode
+  -
+    type: var
+    var_name: L:PED_FWD_R_VHF_Tfr
+  -
+    type: var
+    var_name: L:PED_MID_Brakes_rotate
+# -
+#   type: var
+#   var_name: L:PED_MID_Brakes_push_LC
+# -
+#   type: var
+#   var_name: L:PED_MID_Elev_trim_wheel
+  -
+    type: var
+    var_name: L:PED_MID_Airbrake
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng1_throttle_shaft_VC
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng2_throttle_shaft_VC
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng3_throttle_shaft_VC
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng4_throttle_shaft_VC
+  -
+    type: var
+    var_name: L:PED_MID_Flap_lever
+  -
+    type: var
+    var_name: L:PED_MID_Rudder_trim_wheel
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_MID_Ail_trim_wheel
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_MID_FlapBaulkOvrd
+  -
+    type: var
+    var_name: L:PED_MID_Elv_disc
+  -
+    type: var
+    var_name: L:PED_MID_Ail_disc
+  -
+    type: var
+    var_name: L:PED_MID_Eng1_latch
+  -
+    type: var
+    var_name: L:PED_MID_Eng2_latch
+  -
+    type: var
+    var_name: L:PED_MID_Eng3_latch
+  -
+    type: var
+    var_name: L:PED_MID_Eng4_latch
+  -
+    type: var
+    var_name: L:PED_MID_Panel_lights_IsDown
+# -
+#   type: var
+#   var_name: L:PED_MID_Panel_lights_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_MID_Panel_lights_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_MID_Config_IsDown
+# -
+#   type: var
+#   var_name: L:PED_MID_Config_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_MID_Config_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_MID_Horn_IsDown
+# -
+#   type: var
+#   var_name: L:PED_MID_Horn_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_MID_Horn_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_MID_TMS_disc_L_IsDown
+# -
+#   type: var
+#   var_name: L:PED_MID_TMS_disc_L_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_MID_TMS_disc_L_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_MID_TMS_disc_R_IsDown
+# -
+#   type: var
+#   var_name: L:PED_MID_TMS_disc_R_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_MID_TMS_disc_R_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_AFT_AP_Roll
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_AFT_AP_Pitch
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_YD_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_YD_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_YD_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_In_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_In_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_In_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Mode
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Sel
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Ident_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Ident_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Ident_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_0_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_0_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_0_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_1_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_1_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_1_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_2_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_2_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_2_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_3_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_3_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_3_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_4_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_4_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_4_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_5_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_5_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_5_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_6_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_6_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_6_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_7_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_7_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_7_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_8_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_8_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_8_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_9_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_9_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_9_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Rng_up_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Rng_up_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Rng_up_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Rng_dn_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Rng_dn_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Rng_dn_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Atc_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Atc_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Atc_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Alt_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Alt_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Alt_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Clr_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Clr_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Clr_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Ent_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Ent_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Ent_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Test_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Test_MinReleaseTime
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Test_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_AFT_BRAKE_On
+  -
+    type: var
+    var_name: L:PED_AFT_BRAKE_Dim
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_L_outer_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_L_outer_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_L_outer_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_L_inner_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_L_inner_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_L_inner_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_Max_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_Max_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_Max_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_R_inner_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_R_inner_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_R_inner_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_R_outer_IsDown
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_R_outer_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_R_outer_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:PED_AFT_MISC_FwdConsole
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_AFT_MISC_AftConsole
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_AFT_MISC_ConsoleFlood
+    unreliable: true
+  -
+    type: var
+    var_name: L:PED_AFT_MISC_CabinSecure
+  -
+    type: var
+    var_name: L:PED_AFT_MISC_Cupholder
+  -
+    type: var
+    var_name: L:R_SIDE_Day_dig1
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_SIDE_Day_dig2
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_SIDE_Month_dig1
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_SIDE_Month_dig2
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_SIDE_FltLeg
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_SIDE_FlightNum_dig1
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_SIDE_FlightNum_dig2
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_SIDE_FlightNum_dig3
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_SIDE_Lights_Sill_flex
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Lights_Sill_rotate
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Lights_FltKit
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Lights_Push_knob
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Lights_Flood
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Lights_Insts
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Lights_Push_Sill_IsDown
+# -
+#   type: var
+#   var_name: L:R_SIDE_Lights_Push_Sill_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_SIDE_Lights_Push_Sill_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_SIDE_Lights_Push_Lap_IsDown
+# -
+#   type: var
+#   var_name: L:R_SIDE_Lights_Push_Lap_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_SIDE_Lights_Push_Lap_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_SIDE_Oxy_knob
+  -
+    type: var
+    var_name: L:R_SIDE_Oxy_main_vlv
+  -
+    type: var
+    var_name: L:R_SIDE_DDI_IsDown
+# -
+#   type: var
+#   var_name: L:R_SIDE_DDI_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_SIDE_DDI_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_SIDE_Event_IsDown
+# -
+#   type: var
+#   var_name: L:R_SIDE_Event_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_SIDE_Event_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_SIDE_Fault_IsDown
+# -
+#   type: var
+#   var_name: L:R_SIDE_Fault_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_SIDE_Fault_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_SIDE_GrndCheck_IsDown
+# -
+#   type: var
+#   var_name: L:R_SIDE_GrndCheck_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_SIDE_GrndCheck_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:R_SIDE_Oxy_test_IsDown
+# -
+#   type: var
+#   var_name: L:R_SIDE_Oxy_test_MinReleaseTime
+  -
+    type: var
+    var_name: L:R_SIDE_Oxy_test_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:R_SIDE_PedalAdjust
+  -
+    type: var
+    var_name: L:R_SIDE_Cupholder
+  -
+    type: var
+    var_name: L:R_SIDE_Fdeck_air
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Floor_air
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Sunvisor_attached
+  -
+    type: var
+    var_name: L:R_SIDE_Sunvisor_slide
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:R_SIDE_Tiller
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_VHF1_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_VHF1_vol_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_VHF2_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_VHF2_vol_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_VHF3_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_VHF3_vol_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_HF1_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_HF1_vol_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_HF2_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_HF2_vol_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_Int_vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_Int_vol_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_Mkr
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_Mkr_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_NAV1
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_NAV1_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_NAV2
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_NAV2_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_ADF1
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_ADF1_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_ADF2
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_ADF2_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_Int
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_Int_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_DME1
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_DME1_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_DME2
+    unreliable: true
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_DME2_push
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_Test
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_VHF1_sel
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_VHF2_sel
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_VHF3_sel
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_HF1_sel
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_HF2_sel
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_Int_sel
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_PA_sel
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_Voice
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_Boom
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_RT
+  -
+    type: var
+    var_name: L:SEATS_L_slide
+    unreliable: true
+  -
+    type: var
+    var_name: L:SEATS_R_slide
+    unreliable: true
+  -
+    type: var
+    var_name: L:SEATS_Observer
+  -
+    type: var
+    var_name: L:SEATS_L_armrest_L
+  -
+    type: var
+    var_name: L:SEATS_L_armrest_R
+  -
+    type: var
+    var_name: L:SEATS_R_armrest_L
+  -
+    type: var
+    var_name: L:SEATS_R_armrest_R
+  -
+    type: var
+    var_name: L:OVHD_AUX_L_lap_lt_posX
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_AUX_L_lap_lt_posY
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_AUX_R_lap_lt_posX
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_AUX_R_lap_lt_posY
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_AUX_L_spkr
+  -
+    type: var
+    var_name: L:OVHD_AUX_R_spkr
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_EmerLts
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_L_wipers
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_R_wipers
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_L_LdgLts
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_R_LdgLts
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_RwyExitLts
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_FastenBelts
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_L_wash_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_CTR_LWR_L_wash_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_L_wash_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_L_rain_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_CTR_LWR_L_rain_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_L_rain_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_R_wash_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_CTR_LWR_R_wash_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_R_wash_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_R_rain_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_CTR_LWR_R_rain_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_CTR_LWR_R_rain_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_DimGlare
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_StbyComp_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_StbyComp_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_StbyComp_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_CnclCall_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_CnclCall_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_CnclCall_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_EmerCall_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_EmerCall_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_EmerCall_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_CabCall_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_CabCall_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_CabCall_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_GrndCall_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_GrndCall_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_L_LWR_GrndCall_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_R_LWR_DimInsts
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_R_LWR_Annun_dim
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_R_LWR_DimPanel
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_R_LWR_Annun_ctrl
+  -
+    type: var
+    var_name: L:OVHD_R_LWR_Annun_test_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_R_LWR_Annun_test_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_R_LWR_Annun_test_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_FUEL_CtrXfr
+  -
+    type: var
+    var_name: L:OVHD_FUEL_L_stby
+  -
+    type: var
+    var_name: L:OVHD_FUEL_R_stby
+  -
+    type: var
+    var_name: L:OVHD_FUEL_Xfeed
+  -
+    type: var
+    var_name: L:OVHD_FUEL_ComFeed_L
+  -
+    type: var
+    var_name: L:OVHD_FUEL_ComFeed_R
+  -
+    type: var
+    var_name: L:OVHD_FUEL_Pump_L_outer
+  -
+    type: var
+    var_name: L:OVHD_FUEL_Pump_L_inner
+  -
+    type: var
+    var_name: L:OVHD_FUEL_Pump_R_inner
+  -
+    type: var
+    var_name: L:OVHD_FUEL_Pump_R_outer
+  -
+    type: var
+    var_name: L:OVHD_ELEC_DC_sel
+  -
+    type: var
+    var_name: L:OVHD_ELEC_AC_sel
+  -
+    type: var
+    var_name: L:OVHD_ELEC_ExtAC
+  -
+    type: var
+    var_name: L:OVHD_ELEC_StbyInv
+  -
+    type: var
+    var_name: L:OVHD_ELEC_StbyGen
+  -
+    type: var
+    var_name: L:OVHD_ELEC_Gen1
+  -
+    type: var
+    var_name: L:OVHD_ELEC_APU_gen
+  -
+    type: var
+    var_name: L:OVHD_ELEC_Gen4
+  -
+    type: var
+    var_name: L:OVHD_ELEC_Batt1_on
+  -
+    type: var
+    var_name: L:OVHD_ELEC_Batt2_on
+  -
+    type: var
+    var_name: L:OVHD_ELEC_BusTie_AC
+  -
+    type: var
+    var_name: L:OVHD_ELEC_BusTie_DC
+  -
+    type: var
+    var_name: L:OVHD_ELEC_Galley
+  -
+    type: var
+    var_name: L:OVHD_APU_FireExt_cover
+  -
+    type: var
+    var_name: L:OVHD_APU_StartStop
+  -
+    type: var
+    var_name: L:OVHD_APU_StartStop_guard
+  -
+    type: var
+    var_name: L:OVHD_APU_FireExt_button_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_APU_FireExt_button_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_APU_FireExt_button_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_ENG_StartSel
+  -
+    type: var
+    var_name: L:OVHD_ENG_StartMode
+  -
+    type: var
+    var_name: L:OVHD_ENG_StartPwr
+  -
+    type: var
+    var_name: L:OVHD_ENG_StartPwr_guard
+  -
+    type: var
+    var_name: L:OVHD_ENG_StartMaster
+  -
+    type: var
+    var_name: L:OVHD_ENG_FltStart
+  -
+    type: var
+    var_name: L:OVHD_ENG_ContIgn_A
+  -
+    type: var
+    var_name: L:OVHD_ENG_ContIgn_B
+  -
+    type: var
+    var_name: L:OVHD_ICE_L_Pitot
+  -
+    type: var
+    var_name: L:OVHD_ICE_Eng1
+  -
+    type: var
+    var_name: L:OVHD_ICE_Eng2
+  -
+    type: var
+    var_name: L:OVHD_ICE_Eng3
+  -
+    type: var
+    var_name: L:OVHD_ICE_Eng4
+  -
+    type: var
+    var_name: L:OVHD_ICE_L_ScreenHeat
+  -
+    type: var
+    var_name: L:OVHD_ICE_R_ScreenHeat
+  -
+    type: var
+    var_name: L:OVHD_ICE_AuxVane
+  -
+    type: var
+    var_name: L:OVHD_ICE_R_Pitot
+  -
+    type: var
+    var_name: L:OVHD_ICE_Outer_wing
+  -
+    type: var
+    var_name: L:OVHD_ICE_Inner_wing
+  -
+    type: var
+    var_name: L:OVHD_ICE_Detect
+  -
+    type: var
+    var_name: L:OVHD_ICE_Detect_cover
+  -
+    type: var
+    var_name: L:OVHD_ICE_Tail
+# -
+#   type: var
+#   var_name: L:OVHD_PRESS_Auto_set
+  -
+    type: var
+    var_name: L:OVHD_PRESS_Auto_set_pull
+  -
+    type: var
+    var_name: L:OVHD_PRESS_Valves_mode
+  -
+    type: var
+    var_name: L:OVHD_PRESS_Man_sel
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_PRESS_Auto_rate
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_PRESS_Man_mode_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_PRESS_Man_mode_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_PRESS_Man_mode_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_AIRSUPPLY_L_wing
+  -
+    type: var
+    var_name: L:OVHD_AIRSUPPLY_R_wing
+  -
+    type: var
+    var_name: L:OVHD_AIRSUPPLY_Eng1
+  -
+    type: var
+    var_name: L:OVHD_AIRSUPPLY_Eng2
+  -
+    type: var
+    var_name: L:OVHD_AIRSUPPLY_Eng3
+  -
+    type: var
+    var_name: L:OVHD_AIRSUPPLY_Eng4
+  -
+    type: var
+    var_name: L:OVHD_AIRSUPPLY_Apu
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_L_duct_sel
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_R_duct_sel
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_FltDeck_temp_sel
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_Cabin_temp_sel
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_FltDeck_mode
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_FltDeck_fan
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_Cabin_fan
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_Cabin_mode
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_Cabin_air
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_Pack1
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_Pack2
+  -
+    type: var
+    var_name: L:OVHD_AIRCOND_Ram_air
+  -
+    type: var
+    var_name: L:OVHD_LTS_NoSmkg
+  -
+    type: var
+    var_name: L:OVHD_LTS_CabinEmer
+  -
+    type: var
+    var_name: L:OVHD_LTS_CabinEmer_guard
+  -
+    type: var
+    var_name: L:OVHD_LTS_Nav
+  -
+    type: var
+    var_name: L:OVHD_LTS_Entry
+  -
+    type: var
+    var_name: L:ENTRY_Light
+  -
+    type: var
+    var_name: L:OVHD_LTS_WingLts
+  -
+    type: var
+    var_name: L:OVHD_LTS_Logo
+  -
+    type: var
+    var_name: L:OVHD_LTS_Beacon
+  -
+    type: var
+    var_name: L:OVHD_LTS_Strobe
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Ovspd_eng1_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Ovspd_eng1_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Ovspd_eng1_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Ovspd_eng2_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Ovspd_eng2_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Ovspd_eng2_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Ovspd_eng3_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Ovspd_eng3_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Ovspd_eng3_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Ovspd_eng4_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Ovspd_eng4_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Ovspd_eng4_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Fire_eng1_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Fire_eng1_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Fire_eng1_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Fire_eng2_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Fire_eng2_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Fire_eng2_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Fire_eng3_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Fire_eng3_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Fire_eng3_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Fire_eng4_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Fire_eng4_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Fire_eng4_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_APU_fire_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_APU_fire_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_APU_fire_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_APU_ovspd_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_APU_ovspd_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_APU_ovspd_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Exting_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Exting_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Exting_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Smoke_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Smoke_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Smoke_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_StallWarn_1_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_StallWarn_1_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_StallWarn_1_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_StallWarn_2_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_StallWarn_2_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_StallWarn_2_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_ZoneLoops_A_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_ZoneLoops_A_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_ZoneLoops_A_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_ZoneLoops_B_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_ZoneLoops_B_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_ZoneLoops_B_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_StallIdent_1_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_StallIdent_1_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_StallIdent_1_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_StallIdent_2_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_StallIdent_2_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_StallIdent_2_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_NoseSquat_1_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_NoseSquat_1_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_NoseSquat_1_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_NoseSquat_2_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_NoseSquat_2_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_NoseSquat_2_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_SpeedWarn_1_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_SpeedWarn_1_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_SpeedWarn_1_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_SpeedWarn_2_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_SpeedWarn_2_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_SpeedWarn_2_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_AntiSkid_yel_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_AntiSkid_yel_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_AntiSkid_yel_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_AntiSkid_grn_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_AntiSkid_grn_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_AntiSkid_grn_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_RearBay_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_RearBay_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_RearBay_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_FlapSafety_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_FlapSafety_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_FlapSafety_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_FlapCtrl_yel_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_FlapCtrl_yel_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_FlapCtrl_yel_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_FlapCtrl_grn_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_FlapCtrl_grn_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_FlapCtrl_grn_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_GrndPressn
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Horn_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Horn_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_Horn_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_SquatSw_L_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_SquatSw_L_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_SquatSw_L_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_SquatSw_R_IsDown
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_SquatSw_R_MinReleaseTime
+  -
+    type: var
+    var_name: L:OVHD_GRNDTEST_SquatSw_R_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:OVHD_FIREHANDLES_Eng1_pull
+  -
+    type: var
+    var_name: L:OVHD_FIREHANDLES_Eng1
+  -
+    type: var
+    var_name: L:OVHD_FIREHANDLES_Eng2_pull
+  -
+    type: var
+    var_name: L:OVHD_FIREHANDLES_Eng2
+  -
+    type: var
+    var_name: L:OVHD_FIREHANDLES_Eng3_pull
+  -
+    type: var
+    var_name: L:OVHD_FIREHANDLES_Eng3
+  -
+    type: var
+    var_name: L:OVHD_FIREHANDLES_Eng4_pull
+  -
+    type: var
+    var_name: L:OVHD_FIREHANDLES_Eng4
+  -
+    type: var
+    var_name: L:OVHD_MISC_Console_lt_posX
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_MISC_Console_lt_posY
+    unreliable: true
+  -
+    type: var
+    var_name: L:OVHD_MISC_GrdnIgn
+  -
+    type: var
+    var_name: L:OVHD_MISC_BrkFans
+  -
+    type: var
+    var_name: L:OVHD_MISC_AntiSkid
+  -
+    type: var
+    var_name: L:OVHD_MISC_YD_master_1
+  -
+    type: var
+    var_name: L:OVHD_MISC_YD_master_2
+  -
+    type: var
+    var_name: L:OVHD_MISC_AP_master
+  -
+    type: var
+    var_name: L:OVHD_MISC_Avionics_master_A
+  -
+    type: var
+    var_name: L:OVHD_MISC_Avionics_master_B
+  -
+    type: var
+    var_name: L:OVHD_MISC_AutoSplr
+  -
+    type: var
+    var_name: L:OVHD_MISC_LiftSplrs_yel
+  -
+    type: var
+    var_name: L:OVHD_MISC_LiftSplrs_grn
+  -
+    type: var
+    var_name: L:OVHD_MISC_AntiSkid_guard
+  -
+    type: var
+    var_name: L:OVHD_MISC_AutoSplr_guard
+  -
+    type: var
+    var_name: L:OVHD_HYD_DC_pump
+  -
+    type: var
+    var_name: L:OVHD_HYD_DC_pump_guard
+  -
+    type: var
+    var_name: L:OVHD_HYD_AC_pump
+  -
+    type: var
+    var_name: L:OVHD_HYD_Eng2_pump
+  -
+    type: var
+    var_name: L:OVHD_HYD_Eng3_pump
+  -
+    type: var
+    var_name: L:OVHD_HYD_PTU
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Msg_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Msg_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Msg_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Back_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Back_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Back_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Enter_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Enter_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Enter_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Nav_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Nav_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Nav_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Data_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Data_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Data_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Dto_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Dto_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Dto_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Fpl_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Fpl_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Fpl_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Fuel_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Fuel_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Fuel_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Tune_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Tune_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Tune_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Prev_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Prev_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Prev_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Next_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Next_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Next_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Pwr_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Pwr_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Pwr_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Vnav_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Vnav_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Vnav_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_List_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_List_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_List_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Menu_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Menu_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Menu_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Perf_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Perf_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Perf_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_1L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_1L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_1L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_2L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_2L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_2L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_3L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_3L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_3L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_4L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_4L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_4L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_5L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_5L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_5L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_6L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_6L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_6L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_1R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_1R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_1R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_2R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_2R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_2R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_3R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_3R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_3R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_4R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_4R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_4R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_5R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_5R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_5R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_6R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_6R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Lsk_6R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_1_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_1_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_1_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_2_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_2_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_2_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_3_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_3_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_3_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_4_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_4_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_4_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_5_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_5_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_5_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_6_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_6_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_6_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_7_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_7_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_7_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_8_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_8_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_8_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_9_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_9_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_9_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_0_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_0_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_0_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_A_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_A_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_A_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_B_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_B_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_B_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_C_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_C_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_C_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_D_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_D_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_D_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_E_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_E_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_E_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_F_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_F_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_F_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_G_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_G_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_G_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_H_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_H_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_H_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_I_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_I_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_I_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_J_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_J_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_J_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_K_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_K_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_K_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_M_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_M_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_M_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_N_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_N_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_N_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_O_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_O_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_O_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_P_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_P_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_P_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Q_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Q_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Q_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_S_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_S_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_S_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_T_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_T_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_T_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_U_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_U_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_U_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_V_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_V_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_V_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_W_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_W_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_W_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_X_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_X_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_X_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Y_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Y_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Y_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Z_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Z_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_Z_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_PlusMinus_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_PlusMinus_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_FMS_PlusMinus_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Msg_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Msg_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Msg_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Back_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Back_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Back_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Enter_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Enter_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Enter_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Nav_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Nav_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Nav_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Data_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Data_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Data_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Dto_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Dto_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Dto_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Fpl_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Fpl_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Fpl_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Fuel_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Fuel_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Fuel_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Tune_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Tune_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Tune_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Prev_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Prev_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Prev_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Next_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Next_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Next_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Pwr_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Pwr_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Pwr_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Vnav_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Vnav_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Vnav_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_List_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_List_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_List_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Menu_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Menu_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Menu_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Perf_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Perf_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Perf_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_1L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_1L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_1L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_2L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_2L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_2L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_3L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_3L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_3L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_4L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_4L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_4L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_5L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_5L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_5L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_6L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_6L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_6L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_1R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_1R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_1R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_2R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_2R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_2R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_3R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_3R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_3R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_4R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_4R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_4R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_5R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_5R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_5R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_6R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_6R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Lsk_6R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_1_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_1_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_1_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_2_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_2_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_2_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_3_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_3_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_3_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_4_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_4_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_4_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_5_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_5_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_5_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_6_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_6_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_6_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_7_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_7_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_7_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_8_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_8_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_8_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_9_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_9_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_9_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_0_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_0_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_0_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_A_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_A_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_A_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_B_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_B_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_B_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_C_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_C_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_C_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_D_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_D_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_D_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_E_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_E_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_E_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_F_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_F_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_F_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_G_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_G_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_G_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_H_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_H_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_H_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_I_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_I_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_I_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_J_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_J_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_J_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_K_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_K_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_K_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_L_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_L_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_L_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_M_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_M_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_M_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_N_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_N_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_N_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_O_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_O_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_O_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_P_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_P_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_P_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Q_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Q_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Q_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_R_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_R_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_R_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_S_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_S_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_S_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_T_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_T_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_T_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_U_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_U_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_U_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_V_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_V_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_V_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_W_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_W_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_W_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_X_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_X_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_X_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Y_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Y_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Y_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Z_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Z_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_Z_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_PlusMinus_Anim_IsDown
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_PlusMinus_Anim_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_FMS_PlusMinus_Anim_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:FA_Music_power_button_IsDown
+# -
+#   type: var
+#   var_name: L:FA_Music_power_button_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:FA_Music_power_button_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:FA_Music_menu_button_IsDown
+# -
+#   type: var
+#   var_name: L:FA_Music_menu_button_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:FA_Music_menu_button_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:FA_Music_play_button_IsDown
+# -
+#   type: var
+#   var_name: L:FA_Music_play_button_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:FA_Music_play_button_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:FA_Music_next_button_IsDown
+# -
+#   type: var
+#   var_name: L:FA_Music_next_button_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:FA_Music_next_button_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:FA_Music_prev_button_IsDown
+# -
+#   type: var
+#   var_name: L:FA_Music_prev_button_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:FA_Music_prev_button_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:FA_Music_data_knob
+# -
+#   type: var
+#   var_name: L:FA_Music_data_knob_INC
+# -
+#   type: var
+#   var_name: L:FA_Music_data_knob_DEC
+  -
+    type: var
+    var_name: L:FA_Music_data_knob_push
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Fwd_Crew_call_IsDown
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Crew_call_MinReleaseTime
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Fwd_Crew_call_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Inter_cabin_IsDown
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Inter_cabin_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Inter_cabin_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Pilot_IsDown
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Pilot_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Pilot_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Fwd_pa
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Fwd_Int
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Eic_IsDown
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Eic_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Eic_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Fwd_Vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Fwd_EmerLt
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Fwd_EmerLt_guard
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Aft_Crew_call_IsDown
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Crew_call_MinReleaseTime
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Aft_Crew_call_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Inter_cabin_IsDown
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Inter_cabin_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Inter_cabin_LeftLeaveToRun
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Pilot_IsDown
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Pilot_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Pilot_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Aft_pa
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Aft_Int
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Eic_IsDown
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Eic_MinReleaseTime
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Eic_LeftLeaveToRun
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Aft_Vol
+    unreliable: true
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_Power
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_Lights_Fwd_Entry
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_Lights_Aft_Entry
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_Lights_Centre1
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_Lights_Centre2
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_Lights_L_Side
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_Lights_R_Side
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_Lights_Front_Toilet
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_Lights_Rear_Toilet
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_ReadingLights_L_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_ReadingLights_R_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_ToiletHeater_Front
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_ToiletHeater_Front_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_ToiletHeater_Rear
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_ToiletHeater_Rear_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_PipeHeater
+  -
+    type: var
+    var_name: L:FWD_CAB_OVHD_PipeHeater_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Freezer1_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Freezer2_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Boiler_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Pump_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Coffee_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Worktop_light_CB
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Worktop_light_switch
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Coffee_power
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Coffee_brew
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Coffee_hotwater
+  -
+    type: var
+    var_name: L:FWD_CAB_GALLEY_Coffee_coldwater
+  -
+    type: var
+    var_name: L:AFT_CAB_GALLEY_Worktop_light_CB
+  -
+    type: var
+    var_name: L:AFT_CAB_GALLEY_Misc1_CB
+  -
+    type: var
+    var_name: L:AFT_CAB_GALLEY_Misc2_CB
+  -
+    type: var
+    var_name: L:AFT_CAB_GALLEY_Worktop_light_switch
+  -
+    type: var
+    var_name: L:FWD_CAB_Door_1L_disarm_handle
+  -
+    type: var
+    var_name: L:FWD_CAB_Door_1R_disarm_handle
+  -
+    type: var
+    var_name: L:FWD_CAB_Door_2L_disarm_handle
+  -
+    type: var
+    var_name: L:FWD_CAB_Door_2R_disarm_handle
+# -
+#   type: var
+#   var_name: L:VC_Door1_Handle_clickspot_LC
+# -
+#   type: var
+#   var_name: L:VC_Door2_Handle_clickspot_LC
+# -
+#   type: var
+#   var_name: L:VC_Door3_Handle_clickspot_LC
+# -
+#   type: var
+#   var_name: L:VC_Door4_Handle_clickspot_LC
+# -
+#   type: var
+#   var_name: L:VC_Stairs_clickspot_LC
+  -
+    type: var
+    var_name: L:Paper_checklist_vis_L
+  -
+    type: var
+    var_name: L:Paper_checklist_vis_R
+  -
+    type: var
+    var_name: L:Paper_chart_stow
+  -
+    type: var
+    var_name: L:EFB_Home_LC
+# -
+#   type: var
+#   var_name: L:L_RMI_NAV1_mode_button
+# -
+#   type: var
+#   var_name: L:L_RMI_NAV2_mode_button
+# -
+#   type: var
+#   var_name: L:L_ADI_Test
+# -
+#   type: var
+#   var_name: L:L_MISC_Annun_test
+  -
+    type: var
+    var_name: L:L_ANNUNS_Idnt1
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:L_ANNUNS_Idnt2
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_FF_knob
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_FF_knob
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_FF_knob
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_FF_knob
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Vibn_test
+# -
+#   type: var
+#   var_name: L:R_RMI_NAV1_mode_button
+# -
+#   type: var
+#   var_name: L:R_RMI_NAV2_mode_button
+# -
+#   type: var
+#   var_name: L:R_ADI_Test
+  -
+    type: var
+    var_name: L:R_ANNUNS_Idnt1
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_ANNUNS_Idnt2
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Eng1
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Eng2
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Eng3
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Eng4
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_To
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Mct
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Tgt
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Desc
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Sync
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Ctrl
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Mstr
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Pwr
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_TMS_Test
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_ANNUNS_FlapWarnOvrd_button
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:R_ANNUNS_SteepApp
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:L_COAMING_LiftSplr_push
+# -
+#   type: var
+#   var_name: L:L_COAMING_GPWS_push
+# -
+#   type: var
+#   var_name: L:L_COAMING_MWS_Red
+# -
+#   type: var
+#   var_name: L:L_COAMING_MWS_Amber
+# -
+#   type: var
+#   var_name: L:L_VHFNAV_DME_test
+# -
+#   type: var
+#   var_name: L:L_VHFNAV_Flip
+  -
+    type: var
+    var_name: L:MCP_Mode_GSL
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:MCP_Mode_ALT
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:MCP_Mode_VS
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:MCP_Mode_MACH
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:MCP_Mode_VNAV
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:MCP_Mode_IAS
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:MCP_Mode_VL
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:MCP_Mode_BLOC
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:MCP_Mode_TURB
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:MCP_Mode_LNAV
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:MCP_Mode_HDG
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:MCP_Alt_test
+  -
+    type: var
+    var_name: L:MCP_Alt_arm
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:R_VHFNAV_VOR_test
+# -
+#   type: var
+#   var_name: L:R_COAMING_LiftSplr_push
+# -
+#   type: var
+#   var_name: L:R_COAMING_GPWS_push
+# -
+#   type: var
+#   var_name: L:R_COAMING_MWS_Red
+# -
+#   type: var
+#   var_name: L:R_COAMING_MWS_Amber
+# -
+#   type: var
+#   var_name: L:L_SIDE_Lights_Push_Sill
+# -
+#   type: var
+#   var_name: L:L_SIDE_Lights_Push_Lap
+# -
+#   type: var
+#   var_name: L:L_SIDE_CVR_Test
+# -
+#   type: var
+#   var_name: L:L_SIDE_CVR_Erase
+# -
+#   type: var
+#   var_name: L:L_SIDE_Oxy_test
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_AP_button_L
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_AP_button_R
+# -
+#   type: var
+#   var_name: L:PED_FWD_WX_Azim
+# -
+#   type: var
+#   var_name: L:PED_FWD_WX_Scan
+# -
+#   type: var
+#   var_name: L:PED_FWD_WX_Frz
+# -
+#   type: var
+#   var_name: L:PED_FWD_WX_Tgt
+# -
+#   type: var
+#   var_name: L:PED_FWD_CTR_TerrainDisp
+# -
+#   type: var
+#   var_name: L:PED_MID_Panel_lights
+# -
+#   type: var
+#   var_name: L:PED_MID_Config
+# -
+#   type: var
+#   var_name: L:PED_MID_Horn
+# -
+#   type: var
+#   var_name: L:PED_MID_TMS_disc_L
+# -
+#   type: var
+#   var_name: L:PED_MID_TMS_disc_R
+  -
+    type: var
+    var_name: L:PED_AFT_AP_YD
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_AP_In
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Ident
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_0
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_1
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_2
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_3
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_4
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_5
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_6
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_7
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_8
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_9
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Rng_up
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Rng_dn
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Atc
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Alt
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Clr
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Ent
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_XPDR_Test
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_BRAKE_L_outer
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_BRAKE_L_inner
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_BRAKE_Max
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_BRAKE_R_inner
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:PED_AFT_BRAKE_R_outer
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:R_SIDE_Lights_Push_Sill
+# -
+#   type: var
+#   var_name: L:R_SIDE_Lights_Push_Lap
+# -
+#   type: var
+#   var_name: L:R_SIDE_DDI
+# -
+#   type: var
+#   var_name: L:R_SIDE_Event
+# -
+#   type: var
+#   var_name: L:R_SIDE_Fault
+# -
+#   type: var
+#   var_name: L:R_SIDE_GrndCheck
+# -
+#   type: var
+#   var_name: L:R_SIDE_Oxy_test
+# -
+#   type: var
+#   var_name: L:OVHD_CTR_LWR_L_wash
+# -
+#   type: var
+#   var_name: L:OVHD_CTR_LWR_L_rain
+# -
+#   type: var
+#   var_name: L:OVHD_CTR_LWR_R_wash
+# -
+#   type: var
+#   var_name: L:OVHD_CTR_LWR_R_rain
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_StbyComp
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_CnclCall
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_EmerCall
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_CabCall
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_GrndCall
+# -
+#   type: var
+#   var_name: L:OVHD_R_LWR_Annun_test
+# -
+#   type: var
+#   var_name: L:OVHD_APU_FireExt_button
+# -
+#   type: var
+#   var_name: L:OVHD_PRESS_Man_mode
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Ovspd_eng1
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Ovspd_eng2
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Ovspd_eng3
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Ovspd_eng4
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Fire_eng1
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Fire_eng2
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Fire_eng3
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Fire_eng4
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_APU_fire
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_APU_ovspd
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Exting
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Smoke
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_StallWarn_1
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_StallWarn_2
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_ZoneLoops_A
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_ZoneLoops_B
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_StallIdent_1
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_StallIdent_2
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_NoseSquat_1
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_NoseSquat_2
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_SpeedWarn_1
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_SpeedWarn_2
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_AntiSkid_yel
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_AntiSkid_grn
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_RearBay
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_FlapSafety
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_FlapCtrl_yel
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_FlapCtrl_grn
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_Horn
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_SquatSw_L
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_SquatSw_R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Msg_Anim
+    target: L:PED_FWD_L_FMS_Msg
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Back_Anim
+    target: L:PED_FWD_L_FMS_Back
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Enter_Anim
+    target: L:PED_FWD_L_FMS_Enter
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Nav_Anim
+    target: L:PED_FWD_L_FMS_Nav
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Data_Anim
+    target: L:PED_FWD_L_FMS_Data
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Dto_Anim
+    target: L:PED_FWD_L_FMS_Dto
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Fpl_Anim
+    target: L:PED_FWD_L_FMS_Fpl
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Fuel_Anim
+    target: L:PED_FWD_L_FMS_Fuel
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Tune_Anim
+    target: L:PED_FWD_L_FMS_Tune
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Prev_Anim
+    target: L:PED_FWD_L_FMS_Prev
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Next_Anim
+    target: L:PED_FWD_L_FMS_Next
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Pwr_Anim
+    target: L:PED_FWD_L_FMS_Pwr
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Vnav_Anim
+    target: L:PED_FWD_L_FMS_Vnav
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_List_Anim
+    target: L:PED_FWD_L_FMS_List
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Menu_Anim
+    target: L:PED_FWD_L_FMS_Menu
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Perf_Anim
+    target: L:PED_FWD_L_FMS_Perf
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_1L_Anim
+    target: L:PED_FWD_L_FMS_Lsk_1L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_2L_Anim
+    target: L:PED_FWD_L_FMS_Lsk_2L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_3L_Anim
+    target: L:PED_FWD_L_FMS_Lsk_3L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_4L_Anim
+    target: L:PED_FWD_L_FMS_Lsk_4L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_5L_Anim
+    target: L:PED_FWD_L_FMS_Lsk_5L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_6L_Anim
+    target: L:PED_FWD_L_FMS_Lsk_6L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_1R_Anim
+    target: L:PED_FWD_L_FMS_Lsk_1R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_2R_Anim
+    target: L:PED_FWD_L_FMS_Lsk_2R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_3R_Anim
+    target: L:PED_FWD_L_FMS_Lsk_3R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_4R_Anim
+    target: L:PED_FWD_L_FMS_Lsk_4R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_5R_Anim
+    target: L:PED_FWD_L_FMS_Lsk_5R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Lsk_6R_Anim
+    target: L:PED_FWD_L_FMS_Lsk_6R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_1_Anim
+    target: L:PED_FWD_L_FMS_1
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_2_Anim
+    target: L:PED_FWD_L_FMS_2
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_3_Anim
+    target: L:PED_FWD_L_FMS_3
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_4_Anim
+    target: L:PED_FWD_L_FMS_4
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_5_Anim
+    target: L:PED_FWD_L_FMS_5
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_6_Anim
+    target: L:PED_FWD_L_FMS_6
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_7_Anim
+    target: L:PED_FWD_L_FMS_7
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_8_Anim
+    target: L:PED_FWD_L_FMS_8
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_9_Anim
+    target: L:PED_FWD_L_FMS_9
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_0_Anim
+    target: L:PED_FWD_L_FMS_0
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_A_Anim
+    target: L:PED_FWD_L_FMS_A
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_B_Anim
+    target: L:PED_FWD_L_FMS_B
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_C_Anim
+    target: L:PED_FWD_L_FMS_C
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_D_Anim
+    target: L:PED_FWD_L_FMS_D
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_E_Anim
+    target: L:PED_FWD_L_FMS_E
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_F_Anim
+    target: L:PED_FWD_L_FMS_F
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_G_Anim
+    target: L:PED_FWD_L_FMS_G
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_H_Anim
+    target: L:PED_FWD_L_FMS_H
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_I_Anim
+    target: L:PED_FWD_L_FMS_I
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_J_Anim
+    target: L:PED_FWD_L_FMS_J
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_K_Anim
+    target: L:PED_FWD_L_FMS_K
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_L_Anim
+    target: L:PED_FWD_L_FMS_L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_M_Anim
+    target: L:PED_FWD_L_FMS_M
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_N_Anim
+    target: L:PED_FWD_L_FMS_N
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_O_Anim
+    target: L:PED_FWD_L_FMS_O
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_P_Anim
+    target: L:PED_FWD_L_FMS_P
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Q_Anim
+    target: L:PED_FWD_L_FMS_Q
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_R_Anim
+    target: L:PED_FWD_L_FMS_R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_S_Anim
+    target: L:PED_FWD_L_FMS_S
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_T_Anim
+    target: L:PED_FWD_L_FMS_T
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_U_Anim
+    target: L:PED_FWD_L_FMS_U
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_V_Anim
+    target: L:PED_FWD_L_FMS_V
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_W_Anim
+    target: L:PED_FWD_L_FMS_W
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_X_Anim
+    target: L:PED_FWD_L_FMS_X
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Y_Anim
+    target: L:PED_FWD_L_FMS_Y
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_Z_Anim
+    target: L:PED_FWD_L_FMS_Z
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_L_FMS_PlusMinus_Anim
+    target: L:PED_FWD_L_FMS_PlusMinus
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Msg_Anim
+    target: L:PED_FWD_R_FMS_Msg
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Back_Anim
+    target: L:PED_FWD_R_FMS_Back
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Enter_Anim
+    target: L:PED_FWD_R_FMS_Enter
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Nav_Anim
+    target: L:PED_FWD_R_FMS_Nav
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Data_Anim
+    target: L:PED_FWD_R_FMS_Data
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Dto_Anim
+    target: L:PED_FWD_R_FMS_Dto
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Fpl_Anim
+    target: L:PED_FWD_R_FMS_Fpl
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Fuel_Anim
+    target: L:PED_FWD_R_FMS_Fuel
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Tune_Anim
+    target: L:PED_FWD_R_FMS_Tune
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Prev_Anim
+    target: L:PED_FWD_R_FMS_Prev
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Next_Anim
+    target: L:PED_FWD_R_FMS_Next
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Pwr_Anim
+    target: L:PED_FWD_R_FMS_Pwr
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Vnav_Anim
+    target: L:PED_FWD_R_FMS_Vnav
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_List_Anim
+    target: L:PED_FWD_R_FMS_List
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Menu_Anim
+    target: L:PED_FWD_R_FMS_Menu
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Perf_Anim
+    target: L:PED_FWD_R_FMS_Perf
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_1L_Anim
+    target: L:PED_FWD_R_FMS_Lsk_1L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_2L_Anim
+    target: L:PED_FWD_R_FMS_Lsk_2L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_3L_Anim
+    target: L:PED_FWD_R_FMS_Lsk_3L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_4L_Anim
+    target: L:PED_FWD_R_FMS_Lsk_4L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_5L_Anim
+    target: L:PED_FWD_R_FMS_Lsk_5L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_6L_Anim
+    target: L:PED_FWD_R_FMS_Lsk_6L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_1R_Anim
+    target: L:PED_FWD_R_FMS_Lsk_1R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_2R_Anim
+    target: L:PED_FWD_R_FMS_Lsk_2R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_3R_Anim
+    target: L:PED_FWD_R_FMS_Lsk_3R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_4R_Anim
+    target: L:PED_FWD_R_FMS_Lsk_4R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_5R_Anim
+    target: L:PED_FWD_R_FMS_Lsk_5R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Lsk_6R_Anim
+    target: L:PED_FWD_R_FMS_Lsk_6R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_1_Anim
+    target: L:PED_FWD_R_FMS_1
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_2_Anim
+    target: L:PED_FWD_R_FMS_2
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_3_Anim
+    target: L:PED_FWD_R_FMS_3
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_4_Anim
+    target: L:PED_FWD_R_FMS_4
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_5_Anim
+    target: L:PED_FWD_R_FMS_5
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_6_Anim
+    target: L:PED_FWD_R_FMS_6
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_7_Anim
+    target: L:PED_FWD_R_FMS_7
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_8_Anim
+    target: L:PED_FWD_R_FMS_8
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_9_Anim
+    target: L:PED_FWD_R_FMS_9
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_0_Anim
+    target: L:PED_FWD_R_FMS_0
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_A_Anim
+    target: L:PED_FWD_R_FMS_A
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_B_Anim
+    target: L:PED_FWD_R_FMS_B
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_C_Anim
+    target: L:PED_FWD_R_FMS_C
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_D_Anim
+    target: L:PED_FWD_R_FMS_D
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_E_Anim
+    target: L:PED_FWD_R_FMS_E
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_F_Anim
+    target: L:PED_FWD_R_FMS_F
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_G_Anim
+    target: L:PED_FWD_R_FMS_G
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_H_Anim
+    target: L:PED_FWD_R_FMS_H
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_I_Anim
+    target: L:PED_FWD_R_FMS_I
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_J_Anim
+    target: L:PED_FWD_R_FMS_J
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_K_Anim
+    target: L:PED_FWD_R_FMS_K
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_L_Anim
+    target: L:PED_FWD_R_FMS_L
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_M_Anim
+    target: L:PED_FWD_R_FMS_M
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_N_Anim
+    target: L:PED_FWD_R_FMS_N
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_O_Anim
+    target: L:PED_FWD_R_FMS_O
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_P_Anim
+    target: L:PED_FWD_R_FMS_P
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Q_Anim
+    target: L:PED_FWD_R_FMS_Q
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_R_Anim
+    target: L:PED_FWD_R_FMS_R
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_S_Anim
+    target: L:PED_FWD_R_FMS_S
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_T_Anim
+    target: L:PED_FWD_R_FMS_T
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_U_Anim
+    target: L:PED_FWD_R_FMS_U
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_V_Anim
+    target: L:PED_FWD_R_FMS_V
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_W_Anim
+    target: L:PED_FWD_R_FMS_W
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_X_Anim
+    target: L:PED_FWD_R_FMS_X
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Y_Anim
+    target: L:PED_FWD_R_FMS_Y
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_Z_Anim
+    target: L:PED_FWD_R_FMS_Z
+  -
+    type: LocalVarProxy
+    var_name: L:PED_FWD_R_FMS_PlusMinus_Anim
+    target: L:PED_FWD_R_FMS_PlusMinus
+  -
+    type: var
+    var_name: L:FA_Music_power_button
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:FA_Music_menu_button
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:FA_Music_play_button
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:FA_Music_next_button
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:FA_Music_prev_button
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Crew_call
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Fwd_Inter_cabin
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Fwd_Pilot
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Fwd_Eic
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Crew_call
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Aft_Inter_cabin
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Aft_Pilot
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:CAB_CTRLS_Aft_Eic
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:CTR_FUEL_Left
+# -
+#   type: var
+#   var_name: L:MCP_NAV1_dig2
+  -
+    type: var
+    var_name: L:OVHD_PRESS_Auto_cab_alt
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N1_rpm_flag
+# -
+#   type: var
+#   var_name: L:R_ALT_MB_dig3
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_APU_amps
+# -
+#   type: var
+#   var_name: L:L_HSI_GS_flag
+# -
+#   type: var
+#   var_name: L:R_ALT_INHG_dig3
+# -
+#   type: var
+#   var_name: L:L_ALT_Counter_dig4
+# -
+#   type: var
+#   var_name: L:L_CLOCK_Time_secs
+  -
+    type: var
+    var_name: L:CTR_ENG4_N1_bug
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:L_CLOCK_Time_hours
+  -
+    type: var
+    var_name: L:L_ASI_Bug_sel
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:L_RMI_DME1_flag
+# -
+#   type: var
+#   var_name: L:R_HSI_GS_flag
+# -
+#   type: var
+#   var_name: L:L_ADI_Pitch
+# -
+#   type: var
+#   var_name: L:R_ALT_Counter_dig4
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_TGT_temp_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_TGT_bug_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_TGT_bug_dig3
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_INHG_dig2
+# -
+#   type: var
+#   var_name: L:R_CLOCK_Elapsed_mins
+# -
+#   type: var
+#   var_name: L:L_ADI_LOC_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_TGT_needle
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF2_Dig3
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:L_ALT_Counter_dig1
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Tr2
+# -
+#   type: var
+#   var_name: L:R_HSI_Hdg_bug
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N1_rpm_dig2
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Hz
+  -
+    type: var
+    var_name: L:R_RMI_NAV1_mode_flag
+# -
+#   type: var
+#   var_name: L:R_RMI_Card
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_FF_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_Oil_qty
+# -
+#   type: var
+#   var_name: L:L_HSI_Crs_pointer
+# -
+#   type: var
+#   var_name: L:R_ASI_Bug_barber
+# -
+#   type: var
+#   var_name: L:L_STBY_ADI_GS_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_Oil_press
+# -
+#   type: var
+#   var_name: L:CTR_FUEL_Right
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Qty_Eng3
+# -
+#   type: var
+#   var_name: L:R_HSI_VorILS_flag
+# -
+#   type: var
+#   var_name: L:R_ALT_MB_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_FF_dig1
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_Feed_eng3
+# -
+#   type: var
+#   var_name: L:R_CLOCK_Time_secs
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_TGT_bug_dig2
+# -
+#   type: var
+#   var_name: L:R_MISC_Compass_needle
+  -
+    type: var
+    var_name: L:R_ASI_Bug_white
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:FWD_CAB_GALLEY_potable_water
+  -
+    type: var
+    var_name: L:L_ASI_Bug_orange
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:R_RMI_DME1_dig1
+# -
+#   type: var
+#   var_name: L:L_ADI_Ball
+# -
+#   type: var
+#   var_name: L:R_CLOCK_Time_hours
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_Counter_dig2
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF2_Dig4
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:L_RMI_DME2_dig4
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N1_rpm_dig3
+# -
+#   type: var
+#   var_name: L:L_BRAKEPRESS_Green_left
+# -
+#   type: var
+#   var_name: L:EXT_Capt_rotate
+# -
+#   type: var
+#   var_name: L:L_RMI_NAV2_needle
+# -
+#   type: var
+#   var_name: L:L_STBY_ADI_FD_Roll
+# -
+#   type: var
+#   var_name: L:R_ALT_INHG_dig4
+  -
+    type: var
+    var_name: L:R_ASI_Bug_sel
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:L_HSI_Hdg_flag
+# -
+#   type: var
+#   var_name: L:L_RMI_DME1_dig3
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_ToeBrakes_L
+# -
+#   type: var
+#   var_name: L:L_RMI_DME2_dig3
+# -
+#   type: var
+#   var_name: L:L_ADI_GS_dev
+# -
+#   type: var
+#   var_name: L:R_ALT_Needle
+# -
+#   type: var
+#   var_name: L:R_VHFNAV_dig4
+# -
+#   type: var
+#   var_name: L:L_RMI_DME2_dig1
+# -
+#   type: var
+#   var_name: L:EXT_FO_rotate
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_INHG_dig4
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Gen4_amps
+# -
+#   type: var
+#   var_name: L:R_ADI_Speed_flag
+# -
+#   type: var
+#   var_name: L:R_RMI_DME1_flag
+  -
+    type: var
+    var_name: L:R_ASI_Bug_amber
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:R_CABINPRESS_Rate_needle
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_TGT_bug_dig1
+  -
+    type: var
+    var_name: L:CTR_ENG2_TGT_bug
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:MCP_NAV1_dig3
+# -
+#   type: var
+#   var_name: L:R_HSI_Crs_pointer
+# -
+#   type: var
+#   var_name: L:L_RMI_DME2_dig2
+# -
+#   type: var
+#   var_name: L:L_RMI_NAV2_fail_flag
+# -
+#   type: var
+#   var_name: L:L_BRAKEPRESS_Yellow_right
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_Oil_qty
+# -
+#   type: var
+#   var_name: L:L_STBY_ADI_Roll
+# -
+#   type: var
+#   var_name: L:R_ALT_Counter_flag
+# -
+#   type: var
+#   var_name: L:R_ALT_Counter_dig3
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_TGT_bug_dig3
+# -
+#   type: var
+#   var_name: L:R_ADI_FD_flag
+# - # Unsettable
+#   type: var
+#   var_name: L:MCP_Alt_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N1_bug_dig1
+# -
+#   type: var
+#   var_name: L:R_SIDE_Tiller_anim
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_TGT_temp_dig2
+# -
+#   type: var
+#   var_name: L:R_HSI_Hdg_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N1_rpm_dig1
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF2_Dig2
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_MB_dig1
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_DC_needle
+# -
+#   type: var
+#   var_name: L:R_CLOCK_Chrono_mins
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_Yoke_roll
+# -
+#   type: var
+#   var_name: L:L_STBY_ADI_Fail_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N1_rpm_dig3
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_TGT_temp_dig1
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_L_duct_temp
+  -
+    type: var
+    var_name: L:EXT_Door_pax_1L
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:L_SIDE_CVR_Needle
+# -
+#   type: var
+#   var_name: L:R_MISC_OAT_needle
+# -
+#   type: var
+#   var_name: L:L_ALT_MB_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_Oil_temp
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng3_throttle
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_FF_dig1
+# -
+#   type: var
+#   var_name: L:L_RMI_NAV1_needle
+# -
+#   type: var
+#   var_name: L:R_ADI_GS_dev
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_FF_dig2
+  -
+    type: var
+    var_name: L:FLTCTRLS_Yoke_trim
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_TGT_bug_dig2
+# -
+#   type: var
+#   var_name: L:L_ALT_INHG_dig2
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_Needle
+# -
+#   type: var
+#   var_name: L:R_CABINPRESS_Alt_needle
+  -
+    type: var
+    var_name: L:L_RMI_NAV2_mode_flag
+# -
+#   type: var
+#   var_name: L:L_RMI_DME2_flag
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_MB_dig4
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N1_needle
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_INHG_dig3
+# -
+#   type: var
+#   var_name: L:R_ADI_LOC_flag
+# -
+#   type: var
+#   var_name: L:L_HSI_GS_dev
+# -
+#   type: var
+#   var_name: L:R_ADI_Att_flag
+# -
+#   type: var
+#   var_name: L:R_ALT_OFF_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_FF_dig3
+  -
+    type: var
+    var_name: L:CTR_MISC_Gear_handle
+# -
+#   type: var
+#   var_name: L:R_RMI_NAV2_fail_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N1_needle
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N1_bug_dig1
+# -
+#   type: var
+#   var_name: L:Paper_chart_pos
+# -
+#   type: var
+#   var_name: L:OVHD_PRESS_Valves_1
+  -
+    type: var
+    var_name: L:CTR_ENG4_TGT_bug
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:R_ALT_Counter_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N1_rpm_dig1
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Qty_Eng2
+# -
+#   type: var
+#   var_name: L:R_ALT_MB_dig4
+  -
+    type: var
+    var_name: L:CTR_ENG1_N1_bug
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_FF_dig1
+# -
+#   type: var
+#   var_name: L:L_ALT_INHG_dig4
+# -
+#   type: var
+#   var_name: L:R_VHFNAV_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_FF_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_TGT_temp_dig3
+# -
+#   type: var
+#   var_name: L:MCP_NAV1_dig1
+# -
+#   type: var
+#   var_name: L:L_RMI_NAV1_fail_flag
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Batt_needle
+# -
+#   type: var
+#   var_name: L:OVHD_APU_RPM
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N1_bug_dig3
+# -
+#   type: var
+#   var_name: L:L_ASI_Needle
+  -
+    type: var
+    var_name: L:EFB_status
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_TGT_temp_flag
+# -
+#   type: var
+#   var_name: L:R_RADALT_DH_dig2
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_R_duct_temp
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_TGT_temp_dig3
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF1_Dig4
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_TGT_bug_dig1
+# -
+#   type: var
+#   var_name: L:L_RADALT_DH_dig2
+# -
+#   type: var
+#   var_name: L:L_HSI_Amber_bug
+# - # Unsettable
+#   type: var
+#   var_name: L:MCP_Alt_dig4
+# -
+#   type: var
+#   var_name: L:R_CABINPRESS_Diff_needle
+# -
+#   type: var
+#   var_name: L:OVHD_PRESS_Valves_2
+  -
+    type: var
+    var_name: L:R_ASI_Bug_orange
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:OVHD_APU_TGT
+# -
+#   type: var
+#   var_name: L:L_RMI_DME1_dig4
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_FF_dig3
+# -
+#   type: var
+#   var_name: L:L_RMI_DME1_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_Oil_press
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_Feed_eng2
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_TGT_temp_dig1
+# -
+#   type: var
+#   var_name: L:L_ADI_LOC_dev
+# -
+#   type: var
+#   var_name: L:MCP_Alt_sel_flag
+# -
+#   type: var
+#   var_name: L:L_CLOCK_Elapsed_mins
+# -
+#   type: var
+#   var_name: L:L_ALT_INHG_dig1
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF1_Dig5
+    interpolate: Default
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF1_Dig2
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:R_RMI_DME2_dig1
+# -
+#   type: var
+#   var_name: L:L_MISC_Compass_needle
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_TGT_temp_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N1_rpm_flag
+# -
+#   type: var
+#   var_name: L:L_VSI_Needle
+# -
+#   type: var
+#   var_name: L:L_STBY_ADI_LOC_flag
+  -
+    type: var
+    var_name: L:EFB_L_LeftRight
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_Yoke_pitch
+# -
+#   type: var
+#   var_name: L:R_SIDE_Oxy_pax
+  -
+    type: var
+    var_name: L:CTR_ENG1_TGT_bug
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N1_rpm_flag
+# -
+#   type: var
+#   var_name: L:EXT_Door_stairs_pos
+# - # EFB Unsettable
+#   type: var
+#   var_name: L:FMS_option
+# -
+#   type: var
+#   var_name: L:L_HSI_Hdg_bug
+# -
+#   type: var
+#   var_name: L:L_ALT_Counter_dig3
+# -
+#   type: var
+#   var_name: L:L_RADALT_DH_flag
+# -
+#   type: var
+#   var_name: L:L_HSI_Crs_dev
+# -
+#   type: var
+#   var_name: L:L_ALT_INHG_dig3
+# -
+#   type: var
+#   var_name: L:FMS_screen_anim
+  -
+    type: var
+    var_name: L:OVHD_PRESS_Auto_baro
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:L_HSI_Card
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N1_rpm_flag
+# -
+#   type: var
+#   var_name: L:R_RMI_DME1_dig3
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N1_needle
+# -
+#   type: var
+#   var_name: L:R_HSI_Card
+# -
+#   type: var
+#   var_name: L:R_CLOCK_Time_mins
+  -
+    type: var
+    var_name: L:R_CLOCK_StopGo
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N1_rpm_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N1_bug_dig1
+# -
+#   type: var
+#   var_name: L:L_ALT_MB_dig3
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_TGT_needle
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_Oil_temp
+  -
+    type: var
+    var_name: L:Paper_checklist_rotate
+# -
+#   type: var
+#   var_name: L:L_RMI_Card
+# -
+#   type: var
+#   var_name: L:MCP_NAV2_dig2
+# -
+#   type: var
+#   var_name: L:L_ADI_Roll
+# -
+#   type: var
+#   var_name: L:L_CLOCK_Chrono_mins
+  -
+    type: var
+    var_name: L:L_CLOCK_StopGo
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_ToeBrakes_R
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Gen1_amps
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N1_needle
+# -
+#   type: var
+#   var_name: L:R_ADI_FD_Roll
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF1_Dig3
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:L_ALT_OFF_flag
+# -
+#   type: var
+#   var_name: L:L_HSI_Crs_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_FF_needle
+# -
+#   type: var
+#   var_name: L:L_ALT_MB_dig4
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_MB_dig2
+  -
+    type: var
+    var_name: L:EXT_Door_pax_1R
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:R_VHFNAV_dig3
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N1_rpm_dig1
+# -
+#   type: var
+#   var_name: L:R_HSI_GS_dev
+# -
+#   type: var
+#   var_name: L:DOOR_cockpit_open_percent
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_MB_dig3
+# -
+#   type: var
+#   var_name: L:R_SIDE_Oxy_main
+# -
+#   type: var
+#   var_name: L:R_RADALT_DH_flag
+# -
+#   type: var
+#   var_name: L:R_ALT_INHG_dig2
+# -
+#   type: var
+#   var_name: L:R_RMI_Hdg_flag
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Spoiler_left_needle
+# -
+#   type: var
+#   var_name: L:EXT_Capt_tilt
+# -
+#   type: var
+#   var_name: L:R_VSI_Needle
+# -
+#   type: var
+#   var_name: L:R_ALT_MB_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N1_bug_dig2
+# -
+#   type: var
+#   var_name: L:R_CLOCK_Elapsed_hours
+# -
+#   type: var
+#   var_name: L:L_ALT_MB_dig1
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_Elev
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N2_needle
+# -
+#   type: var
+#   var_name: L:L_ASI_Mach_card
+# -
+#   type: var
+#   var_name: L:PED_MID_Ail_trim_ind
+# -
+#   type: var
+#   var_name: L:L_BRAKEPRESS_Yellow_left
+# -
+#   type: var
+#   var_name: L:R_RMI_NAV1_needle
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF2_Dig5
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Flap_needle
+# -
+#   type: var
+#   var_name: L:R_RMI_NAV1_fail_flag
+# -
+#   type: var
+#   var_name: L:L_RADALT_DH_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_TGT_temp_flag
+# -
+#   type: var
+#   var_name: L:L_ALT_Counter_flag
+# -
+#   type: var
+#   var_name: L:L_ADI_GS_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_FF_needle
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF2_Dig1
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:R_HSI_Amber_bug
+# - # Unsettable
+#   type: var
+#   var_name: L:MCP_Alt_dig3
+# -
+#   type: var
+#   var_name: L:R_ADI_Roll
+# -
+#   type: var
+#   var_name: L:R_RMI_DME2_dig4
+# -
+#   type: var
+#   var_name: L:L_ADI_Att_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N1_bug_dig3
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_Counter_dig1
+# -
+#   type: var
+#   var_name: L:PED_MID_Elev_trim_ind
+# -
+#   type: var
+#   var_name: L:L_ADI_Speed_bug
+# -
+#   type: var
+#   var_name: L:R_ALT_INHG_dig1
+# -
+#   type: var
+#   var_name: L:MCP_NAV2_dig1
+  -
+    type: var
+    var_name: L:EXT_Door_pax_2L
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_FF_dig3
+# -
+#   type: var
+#   var_name: L:EXT_Door_stairs_angle
+  -
+    type: var
+    var_name: L:EFB_L_UpDown
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_INHG_dig1
+# -
+#   type: var
+#   var_name: L:R_ADI_FD_Pitch
+# -
+#   type: var
+#   var_name: L:R_VHFNAV_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_FF_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N1_bug_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N2_needle
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_OFF_flag
+# -
+#   type: var
+#   var_name: L:L_CLOCK_Elapsed_hours
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N1_bug_dig3
+# -
+#   type: var
+#   var_name: L:R_RMI_DME2_dig3
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_TGT_bug_dig3
+# -
+#   type: var
+#   var_name: L:R_ADI_Speed_bug
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N1_bug_dig2
+  -
+    type: var
+    var_name: L:CTR_ENG3_TGT_bug
+    interpolate: Default
+  -
+    type: var
+    var_name: L:CTR_ENG2_N1_bug
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:L_ADI_FD_flag
+# -
+#   type: var
+#   var_name: L:L_RMI_Hdg_flag
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Vibn_1
+# -
+#   type: var
+#   var_name: L:R_RMI_NAV2_needle
+# -
+#   type: var
+#   var_name: L:R_RMI_DME1_dig4
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_Oil_qty
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_Oil_press
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N1_bug_dig3
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_PSI_Eng2
+# -
+#   type: var
+#   var_name: L:L_ALT_Counter_dig2
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_AC_needle
+# -
+#   type: var
+#   var_name: L:R_VHFNAV_dig5
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_Feed_eng1
+# -
+#   type: var
+#   var_name: L:R_RMI_DME2_dig2
+# -
+#   type: var
+#   var_name: L:R_ADI_Pitch
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_TGT_temp_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_TGT_temp_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_TGT_bug_dig3
+  -
+    type: var
+    var_name: L:EXT_Door_pax_2R
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_Temp
+# -
+#   type: var
+#   var_name: L:R_RMI_DME2_flag
+# -
+#   type: var
+#   var_name: L:EXT_FO_tilt
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_TGT_bug_dig2
+# -
+#   type: var
+#   var_name: L:L_ADI_FD_Roll
+# -
+#   type: var
+#   var_name: L:CTR_FUEL_Centre
+# -
+#   type: var
+#   var_name: L:R_ASI_Needle
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_PSI_Eng3
+# -
+#   type: var
+#   var_name: L:R_ADI_LOC_dev
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Vibn_2
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng4_throttle
+# -
+#   type: var
+#   var_name: L:R_HSI_Crs_dev
+# -
+#   type: var
+#   var_name: L:L_ASI_Bug_barber
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Vibn_4
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_TGT_temp_dig3
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_Counter_flag
+# -
+#   type: var
+#   var_name: L:L_BRAKEPRESS_Green_right
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_TGT_temp_dig1
+# -
+#   type: var
+#   var_name: L:L_CLOCK_Time_mins
+# -
+#   type: var
+#   var_name: L:L_ADI_FD_Pitch
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_Oil_press
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_TGT_temp_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_TGT_bug_dig2
+  -
+    type: var
+    var_name: L:L_RMI_NAV1_mode_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_Oil_temp
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_TGT_temp_dig3
+  -
+    type: var
+    var_name: L:R_RMI_NAV2_mode_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N1_rpm_dig2
+# -
+#   type: var
+#   var_name: L:R_HSI_Crs_flag
+# -
+#   type: var
+#   var_name: L:L_HSI_VorILS_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_FF_needle
+  -
+    type: var
+    var_name: L:CTR_ENG3_N1_bug
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Tr1
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N1_rpm_dig2
+# -
+#   type: var
+#   var_name: L:R_RADALT_DH_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_FF_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N1_rpm_dig3
+# -
+#   type: var
+#   var_name: L:L_STBY_ADI_FD_Pitch
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_TGT_needle
+# -
+#   type: var
+#   var_name: L:L_RMI_DME1_dig2
+# -
+#   type: var
+#   var_name: L:PED_MID_Rudder_trim_ind
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_RudderPedals
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_TGT_needle
+  -
+    type: var
+    var_name: L:PED_FWD_R_ADF1_Dig1
+    interpolate: Default
+# - # Unsettable
+#   type: var
+#   var_name: L:MCP_Alt_dig5
+# -
+#   type: var
+#   var_name: L:R_ADI_Ball
+  -
+    type: var
+    var_name: L:L_ASI_Bug_amber
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N1_bug_dig2
+# -
+#   type: var
+#   var_name: L:OVHD_AUX_Compass
+# -
+#   type: var
+#   var_name: L:R_ADI_GS_flag
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng2_throttle
+# -
+#   type: var
+#   var_name: L:MCP_NAV2_dig3
+# -
+#   type: var
+#   var_name: L:R_RMI_DME1_dig2
+# -
+#   type: var
+#   var_name: L:L_SIDE_Tiller_anim
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N1_bug_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N1_rpm_dig3
+# -
+#   type: var
+#   var_name: L:L_ADI_Speed_flag
+  -
+    type: var
+    var_name: L:EFB_R_UpDown
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng1_throttle
+  -
+    type: var
+    var_name: L:PED_MID_Brakes_push
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N2_needle
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_FF_needle
+  -
+    type: var
+    var_name: L:EFB_R_LeftRight
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N1_rpm_dig2
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N2_needle
+# -
+#   type: var
+#   var_name: L:L_STBY_ADI_Ball
+# -
+#   type: var
+#   var_name: L:L_ALT_Needle
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_Cabin_temp
+# -
+#   type: var
+#   var_name: L:R_ALT_Counter_dig2
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Spoiler_right_needle
+# -
+#   type: var
+#   var_name: L:L_STBY_ADI_Pitch
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_Oil_qty
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_Rud
+  -
+    type: var
+    var_name: L:L_ASI_Bug_white
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_TGT_bug_dig1
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_TGT_temp_flag
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_Oil_temp
+# -
+#   type: var
+#   var_name: L:R_ASI_Mach_card
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_FF_dig3
+# -
+#   type: var
+#   var_name: L:L_STBY_ALT_Counter_dig3
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_Feed_eng4
+# - # Unsettable
+#   type: var
+#   var_name: L:MCP_Alt_dig2
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Vibn_3
+  -
+    type: var
+    var_name: L:EFB_Brt
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:Lighting_L_inst_scaler
+# -
+#   type: var
+#   var_name: L:Left_display_scaler
+# -
+#   type: var
+#   var_name: L:Lighting_RadAlt_L_scaler
+# -
+#   type: var
+#   var_name: L:L_RADALT_DH_light
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_StallVlv_A_il
+# -
+#   type: var
+#   var_name: L:L_MISC_annun_lts
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_StallVlv_B_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_WhiteBars_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Splr_G_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Splr_Y_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Att_amber_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Hdg_amber_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_AirBrk_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Cat2_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Cat2_amber_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Gsl_dev_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Loc_dev_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Gsl_white_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Gsl_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Alt_white_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Alt_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_GA_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_VS_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Mach_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_IAS_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Or_amber_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Msg_amber_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Msg_white_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Turb_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Pitch_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_AP_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_El_trim_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Airway_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Middle_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Rnav_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Rnav_white_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Loc_white_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Loc_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Vor_white_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Vor_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_BckLoc_white_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_BckLoc_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Hdg_white_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Hdg_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Wpt_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Xtk_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Lnav_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Sync_white_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Roll_green_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Ail_amber_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_YD_amber_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Outer_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Nav1_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Nav2_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Idnt1_il
+# -
+#   type: var
+#   var_name: L:L_ANNUNS_Idnt2_il
+# -
+#   type: var
+#   var_name: L:CTR_MISC_Gear_handle_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_L_gear_red_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_gear_lts
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_L_gear_green_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Nose_gear_red_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Nose_gear_green_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_R_gear_red_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_R_gear_green_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng1_fire_handle_il
+# -
+#   type: var
+#   var_name: L:MWS_annun_lts
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng2_fire_handle_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng3_fire_handle_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng4_fire_handle_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng1_fire_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng2_fire_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng3_fire_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng4_fire_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Loop1_fault_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Loop2_fault_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Loop3_fault_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Loop4_fault_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Pylon1_ovht_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Pylon2_ovht_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Pylon3_ovht_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Pylon4_ovht_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng_ovspd_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_APU_fire_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_APU_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng_vibn_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Oil1_lowpress_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Oil2_lowpress_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Oil3_lowpress_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Oil4_lowpress_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Fuel1_lowpress_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Fuel2_lowpress_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Fuel3_lowpress_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Fuel4_lowpress_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Filter1_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Filter2_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Filter3_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Filter4_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_RudderLmtr_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_StallIdent_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_FltBaulk_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_TMS_fault_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Config_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_FlapInop_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_WingIce_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_IceDetect_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_AntiSkid_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Splr_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_IceProt_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_AirCond_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Hyd_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Fuel_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Elect_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_AirSupply_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_RudEl_fail_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_AilEl_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_ElecSmoke_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_CabinAlt_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_RudderValve_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_LiftSplr_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_CargoSmoke_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_AirSel_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_FlapFault_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_EmerLts_arm_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Door_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_OvhdDim_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_GPWS_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_EmerLts_on_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_CabDoor_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_MWS_dim_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_FltRec_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_FuelFeed_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_ParkBrake_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_MWS_fault_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_StallFault_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_FuelXfer_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_BrkFans_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_ScrnHeat_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_ExtPwr_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_EngIgn_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_Eng_ice_il
+# -
+#   type: var
+#   var_name: L:C_ANNUNS_WingTail_ice_il
+# -
+#   type: var
+#   var_name: L:Lighting_R_inst_scaler
+# -
+#   type: var
+#   var_name: L:Right_display_scaler
+# -
+#   type: var
+#   var_name: L:Lighting_RadAlt_R_scaler
+# -
+#   type: var
+#   var_name: L:R_RADALT_DH_light
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_StallVlv_A_il
+# -
+#   type: var
+#   var_name: L:R_MISC_annun_lts
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_StallVlv_B_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_WhiteBars_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Splr_G_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Splr_Y_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Att_amber_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Hdg_amber_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_AirBrk_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Cat2_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Cat2_amber_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Gsl_dev_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Loc_dev_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Gsl_white_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Gsl_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Alt_white_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Alt_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_GA_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_VS_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Mach_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_IAS_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Or_amber_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Msg_amber_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Msg_white_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Turb_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Pitch_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_AP_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_El_trim_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Airway_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Middle_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Rnav_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Rnav_white_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Loc_white_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Loc_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Vor_white_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Vor_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_BckLoc_white_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_BckLoc_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Hdg_white_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Hdg_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Wpt_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Xtk_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Lnav_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Sync_white_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Roll_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Ail_amber_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_YD_amber_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Outer_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Nav1_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Nav2_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Idnt1_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_Idnt2_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_AltAlert_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_SteepApp_white_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_SteepApp_green_il
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_FlapWarnOvrd_il
+# -
+#   type: var
+#   var_name: L:Lighting_TMS_scaler
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng1_up_il
+# -
+#   type: var
+#   var_name: L:TMS_annun_lts
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng1_dn_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng2_up_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng2_dn_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng3_up_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng3_dn_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng4_up_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Eng4_dn_il
+# -
+#   type: var
+#   var_name: L:R_TMS_To1_il
+# -
+#   type: var
+#   var_name: L:R_TMS_To2_il
+# -
+#   type: var
+#   var_name: L:R_TMS_GA_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Mct_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Tgt_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Desc_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Sync_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Ctrl_n1_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Ctrl_n2_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Mstr_1_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Mstr_2_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Pwr_on_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Pwr_amber_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Test_amber_il
+# -
+#   type: var
+#   var_name: L:R_TMS_Test_green_il
+# -
+#   type: var
+#   var_name: L:R_MISC_MWS_Test_il
+# -
+#   type: var
+#   var_name: L:L_COAMING_LiftSplr_push_il
+# -
+#   type: var
+#   var_name: L:L_COAMING_GPWS_push_il
+# -
+#   type: var
+#   var_name: L:L_COAMING_MWS_Red_il
+# -
+#   type: var
+#   var_name: L:L_COAMING_MWS_Amber_il
+# -
+#   type: var
+#   var_name: L:Glareshield_display_scaler
+# -
+#   type: var
+#   var_name: L:L_VHFNAV_Hold_il
+# -
+#   type: var
+#   var_name: L:L_VHFNAV_Alert_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_AP_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_GSL_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_ALT_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VS_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_MACH_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VNAV_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_IAS_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_VL_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_BLOC_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_TURB_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_LNAV_il
+# -
+#   type: var
+#   var_name: L:MCP_Mode_HDG_il
+# -
+#   type: var
+#   var_name: L:MCP_Alt_arm_il
+# -
+#   type: var
+#   var_name: L:Lighting_glareshield_scaler
+# -
+#   type: var
+#   var_name: L:R_COAMING_LiftSplr_push_il
+# -
+#   type: var
+#   var_name: L:R_COAMING_GPWS_push_il
+# -
+#   type: var
+#   var_name: L:R_COAMING_MWS_Red_il
+# -
+#   type: var
+#   var_name: L:R_COAMING_MWS_Amber_il
+# -
+#   type: var
+#   var_name: L:Lighting_fwdConsole_scaler
+# -
+#   type: var
+#   var_name: L:FwdConsole_display_scaler
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_VHF_Act_il
+# -
+#   type: var
+#   var_name: L:PED_FWD_L_VHF_Stby_il
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_VHF_Act_il
+# -
+#   type: var
+#   var_name: L:PED_FWD_R_VHF_Stby_il
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng1_throttle_il
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng2_throttle_il
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng3_throttle_il
+# -
+#   type: var
+#   var_name: L:PED_MID_Eng4_throttle_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_YD1_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_YD2_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_In_il
+# -
+#   type: var
+#   var_name: L:Lighting_aftConsole_scaler
+# -
+#   type: var
+#   var_name: L:AftConsole_display_scaler
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_ATC_on
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_FID_on
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_ALT_on
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_FAIL_on
+# -
+#   type: var
+#   var_name: L:Brake_display_scaler
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_L_outer_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_L_outer_ovht_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_L_inner_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_L_inner_ovht_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_Max_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_R_inner_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_R_inner_ovht_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_R_outer_il
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_R_outer_ovht_il
+# -
+#   type: var
+#   var_name: L:R_SIDE_Fault_il
+# -
+#   type: var
+#   var_name: L:Lighting_ovhd_panel_scaler
+# -
+#   type: var
+#   var_name: L:Lighting_compass_scaler
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_EmerCall_il
+# -
+#   type: var
+#   var_name: L:Ovhd_annun_lts
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_CabCall_il
+# -
+#   type: var
+#   var_name: L:OVHD_L_LWR_GrndCall_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_L_feed_lo_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_R_feed_lo_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_L_blank_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_R_blank_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_L_aux_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_R_aux_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_Refuel_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_Xfer_L_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_Xfer_R_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_Xfeed_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_L_stby_lo_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_R_stby_lo_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_L_outer_lo_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_R_outer_lo_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_L_inner_lo_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_R_inner_lo_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_L_feed_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_FUEL_R_feed_valve_il
+# -
+#   type: var
+#   var_name: L:Lighting_ovhd_inst_scaler
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Bat1_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Bat2_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_ExtAC_avail_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Bat1_offline_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Bat2_offline_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_StbyGen_offline_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_DC_bus1_off_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_DC_bus2_off_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_DC_emer_off_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_DC_ess_off_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_AC_bus1_off_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_AC_bus2_off_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_AC_emer_off_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_AC_ess_off_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Drive1_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Drive4_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Gen1_offline_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_Gen4_offline_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_APUGen_offline_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_APUdrive_fail_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_WhiteBars1_il
+# -
+#   type: var
+#   var_name: L:OVHD_ELEC_WhiteBars2_il
+# -
+#   type: var
+#   var_name: L:OVHD_APU_Fire_il
+# -
+#   type: var
+#   var_name: L:OVHD_APU_LoopFault_il
+# -
+#   type: var
+#   var_name: L:OVHD_APU_ExtUsed_il
+# -
+#   type: var
+#   var_name: L:OVHD_APU_PwrAvail_il
+# -
+#   type: var
+#   var_name: L:OVHD_APU_Oil_press_il
+# -
+#   type: var
+#   var_name: L:OVHD_APU_Fuel_press_il
+# -
+#   type: var
+#   var_name: L:OVHD_APU_FuelValve_il
+# -
+#   type: var
+#   var_name: L:OVHD_APU_NRV_leak_il
+# -
+#   type: var
+#   var_name: L:OVHD_ENG_StartPwrOn_il
+# -
+#   type: var
+#   var_name: L:OVHD_ENG_EngIgnOn_A_il
+# -
+#   type: var
+#   var_name: L:OVHD_ENG_EngIgnOn_B_il
+# -
+#   type: var
+#   var_name: L:OVHD_ENG_StarterOp_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Intake1_hiPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Intake1_loPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Eng1_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Intake2_hiPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Intake2_loPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Eng2_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Intake3_hiPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Intake3_loPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Eng3_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Intake4_hiPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Intake4_loPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Eng4_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Qfeel_htr_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_AuxPitot_htr_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_L_pitot_htr_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_R_pitot_htr_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_L_vane_htr_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_R_vane_htr_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_L_screen_temp_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_R_screen_temp_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_L_outer_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_L_inner_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_R_outer_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_R_inner_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Tail_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Air_loTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Tail_valve1_il
+# -
+#   type: var
+#   var_name: L:OVHD_ICE_Tail_valve2_il
+# -
+#   type: var
+#   var_name: L:OVHD_PRESS_Mode_man_il
+# -
+#   type: var
+#   var_name: L:OVHD_PRESS_Mode_auto_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_APU_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_L_zone_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_R_zone_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_StallAir_loPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_Eng1_air_fault_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_Eng2_air_fault_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_Eng3_air_fault_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_Eng4_air_fault_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_Eng1_air_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_Eng2_air_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_Eng3_air_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRSUPPLY_Eng4_air_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_AvionicsFan_off_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_RecircValve_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_Pack1_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_Pack2_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_RearBay_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_CAU1_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_CAU2_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_Pack1_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_Pack2_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_RamAir_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_WhiteBars1_il
+# -
+#   type: var
+#   var_name: L:OVHD_AIRCOND_WhiteBars2_il
+# -
+#   type: var
+#   var_name: L:OVHD_GRNDTEST_GrndPressn_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng1_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng2_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng3_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng4_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng1_ext1_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng1_ext2_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng2_ext1_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng2_ext2_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng3_ext1_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng3_ext2_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng4_ext1_il
+# -
+#   type: var
+#   var_name: L:OVHD_FIREHANDLES_Eng4_ext2_il
+# -
+#   type: var
+#   var_name: L:OVHD_MISC_AntiSkid_inop_il
+# -
+#   type: var
+#   var_name: L:OVHD_MISC_AntiSkid_fault_il
+# -
+#   type: var
+#   var_name: L:OVHD_MISC_AntiSkid_splr_unlock_il
+# -
+#   type: var
+#   var_name: L:OVHD_MISC_AntiSkid_manSplr_fault_il
+# -
+#   type: var
+#   var_name: L:OVHD_MISC_AntiSkid_yellow_fail_il
+# -
+#   type: var
+#   var_name: L:OVHD_MISC_AntiSkid_green_fail_il
+# -
+#   type: var
+#   var_name: L:OVHD_MISC_WhiteBars1_il
+# -
+#   type: var
+#   var_name: L:OVHD_MISC_WhiteBars2_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Yellow_lowQty_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Yellow_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Yellow_loPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Yellow_eng2_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Yellow_airLoPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Yellow_acPumpTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Yellow_acPumpFail_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Yellow_brkLoPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Green_lowQty_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Green_hiTemp_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Green_loPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Green_eng3_valve_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Green_airLoPress_il
+# -
+#   type: var
+#   var_name: L:OVHD_HYD_Green_PtuValve_il
+# -
+#   type: var
+#   var_name: L:FA_Music_brt
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Crew_call_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Inter_cabin_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Pilot_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_pa_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Int_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Fwd_Eic_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Crew_call_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Inter_cabin_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Pilot_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_pa_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Int_light
+# -
+#   type: var
+#   var_name: L:CAB_CTRLS_Aft_Eic_light
+# -
+#   type: var
+#   var_name: L:FWD_CAB_OVHD_Gnd_Pwr_light
+# -
+#   type: var
+#   var_name: L:146_no_smoking_sign
+# -
+#   type: var
+#   var_name: L:146_seat_belt_sign
+# -
+#   type: var
+#   var_name: L:FWD_CAB_OVHD_Cabin_Call_light
+# -
+#   type: var
+#   var_name: L:FWD_CAB_OVHD_Toilet_Rear_Call_light
+# -
+#   type: var
+#   var_name: L:FWD_CAB_OVHD_Toilet_Front_Call_light
+# -
+#   type: var
+#   var_name: L:AFT_CAB_OVHD_Cabin_Call_light
+# -
+#   type: var
+#   var_name: L:FWD_CAB_GALLEY_Coffee_power_light
+# -
+#   type: var
+#   var_name: L:FWD_CAB_GALLEY_Coffee_brew_light
+# -
+#   type: var
+#   var_name: L:FWD_CAB_GALLEY_Coffee_hotwater_light
+# -
+#   type: var
+#   var_name: L:FWD_CAB_GALLEY_Coffee_coldwater_light
+# -
+#   type: var
+#   var_name: L:146_centre_aisle_lights
+# -
+#   type: var
+#   var_name: L:146_side_L_lights
+# -
+#   type: var
+#   var_name: L:146_side_R_lights
+# -
+#   type: var
+#   var_name: L:Pilots_vis
+# - # EFB Unsettable
+#   type: var
+#   var_name: L:Captain_enabled
+# - # EFB Unsettable
+#   type: var
+#   var_name: L:CoPilot_enabled
+# -
+#   type: var
+#   var_name: L:L_HSI_To_flag
+# -
+#   type: var
+#   var_name: L:L_HSI_From_flag
+# - # EFB Unsettable
+#   type: var
+#   var_name: L:L_VSI_TCAS_enabled
+# -
+#   type: var
+#   var_name: L:R_HSI_To_flag
+# -
+#   type: var
+#   var_name: L:R_HSI_From_flag
+# - # EFB Unsettable
+#   type: var
+#   var_name: L:R_VSI_TCAS_enabled
+# - # EFB Unsettable
+#   type: var
+#   var_name: L:OVHD_FUEL_L_blank_vis
+# - # EFB Unsettable
+#   type: var
+#   var_name: L:OVHD_FUEL_R_blank_vis
+# - # EFB Unsettable
+#   type: var
+#   var_name: L:OVHD_FUEL_L_aux_vis
+# - # EFB Unsettable
+#   type: var
+#   var_name: L:OVHD_FUEL_R_aux_vis
+# -
+#   type: var
+#   var_name: L:EXT_Airbrake_R
+  -
+    type: var
+    var_name: L:EXT_Door_cargo_fuselage
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:EXT_Spoilers_R_middle
+# -
+#   type: var
+#   var_name: L:EXT_Wiper_L
+# -
+#   type: var
+#   var_name: L:EXT_Spoilers_R_outer
+# -
+#   type: var
+#   var_name: L:EXT_Wiper_R
+# -
+#   type: var
+#   var_name: L:EXT_Eng1_fan_anim
+# -
+#   type: var
+#   var_name: L:EXT_Spoilers_L_middle
+# -
+#   type: var
+#   var_name: L:EXT_Eng2_fan_anim
+# -
+#   type: var
+#   var_name: L:EXT_Spoilers_L_roll
+# -
+#   type: var
+#   var_name: L:EXT_Airbrake_L
+# -
+#   type: var
+#   var_name: L:EXT_Spoilers_R_roll
+# -
+#   type: var
+#   var_name: L:EXT_Spoilers_L_outer
+  -
+    type: var
+    var_name: L:EXT_Door_cargo_aft
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:EXT_Spoilers_R_inner
+# -
+#   type: var
+#   var_name: L:EXT_Flaps_L
+# -
+#   type: var
+#   var_name: L:EXT_Eng4_fan_anim
+# -
+#   type: var
+#   var_name: L:EXT_Eng3_fan_anim
+# -
+#   type: var
+#   var_name: L:EXT_GPU_Pos
+  -
+    type: var
+    var_name: L:EXT_Door_cargo_fwd
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:EXT_Flaps_R
+# -
+#   type: var
+#   var_name: L:EXT_Spoilers_L_inner
+  -
+    type: var
+    var_name: L:EXT_Chocks
+  -
+    type: var
+    var_name: L:RAF_pods
+  -
+    type: var
+    var_name: L:HF_aerials
+  -
+    type: var
+    var_name: L:VHF3_aerial
+  -
+    type: var
+    var_name: L:EXT_GPU
+  -
+    type: var
+    var_name: L:EXT_Container_1
+  -
+    type: var
+    var_name: L:EXT_Container_2
+  -
+    type: var
+    var_name: L:EXT_Container_3
+  -
+    type: var
+    var_name: L:EXT_Container_4
+  -
+    type: var
+    var_name: L:EXT_Container_5
+  -
+    type: var
+    var_name: L:EXT_Container_6
+  -
+    type: var
+    var_name: L:EXT_Container_7
+# -
+#   type: var
+#   var_name: L:apu_running
+# -
+#   type: var
+#   var_name: L:gpu_running
+# -
+#   type: var
+#   var_name: L:EFB_batt
+# -
+#   type: var
+#   var_name: L:Elec_DC_ess
+# -
+#   type: var
+#   var_name: L:EFB146Pro_ScreenLuminosity
+# -
+#   type: var
+#   var_name: L:EFB146Pro_State
+  -
+    type: var
+    var_name: L:EFB_HOME_RETURN
+# -
+#   type: var
+#   var_name: L:YourControlsPanelId
+  -
+    type: var
+    var_name: L:EFB_On
+# -
+#   type: var
+#   var_name: L:EFB_sound_enabled
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_Yoke_L_vis
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_Yoke_R_vis
+# -
+#   type: var
+#   var_name: L:TMS_disp
+# -
+#   type: var
+#   var_name: L:WT_FMS_ACT_DIST
+# -
+#   type: var
+#   var_name: L:WT_CJ4_XTK
+# -
+#   type: var
+#   var_name: L:WT_CJ4_DTK
+# -
+#   type: var
+#   var_name: L:WT_FMS_TGT_HDG
+# -
+#   type: var
+#   var_name: L:fms_fpln_active
+# -
+#   type: var
+#   var_name: L:fpln_dtk
+# -
+#   type: var
+#   var_name: L:fpln_xtk_dist
+# -
+#   type: var
+#   var_name: L:fpln_xtk_dir
+# -
+#   type: var
+#   var_name: L:fpln_act_dist
+# -
+#   type: var
+#   var_name: L:UNS1_hdg
+# -
+#   type: var
+#   var_name: L:146_CG_SET
+# -
+#   type: var
+#   var_name: L:146_GrossWeight_LB
+# -
+#   type: var
+#   var_name: L:146_GrossWeight_KG
+# -
+#   type: var
+#   var_name: L:146_FuelWeight_LB
+# -
+#   type: var
+#   var_name: L:146_FuelWeight_KG
+# -
+#   type: var
+#   var_name: L:146_ZeroWeight_LB
+# -
+#   type: var
+#   var_name: L:146_ZeroWeight_KG
+# -
+#   type: var
+#   var_name: L:146_EmptyWeight_LB
+# -
+#   type: var
+#   var_name: L:146_EmptyWeight_KG
+# -
+#   type: var
+#   var_name: L:146_CargoWeight_LB
+# -
+#   type: var
+#   var_name: L:146_CargoWeight_KG
+# -
+#   type: var
+#   var_name: L:146_PaxWeight_LB
+# -
+#   type: var
+#   var_name: L:146_PaxWeight_KG
+# - # EFB Unsettable
+#   type: var
+#   var_name: L:146_PaxQty
+  -
+    type: var
+    var_name: L:EXT_Door_stairs
+    cancel_h_events: true
+# -
+#   type: var
+#   var_name: L:clear_simfltpln
+# - # Unsettable
+#   type: var
+#   var_name: L:FA_Music_play
+# - # Unsettable
+#   type: var
+#   var_name: L:FA_Music_vol
+# - # Unsettable
+#   type: var
+#   var_name: L:FA_Music_power
+  -
+    type: var
+    var_name: L:Paper_chart_rotate
+# -
+#   type: var
+#   var_name: L:WT_CJ4_INHIBIT_SEQUENCE
+# -
+#   type: var
+#   var_name: L:WasmInstrument_ScreenLuminosity
+# -
+#   type: var
+#   var_name: L:WasmInstrument_State
+# -
+#   type: var
+#   var_name: L:FLIGHTPLAN_USE_DECEL_WAYPOINT
+# -
+#   type: var
+#   var_name: L:AIRLINER_TO_FLEX_TEMP
+# -
+#   type: var
+#   var_name: L:WT.FlightPlan.Version
+# -
+#   type: var
+#   var_name: L:WT_CJ4_CONSTRAINT_ALTITUDE
+# -
+#   type: var
+#   var_name: L:RADIONAV ACTIVE:1
+# -
+#   type: var
+#   var_name: L:CJ4_FMC_ScreenLuminosity
+# -
+#   type: var
+#   var_name: L:CJ4_FMC_State
+# -
+#   type: var
+#   var_name: L:AIRLINER_FLIGHT_PHASE
+# -
+#   type: var
+#   var_name: L:FMC_UPDATE_CURRENT_PAGE
+# -
+#   type: var
+#   var_name: L:AIRLINER_FMC_FORCE_NEXT_UPDATE
+# -
+#   type: var
+#   var_name: L:TAKEOFF_TIME
+# -
+#   type: var
+#   var_name: L:LANDING_TIME
+# -
+#   type: var
+#   var_name: L:Glasscockpits_FPLHaveOrigin
+# -
+#   type: var
+#   var_name: L:Glasscockpits_FPLHaveDestination
+# -
+#   type: var
+#   var_name: L:jf_146_wxr_ScreenLuminosity
+# -
+#   type: var
+#   var_name: L:jf_146_wxr_State
+# -
+#   type: var
+#   var_name: L:AIRLINER_MCDU_CURRENT_FPLN_WAYPOINT
+# -
+#   type: var
+#   var_name: L:MAP_FP1_NOT_SPECIFIC_COLORS
+# -
+#   type: var
+#   var_name: L:MFD_MapShowCursor
+# -
+#   type: var
+#   var_name: L:MFD_MapZoomRange
+# -
+#   type: var
+#   var_name: L:WT_NAV_SENSITIVITY
+# -
+#   type: var
+#   var_name: L:WT_NAV_TO_NAV_TRANSFER_STATE
+# -
+#   type: var
+#   var_name: L:WT_CJ4_VPATH_ALT_DEV
+# -
+#   type: var
+#   var_name: L:WT_CJ4_TOD_DISTANCE
+# -
+#   type: var
+#   var_name: L:WT_CJ4_TOD_REMAINING
+# -
+#   type: var
+#   var_name: L:WT_NAV_HOLD_INDEX
+# -
+#   type: var
+#   var_name: L:WT_CJ4_ALT_HOLD
+# -
+#   type: var
+#   var_name: L:WT_CJ4_LNAV_MODE
+# -
+#   type: var
+#   var_name: L:WT_CJ4_DONUT
+# -
+#   type: var
+#   var_name: L:WT_CJ4_SNOWFLAKE
+# -
+#   type: var
+#   var_name: L:AIRLINER_V1_SPEED
+# -
+#   type: var
+#   var_name: L:AIRLINER_VR_SPEED
+# -
+#   type: var
+#   var_name: L:AIRLINER_V2_SPEED
+# -
+#   type: var
+#   var_name: L:MAP_SHOW_TEMPORARY_FLIGHT_PLAN
+# -
+#   type: var
+#   var_name: L:MAP_SHOWN_FLIGHTPLAN_INDEX
+# -
+#   type: var
+#   var_name: L:WT_CJ4_DISPLAY_MSG
+# -
+#   type: var
+#   var_name: L:WT_CJ4_WPT_ALERT
+# -
+#   type: var
+#   var_name: L:WT_FMS_FPL_ACT
+# -
+#   type: var
+#   var_name: L:WT_NAV_SENSITIVITY_SCALAR
+# -
+#   type: var
+#   var_name: L:WT_CJ4_VNAV_ON
+  -
+    type: var
+    var_name: L:L_VHFNAV_DME_sel
+# -
+#   type: var
+#   var_name: L:UNS_FMS_Guidance
+# -
+#   type: var
+#   var_name: L:146_SimBrief_Block_Fuel
+# -
+#   type: var
+#   var_name: L:146_SimBrief_ZFW
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_HF_sel
+  -
+    type: var
+    var_name: L:R_SIDE_Audio_HF_vol
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:146_AircraftState
+# -
+#   type: var
+#   var_name: L:146_SPEEDS_SET
+# -
+#   type: var
+#   var_name: L:146_SPEEDS_SET_FLAP
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_Yoke_roll_sound
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_Yoke_pitch_sound
+# -
+#   type: var
+#   var_name: L:146_Checklist_EquipOff
+# -
+#   type: var
+#   var_name: L:EXT_Door_pax_1L_handle
+# -
+#   type: var
+#   var_name: L:EXT_Door_pax_1R_handle
+# -
+#   type: var
+#   var_name: L:EXT_Door_pax_2L_handle
+# -
+#   type: var
+#   var_name: L:EXT_Door_pax_2R_handle
+# -
+#   type: var
+#   var_name: L:DOOR_cargo_fuselage_opening
+# -
+#   type: var
+#   var_name: L:DOOR_cargo_fuselage_open
+# -
+#   type: var
+#   var_name: L:DOOR_cargo_fuselage_open_percent
+# -
+#   type: var
+#   var_name: L:EXT_Door_stairs_slide_pos
+# -
+#   type: var
+#   var_name: L:EXT_Door_stairs_extend_pos
+# -
+#   type: var
+#   var_name: L:EXT_Door_stairs_pos_sound
+# -
+#   type: var
+#   var_name: L:146_sound_flightdeck_door_att
+# -
+#   type: var
+#   var_name: L:Cabin_test_emissive_scaler
+# -
+#   type: var
+#   var_name: L:AFT_CAB_OVHD_Toilet_Front_Call_light
+# -
+#   type: var
+#   var_name: L:AFT_CAB_OVHD_Toilet_Rear_Call_light
+# -
+#   type: var
+#   var_name: L:Galley_power_switched_on
+# -
+#   type: var
+#   var_name: L:Galley_kitchen_power_switched_on
+# -
+#   type: var
+#   var_name: L:standby_cabin_air_supply_loop
+# -
+#   type: var
+#   var_name: L:Avionics_fan_on
+# -
+#   type: var
+#   var_name: L:Flt_deck_fan_on
+# -
+#   type: var
+#   var_name: L:Cabin_deck_fan_on
+# -
+#   type: var
+#   var_name: L:Left_clock_timeOffset_hours
+# -
+#   type: var
+#   var_name: L:Left_clock_timeOffset_mins
+# -
+#   type: var
+#   var_name: L:L_CLOCK_Push_top_old
+# -
+#   type: var
+#   var_name: L:Right_clock_timeOffset_hours
+# -
+#   type: var
+#   var_name: L:Right_clock_timeOffset_mins
+# -
+#   type: var
+#   var_name: L:R_CLOCK_Push_top_old
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_N1_sound
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_N1_sound
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_N1_sound
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_N1_sound
+  -
+    type: var
+    var_name: L:Emer_gear_handle
+  -
+    type: NumSet
+    var_name: L:MCP_HDG_tooltip
+    var_units: Number
+    var_type: f64
+    event_name: HEADING_BUG_SET
+    use_calculator: true
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:PED_AFT_XPDR_Test_old
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_ToeBrakes_L_old
+# -
+#   type: var
+#   var_name: L:FLTCTRLS_ToeBrakes_R_old
+# -
+#   type: var
+#   var_name: L:L_SIDE_Tiller_deflection
+# -
+#   type: var
+#   var_name: L:R_SIDE_Tiller_deflection
+  - # Unsettable
+    type: var
+    var_name: L:FLTCTRLS_Lock
+# -
+#   type: var
+#   var_name: L:PED_MID_Elev_trim_pos
+# -
+#   type: var
+#   var_name: L:PED_MID_Flap_lever_old
+# -
+#   type: var
+#   var_name: L:OVHD_CTR_LWR_FastenBelts_old
+# -
+#   type: var
+#   var_name: L:OVHD_LTS_NoSmkg_old
+# -
+#   type: var
+#   var_name: L:Sound_pax_cabin_ambience
+# -
+#   type: var
+#   var_name: L:Sound_pax_boarding_ambience
+# -
+#   type: var
+#   var_name: L:L_SIDE_Lights_Sill_tooltip
+# -
+#   type: var
+#   var_name: L:R_SIDE_Lights_Sill_tooltip
+# -
+#   type: var
+#   var_name: L:L_SIDE_Lights_Lap_tooltip
+# -
+#   type: var
+#   var_name: L:R_SIDE_Lights_Lap_tooltip
+# -
+#   type: var
+#   var_name: L:Lighting_cabin
+# -
+#   type: var
+#   var_name: L:EXT_Power_cable
+# -
+#   type: var
+#   var_name: L:dc_power_switched_on
+# -
+#   type: var
+#   var_name: L:ac_power_switched_on
+# -
+#   type: var
+#   var_name: L:OVHD_APU_RPM_sound
+  -
+    type: var
+    var_name: L:PED_FWD_L_Audio_ADF_push
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_FlapWarnOvrd_button_old
+# -
+#   type: var
+#   var_name: L:R_ANNUNS_SteepApp_old
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEBOARDING_STATE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_CATERING_STATE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_REFUELING_STATE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_BOARDING_STATE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEPARTURE_STATE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEICING_STATE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_AIRCRAFT_EXIT_1_TOGGLE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_AIRCRAFT_EXIT_4_TOGGLE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_AIRCRAFT_SERVICE_1_TOGGLE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_AIRCRAFT_SERVICE_2_TOGGLE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_AIRCRAFT_CARGO_1_TOGGLE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_AIRCRAFT_CARGO_2_TOGGLE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_AIRCRAFT_MAINCARGO_TOGGLE
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_NUMPASSENGERS
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_NUMPILOTS
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_NUMCREW
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DISABLE_DOORS_MSG
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DISABLE_DETECT_REFUELING
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_PILOTS_ON_BOARD
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_CREW_ON_BOARD
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_NUMPASSENGERS_BOARDING
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_NUMPASSENGERS_BOARDING_TOTAL
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_NUMPASSENGERS_DEBOARDING
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_NUMPASSENGERS_DEBOARDING_TOTAL
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_BOARDING_CARGO
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_BOARDING_CARGO_PERCENT
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEBOARDING_CARGO
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_DEBOARDING_CARGO_PERCENT
+# -
+#   type: var
+#   var_name: L:FSDT_VAR_Frozen
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_BYPASS_PIN
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_FUELHOSE_CONNECTED
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_FUEL_COUNTER
+# -
+#   type: var
+#   var_name: L:FSDT_GSX_FUEL_COUNTER_MAX
+# -
+#   type: var
+#   var_name: L:traffic_MyDecsStatus
+# -
+#   type: var
+#   var_name: L:PED_AFT_BRAKE_Temp
+# -
+#   type: var
+#   var_name: L:standby_cabin_air_supply_on
+  -
+    type: var
+    var_name: L:L_ASI_Speed_bug
+    interpolate: Default
+  -
+    type: var
+    var_name: L:R_ASI_Speed_bug
+    interpolate: Default
+# -
+#   type: var
+#   var_name: L:CTR_ENG1_TGT_sound
+# -
+#   type: var
+#   var_name: L:CTR_ENG2_TGT_sound
+# -
+#   type: var
+#   var_name: L:CTR_ENG3_TGT_sound
+# -
+#   type: var
+#   var_name: L:CTR_ENG4_TGT_sound
+# -
+#   type: var
+#   var_name: L:brake_fans_on
+# -
+#   type: var
+#   var_name: L:hydraulic_ptu_on
+# -
+#   type: var
+#   var_name: L:ac_power_available
+# -
+#   type: var
+#   var_name: L:air_conditioning_on
+# -
+#   type: var
+#   var_name: L:hydraulic_ac_pump_on
+# -
+#   type: var
+#   var_name: L:sound_aural_warning_altitude_alert
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_Roll_tooltip
+# -
+#   type: var
+#   var_name: L:PED_AFT_AP_Pitch_tooltip
+# -
+#   type: var
+#   var_name: L:HUD_AP_SELECTED_SPEED
+# -
+#   type: var
+#   var_name: L:HUD_AP_SELECTED_ALTITUDE
+
+master:
+  - # Controls
+    type: NumSet
+    var_name: A:ELEVATOR POSITION
+    var_units: Position 16k
+    var_type: f64
+    multiply_by: -1
+    event_name: AXIS_ELEVATOR_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:AILERON POSITION
+    var_units: Position 16k
+    var_type: f64
+    multiply_by: -1
+    event_name: AXIS_AILERONS_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:RUDDER POSITION
+    var_units: Position 16k
+    var_type: f64
+    multiply_by: -1
+    event_name: AXIS_RUDDER_SET
+    use_calculator: true
+    unreliable: true
+
+  - # Throttles
+    type: var
+    var_name: L:PED_MID_Eng1_throttle_shaft_VC
+    interpolate: Default
+  -
+    type: var
+    var_name: L:PED_MID_Eng2_throttle_shaft_VC
+    interpolate: Default
+  -
+    type: var
+    var_name: L:PED_MID_Eng3_throttle_shaft_VC
+    interpolate: Default
+  -
+    type: var
+    var_name: L:PED_MID_Eng4_throttle_shaft_VC
+    interpolate: Default
+
+ignore:
+  - EFB146Pro#OfpLoginInput
+
+  - EFB146Pro#CalcInputAltCurrent
+  - EFB146Pro#CalcInputSpeed
+  - EFB146Pro#CalcInputAltTarget
+  - EFB146Pro#CalcInputAngle
+  - EFB146Pro#CalcInputVspeed
+  - EFB146Pro#CalcInputDist
+
+  - EFB146Pro#ChartsBrowseSearchfield

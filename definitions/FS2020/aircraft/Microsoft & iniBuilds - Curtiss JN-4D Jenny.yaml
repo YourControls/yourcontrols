@@ -89,21 +89,18 @@ shared:
 #   var_name: L:JN4_ENG_MAGNETO_R
 
 ignore:
-  - jn4-ini-efb#9
-  - jn4-ini-efb#10
-
   - jn4-ini-efb#radioMajInc
   - jn4-ini-efb#radioMajDec
   - jn4-ini-efb#radioMinInc
   - jn4-ini-efb#radioMinDec
 
-  - jn4-ini-efb#1463516903 # 0
-  - jn4-ini-efb#1674867838 # 1
-  - jn4-ini-efb#1886218773 # 2
-  - jn4-ini-efb#2097569708 # 3
-  - jn4-ini-efb#-1986046653 # 4
-  - jn4-ini-efb#-1774695718 # 5
-  - jn4-ini-efb#-1563344783 # 6
-  - jn4-ini-efb#-1351993848 # 7
+  - jn4-ini-efb#2334485737 # 0
+  - jn4-ini-efb#2365485738 # 1
+  - jn4-ini-efb#2396485739 # 2
+  - jn4-ini-efb#2427485740 # 3
+  - jn4-ini-efb#2458485741 # 4
+  - jn4-ini-efb#2489485742 # 5
+  - jn4-ini-efb#2520485743 # 6
+  - jn4-ini-efb#2551485744 # 7
   - jn4-ini-efb#gtr335-direct-del
   - jn4-ini-efb#gtr335-vfr

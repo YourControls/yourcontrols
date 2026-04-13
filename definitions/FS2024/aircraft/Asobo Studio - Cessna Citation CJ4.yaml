@@ -37,6 +37,31 @@ shared:
     event_param: 1
     index_reversed: true
 
+  - # Console
+    type: CustomCalculator
+    get: (B:FUEL_FUEL_PUSH_RUNSTOP_1_COVER_TOGGLE)
+    set: (>B:FUEL_FUEL_PUSH_RUNSTOP_1_COVER_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:FUEL_FUEL_PUSH_RUNSTOP_2_COVER_TOGGLE)
+    set: (>B:FUEL_FUEL_PUSH_RUNSTOP_2_COVER_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:FUEL_RUNSTOP_1_TOGGLE)
+    set: (>B:FUEL_RUNSTOP_1_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:FUEL_RUNSTOP_2_TOGGLE)
+    set: (>B:FUEL_RUNSTOP_2_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:HANDLING_HANDLING_PUSH_ELEVATORTRIM_SECONDARY_COVER_TOGGLE)
+    set: (>B:HANDLING_HANDLING_PUSH_ELEVATORTRIM_SECONDARY_COVER_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:HANDLING_SECONDARY_ELEVATORTRIM_AVAILABLE_TOGGLE)
+    set: (>B:HANDLING_SECONDARY_ELEVATORTRIM_AVAILABLE_TOGGLE)
+
   - # Deice
     type: NumSet
     var_name: A:PITOT HEAT SWITCH:1
@@ -157,20 +182,30 @@ shared:
     event_name: SET_FUEL_VALVE_ENG2
     use_calculator: true
 
-  - # GPU Truck
-    type: ToggleSwitch
-    var_name: A:INTERACTIVE POINT GOAL:2
-    var_units: Bool
-    var_type: bool
-    event_name: REQUEST_POWER_SUPPLY
-    use_calculator: true
+  - # Fire
+    type: CustomCalculator
+    get: (B:COMMON_LOCK_PILOT_LENGINEFIRELIGHT_COVER_TOGGLE)
+    set: (>B:COMMON_LOCK_PILOT_LENGINEFIRELIGHT_COVER_TOGGLE)
   -
-    type: ToggleSwitch
-    var_name: A:INTERACTIVE POINT GOAL:3
-    var_units: Bool
-    var_type: bool
-    event_name: REQUEST_POWER_SUPPLY
-    use_calculator: true
+    type: CustomCalculator
+    get: (B:CJ4_AVIONICS_PUSH_PILOT_LENGINEFIRELIGHT_PUSH)
+    set: (>B:CJ4_AVIONICS_PUSH_PILOT_LENGINEFIRELIGHT_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:CJ4_AVIONICS_PUSH_PILOT_LFIREBOTTLEARMEDLIGHT_PUSH)
+    set: (>B:CJ4_AVIONICS_PUSH_PILOT_LFIREBOTTLEARMEDLIGHT_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:COMMON_LOCK_COPILOT_R_ENGINEFIRELIGHT_COVER_TOGGLE)
+    set: (>B:COMMON_LOCK_COPILOT_R_ENGINEFIRELIGHT_COVER_TOGGLE)
+  -
+    type: CustomCalculator
+    get: (B:CJ4_AVIONICS_PUSH_COPILOT_RENGINEFIRELIGHT_PUSH)
+    set: (>B:CJ4_AVIONICS_PUSH_COPILOT_RENGINEFIRELIGHT_PUSH)
+  -
+    type: CustomCalculator
+    get: (B:CJ4_AVIONICS_PUSH_COPILOT_RFIREBOTTLEARMEDLIGHT_PUSH)
+    set: (>B:CJ4_AVIONICS_PUSH_COPILOT_RFIREBOTTLEARMEDLIGHT_PUSH)
 
   - # Hydraulics
     type: NumSet
@@ -182,6 +217,10 @@ shared:
     index_reversed: true
     use_calculator: true
   -
+    type: CustomCalculator
+    get: (B:COMMON_LOCK_PILOT_HYDSHUTOFF_L_COVER_TOGGLE)
+    set: (>B:COMMON_LOCK_PILOT_HYDSHUTOFF_L_COVER_TOGGLE)
+  -
     type: NumSet
     var_name: A:HYDRAULIC VALVE ACTIVE:2
     var_units: Bool
@@ -190,6 +229,10 @@ shared:
     event_param: 2
     index_reversed: true
     use_calculator: true
+  -
+    type: CustomCalculator
+    get: (B:COMMON_LOCK_PILOT_HYDSHUTOFF_R_COVER_TOGGLE)
+    set: (>B:COMMON_LOCK_PILOT_HYDSHUTOFF_R_COVER_TOGGLE)
 
   - # Passenger
     type: ToggleSwitch
@@ -213,6 +256,10 @@ shared:
     var_type: bool
     event_name: PRESSURIZATION_PRESSURE_DUMP_SWITCH
     use_calculator: true
+  -
+    type: CustomCalculator
+    get: (B:PRESSURIZATION_DUMP_COVER_TOGGLE)
+    set: (>B:PRESSURIZATION_DUMP_COVER_TOGGLE)
 
   - # Interior
     type: NumSet
@@ -503,6 +550,12 @@ shared:
   -
     type: var
     var_name: L:1:CJ4_Hydraulic_Service_Panel_Door_Open
+  -
+    type: var
+    var_name: L:1:CJ4_Fuel_Cap_Left_Open
+  -
+    type: var
+    var_name: L:1:CJ4_Fuel_Cap_Right_Open
   -
     type: var
     var_name: L:1:CJ4_Fuel_Panel_Door_Open

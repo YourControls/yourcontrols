@@ -1,0 +1,1292 @@
+# Version 2.2.7
+
+include:
+  - definitions/FS2024/modules/Instruments/AS_G1000.yaml
+  - definitions/FS2024/modules/controls.yaml
+  - definitions/FS2024/modules/general.yaml
+  - definitions/FS2024/modules/handling.yaml
+  - definitions/FS2024/modules/magnetos.yaml
+  - definitions/FS2024/modules/navigation.yaml
+  - definitions/FS2024/modules/payload.yaml
+  - definitions/FS2024/modules/radios.yaml
+  - definitions/FS2024/modules/safety.yaml
+  - definitions/FS2024/modules/trim.yaml
+
+shared:
+  - # Aircon
+    type: CustomCalculator
+    get: (B:PASSENGER_Cabin_Heat_1_Toggle)
+    set: (>B:PASSENGER_Cabin_Heat_1_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:PASSENGER_Cabin_Air_1_Toggle)
+    set: (>B:PASSENGER_Cabin_Air_1_Toggle)
+
+  - # Breakers overhead
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_COM_1_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_COM_1_Toggle)
+  - # half broke
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_NAV_1_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_NAV_1_Set)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_COM_2_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_COM_2_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_NAV_2_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_NAV_2_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_AUDIO_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_AUDIO_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_XPNDR_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_XPNDR_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_GYRO_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_GYRO_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_GEAR_WARN_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_GEAR_WARN_Toggle)
+
+  - # Breakers bottom
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_BEACON_LT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_BEACON_LT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_STROBE_LT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_STROBE_LT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_LANDING_LT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_LANDING_LT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_INSTR_LT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_INSTR_LT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_COCKPIT_LT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_COCKPIT_LT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_ANCHOR_LT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_ANCHOR_LT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_NAV_1_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_NAV_1_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_CABIN_LT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_CABIN_LT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_NAV_LT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_NAV_LT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_ELEV_TRIM_LEFT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_ELEV_TRIM_LEFT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_ELEV_TRIM_RIGHT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_ELEV_TRIM_RIGHT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_AILERON_TRIM_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_AILERON_TRIM_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_RUDDER_TRIM_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_RUDDER_TRIM_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_CARBAIR_LEFT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_CARBAIR_LEFT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_CARBAIR_RIGHT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_CARBAIR_RIGHT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_OIL_COOLER_LEFT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_OIL_COOLER_LEFT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_OIL_COOLER_RIGHT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_OIL_COOLER_RIGHT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_COWL_FLAP_LEFT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_COWL_FLAP_LEFT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_COWL_FLAP_RIGHT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_COWL_FLAP_RIGHT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_TURN_COORD_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_TURN_COORD_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_RADIO_ALT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_RADIO_ALT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_AUTOPILOT_2_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_AUTOPILOT_2_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_PITOT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_PITOT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_WINDSHIELD_DEICE_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_WINDSHIELD_DEICE_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_STARTER_LEFT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_STARTER_LEFT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_STARTER_RIGHT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_STARTER_RIGHT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_TRANSFER_PUMP_LEFT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_TRANSFER_PUMP_LEFT_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:INSTRUMENT_IE_HU16_CB_TRANSFER_PUMP_RIGHT_Toggle)
+    set: (>B:INSTRUMENT_IE_HU16_CB_TRANSFER_PUMP_RIGHT_Toggle)
+
+  - # Deice
+    type: NumSet
+    var_name: A:PITOT HEAT SWITCH:1
+    var_units: Bool
+    var_type: i32
+    event_name: PITOT_HEAT_SET
+    event_param: 1
+  -
+    type: NumSet
+    var_name: A:RECIP ENG ALTERNATE AIR POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: ANTI_ICE_GRADUAL_SET_ENG1
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:RECIP ENG ALTERNATE AIR POSITION:2
+    var_units: Position 16k
+    var_type: f64
+    event_name: ANTI_ICE_GRADUAL_SET_ENG2
+    use_calculator: true
+    unreliable: true
+  -
+    type: CustomCalculator
+    get: (B:DEICE_Propeller_1_Toggle)
+    set: (>B:DEICE_Propeller_1_Toggle)
+
+  - # Doors
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:0
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 2
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:2
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 3
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:4
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 5
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:5
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 6
+    use_calculator: true
+#  - # Windows (needs B event)
+#    type: ToggleSwitch
+#    var_name: A:INTERACTIVE POINT GOAL:6
+#    var_units: Bool
+#    var_type: bool
+#    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+#    event_param: 7
+#    use_calculator: true
+#  -
+#    type: ToggleSwitch
+#    var_name: A:INTERACTIVE POINT GOAL:7
+#    var_units: Bool
+#    var_type: bool
+#    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+#    event_param: 8
+#    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:8
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 9
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:INTERACTIVE POINT GOAL:9
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_AIRCRAFT_EXIT_FAST
+    event_param: 10
+    use_calculator: true
+
+  - # Electrical
+    type: ToggleSwitch
+    var_name: A:ELECTRICAL MASTER BATTERY:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_MASTER_BATTERY
+    event_param: 1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:GENERAL ENG MASTER ALTERNATOR:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_ALTERNATOR1
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:GENERAL ENG MASTER ALTERNATOR:2
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_ALTERNATOR2
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:EXTERNAL POWER ON:1
+    var_units: Bool
+    var_type: bool
+    event_name: TOGGLE_EXTERNAL_POWER
+    event_param: 1
+    index_reversed: true
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG STARTER:1
+    var_units: Bool
+    var_type: i32
+    event_name: SET_STARTER1_HELD
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG STARTER:2
+    var_units: Bool
+    var_type: i32
+    event_name: SET_STARTER2_HELD
+    use_calculator: true
+
+  - # Engines
+    type: NumSet
+    var_name: A:GENERAL ENG MIXTURE LEVER POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: MIXTURE1_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG MIXTURE LEVER POSITION:2
+    var_units: Position 16k
+    var_type: f64
+    event_name: MIXTURE2_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG PROPELLER LEVER POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: PROP_PITCH1_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG PROPELLER LEVER POSITION:2
+    var_units: Position 16k
+    var_type: f64
+    event_name: PROP_PITCH2_SET
+    use_calculator: true
+    unreliable: true
+
+  - # Flaps
+    type: NumSet
+    var_name: A:OIL COOLING FLAPS POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: OIL_COOLING_FLAPS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:RECIP ENG COWL FLAP POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: COWLFLAP1_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:RECIP ENG COWL FLAP POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: COWLFLAP2_SET
+    use_calculator: true
+
+  - # Fuel
+    type: NumSet
+    var_name: A:FUEL TANK SELECTOR:1
+    var_units: Enum
+    var_type: i32
+    event_name: FUEL_SELECTOR_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:FUEL TANK SELECTOR:2
+    var_units: Enum
+    var_type: i32
+    event_name: FUEL_SELECTOR_2_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG FUEL PUMP SWITCH EX1:1
+    var_units: Enum
+    var_type: i32
+    event_name: ELECT_FUEL_PUMP1_SET
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG FUEL PUMP SWITCH EX1:2
+    var_units: Enum
+    var_type: i32
+    event_name: ELECT_FUEL_PUMP2_SET
+    use_calculator: true
+
+  - # Fuel crossfeeds
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:43
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 43
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:45
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 45
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:44
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 44
+    use_calculator: true
+  -
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:46
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 46
+    use_calculator: true
+
+  - # G5 power
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:70
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 70
+    use_calculator: true
+
+  - # Console
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:23
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 23
+    index_reversed: true
+    use_calculator: true
+  - # Overhead flood
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:7
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 7
+    index_reversed: true
+    use_calculator: true
+  - # CPT map
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:4
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 4
+    index_reversed: true
+    use_calculator: true
+  - # Center panel
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:3
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 3
+    index_reversed: true
+    use_calculator: true
+  - # Engine panel
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:6
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 6
+    index_reversed: true
+    use_calculator: true
+  - # FO map
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:5
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 5
+    index_reversed: true
+    use_calculator: true
+  - # Instruments
+    type: NumSet
+    var_name: A:LIGHT POTENTIOMETER:16
+    var_units: Percent
+    var_type: f64
+    event_name: LIGHT_POTENTIOMETER_SET
+    event_param: 16
+    index_reversed: true
+    use_calculator: true
+
+  - # Cabin lights
+    type: NumSet
+    var_name: A:LIGHT CABIN:1
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN:2
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 2
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN:3
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 3
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN:4
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 4
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN:5
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 5
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN:6
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 6
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN:7
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 7
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN:8
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 8
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT CABIN:9
+    var_units: Bool
+    var_type: i32
+    event_name: CABIN_LIGHTS_SET
+    event_param: 9
+    use_calculator: true
+
+  - # Lights
+    type: NumSet
+    var_name: A:LIGHT STROBE:1
+    var_units: Bool
+    var_type: i32
+    event_name: STROBES_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT NAV:1
+    var_units: Bool
+    var_type: i32
+    event_name: NAV_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT BEACON:1
+    var_units: Bool
+    var_type: i32
+    event_name: BEACON_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT RECOGNITION:1
+    var_units: Bool
+    var_type: i32
+    event_name: RECOGNITION_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+  -
+    type: NumSet
+    var_name: A:LIGHT LANDING:1
+    var_units: Bool
+    var_type: i32
+    event_name: LANDING_LIGHTS_SET
+    event_param: 1
+    use_calculator: true
+
+  - # Passenger
+    type: CustomCalculator
+    get: (B:AIRLINER_No_Smoking_Toggle)
+    set: (>B:AIRLINER_No_Smoking_Toggle)
+  -
+    type: CustomCalculator
+    get: (B:AIRLINER_Seatbelts_Toggle)
+    set: (>B:AIRLINER_Seatbelts_Toggle)
+
+  - # Radio master
+    type: ToggleSwitch
+    var_name: A:CIRCUIT SWITCH ON:24
+    var_units: Bool
+    var_type: bool
+    event_name: ELECTRICAL_CIRCUIT_TOGGLE
+    event_param: 24
+    use_calculator: true
+
+  - # Global
+    type: var
+    var_name: L:XMLVAR_ASDIGIFLO_SWITCH
+  -
+    type: var
+    var_name: L:XMLVAR_ASDIGIFLO_MODE
+  -
+    type: var
+    var_name: L:XMLVAR_LEVER_WINDOW_LEFT
+  -
+    type: var
+    var_name: L:XMLVAR_LEVER_WINDOW_RIGHT
+  -
+    type: var
+    var_name: L:XMLVAR_Nose_Door
+# -
+#   type: var
+#   var_name: L:XMLVAR_Hatch_Left_Vibration
+# -
+#   type: var
+#   var_name: L:XMLVAR_Hatch_Right_Vibration
+# -
+#   type: var
+#   var_name: L:XMLVAR_PROP_RATE_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_PROP_FUEL_RAMP_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_PROP_RATE_CAP_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_PROP_RATE_2
+# -
+#   type: var
+#   var_name: L:XMLVAR_PROP_FUEL_RAMP_2
+# -
+#   type: var
+#   var_name: L:XMLVAR_PROP_RATE_CAP_2
+  -
+    type: var
+    var_name: L:XMLVAR_auto_start_active
+# -
+#   type: var
+#   var_name: L:XMLVAR_PROP_RATE_TEST_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_PROP_RATE_TEST_2
+  -
+    type: var
+    var_name: L:XMLVAR_Observing_Strut
+  -
+    type: var
+    var_name: L:XMLVAR_Ladder_Vis
+  -
+    type: var
+    var_name: L:XMLVAR_Chocks_Vis
+  -
+    type: var
+    var_name: L:XMLVAR_Observing_Ladder
+# -
+#   type: var
+#   var_name: L:Smoke_Timer_Running_Left_Engine
+# -
+#   type: var
+#   var_name: L:Smoke_Timer_Running_Right_Engine
+# -
+#   type: var
+#   var_name: L:Water_Drop_Nose_running
+# -
+#   type: var
+#   var_name: L:Water_Drop_Left_running
+# -
+#   type: var
+#   var_name: L:Water_Drop_Right_running
+# -
+#   type: var
+#   var_name: L:Water_Port_Left_running
+# -
+#   type: var
+#   var_name: L:Water_Port_Right_running
+  -
+    type: var
+    var_name: L:XMLVAR_Runway
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_7_Power_Setting
+  -
+    type: var
+    var_name: L:XMLVAR_Main_Door_Opened
+  -
+    type: var
+    var_name: L:XMLVAR_Ladder_Clicked
+# -
+#   type: var
+#   var_name: L:XMLVAR_Regular_Dirt_Stored
+# -
+#   type: var
+#   var_name: L:Time_Starter_Left_Engine
+# -
+#   type: var
+#   var_name: L:Time_Starter_Right_Engine
+  -
+    type: var
+    var_name: L:XMLVAR_Squat_Strut_On
+  -
+    type: var
+    var_name: L:XMLVAR_Clipboard_Stowage
+  -
+    type: var
+    var_name: L:XMLVAR_EFB_Hide
+  -
+    type: var
+    var_name: L:XMLVAR_Windshield_Refraction
+  -
+    type: var
+    var_name: L:Gyro_2_drift
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:Gyro_2_comb
+# -
+#   type: var
+#   var_name: L:HU16_Indicator_Flaps
+# -
+#   type: var
+#   var_name: L:HU16_Indicator_Gear_CENTER
+# -
+#   type: var
+#   var_name: L:HU16_Indicator_Gear_LEFT
+# -
+#   type: var
+#   var_name: L:HU16_Indicator_Gear_RIGHT
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Knob_Voltage_Select_Pos) 0 ==
+    set: 0 (>B:INSTRUMENT_Voltage_Knob_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Knob_Voltage_Select_Pos) 1 ==
+    set: 1 (>B:INSTRUMENT_Voltage_Knob_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Knob_Voltage_Select_Pos) 2 ==
+    set: 2 (>B:INSTRUMENT_Voltage_Knob_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Knob_Voltage_Select_Pos) 3 ==
+    set: 3 (>B:INSTRUMENT_Voltage_Knob_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Knob_Voltage_Select_Pos) 4 ==
+    set: 4 (>B:INSTRUMENT_Voltage_Knob_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Knob_Voltage_Select_Pos) 5 ==
+    set: 5 (>B:INSTRUMENT_Voltage_Knob_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:XMLVAR_DECISION_HEIGHT
+    interpolate: Default
+  -
+    type: var
+    var_name: L:XMLVAR_Throttle_Gust_Lock_Latch_Pulled
+  -
+    type: var
+    var_name: L:XMLVAR_Throttle_Gust_Lock_Engaged
+  -
+    type: var
+    var_name: L:ENGINE_Switch_Prop_Feather_1
+  -
+    type: var
+    var_name: L:ENGINE_Switch_Prop_Feather_2
+  -
+    type: var
+    var_name: L:XMLVAR_Supercharger_Handle
+  -
+    type: var
+    var_name: L:XMLVAR_Rudder_Boost
+  -
+    type: var
+    var_name: L:XMLVAR_Cowl_Flap_Switch_Mode_1
+  -
+    type: var
+    var_name: L:XMLVAR_Cowl_Flap_Switch_Mode_2
+  -
+    type: var
+    var_name: L:XMLVAR_Cowl_Flap_Switch_Mode_Both
+  -
+    type: var
+    var_name: L:XMLVAR_Prop_Switch_Mode_1
+  -
+    type: var
+    var_name: L:XMLVAR_Prop_Switch_Mode_2
+  -
+    type: var
+    var_name: L:XMLVAR_Prop_Switch_Mode_Both
+  -
+    type: var
+    var_name: L:XMLVAR_SWITCH_Fire_Ext_1
+  -
+    type: var
+    var_name: L:XMLVAR_SWITCH_Gen_Breaker_1
+  -
+    type: var
+    var_name: L:XMLVAR_SWITCH_Hyd_Breaker_1
+  -
+    type: var
+    var_name: L:XMLVAR_SWITCH_Fuel_Valve_1
+  -
+    type: var
+    var_name: L:XMLVAR_SWITCH_Fire_Ext_2
+  -
+    type: var
+    var_name: L:XMLVAR_SWITCH_Gen_Breaker_2
+  -
+    type: var
+    var_name: L:XMLVAR_SWITCH_Hyd_Breaker_2
+  -
+    type: var
+    var_name: L:XMLVAR_SWITCH_Fuel_Valve_2
+  -
+    type: var
+    var_name: L:XMLVAR_Hand_Pump_Handle
+# -
+#   type: var
+#   var_name: L:XMLVAR_IsDeiceAirframe
+  -
+    type: var
+    var_name: L:XMLVAR_Regular_Dirt_Prevent
+# -
+#   type: var
+#   var_name: L:XMLVAR_LeverThrottleHidden1
+# -
+#   type: var
+#   var_name: L:XMLVAR_LeverThrottleHidden2
+# -
+#   type: var
+#   var_name: L:XMLVAR_LeverMixtureHidden1
+# -
+#   type: var
+#   var_name: L:XMLVAR_LeverMixtureHidden2
+# -
+#   type: var
+#   var_name: L:XMLVAR_YokeHidden1
+# -
+#   type: var
+#   var_name: L:XMLVAR_YokeHidden2
+  -
+    type: var
+    var_name: L:ASDigiflo_Brightness
+  -
+    type: var
+    var_name: L:DigitalFuelMeter_FP5L_PAGE_LED
+  -
+    type: var
+    var_name: L:DigitalFuelMeter_FP5L_LOW_FUEL_LIGHT
+  -
+    type: var
+    var_name: L:DigitalFuelMeter_FP5L_HL_AUX_LIGHT
+# -
+#   type: var
+#   var_name: L:XMLVAR_AudioPanel_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_LTS_Test
+# -
+#   type: var
+#   var_name: L:XMLVAR_HU16_Light_Sensor
+# -
+#   type: var
+#   var_name: L:XMLVAR_ELT_STATE
+  -
+    type: var
+    var_name: L:XMLVAR_LANDING_LIGHTS_ACTUATOR_GOAL_POS_1
+    unreliable: true
+  -
+    type: var
+    var_name: L:XMLVAR_LANDING_LIGHTS_ACTUATOR_GOAL_POS_2
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:XMLVAR_Anchor_Available
+# -
+#   type: var
+#   var_name: L:XMLVAR_Anchor_Preset
+# -
+#   type: var
+#   var_name: L:XMLVAR_HU16_On_Water
+# -
+#   type: var
+#   var_name: L:XMLVAR_ElevatorTrim_Switch_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_ElevatorTrim_1_SwitchStateTimer
+# -
+#   type: var
+#   var_name: L:XMLVAR_AileronTrim_Switch_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_AileronTrim_1_SwitchStateTimer
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Switch_Gyro_Slave) 0 ==
+    set: 0 (>B:INSTRUMENT_Switch_Gyro_Slave_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Switch_Gyro_Slave) 1 ==
+    set: 1 (>B:INSTRUMENT_Switch_Gyro_Slave_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_Switch_Gyro_Slave) 2 ==
+    set: 2 (>B:INSTRUMENT_Switch_Gyro_Slave_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: var
+    var_name: L:XMLVAR_eng_primed_1
+    unreliable: true
+  -
+    type: var
+    var_name: L:XMLVAR_eng_primed_2
+    unreliable: true
+# -
+#   type: var
+#   var_name: L:XMLVAR_Starter_State
+# -
+#   type: var
+#   var_name: L:XMLVAR_Starter_State_IsDown
+# -
+#   type: var
+#   var_name: L:XMLVAR_RudderTrim_Switch_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_RudderTrim_1_SwitchStateTimer
+  -
+    type: var
+    var_name: L:XMLVAR_Apron
+# -
+#   type: var
+#   var_name: L:XMLVAR_ELT_TEST_TIME
+  -
+    type: var
+    var_name: L:XMLVAR_Hand_Pump_Cycle_Start
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_HU16_Hand_Pump_Selector) 0 ==
+    set: 0 (>B:INSTRUMENT_Hand_Pump_5State_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_HU16_Hand_Pump_Selector) 1 ==
+    set: 1 (>B:INSTRUMENT_Hand_Pump_5State_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_HU16_Hand_Pump_Selector) 2 ==
+    set: 2 (>B:INSTRUMENT_Hand_Pump_5State_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_HU16_Hand_Pump_Selector) 3 ==
+    set: 3 (>B:INSTRUMENT_Hand_Pump_5State_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_HU16_Hand_Pump_Selector) 4 ==
+    set: 4 (>B:INSTRUMENT_Hand_Pump_5State_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_DeiceWindshield_1) 0 ==
+    set: 0 (>B:DEICE_Windshield_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_DeiceWindshield_1) 1 ==
+    set: 1 (>B:DEICE_Windshield_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_DeiceWindshield_1) 2 ==
+    set: 2 (>B:DEICE_Windshield_1_Set)
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:XMLVAR_Starter_State_MinReleaseTime
+  -
+    type: var
+    var_name: L:XMLVAR_Crash_Bar_1
+  -
+    type: var
+    var_name: L:XMLVAR_Crash_Bar_2
+# -
+#   type: var
+#   var_name: L:WATER_RUDDER_Position
+# -
+#   type: var
+#   var_name: L:LANDING_GEAR_Gear
+# -
+#   type: var
+#   var_name: L:INSTRUMENT_Altimeter_3
+# -
+#   type: var
+#   var_name: L:LOCAL_milliBar_to_inHg
+# -
+#   type: var
+#   var_name: L:INSTRUMENT_Altimeter_2
+# -
+#   type: var
+#   var_name: L:INSTRUMENT_Course_1
+# -
+#   type: var
+#   var_name: L:INSTRUMENT_Course_2
+# -
+#   type: var
+#   var_name: L:XMLVAR_IE_Throttle_VR_Handled
+# -
+#   type: var
+#   var_name: L:XMLVAR_IE_Throttle_VR_Value
+# -
+#   type: var
+#   var_name: L:ELECTRICAL_Starter_1
+# -
+#   type: var
+#   var_name: L:ELECTRICAL_Starter_2
+# -
+#   type: var
+#   var_name: L:RUDDER_Position
+# -
+#   type: var
+#   var_name: L:AILERON_Position
+# -
+#   type: var
+#   var_name: L:ELEVATOR_Position
+# -
+#   type: var
+#   var_name: L:Spoiler_Position
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_SWITCH_Inverter) 0 ==
+    set: 0 (>B:INSTRUMENT_SWITCH_INVERTER_SET)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_SWITCH_Inverter) 1 ==
+    set: 1 (>B:INSTRUMENT_SWITCH_INVERTER_SET)
+    condition:
+      equals:
+        F64: 1.0
+  -
+    type: CustomCalculator
+    get: (L:XMLVAR_SWITCH_Inverter) 2 ==
+    set: 2 (>B:INSTRUMENT_SWITCH_INVERTER_SET)
+    condition:
+      equals:
+        F64: 1.0
+# -
+#   type: var
+#   var_name: L:LIGHTING_LANDING_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_NAV_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_BEACON_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_STROBE_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_RECOGNITION_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_16
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_7
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_4_Power_Setting
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_3_Power_Setting
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_5_Power_Setting
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_6_Power_Setting
+# -
+#   type: var
+#   var_name: L:LIGHTING_POTENTIOMETER_23_Power_Setting
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_1
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_2
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_3
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_4
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_5
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_6
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_7
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_8
+# -
+#   type: var
+#   var_name: L:LIGHTING_CABIN_9
+# -
+#   type: var
+#   var_name: L:XMLVAR_ELT_ACTIVATION_TIME
+# -
+#   type: var
+#   var_name: L:DEICE_Pitot_1
+# -
+#   type: var
+#   var_name: L:DEICE_Propeller_1
+# -
+#   type: var
+#   var_name: L:DEICE_Airframe_1
+# -
+#   type: var
+#   var_name: L:AS1000_MFD_BRIGHTNESS
+# -
+#   type: var
+#   var_name: L:AS1000_MFD_SelectedComIndex
+# -
+#   type: var
+#   var_name: L:AS1000_MFD_SelectedNavIndex
+# -
+#   type: var
+#   var_name: L:PFD_CDI_Source
+# -
+#   type: var
+#   var_name: L:XMLVAR_VNAVButtonValue
+# -
+#   type: var
+#   var_name: L:AS1000_PFD_BRIGHTNESS
+# -
+#   type: var
+#   var_name: L:AS1000_PFD_SelectedComIndex
+# -
+#   type: var
+#   var_name: L:AS1000_PFD_SelectedNavIndex
+# -
+#   type: var
+#   var_name: L:AS1000_MidCom_Display_Backup_Active
+# -
+#   type: var
+#   var_name: L:XMLVAR_Splash_Running_1
+# -
+#   type: var
+#   var_name: L:XMLVAR_Splash_Frame_1
+# -
+#   type: var
+#   var_name: L:Splash_Time_Stored
+# -
+#   type: var
+#   var_name: L:XMLVAR_Splash_Running_2
+# -
+#   type: var
+#   var_name: L:XMLVAR_Splash_Frame_2
+# -
+#   type: var
+#   var_name: L:Splash_Time_Stored_2
+  -
+    type: var
+    var_name: L:XMLVAR_Windshield_Refraction_Effect_Disabled
+  -
+    type: var
+    var_name: L:XMLVAR_LANDING_LIGHTS_ACTUATOR_1
+  -
+    type: var
+    var_name: L:XMLVAR_LANDING_LIGHTS_ACTUATOR_2
+
+master:
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG THROTTLE LEVER POSITION:1
+    var_units: Position 16k
+    var_type: f64
+    event_name: THROTTLE1_SET
+    use_calculator: true
+    unreliable: true
+  -
+    type: NumSet
+    var_name: A:GENERAL ENG THROTTLE LEVER POSITION:2
+    var_units: Position 16k
+    var_type: f64
+    event_name: THROTTLE2_SET
+    use_calculator: true
+    unreliable: true
+
+ignore:
+  - AS5_1_Knob_Inc
+  - AS5_1_Knob_Dec
+  - AS5_1_Knob_Push
