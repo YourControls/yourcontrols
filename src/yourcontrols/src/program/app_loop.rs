@@ -358,7 +358,7 @@ impl AppHandler {
 
         ctx.sim
             .definitions
-            .on_connected(&ctx.sim.conn, skip_sim_connect)
+            .on_connected(&ctx.sim.conn, skip_sim_connect, false)
             .ok();
         // Display attempting to start server
         state.app_interface.attempt();

@@ -322,7 +322,7 @@ impl NetworkHandler {
                         let def_connect_result = ctx
                             .sim
                             .definitions
-                            .on_connected(&ctx.sim.conn, skip_sim_connect);
+                            .on_connected(&ctx.sim.conn, skip_sim_connect, true);
                         if let Err(()) = def_connect_result {
                             client.stop(
                                 "Error starting WS server. Do you have another YourControls open?"
