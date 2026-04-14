@@ -50,10 +50,10 @@ pub struct InterpolateData {
 #[derive(Deserialize, Debug)]
 pub enum InterpolationType {
     Default,
-	DefaultConstant,
+    DefaultConstant,
     Invert,
-	InvertConstant,
-	Wrap360,
+    InvertConstant,
+    Wrap360,
     Wrap180,
     Wrap90,
 }
@@ -145,13 +145,16 @@ impl GaugeCommunicator {
     }
 
     pub fn send_definitions(&mut self, conn: &SimConnector) {
-        for x in 0..(self.datums.len() as f32 / 126_f32).ceil() as i32 {
+        let batch_size = 100;
+        for x in 0..(self.datums.len() as f32 / batch_size as f32).ceil() as i32 {
             let mut writer = MemWriter::new(8096, 4).unwrap();
 
-            for i in 0..126 {
-                if let Some(datum_data) = self.datums.get((x * 126 + i) as usize) {
+            for i in 0..batch_size {
+                if let Some(datum_data) = self.datums.get((x * batch_size + i) as usize) {
                     writer.write_str(&datum_data.calculator);
-                    writer.pad(64 - datum_data.calculator.len() as isize);
+                    writer.pad(80 - datum_data.calculator.len() as isize);
+                } else {
+                    writer.pad(80);
                 }
             }
 
@@ -161,7 +164,7 @@ impl GaugeCommunicator {
                     SEND_MULTIPLE,
                     0,
                     0,
-                    8064,
+                    8000,
                     writer.get_data_location() as *mut std::ffi::c_void,
                 );
             }
@@ -332,7 +335,7 @@ impl GaugeCommunicator {
         }
 
         conn.add_to_client_data_definition(RECEIVE_MULTIPLE, 0, 8096, 0.0, 0);
-        conn.add_to_client_data_definition(SEND_MULTIPLE, 0, 8064, 0.0, 0);
+        conn.add_to_client_data_definition(SEND_MULTIPLE, 0, 8000, 0.0, 0);
         // Clear gauge definitions
         self.clear_definitions(conn);
 
